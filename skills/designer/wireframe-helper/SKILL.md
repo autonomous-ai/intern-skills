@@ -1,55 +1,135 @@
+---
+name: wireframe-helper
+description: Creates text-based wireframes with ASCII layouts, annotations, responsive adaptations, and user flow context. Use when the user asks for a wireframe, page layout, UI structure, lo-fi mockup, or wants to visualize a page structure before high-fidelity design.
+---
+
 # Wireframe Helper
 
-## Metadata
-- **ID**: wireframe-helper
-- **Role**: designer
-- **Version**: 1.0.0
-
-## Persona
-You are a UX Architect and Wireframing Specialist with 11 years of experience in information architecture, interaction design, and rapid prototyping. You are strategic, user-centered, and pragmatic. You always start from user goals and content priority when structuring layouts, and you produce clear, annotated wireframes that bridge the gap between idea and high-fidelity design.
-
-## Trigger Patterns
-- **Keywords**: ["wireframe", "layout", "mockup", "page structure", "UI structure", "page layout", "sketch layout", "information architecture", "user flow", "screen layout", "low-fidelity", "lo-fi"]
-- **Intent**: The user wants to quickly visualize a page or feature layout, define information architecture, map user flows, or explore layout options before committing to detailed design.
-- **Context Clues**: User is starting a new page or feature and wants to explore structure. User says "before Figma" or "quick sketch." User describes a screen and wants a visual representation. User needs to communicate layout ideas to a team.
+## Quick Start
+Describe the page or feature you need wireframed. Specify the target viewport (mobile, tablet, desktop), key content elements, and primary user action. The output is an annotated ASCII wireframe with responsive notes and user flow context.
 
 ## Workflow
+1. Identify the page/feature, target viewport(s), and fidelity level needed
+2. Gather requirements: page purpose, target users, key content, primary CTAs, constraints
+3. Select the layout pattern: F-pattern (content), Z-pattern (landing page), card grid (listings), split screen (comparison), single column (mobile/long-form)
+4. Create the ASCII wireframe starting with mobile viewport
+5. Annotate interactions, behavior, and content requirements for each element
+6. Map the user flow: how users arrive at and leave this page
+7. Optionally propose 2-3 layout alternatives with rationale
 
-### Phase 1: Discovery & Analysis
-1. **Parse the request**: Identify the page or feature to wireframe, the target viewport(s) (mobile, tablet, desktop), and the fidelity level needed (rough sketch vs. detailed structure).
-2. **Gather requirements**: Determine the page purpose, target users, key content elements, primary actions (CTAs), and any constraints (existing navigation, design system patterns, technical limitations).
-3. **Select layout pattern**: Based on the content type and user goals, identify the most appropriate layout pattern — F-pattern (content/blog), Z-pattern (landing page), Card grid (product listing), Split screen (comparison/feature), or Single column (mobile-first, long-form).
+## Examples
 
-### Phase 2: Context Integration
-1. **Load layout templates**: Retrieve common layout structures and component patterns relevant to the identified page type (e.g., hero sections, card grids, sidebar navigation, footer patterns).
-2. **Substitute variables from user input**: Map the user's specific content elements (headlines, images, CTAs, data tables, forms) into the selected layout pattern. Prioritize elements by importance using visual hierarchy principles.
-3. **Integrate with existing context**: If the project has an existing design system, navigation structure, or page templates, ensure the wireframe is consistent with established patterns and reuses existing components.
+**Example 1: Landing page wireframe**
+Input: "Wireframe a SaaS landing page with hero, features, pricing, and CTA"
+Output:
+```
+Wireframe: SaaS Landing Page
+Viewport: Mobile
 
-### Phase 3: Execution & Output
-1. **Create ASCII wireframe**: Produce a clear, annotated text-based wireframe using box-drawing characters. Start with the mobile viewport, then adapt for larger breakpoints.
-2. **Annotate interactions and behavior**: Add notes for each significant element describing its behavior, content requirements, interaction states, and responsive adaptations.
-3. **Map the user flow**: Illustrate the navigation path leading to and from the wireframed page, showing how it fits within the broader user journey.
-4. **Propose layout alternatives**: When appropriate, present 2-3 layout variations with brief rationale for each, allowing the user to choose the best direction.
+## Layout
++----------------------------------+
+|  [Logo]            [Menu Icon]   |
++----------------------------------+
+|                                  |
+|     Headline (max 8 words)       |
+|     Subheadline (1-2 lines)      |
+|                                  |
+|     [=== Get Started CTA ===]    |
+|                                  |
+|     (Hero illustration)          |
+|                                  |
++----------------------------------+
+|     "Why Choose Us"              |
+|                                  |
+|  +----------------------------+  |
+|  | (icon)  Feature 1 title    |  |
+|  | Short description          |  |
+|  +----------------------------+  |
+|  +----------------------------+  |
+|  | (icon)  Feature 2 title    |  |
+|  | Short description          |  |
+|  +----------------------------+  |
+|  +----------------------------+  |
+|  | (icon)  Feature 3 title    |  |
+|  | Short description          |  |
+|  +----------------------------+  |
++----------------------------------+
+|     Pricing Plans                |
+|  +--------+ +--------+ +------+  |
+|  | Free   | | Pro    | | Team |  |
+|  | $0/mo  | | $19/mo | | $49  |  |
+|  | [List] | | [List] | | [List]| |
+|  | [CTA]  | | [CTA]  | | [CTA]| |
+|  +--------+ +--------+ +------+  |
++----------------------------------+
+|  Footer: Links | Legal | Social  |
++----------------------------------+
 
-## Tool Orchestration
-- Use `Read` to load existing page templates, component libraries, or navigation structures from the project.
-- Use `Grep` to search for existing layout patterns, route definitions, or page components in the codebase that the wireframe should align with.
-- Use `Glob` to locate related design files, existing wireframes, or page structure documentation within the project.
+## Annotations
+1. Hero CTA: Primary action, full-width on mobile, centered on desktop
+2. Features: Stack vertically on mobile, 3-column grid on desktop
+3. Pricing cards: Horizontal scroll on mobile, side-by-side on desktop
+4. Nav menu: Hamburger on mobile, horizontal links on desktop
+
+## Responsive Adaptations
+- Mobile: Single column, stacked cards, hamburger nav
+- Tablet: 2-column feature grid, visible nav links
+- Desktop: 3-column features and pricing, full nav bar
+
+## User Flow
+Search/Ad -> Landing Page -> [Get Started CTA] -> Sign Up Page
+```
+
+**Example 2: Dashboard wireframe**
+Input: "Quick wireframe for an admin dashboard with stats and recent orders table"
+Output:
+```
+Wireframe: Admin Dashboard
+Viewport: Desktop
+
+## Layout
++----------+-------------------------------------------+
+| Sidebar  |  Welcome, [User]              [Notifications] |
+|          |-------------------------------------------|
+| [Logo]   |  +--------+ +--------+ +--------+ +--------+ |
+| Dashboard|  | Revenue | | Orders | | Users  | | Conv.  | |
+| Orders   |  | $12.4K  | | 284    | | 1,203  | | 3.2%   | |
+| Products |  +--------+ +--------+ +--------+ +--------+ |
+| Users    |                                           |
+| Settings |  Recent Orders                    [View All]  |
+|          |  +---------------------------------------+|
+|          |  | # | Customer | Amount | Status | Date  ||
+|          |  |---|----------|--------|--------|-------||
+|          |  | 1 | Jane D.  | $89    | Shipped| 03/18 ||
+|          |  | 2 | John S.  | $124   | Pending| 03/17 ||
+|          |  +---------------------------------------+|
++----------+-------------------------------------------+
+
+## Annotations
+1. Sidebar: Collapsible on tablet, hidden (hamburger) on mobile
+2. Stat cards: 4-column on desktop, 2x2 grid on tablet, stacked on mobile
+3. Orders table: Horizontal scroll on mobile, hide low-priority columns
+```
+
+## Tools
+- Use `Read` to load existing page templates, component libraries, or navigation structures
+- Use `Grep` to search for existing layout patterns or route definitions in the codebase
+- Use `Glob` to locate related design files or existing wireframes
 
 ## Error Handling
-- If the page purpose or content is unclear -> Ask the user to describe the page goal, target user, and the 3-5 most important content elements before proceeding.
-- If no target viewport is specified -> Default to mobile-first and provide responsive annotations for tablet and desktop breakpoints.
-- If the requested layout conflicts with existing patterns in the project -> Flag the inconsistency, explain the tradeoff, and let the user decide whether to match existing patterns or introduce a new one.
-- If the content is too complex for a single wireframe -> Break it into multiple sections or screens and wireframe each separately with navigation annotations.
+- If page purpose or content is unclear -> Ask the user to describe the page goal, target user, and 3-5 most important content elements
+- If no target viewport is specified -> Default to mobile-first with responsive annotations for tablet and desktop
+- If the layout conflicts with existing project patterns -> Flag the inconsistency and let the user decide
+- If content is too complex for a single wireframe -> Break into multiple screens with navigation annotations
 
-## Rules & Constraints
-- Mobile-first: always wireframe the mobile viewport first, then scale up to tablet and desktop.
-- Content-first: use realistic content descriptions, not generic placeholders. If real content is unavailable, use descriptive labels that reflect actual content types.
-- Above the fold: the key message and primary CTA must be visible without scrolling on all viewports.
-- Visual hierarchy: use size, position, and spacing to communicate element importance — larger and higher means more important.
-- Consistency: identical content types must use identical layout patterns across the application.
-- Every interactive element must have annotated behavior (tap, click, hover, swipe).
-- Wireframes are disposable artifacts — optimize for speed and clarity, not visual polish.
+## Rules
+- Mobile-first: always wireframe mobile viewport first, then scale up
+- Content-first: use realistic content descriptions, not generic "Lorem ipsum" placeholders
+- Above the fold: key message and primary CTA must be visible without scrolling
+- Visual hierarchy: size and position communicate importance -- larger and higher means more important
+- Consistency: identical content types must use identical layout patterns across the app
+- Annotate every interactive element with its behavior (tap, click, hover, swipe)
+- Wireframes are disposable -- optimize for speed and clarity, not visual polish
 
 ## Output Template
 ```
@@ -62,12 +142,11 @@ Viewport: [Mobile / Tablet / Desktop]
 ## Annotations
 1. [Element]: [Behavior / interaction / content notes]
 2. [Element]: [Behavior / interaction / content notes]
-3. [Element]: [Behavior / interaction / content notes]
 
 ## Responsive Adaptations
-- Mobile: [Layout description and changes]
-- Tablet: [Layout description and changes]
-- Desktop: [Layout description and changes]
+- Mobile: [Layout changes]
+- Tablet: [Layout changes]
+- Desktop: [Layout changes]
 
 ## User Flow
 [Previous Page] -> [Action] -> [This Page] -> [Action] -> [Next Page]

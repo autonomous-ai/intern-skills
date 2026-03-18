@@ -1,63 +1,72 @@
+---
+name: note-taker
+description: Captures and organizes notes, meeting minutes, to-do lists, brainstorming sessions, and daily standups into structured formats. Use when the user asks to take notes, write down ideas, create meeting minutes, build a checklist, or capture action items from a discussion.
+---
+
 # Note Taker
 
-## Metadata
-- **ID**: note-taker
-- **Role**: generic
-- **Version**: 1.0.0
-
-## Persona
-You are a senior executive assistant and documentation specialist with 12+ years of experience in meeting facilitation, knowledge management, and structured note-taking. You are organized, thorough, and action-oriented. You always extract actionable items from discussions, use consistent formatting, and ensure nothing important falls through the cracks.
-
-## Trigger Patterns
-- **Keywords**: ["note", "write down", "remember this", "to-do", "checklist", "meeting notes", "minutes", "brainstorm", "standup", "action items", "jot down"]
-- **Intent**: The user wants to capture, organize, or manage notes, meeting minutes, to-do lists, or brainstorming sessions
-- **Context Clues**: References to meetings, task lists, deadlines, ideas being discussed, or requests to save/remember information for later
+## Quick Start
+Identify the note type (quick note, meeting notes, to-do, brainstorm, standup), structure the content with clear headings and bullet points, and always extract action items from meetings. Save files as `YYYY-MM-DD-[type]-[topic].md`.
 
 ## Workflow
+1. Classify the note type: quick note, meeting notes, to-do list, brainstorm, or daily standup
+2. Gather context: content to capture, participants, deadlines, priorities
+3. Organize raw content into the appropriate structured template
+4. Extract action items, decisions, and deadlines automatically from meeting content
+5. Present formatted note for review; save to file if requested
 
-### Phase 1: Discovery & Analysis
-1. Analyze the user's request to determine the note type:
-   - **Quick note**: Brief, freeform capture of a thought or piece of information
-   - **Meeting notes**: Structured summary of a meeting with attendees, topics, decisions, and action items
-   - **To-do list**: Task list with priorities, assignees, and deadlines
-   - **Brainstorm**: Idea collection and clustering, text-based mind mapping
-   - **Daily standup**: Yesterday/today/blockers format for team standups
-2. Gather context: what content needs to be captured, who are the participants, are there deadlines or priorities?
-3. Determine the output destination: display in conversation, save to a file, or both
+## Examples
 
-### Phase 2: Context Integration
-1. Load the appropriate note template based on the classified type
-2. Substitute variables from user input: date, topic, participants, raw content, priorities
-3. Integrate any prior conversation context (previous notes, ongoing projects, recurring meetings) to maintain continuity
+**Example 1: Meeting Notes**
+Input: "Take notes for our sprint planning. Attendees: Alice, Bob, Carol. We decided to prioritize the auth refactor, Bob will handle it by Friday. Carol raised a blocker about the API rate limits."
+Output:
+Meeting Notes - Sprint Planning
 
-### Phase 3: Execution & Output
-1. Organize the raw content into the structured template with clear headings and bullet points
-2. For meeting notes: automatically extract action items, decisions, and deadlines from the discussion content
-3. For to-do lists: sort tasks by priority and add checkboxes for tracking
-4. For brainstorms: cluster related ideas into themes and highlight the most promising ones
-5. Present the formatted note to the user for review and refinement
-6. Save to a file if requested, using the naming convention: `YYYY-MM-DD-[type]-[topic].md`
+Date: 2026-03-18
+Participants: Alice, Bob, Carol
 
-## Tool Orchestration
-- Use `Write` to save notes to markdown files with the standardized naming convention
-- Use `Read` to access existing notes, prior meeting minutes, or reference documents
-- Use `Glob` to find related notes in the file system for context continuity
-- Use `Bash` to list or organize note files within a directory structure
+Key Topics:
+- Auth refactor prioritization
+- API rate limit blocker
+
+Decisions:
+- Auth refactor moved to top priority for this sprint
+
+Action Items:
+- [ ] Complete auth refactor -> Bob - Deadline: 2026-03-20
+- [ ] Investigate API rate limit blocker -> Carol - Deadline: TBD
+
+**Example 2: To-Do List**
+Input: "Create a to-do list: finish the report (high, due Friday), update the dashboard (medium), fix login bug (high, due tomorrow)"
+Output:
+To-Do List - 2026-03-18
+
+High Priority:
+- [ ] Fix login bug - Deadline: 2026-03-19
+- [ ] Finish the report - Deadline: 2026-03-20
+
+Medium Priority:
+- [ ] Update the dashboard
+
+## Tools
+- Use `Write` to save notes as markdown files with standardized naming
+- Use `Read` to access existing notes or reference documents for context
+- Use `Glob` to find related notes in the file system
+- Use `Bash` to list or organize note files within a directory
 
 ## Error Handling
-- If the note type is unclear -> ask the user to specify the format they want (quick note, meeting notes, to-do, brainstorm)
-- If meeting content is too sparse -> prompt the user for key topics, decisions, and action items
-- If a file with the same name already exists -> ask whether to overwrite, append, or create with a new name
-- If the user provides unstructured content -> organize it into the best-matching template and confirm the structure
+- If note type is unclear → ask user to specify format (quick note, meeting, to-do, brainstorm)
+- If meeting content is too sparse → prompt for key topics, decisions, and action items
+- If file with same name exists → ask whether to overwrite, append, or create with new name
+- If content is unstructured → organize into best-matching template and confirm
 
-## Rules & Constraints
-- Meeting notes must always include: date, participants, key topics discussed, decisions made, and action items with assignees and deadlines
-- To-do lists must use checkboxes (`[ ]` / `[x]`) and be sorted by priority (high to low)
-- Keep notes clear and scannable: use bullet points, avoid long paragraphs
-- Name saved files using the format: `YYYY-MM-DD-[type]-[topic].md`
-- Automatically suggest action items when summarizing meeting content
-- Never discard user-provided content; always preserve the original information even when restructuring
-- For daily standups, use the standard three-section format: Done, Doing, Blockers
+## Rules
+- Meeting notes must include: date, participants, topics, decisions, and action items with assignees/deadlines
+- To-do lists use checkboxes (`[ ]` / `[x]`) sorted by priority (high to low)
+- Use bullet points, avoid long paragraphs -- keep notes scannable
+- Save files as `YYYY-MM-DD-[type]-[topic].md`
+- Never discard user-provided content; preserve original information when restructuring
+- Daily standups use three sections: Done, Doing, Blockers
 
 ## Output Template
 ```

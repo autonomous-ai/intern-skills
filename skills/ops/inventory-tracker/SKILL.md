@@ -1,61 +1,88 @@
+---
+name: inventory-tracker
+description: Tracks and manages office inventory, equipment, and assets including stock checks, allocations, retrievals, reorder requests, and audits. Use when the user asks about stock levels, equipment allocation, purchase orders, asset codes, or inventory audits.
+---
+
 # Inventory Tracker
 
-## Metadata
-- **ID**: inventory-tracker
-- **Role**: ops
-- **Version**: 1.0.0
-
-## Persona
-You are a meticulous asset and inventory management specialist with 10 years of experience overseeing office supplies, IT equipment, and corporate assets for mid-to-large enterprises. You are systematic, audit-minded, and vigilant about stock thresholds. You always maintain a complete audit trail for every inventory change and proactively flag items that need restocking or maintenance.
-
-## Trigger Patterns
-- **Keywords**: ["inventory", "stock level", "stocktake", "reorder", "equipment", "office supplies", "asset code", "allocate equipment", "retrieve equipment", "purchase order", "inventory audit"]
-- **Intent**: The user wants to check current inventory levels, allocate or retrieve equipment, create a purchase/reorder request, or perform an inventory audit.
-- **Context Clues**: User mentions a specific item or category (laptops, paper, ink); user references an employee onboarding or offboarding (equipment handover); user asks about low-stock alerts; user requests a periodic stocktake or audit report.
+## Quick Start
+Manage office inventory and equipment with full audit trails. Perform stock checks, allocate/retrieve equipment, generate purchase orders, and run inventory audits. Every change is logged with timestamp, person, and reason.
 
 ## Workflow
+1. Classify the operation: stock check, allocation, retrieval, reorder/purchase request, or audit
+2. Identify target items by name, asset code, or category (office supplies, IT equipment, furniture)
+3. Gather parameters: quantities, employee name (for allocation/retrieval), reason for change
+4. Load current inventory data and cross-reference records
+5. Execute the operation and log the change with timestamp, responsible person, and reason
+6. Generate alerts for any items below 20% of minimum threshold
+7. Deliver the structured report or confirmation
 
-### Phase 1: Discovery & Analysis
-1. **Classify Request Type** -- Determine the operation: stock check, equipment allocation, equipment retrieval, reorder/purchase request, or audit.
-2. **Identify Target Items** -- Determine which items or categories are involved: office supplies, IT equipment, furniture, or other equipment.
-3. **Gather Parameters** -- Collect relevant details: item names or asset codes, quantities, employee name (for allocation/retrieval), reason for the change, and any urgency indicators.
+## Examples
 
-### Phase 2: Context Integration
-1. **Load Current Inventory Data** -- Retrieve the latest stock levels, minimum thresholds, and asset registry for the relevant items.
-2. **Cross-Reference Records** -- For allocations, verify the employee exists and check prior allocations. For retrievals, confirm the asset is currently assigned to the stated employee.
-3. **Calculate Thresholds** -- Compare current stock against minimum thresholds and flag any items at or below 20% of the minimum level.
+**Example 1: Stock Check**
+Input: "What's the current stock level for printer ink and A4 paper?"
+Output:
+```
+Inventory Report
+---------------------------------------
+Date: 18/03/2026
+Operation: Stock Check
+Performed By: [Requestor]
 
-### Phase 3: Execution & Output
-1. **Perform Inventory Operation**:
-   - **Stock Check**: Present current levels with status indicators.
-   - **Allocation**: Decrease available quantity, record the handover with employee name, date, and asset code.
-   - **Retrieval**: Increase available quantity, log the return with condition notes.
-   - **Reorder**: Generate a purchase order listing items, quantities, estimated costs, and suggested vendors.
-   - **Audit**: Produce a full inventory snapshot comparing expected vs. actual counts.
-2. **Log the Change** -- Record every modification with a timestamp, the responsible person, and the reason.
-3. **Generate Alerts** -- If any item drops below the minimum threshold, generate a low-stock alert with a recommended reorder quantity.
-4. **Deliver Report** -- Present the structured inventory report or operation confirmation to the user.
+Item Summary:
+| Item            | Asset Code | In Stock | Minimum | Status |
+|-----------------|------------|----------|---------|--------|
+| Printer Ink     | SUP-0042   | 8        | 10      | LOW    |
+| A4 Paper (ream) | SUP-0015   | 45       | 20      | OK     |
 
-## Tool Orchestration
-- Use `Read` to load existing inventory records, asset registries, or threshold configuration files.
-- Use `Write` to save updated inventory records, purchase orders, or audit reports.
-- Use `Grep` to search for specific asset codes or item names across inventory logs.
-- Use `Glob` to locate inventory data files, templates, or historical audit reports.
+Alerts:
+- Printer Ink: Current stock (8) is below minimum threshold (10). Recommended reorder: 20 units.
+---------------------------------------
+```
+
+**Example 2: Equipment Allocation**
+Input: "Allocate a MacBook Pro (asset MBP-0112) to new hire Tran Minh B starting today."
+Output:
+```
+Inventory Report
+---------------------------------------
+Date: 18/03/2026
+Operation: Allocation
+Performed By: IT Admin
+
+Item Summary:
+| Item        | Asset Code | In Stock | Minimum | Status |
+|-------------|------------|----------|---------|--------|
+| MacBook Pro | MBP-0112   | 4 → 3   | 5       | LOW    |
+
+Change Log:
+- 18/03/2026 09:00 | IT Admin | MacBook Pro (MBP-0112) | -1 | Allocated to Tran Minh B (new hire onboarding)
+
+Alerts:
+- MacBook Pro: Current stock (3) is below minimum threshold (5). Recommended reorder: 5 units.
+---------------------------------------
+```
+
+## Tools
+- Use `Read` to load existing inventory records, asset registries, or threshold configuration files
+- Use `Write` to save updated inventory records, purchase orders, or audit reports
+- Use `Grep` to search for specific asset codes or item names across inventory logs
+- Use `Glob` to locate inventory data files, templates, or historical audit reports
 
 ## Error Handling
-- If the requested item does not exist in the inventory registry --> ask the user to confirm the item name or asset code, and offer to add it as a new entry.
-- If an allocation is requested but stock is insufficient --> notify the user of the shortage and suggest placing a reorder first.
-- If a retrieval references an asset not currently allocated to the stated employee --> flag the mismatch and request clarification.
-- If inventory data files are missing or unreadable --> inform the user and ask for the data source or offer to create a new inventory baseline.
-- If the user does not specify the operation type --> present the available operations and ask them to choose.
+- If the item does not exist in the registry → ask the user to confirm the name/code and offer to add it as a new entry
+- If allocation is requested but stock is insufficient → notify the user and suggest placing a reorder first
+- If a retrieval references an asset not allocated to the stated employee → flag the mismatch and request clarification
+- If inventory data files are missing or unreadable → inform the user and offer to create a new baseline
+- If the operation type is unclear → present available operations and ask the user to choose
 
-## Rules & Constraints
-- Every piece of equipment must have a unique asset code; never create duplicate codes.
-- All allocations must include a signed handover record (employee name, date, asset code, condition).
-- Trigger a low-stock alert when any item falls below 20% of its defined minimum threshold.
-- Every inventory change must be logged with: timestamp, person responsible, item, quantity change, and reason.
-- Never delete historical inventory records; all changes are append-only for audit purposes.
-- Periodic audits (monthly recommended) must compare physical counts against system records.
+## Rules
+- Every piece of equipment must have a unique asset code; never create duplicates
+- All allocations must include: employee name, date, asset code, and condition
+- Trigger a low-stock alert when any item falls below 20% of its minimum threshold
+- Every change must be logged with: timestamp, person responsible, item, quantity change, and reason
+- Never delete historical records; all changes are append-only for audit purposes
+- Monthly audits should compare physical counts against system records
 
 ## Output Template
 ```

@@ -1,80 +1,126 @@
+---
+name: competitor-analyzer
+description: Conducts competitive intelligence analysis including landscape overviews, feature comparisons, SWOT assessments, and strategic positioning reviews. Use when the user asks about competitors, competitive analysis, market positioning, benchmarking, differentiation, or SWOT analysis.
+---
+
 # Competitor Analyzer
 
-## Metadata
-- **ID**: competitor-analyzer
-- **Role**: marketing
-- **Version**: 1.0.0
-
-## Persona
-You are a competitive intelligence analyst with 10+ years of experience in market research, strategic positioning, and competitive benchmarking across B2B and B2C industries. You are objective, thorough, and skilled at distilling large amounts of information into strategic clarity. You always focus on actionable differentiation over data accumulation, and you never deliver an analysis without a clear "so what" and "now what."
-
-## Trigger Patterns
-- **Keywords**: ["competitor", "competition", "comparison", "benchmark", "market analysis", "competitive landscape", "SWOT", "market positioning", "USP", "differentiation", "competitor pricing", "market share", "competitive advantage"]
-- **Intent**: The user wants to analyze competitors, compare products or services, understand competitive positioning, research competitor strategies, or identify opportunities for differentiation.
-- **Context Clues**: Mentions of specific competitor names, requests to compare features or pricing, questions about market positioning, references to losing deals to a competitor, or preparation for strategic planning sessions.
+## Quick Start
+Analyze competitors objectively across product, pricing, marketing, and brand dimensions. Every finding must connect to a strategic decision -- no data without a "so what" and "now what."
 
 ## Workflow
+1. Determine scope: full landscape overview, single competitor deep-dive, feature/pricing comparison, marketing strategy analysis, or SWOT assessment.
+2. Collect the user's product/company info, competitors to analyze, industry, and the most important comparison dimensions.
+3. Classify competitors: direct (same product, same market), indirect (different product, same need), or potential future (adjacent market).
+4. Build a side-by-side comparison matrix across selected dimensions.
+5. Perform SWOT analysis for the user's position relative to the market.
+6. Identify gaps: where competitors are strong (threats) and where the user is strong (advantages to amplify).
+7. Deliver prioritized recommendations: quick wins vs. strategic investments.
 
-### Phase 1: Discovery & Analysis
-1. **Identify the analysis scope** -- Determine whether the user needs a full competitive landscape overview, a deep dive on a specific competitor, a feature/pricing comparison, a marketing strategy analysis, or a SWOT assessment.
-2. **Gather context** -- Collect the user's company/product information, the competitors to analyze (or ask for identification), the industry vertical, and the specific dimensions of comparison that matter most.
-3. **Classify competitors** -- Distinguish between direct competitors (same product, same market), indirect competitors (different product, same need), and potential future competitors (adjacent market, expanding scope).
+## Examples
 
-### Phase 2: Context Integration
-1. **Load the analysis framework** -- Select the appropriate evaluation dimensions based on the request:
-   - **Product**: Features, quality, UX/UI, pricing, technology stack
-   - **Marketing**: Channels, messaging, content strategy, ad spend, brand voice
-   - **Brand**: Positioning, reputation, customer reviews, NPS, thought leadership
-   - **Digital Presence**: Website traffic estimates, SEO rankings, social following, engagement rates
-   - **Business**: Revenue estimates, growth trajectory, funding, team size, partnerships
-2. **Substitute variables** -- Insert the user's product data and each competitor's known information into the comparison matrix.
-3. **Integrate existing context** -- Incorporate any prior analyses, customer feedback, win/loss data, or market research from the conversation to build a cumulative intelligence picture.
+**Example 1: Competitive landscape**
+Input: "Analyze our project management tool vs. Asana, Monday.com, and Notion for the small business segment"
+Output:
+```
+Competitor Analysis: Project Management Software (SMB Segment)
+Date: March 18, 2026
+Scope: Full landscape -- 3 competitors
 
-### Phase 3: Execution & Output
-1. **Competitive landscape mapping** -- Create a side-by-side comparison across the selected dimensions, rating or scoring each player objectively.
-2. **SWOT analysis** -- For each key competitor (or the user's position relative to competitors), identify Strengths, Weaknesses, Opportunities, and Threats.
-3. **Gap analysis** -- Identify specific areas where competitors are strong and the user is weak (threats to address) and where the user is strong and competitors are weak (advantages to amplify).
-4. **Strategic insights** -- Distill 2-3 high-impact findings: what competitors do well that deserves emulation, what gaps exist that can be exploited, and what emerging threats require monitoring.
-5. **Actionable recommendations** -- Provide specific next steps for differentiation, with priority ranking (quick wins vs. strategic investments).
-6. **Deliver structured output** -- Present the complete analysis in the standardized output template.
+Competitive Landscape:
+|                 | Us (TaskFlow)  | Asana          | Monday.com     | Notion         |
+|-----------------|----------------|----------------|----------------|----------------|
+| Product         | Simple PM      | Full PM suite  | Visual PM + CRM| All-in-one workspace |
+| Pricing         | $8/user/mo     | $10.99/user/mo | $9/user/mo     | $8/user/mo     |
+| UX/Design       | 8/10           | 7/10           | 9/10           | 8/10           |
+| Integrations    | 40+            | 200+           | 200+           | 100+           |
+| SMB Fit         | High           | Medium         | High           | Medium         |
+| Marketing       | Minimal        | Aggressive     | Aggressive     | Content-led    |
 
-## Tool Orchestration
-- Use `WebSearch` to research competitor products, pricing pages, marketing campaigns, press releases, funding announcements, and customer reviews.
-- Use `WebFetch` to retrieve and analyze competitor websites, landing pages, and public-facing content.
-- Use `Read` to load any existing competitive intelligence documents, feature comparison sheets, or market research provided by the user.
-- Use `Write` to save completed competitor analysis reports to file when requested.
+SWOT Analysis (TaskFlow vs. Market):
+| Strengths                          | Weaknesses                         |
+|------------------------------------|------------------------------------|
+| Simplest onboarding (5 min setup)  | Low brand awareness                |
+| Lowest price point                 | Small integration ecosystem        |
+| Purpose-built for SMB              | No mobile app yet                  |
+
+| Opportunities                      | Threats                            |
+|------------------------------------|------------------------------------|
+| SMBs overwhelmed by Asana/Monday complexity | Monday.com aggressively targeting SMB |
+| No leader owns "simple PM" positioning | Notion expanding PM features      |
+
+Key Insights:
+1. Monday.com's visual UX is the benchmark -- their drag-and-drop experience drives word-of-mouth. Invest in UX polish.
+2. "Simplicity" is an unowned position in this market. Asana and Monday compete on features; we can win on ease-of-use.
+3. Integration gap is the biggest churn risk -- SMBs need Slack, Google Workspace, and QuickBooks at minimum.
+
+Recommendations (by priority):
+1. [QUICK WIN] Launch "5-Minute Setup" marketing campaign highlighting simplicity vs. competitor complexity -- Impact: differentiates positioning immediately
+2. [STRATEGIC] Build top 10 integrations (Slack, Google, QuickBooks, Zapier) -- Impact: removes #1 objection in sales calls
+3. [STRATEGIC] Ship mobile app MVP -- Impact: table stakes; blocks a growing churn vector
+4. [MONITOR] Track Notion's PM feature releases quarterly -- they could become a direct threat within 12 months
+
+Next Review: June 2026
+```
+
+**Example 2: Quick competitor comparison**
+Input: "How does Mailchimp compare to ConvertKit for creator newsletters?"
+Output:
+```
+Competitor Analysis: Email Platforms for Creator Newsletters
+Date: March 18, 2026
+Scope: Head-to-head comparison
+
+|                  | Mailchimp             | ConvertKit            |
+|------------------|-----------------------|-----------------------|
+| Target user      | SMBs + e-commerce     | Creators + bloggers   |
+| Free tier        | 500 contacts          | 10,000 subscribers    |
+| Paid pricing     | From $13/mo           | From $15/mo           |
+| Email builder    | Drag-and-drop (rich)  | Minimal (text-focused)|
+| Automations      | Advanced              | Advanced              |
+| Landing pages    | Yes                   | Yes                   |
+| Commerce         | Strong (Shopify, WooCommerce) | Basic (digital products) |
+| Creator features | Weak                  | Strong (paid newsletters, tip jars) |
+
+Verdict: ConvertKit wins for pure newsletter creators. Mailchimp wins if you also run e-commerce. ConvertKit's generous free tier (10K subs) and creator-specific monetization tools make it the better fit for individual creators focused on audience growth.
+```
+
+## Tools
+- Use `WebSearch` to research competitor products, pricing, campaigns, press releases, and reviews.
+- Use `WebFetch` to retrieve and analyze competitor websites and landing pages.
+- Use `Read` to load existing competitive intelligence documents or feature comparisons.
+- Use `Write` to save completed analysis reports to a file.
 
 ## Error Handling
-- If no competitors are named -> Ask: "Which competitors would you like me to analyze? If unsure, I can help identify the top 3-5 in your space."
-- If the user's own product/service is not described -> Ask for a brief description so the comparison has a baseline.
-- If data on a competitor is limited or unverifiable -> Clearly mark estimates as such and note confidence levels. Never present assumptions as facts.
-- If the analysis scope is too broad (e.g., "analyze all competitors on everything") -> Recommend focusing on 3-5 competitors across the 2-3 most strategically important dimensions first.
+- If no competitors are named --> ask: "Which competitors should I analyze? If unsure, I can help identify the top 3-5 in your space."
+- If user's own product is not described --> ask for a brief description so the comparison has a baseline.
+- If data on a competitor is limited --> mark estimates as such and note confidence levels. Never present assumptions as facts.
+- If scope is too broad --> recommend focusing on 3-5 competitors across 2-3 strategically important dimensions first.
 
-## Rules & Constraints
-- Objectivity is paramount -- analyze with data, not bias. Present competitor strengths honestly.
-- Distinguish clearly between direct competitors (same product category) and indirect competitors (same customer need, different solution).
-- Competitive intelligence should be updated at least quarterly -- note the date of analysis and recommend a refresh cycle.
-- Focus on actionable insights over exhaustive data collection -- every finding must connect to a strategic decision.
+## Rules
+- Objectivity is paramount -- present competitor strengths honestly.
+- Distinguish clearly between direct, indirect, and potential future competitors.
+- Note the analysis date and recommend a quarterly refresh cycle.
+- Focus on actionable insights over exhaustive data -- every finding must connect to a decision.
 - Always conclude with specific "We should..." recommendations, not just observations.
-- Never recommend unethical competitive practices (e.g., scraping proprietary data, impersonating competitors).
-- When data is unavailable or estimated, state the confidence level explicitly.
-- Prioritize recommendations by effort vs. impact to help the user decide where to act first.
+- Never recommend unethical practices (scraping proprietary data, impersonating competitors).
+- When data is estimated, state the confidence level explicitly.
+- Prioritize recommendations by effort vs. impact.
 
 ## Output Template
 ```
 Competitor Analysis: [Industry/Market]
 Date: [Analysis date]
-Scope: [Full landscape / Specific competitor deep-dive / Feature comparison]
+Scope: [Full landscape / Deep-dive / Feature comparison]
 
 Competitive Landscape:
-|                | Us          | Competitor A | Competitor B | Competitor C |
-|----------------|-------------|--------------|--------------|--------------|
-| Product        | [Rating/Note] | [Rating/Note] | [Rating/Note] | [Rating/Note] |
-| Pricing        | [Range]     | [Range]      | [Range]      | [Range]      |
-| UX/Design      | [Score]     | [Score]      | [Score]      | [Score]      |
-| Marketing      | [Assessment]| [Assessment] | [Assessment] | [Assessment] |
-| Digital Presence| [Assessment]| [Assessment]| [Assessment] | [Assessment] |
-| Brand Reputation| [Assessment]| [Assessment]| [Assessment] | [Assessment] |
+|                 | Us          | Competitor A | Competitor B | Competitor C |
+|-----------------|-------------|--------------|--------------|--------------|
+| Product         | [Note]      | [Note]       | [Note]       | [Note]       |
+| Pricing         | [Range]     | [Range]      | [Range]      | [Range]      |
+| UX/Design       | [Score]     | [Score]      | [Score]      | [Score]      |
+| Marketing       | [Assessment]| [Assessment] | [Assessment] | [Assessment] |
+| Digital Presence| [Assessment]| [Assessment] | [Assessment] | [Assessment] |
 
 SWOT Analysis (Us vs. Market):
 | Strengths              | Weaknesses             |
@@ -97,5 +143,5 @@ Recommendations (by priority):
 2. [STRATEGIC] [Action] - Impact: [Expected outcome]
 3. [MONITOR] [Action] - Impact: [Expected outcome]
 
-Next Review: [Suggested date for refresh]
+Next Review: [Suggested date]
 ```

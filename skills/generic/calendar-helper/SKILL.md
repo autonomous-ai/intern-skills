@@ -1,59 +1,62 @@
+---
+name: calendar-helper
+description: Helps create, edit, view, and manage calendar events, meetings, reminders, and scheduling. Use when the user mentions scheduling, booking meetings, checking availability, setting reminders, or managing appointments and deadlines.
+---
+
 # Calendar Helper
 
-## Metadata
-- **ID**: calendar-helper
-- **Role**: generic
-- **Version**: 1.0.0
-
-## Persona
-You are a seasoned executive assistant with 12+ years of experience in schedule management, meeting coordination, and time optimization. You are proactive, detail-oriented, and highly organized. You always confirm timezones, anticipate scheduling conflicts, and offer multiple options rather than a single take-it-or-leave-it slot.
-
-## Trigger Patterns
-- **Keywords**: ["calendar", "schedule", "meeting", "reminder", "book time", "set up a meeting", "availability", "deadline", "event", "appointment"]
-- **Intent**: The user wants to create, edit, view, or manage calendar events, find available time slots, or set reminders
-- **Context Clues**: Mentions of specific dates/times, references to participants or meeting rooms, questions about availability or scheduling conflicts
+## Quick Start
+Determine the calendar action (create, edit, delete, view, find slots), gather required details, and always confirm timezone. Propose multiple time slot options for new meetings.
 
 ## Workflow
+1. Identify the action: create, edit, delete, view schedule, or find available slots
+2. Collect required details: title, date/time, duration, participants, location, timezone
+3. Check for conflicts against known schedule context
+4. Present event details or slot options for user confirmation before finalizing
+5. Format all times with explicit timezone indication
 
-### Phase 1: Discovery & Analysis
-1. Analyze the user's request to determine the action type:
-   - **Create**: New event, meeting, or reminder
-   - **Edit**: Modify an existing event (time, title, participants, location)
-   - **Delete**: Remove an event from the calendar
-   - **View**: Display schedule for a specific day, week, or month
-   - **Find slots**: Identify open time windows for a new meeting
-2. Gather context: who are the participants, what timezone are they in, is there an existing calendar to check against?
-3. Classify urgency and priority of the scheduling request
+## Examples
 
-### Phase 2: Context Integration
-1. Load the relevant calendar data or event template based on the action type
-2. Substitute variables from user input: event title, date/time, participants, location, duration, recurrence
-3. Cross-reference with existing schedule context to identify potential conflicts or double-bookings
+**Example 1: Create Event**
+Input: "Schedule a team standup every weekday at 9 AM starting next Monday"
+Output:
+New Recurring Event: Team Standup
 
-### Phase 3: Execution & Output
-1. For **create/edit**: assemble the event details and present them for user confirmation before finalizing
-2. For **find slots**: analyze available windows and propose 2-3 optimal time slots with rationale
-3. For **view**: present the schedule in a clean, chronological format
-4. For **delete**: confirm the specific event with the user before removal
-5. Format all times clearly with timezone indication
+Time: Monday, 03/23/2026 at 9:00 AM (GMT+7)
+Duration: 30 minutes
+Recurrence: Weekdays (Mon-Fri)
+Reminder: 10 minutes before
 
-## Tool Orchestration
-- Use `Read` to access existing calendar files or schedule data the user references
+Status: Pending Confirmation
+Shall I finalize this event?
+
+**Example 2: Find Slots**
+Input: "Find a 1-hour slot for a meeting with the design team this Thursday"
+Output:
+Available slots for Thursday, 03/19/2026:
+
+1. 10:00 AM - 11:00 AM (GMT+7) - Morning, no conflicts
+2. 2:00 PM - 3:00 PM (GMT+7) - After lunch, clear window
+3. 4:00 PM - 5:00 PM (GMT+7) - Late afternoon
+
+Which slot works best?
+
+## Tools
+- Use `Read` to access existing calendar files or schedule data
 - Use `Bash` to execute date/time calculations or generate calendar exports
-- Use `Write` to save calendar entries or event files when the user requests persistent storage
+- Use `Write` to save calendar entries or event files
 
 ## Error Handling
-- If timezone is unclear -> ask the user to confirm their timezone before proceeding
-- If a scheduling conflict is detected -> alert the user and suggest alternative time slots
-- If required information is missing (title, time, date) -> prompt the user for the missing details
-- If the referenced event cannot be found -> list similar events and ask the user to clarify
+- If timezone is unclear → ask the user to confirm before proceeding
+- If scheduling conflict detected → alert user, suggest alternatives
+- If required info missing (title, time, date) → prompt for missing details
+- If referenced event not found → list similar events and ask to clarify
 
-## Rules & Constraints
-- Always confirm the timezone with the user if it is not explicitly stated
-- When scheduling meetings, suggest 2-3 time slot options instead of a single slot
-- Format all times clearly: "Tuesday, 03/18/2026 at 2:00 PM (GMT+7)"
-- Remind the user about upcoming events when relevant to the conversation
-- For recurring events, clearly state the recurrence pattern (daily, weekly, monthly)
+## Rules
+- Always confirm timezone if not explicitly stated
+- Suggest 2-3 time slot options for new meetings
+- Format times clearly: "Tuesday, 03/18/2026 at 2:00 PM (GMT+7)"
+- For recurring events, state the recurrence pattern explicitly
 - Never delete or modify events without explicit user confirmation
 
 ## Output Template

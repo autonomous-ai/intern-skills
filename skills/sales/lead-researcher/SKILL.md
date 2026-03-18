@@ -1,55 +1,87 @@
+---
+name: lead-researcher
+description: Researches potential B2B leads by gathering company intelligence, identifying decision makers, analyzing pain points, and scoring leads using the BANT framework. Use when the user asks to research a company, find prospects, qualify a lead, build a prospect list, or prepare a pre-call briefing.
+---
+
 # Lead Researcher
 
-## Metadata
-- **ID**: lead-researcher
-- **Role**: sales
-- **Version**: 1.0.0
-
-## Persona
-You are a senior sales intelligence analyst with 12 years of experience in B2B lead research and prospecting. You are methodical, detail-oriented, and deeply curious about understanding businesses and their decision-making structures. You always verify information from multiple sources before reporting and prioritize actionable insights over raw data.
-
-## Trigger Patterns
-- **Keywords**: ["lead", "prospect", "research company", "find customers", "decision maker", "lead research", "qualify lead", "BANT", "company profile", "sales intel"]
-- **Intent**: Research potential customers by gathering company information, identifying decision makers, uncovering pain points, and evaluating approach opportunities before outreach
-- **Context Clues**: User is preparing for a first outreach, asking about a specific company or industry segment, needs to qualify a lead, or is building a prospect list for a sales campaign
+## Quick Start
+Provide a company name (or criteria like industry/size/location) and any known context. The skill will produce a structured research brief with company profile, decision-maker map, pain point analysis, and BANT lead score.
 
 ## Workflow
+1. Parse the target company name, industry, or lead criteria from user input
+2. Classify the request: single-company deep dive, multi-lead list build, lead qualification, or pre-call briefing
+3. Compile firmographic data (industry, size, revenue, location, funding)
+4. Map decision makers (C-level, VP, Director) with titles and LinkedIn profiles
+5. Surface business intelligence: recent news, hiring signals, tech stack, current vendors
+6. Analyze pain points and map them to solution value propositions
+7. Score the lead using BANT (Budget, Authority, Need, Timeline) on a 0-100 scale
+8. Deliver the structured research brief with a recommended next action
 
-### Phase 1: Discovery & Analysis
-1. **Parse the request** -- identify the target company name, industry, or lead criteria (size, location, vertical) from user input
-2. **Classify the research type** -- determine whether this is a single-company deep dive, a multi-lead list build, a lead qualification check, or a pre-call briefing
-3. **Gather context** -- check if the user has provided any existing knowledge about the lead (prior interactions, referral source, known pain points) to avoid redundant research
+## Examples
 
-### Phase 2: Context Integration
-1. **Load the appropriate research template** -- select between company profile, decision-maker mapping, lead qualification (BANT), or pre-call brief based on the classified request type
-2. **Substitute variables** -- inject company name, industry, geographic region, product/service relevance, and any user-supplied details into the research framework
-3. **Integrate with existing context** -- cross-reference any previously known information (CRM notes, prior conversations, deal history) to enrich the research output and avoid duplication
+**Example 1: Single company research**
+Input: "Research Acme Corp for our enterprise sales pipeline"
+Output:
+```
+Lead Research: Acme Corp
 
-### Phase 3: Execution & Output
-1. **Company profiling** -- compile firmographic data: name, industry, employee count, estimated revenue, headquarters, website, and recent funding or expansion activity
-2. **Decision-maker mapping** -- identify C-level, VP, and Director-level contacts with names, titles, and LinkedIn profiles; flag the most likely economic buyer and champion
-3. **Business intelligence gathering** -- surface recent news, hiring patterns (as demand signals), technology stack, and current vendor relationships
-4. **Pain point analysis** -- map industry-level and company-specific challenges to your solution's value propositions, producing concrete "pain to solution" bridges
-5. **Lead scoring** -- apply the BANT framework (Budget, Authority, Need, Timeline) and assign a composite score: Hot (80-100), Warm (50-79), Cold (below 50)
-6. **Generate the structured research brief** -- produce the final output with all sections populated and a clear recommended next action
+## Company Profile
+- Industry: SaaS / Supply Chain Management
+- Size: ~450 employees
+- Revenue: ~$60M (estimated)
+- Location: Austin, TX
+- Website: https://acmecorp.com
+- Founded: 2015
 
-## Tool Orchestration
-- Use `WebSearch` to find company information, news articles, funding announcements, and hiring data from public sources
-- Use `WebFetch` to pull specific pages such as company About pages, LinkedIn profiles, and press releases for deeper detail
-- Use `Read` to access any local files the user references (CRM exports, prospect lists, prior research notes)
+## Decision Makers
+| Name | Title | LinkedIn |
+|------|-------|----------|
+| Jane Smith | CTO | linkedin.com/in/janesmith |
+| Mark Lee | VP Engineering | linkedin.com/in/marklee |
+
+## Business Intelligence
+- Recent news: Raised $30M Series C in Q1 2026
+- Hiring signals: 12 open engineering roles, expanding platform team
+- Tech stack: AWS, Snowflake, Salesforce
+- Current vendors: Uses legacy in-house tooling for analytics
+
+## Pain Points & Opportunities
+| Pain Point | Impact | How We Help |
+|------------|--------|-------------|
+| Manual reporting workflows | 20+ hours/week lost | Automated dashboards |
+| Data silos across teams | Delayed decision-making | Unified data platform |
+
+## Lead Score: 78/100 - Warm
+- Budget: Series C funding provides budget capacity
+- Authority: CTO identified as economic buyer
+- Need: Hiring patterns suggest scaling pain
+- Timeline: No immediate deadline detected
+
+## Recommended Next Action
+Request a warm intro to CTO via mutual LinkedIn connection within 5 business days.
+```
+
+**Example 2: Lead qualification**
+Input: "Qualify this lead: ByteWave, 50-person fintech startup in Singapore"
+Output: A BANT-scored brief focused on qualification criteria with a Hot/Warm/Cold rating and recommended action.
+
+## Tools
+- Use `WebSearch` to find company info, news, funding announcements, and hiring data
+- Use `WebFetch` to pull company About pages, LinkedIn profiles, and press releases
+- Use `Read` to access local files the user references (CRM exports, prospect lists)
 
 ## Error Handling
-- If the company cannot be identified or is too ambiguous --> ask the user to clarify with a website URL, LinkedIn page, or additional identifiers
-- If insufficient public information is available --> report what was found, flag gaps explicitly, and suggest alternative research channels (e.g., "Consider checking Crunchbase or requesting an intro via LinkedIn")
-- If the user provides conflicting data --> highlight the discrepancy and ask which source to trust before proceeding
+- If the company is ambiguous or unidentifiable → ask for a website URL or LinkedIn page
+- If insufficient public info exists → report what was found, flag gaps, and suggest alternatives (Crunchbase, LinkedIn intro)
+- If user provides conflicting data → highlight the discrepancy and ask which source to trust
 
-## Rules & Constraints
-- Only use publicly available information (company websites, LinkedIn, news outlets, review platforms, public filings)
-- Never collect unnecessary personal data -- remain GDPR/PDPA compliant at all times
-- Verify critical facts from at least 2 independent sources before including them in the report
-- Do not fabricate or speculate on financial data -- mark estimates clearly as "estimated" or "approximate"
-- No spam intent -- research is for personalizing outreach, not for mass unsolicited email campaigns
-- Lead scores must be justified with explicit reasoning tied to BANT criteria
+## Rules
+- Only use publicly available information (websites, LinkedIn, news, public filings)
+- Remain GDPR/PDPA compliant; never collect unnecessary personal data
+- Verify critical facts from at least 2 independent sources
+- Mark financial estimates clearly as "estimated" or "approximate"
+- Lead scores must include explicit BANT reasoning
 
 ## Output Template
 ```
@@ -57,31 +89,29 @@ Lead Research: [Company Name]
 
 ## Company Profile
 - Industry: [Industry]
-- Size: [Number of employees]
+- Size: [Employee count]
 - Revenue: [Estimated or confirmed]
-- Location: [Headquarters address]
+- Location: [HQ address]
 - Website: [URL]
 - Founded: [Year]
 
 ## Decision Makers
-| Name | Title | LinkedIn | Email (if public) |
-|------|-------|----------|-------------------|
-| [Name] | [Title] | [URL] | [Email] |
+| Name | Title | LinkedIn |
+|------|-------|----------|
+| [Name] | [Title] | [URL] |
 
 ## Business Intelligence
-- Recent news: [Notable developments, funding, partnerships]
-- Hiring signals: [Open roles and what they imply about priorities]
-- Tech stack: [Known tools and platforms in use]
-- Current vendors: [Competitor solutions they use, if known]
+- Recent news: [Developments, funding, partnerships]
+- Hiring signals: [Open roles and implied priorities]
+- Tech stack: [Known tools/platforms]
+- Current vendors: [Competitor solutions in use]
 
 ## Pain Points & Opportunities
 | Pain Point | Impact | How We Help |
 |------------|--------|-------------|
-| [Pain point 1] | [Business impact] | [Our solution mapping] |
-| [Pain point 2] | [Business impact] | [Our solution mapping] |
+| [Pain point] | [Business impact] | [Solution mapping] |
 
 ## Lead Score: [X/100] - [Hot / Warm / Cold]
-BANT Assessment:
 - Budget: [Assessment + reasoning]
 - Authority: [Assessment + reasoning]
 - Need: [Assessment + reasoning]
