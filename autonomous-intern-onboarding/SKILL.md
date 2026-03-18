@@ -29,7 +29,7 @@ Handle first-time user onboarding (role detection → skill installation), role 
    Just type your role or describe what you do!
    ```
 
-2. Fetch manifest from `https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main/manifest.json`
+2. Fetch manifest from `https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main/manifest.json` and cache it locally in this skill's directory as `manifest_cache.json`
 
 3. Match user response against each role's `keywords` array in manifest:
    - Confident match → proceed to install
@@ -41,39 +41,39 @@ Handle first-time user onboarding (role detection → skill installation), role 
 
      Which one fits best? (or describe more)
      ```
-   - No match → ask to clarify, list available roles
+   - No match → ask to clarify, list all available roles from manifest
    - User says "skip" → install generic only, set role to "generic"
    - Max 3 attempts, after that → install generic only
 
 4. Download and extract to `/root/openclaw/workspace/skills/`:
-   - `https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main/skills_zip/generic.zip`
-   - `https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main/skills_zip/{role}.zip`
+   - Generic: `{BASE_URL}/skills_zip/{manifest.generic_zip}` (value of `generic_zip` field in manifest)
+   - Role-specific: `{BASE_URL}/skills_zip/{manifest.roles[matched_role].skills_zip}` (value of `skills_zip` field for the matched role)
    - If download fails → retry 3x with 5s delay, then skip and retry next session
+   - `BASE_URL` = `https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main`
 
 5. Write `onboarding.json` in this skill's directory:
    ```json
    {
-     "installed_role": "{role_key}",
-     "installed_version": "{version from manifest}",
-     "installed_at": "{ISO 8601}",
+     "installed_role": "{matched role key}",
+     "installed_version": "{manifest.version}",
+     "installed_at": "{ISO 8601 timestamp}",
      "generic_installed": true,
-     "skills": ["{list of installed skill folder names}"],
+     "skills": ["{combined list: generic skill folders + role skill folders from manifest.roles[role].skills}"],
      "update_cronjob_id": "{cronjob id}"
    }
    ```
+   The `skills` array is built from:
+   - Generic skill folders extracted from `generic.zip`
+   - Role skill folders from `manifest.roles[role].skills` array
 
-6. Set up auto-update cronjob (every 6 hours):
-   - Fetch `https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main/version.txt`
-   - Compare with `installed_version` in `onboarding.json`
-   - If different → re-download generic.zip + role.zip, overwrite skills, update `onboarding.json`
-   - If same → do nothing
+6. Set up auto-update cronjob (every 6 hours) — see Auto-Update section below
 
 7. Confirm to user:
    ```
    ✅ All set! I've installed these skills for you:
 
    📦 Generic: {generic skill names}
-   🛠️ {role.label}: {role skill names}
+   🛠️ {role.label}: {role skill names from manifest.roles[role].skills}
 
    You can change your role anytime by saying "change my role".
    ```
@@ -84,28 +84,38 @@ Handle first-time user onboarding (role detection → skill installation), role 
    ```
    You're currently set up as {current role.label}. What role would you like to switch to?
    ```
-2. Match new role (same matching logic as onboarding)
-3. Delete old role-specific skill folders from `/root/openclaw/workspace/skills/` (keep generic)
-4. Download and extract new `{new_role}.zip`
-5. Update `onboarding.json` with new role, skills list, and `updated_at` timestamp
-6. Confirm:
+2. Match new role (same matching logic as onboarding step 3)
+3. Identify old role-specific skill folders using `manifest.roles[old_role].skills` array
+4. Delete those folders from `/root/openclaw/workspace/skills/` (keep generic skills)
+5. Download `{BASE_URL}/skills_zip/{manifest.roles[new_role].skills_zip}` → extract to `/root/openclaw/workspace/skills/`
+6. Update `onboarding.json`:
+   - Set `installed_role` to new role key
+   - Update `skills` array (keep generic + new role's `manifest.roles[new_role].skills`)
+   - Set `updated_at` to current ISO 8601 timestamp
+7. Confirm:
    ```
    ✅ Role switched to {new_role.label}!
 
-   Removed: {old role skills}
-   Installed: {new role skills}
+   Removed: {old role skill names}
+   Installed: {new role skill names}
    📦 Generic skills unchanged.
    ```
 
 #### Auto-Update (cronjob, every 6 hours)
 
-1. Fetch `version.txt` → compare with `onboarding.json.installed_version`
-2. If same → do nothing
-3. If different:
-   - Download `generic.zip` + `{installed_role}.zip` → overwrite existing skills
-   - Update `installed_version` and `updated_at` in `onboarding.json`
-   - Notify user: `🔄 Skills updated to version {new_version}`
-4. If download fails → retry 3x, skip and try again next scheduled run
+1. Fetch `https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main/version.txt` → trim whitespace → `remote_version`
+2. Read `onboarding.json` → `installed_version`
+3. If `remote_version` == `installed_version` → do nothing
+4. If different:
+   - Fetch fresh `manifest.json` from GitHub → update `manifest_cache.json`
+   - Download `{BASE_URL}/skills_zip/{manifest.generic_zip}` → overwrite existing generic skills
+   - Download `{BASE_URL}/skills_zip/{manifest.roles[installed_role].skills_zip}` → overwrite existing role skills
+   - Update `onboarding.json`:
+     - Set `installed_version` to `remote_version`
+     - Set `updated_at` to current ISO 8601 timestamp
+     - Update `skills` array from new manifest
+   - Notify user: `🔄 Skills updated to version {remote_version}`
+5. If download fails → retry 3x, skip and try again at next scheduled run
 
 ### Rules
 - Always install generic skills regardless of role
@@ -115,6 +125,7 @@ Handle first-time user onboarding (role detection → skill installation), role 
 - Respond in the same language the user is using
 - Do not block the user if onboarding/update fails — inform and retry later
 - If `onboarding.json` is corrupted → delete it and re-trigger onboarding
+- Use cached `manifest_cache.json` when network is unavailable; refresh cache on every successful fetch
 
 ### Output Format
 ```
