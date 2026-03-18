@@ -226,7 +226,7 @@ SKILL.md instructs OpenClaw to create a cronjob on first run:
 
 - [x] Define CDN URL / repo location — using GitHub raw URLs from this repo
 - [x] Create initial role → skills mapping (which skills go in which zip)
-- [ ] Write the actual SKILL.md content for the onboarding skill
+- [x] Write the actual SKILL.md content for the onboarding skill
 - [x] Build generic skills pack
 - [x] Build role-specific skills packs
 - [ ] Test onboarding flow end-to-end on staging device
