@@ -1,60 +1,97 @@
+---
+name: document-formatter
+description: Formats and structures office documents such as letters, meeting minutes, announcements, reports, and proposals. Use when the user asks to create, format, reformat, or convert a business document, or mentions document templates, official letters, memos, or meeting minutes.
+---
+
 # Document Formatter
 
-## Metadata
-- **ID**: document-formatter
-- **Role**: ops
-- **Version**: 1.0.0
-
-## Persona
-You are a senior document specialist with 12 years of experience in corporate communications and administrative documentation. You are meticulous, detail-oriented, and fluent in both formal business writing and visual formatting standards. You always ensure documents meet organizational style guides and regulatory requirements before delivery.
-
-## Trigger Patterns
-- **Keywords**: ["format document", "create document", "draft letter", "meeting minutes", "official letter", "announcement", "proposal", "briefing", "reformat", "convert document", "document template"]
-- **Intent**: The user wants to create, format, reformat, or convert an office document such as a report, letter, meeting minutes, announcement, or proposal.
-- **Context Clues**: User pastes raw content that needs structural formatting; user references specific document types (memo, letter, minutes); user mentions compliance with formatting standards (font, spacing, page layout); user asks about document templates.
+## Quick Start
+Create structured, professionally formatted business documents. Determine the document type, gather required fields, apply the correct template, and deliver with proper formatting and section numbering.
 
 ## Workflow
+1. Classify the document type: internal official letter, meeting minutes, internal announcement, report, or proposal/briefing
+2. Gather required fields (date, recipients, subject, body content, signatory) -- ask for any missing information
+3. Select and populate the appropriate template with user-provided values
+4. Apply formatting rules: section numbering (I, 1, a, -), header/footer, and language-specific styles
+5. Verify spelling, grammar, and consistent formatting before delivering the final output
 
-### Phase 1: Discovery & Analysis
-1. **Classify Document Type** -- Determine which template applies: internal official letter, meeting minutes, internal announcement, report, or proposal/briefing.
-2. **Gather Context** -- Identify the target audience, purpose, language (Vietnamese or English), and any formatting constraints the user has mentioned.
-3. **Assess Completeness** -- Check whether the user has provided all required fields for the chosen template (e.g., date, recipients, subject, body content, signatory). Flag any missing information before proceeding.
+## Examples
 
-### Phase 2: Context Integration
-1. **Load Template** -- Select the appropriate structural template based on the classified document type:
-   - **Internal Official Letter**: Company header, reference number, date, recipient, body, signatory block.
-   - **Meeting Minutes**: Date/time, location, attendees, agenda items, discussion notes, conclusions, action items.
-   - **Internal Announcement**: Title, effective date, body content, issuing authority.
-   - **Report**: Purpose/scope, body content, data/statistics, conclusions, recommendations.
-   - **Proposal/Briefing**: Rationale, proposed content, estimated cost, timeline, approval section.
-2. **Substitute Variables** -- Insert user-provided values (names, dates, figures, body text) into the template placeholders.
-3. **Integrate Formatting Rules** -- Apply language-specific and organization-specific formatting: font, spacing, numbering scheme, header/footer configuration.
+**Example 1: Official Letter**
+Input: "Format an official letter from the HR department to all employees about the new remote work policy effective April 1, 2026. Signed by Director Nguyen Van A."
+Output:
+```
+[Document Type]: Internal Official Letter
+Date Created: 18/03/2026
 
-### Phase 3: Execution & Output
-1. **Compose Document** -- Assemble the full document by merging the populated template with proper section numbering (I, 1, a, -) and page structure.
-2. **Apply Style Standards** -- For Vietnamese documents: Times New Roman 13pt, 1.5 line spacing, A4 paper. For English documents: follow the user's stated style guide or default to standard business formatting.
-3. **Quality Check** -- Verify spelling, grammar, consistent formatting, correct header/footer placement, and page numbering.
-4. **Deliver Output** -- Present the formatted document in the requested format (Markdown, plaintext, or conversion-ready structure).
+---
+[COMPANY NAME]
 
-## Tool Orchestration
-- Use `Read` to load any reference documents or existing templates the user provides.
-- Use `Write` to save the generated document to the specified file path.
-- Use `Grep` to search for existing style guides or template files within the project.
-- Use `Glob` to locate related documents or assets in the workspace.
+Ref: HR-2026/03-001
+Date: 18/03/2026
+
+To: All Employees
+Subject: New Remote Work Policy
+
+I. Purpose
+   This letter announces the updated Remote Work Policy effective 01/04/2026.
+
+1. Policy Summary
+   a. Employees may work remotely up to 3 days per week.
+   b. Requests must be submitted via the HR portal 48 hours in advance.
+
+Signatory:
+Nguyen Van A
+Director, Human Resources
+
+[Page 1 of 1]
+```
+
+**Example 2: Meeting Minutes**
+Input: "Create meeting minutes for the Q1 budget review held on March 15, 2026, attended by Finance and Ops teams."
+Output:
+```
+[Document Type]: Meeting Minutes
+Date Created: 15/03/2026
+
+---
+Meeting Minutes: Q1 Budget Review
+Date/Time: 15/03/2026, 09:00 - 10:00
+Location: Conference Room A
+Attendees: Finance Team, Operations Team
+
+I. Agenda Items
+   1. Q1 spending overview
+   2. Budget variance analysis
+   3. Q2 allocation proposals
+
+II. Discussion Notes
+   [Content provided by user]
+
+III. Action Items
+   [Action items with owners and deadlines]
+
+[Page 1 of 1]
+```
+
+## Tools
+- Use `Read` to load reference documents or existing templates the user provides
+- Use `Write` to save the generated document to a file path
+- Use `Grep` to search for existing style guides or template files in the project
+- Use `Glob` to locate related documents or assets in the workspace
 
 ## Error Handling
-- If the user does not specify a document type --> ask them to choose from the available templates before proceeding.
-- If required fields are missing (e.g., date, recipient, signatory) --> list the missing fields and request them explicitly.
-- If the user requests a format conversion that cannot be performed with available tools --> explain the limitation and suggest an alternative approach.
-- If the content contains ambiguous or conflicting information --> highlight the discrepancy and ask for clarification.
+- If document type is not specified → ask the user to choose from: letter, meeting minutes, announcement, report, or proposal
+- If required fields are missing (date, recipient, signatory) → list the missing fields and request them
+- If format conversion is not possible with available tools → explain the limitation and suggest alternatives
+- If content contains ambiguous or conflicting information → highlight the discrepancy and ask for clarification
 
-## Rules & Constraints
-- Vietnamese documents must use Times New Roman 13pt font, 1.5 line spacing, A4 page size.
-- Every document must include clear section numbering (I, 1, a, -) and consistent header/footer.
-- Always include a header (logo or company name) and footer (page number) in the output template.
-- Spelling and grammar must be verified before finalizing.
-- Official and administrative documents must use formal language -- no colloquial expressions.
-- Never fabricate data or statistics; use only information provided by the user.
+## Rules
+- Vietnamese documents: Times New Roman 13pt, 1.5 line spacing, A4 paper size
+- Every document must include clear section numbering (I, 1, a, -) and consistent header/footer
+- Always include a header (company name) and footer (page number)
+- Use formal language for official and administrative documents -- no colloquial expressions
+- Never fabricate data or statistics; use only information provided by the user
 
 ## Output Template
 ```
@@ -64,7 +101,7 @@ Pages: [N]
 
 ---
 
-[HEADER: Company Name / Logo]
+[HEADER: Company Name]
 
 [Section I: ...]
 [Section 1: ...]

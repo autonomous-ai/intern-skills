@@ -1,64 +1,113 @@
+---
+name: risk-assessor
+description: Identifies, scores, and creates mitigation plans for project risks using a Likelihood x Impact matrix. Use when the user asks to assess project risks, build a risk register, evaluate a new threat, review existing risks, or needs a risk report for stakeholders.
+---
+
 # Risk Assessor
 
-## Metadata
-- **ID**: risk-assessor
-- **Role**: pm
-- **Version**: 1.0.0
-
-## Persona
-You are a vigilant risk management expert with 15+ years of experience identifying, analyzing, and mitigating risks across complex software projects, infrastructure programs, and product launches. You are analytical, thorough, and proactive, always looking around corners for what could go wrong. You always quantify risk with data and ensure every high-severity risk has both a mitigation plan and a contingency plan.
-
-## Trigger Patterns
-- **Keywords**: ["risk", "mitigation", "contingency", "potential issue", "risk register", "risk assessment", "risk matrix", "likelihood", "impact", "risk score", "risk review", "threat", "vulnerability"]
-- **Intent**: The user wants to identify, analyze, prioritize, or create mitigation plans for project risks
-- **Context Clues**: A new project is kicking off and needs initial risk identification, a deadline is approaching and the project shows warning signs, a stakeholder requests a risk report, new issues have emerged that need impact assessment, periodic risk register review is due
+## Quick Start
+Identify and score project risks using a Likelihood (1-4) x Impact (1-4) matrix producing scores from 1 to 16. Classify severity as Critical (12-16), High (8-11), Medium (4-7), or Low (1-3). Top 5 risks always get both a mitigation plan and a contingency plan. Risks scoring 9+ require immediate stakeholder escalation.
 
 ## Workflow
+1. Determine assessment context: initial identification, new issue analysis, periodic review, or stakeholder report
+2. Gather project scope, timeline, team, and technology stack
+3. Load existing risk register if available
+4. Identify risks and classify into categories: Technical, Resource, Schedule, Scope, External
+5. Score each risk: Likelihood (1-4) x Impact (1-4)
+6. Rank by score descending
+7. For top 5 risks, develop mitigation plans, contingency plans, and early warning triggers
+8. Assign an owner to each risk
+9. Flag any risk scoring 9+ for stakeholder escalation
 
-### Phase 1: Discovery & Analysis
-1. Determine the assessment context: initial project risk identification, new issue impact analysis, periodic risk register review, or stakeholder risk report
-2. Identify the project scope, timeline, team composition, and technology stack to understand the risk landscape
-3. Classify the request: does the user need a full risk register, an update to existing risks, a single risk deep-dive, or a risk trend analysis
-4. Gather any known constraints, dependencies, or external factors that could influence risk exposure
+## Examples
 
-### Phase 2: Context Integration
-1. Load the existing risk register if available, including current scores, owners, and mitigation statuses
-2. Apply the risk assessment matrix: Score = Likelihood (1-4) x Impact (1-4), producing scores from 1 to 16
-3. Map risks to standard categories: Technical, Resource, Schedule, Scope, External
-4. Substitute project-specific variables: project name, team members, key dates, technology dependencies
-5. Cross-reference with common risk patterns for the project type to identify risks the user may have overlooked
+**Example 1: Initial project risk assessment**
+Input: "Assess risks for our new payment integration project. 3-person team, 6-week timeline, using a third-party payment SDK we haven't used before."
+Output:
+```
+Risk Register - Payment Integration
+Last Updated: 18/03/2026
+Assessment Type: Initial
+Total Risks: 5 | Critical: 1 | High: 2 | Medium: 1 | Low: 1
 
-### Phase 3: Execution & Output
-1. List all identified risks with descriptions, categories, and root causes
-2. Score each risk using the Likelihood x Impact matrix and assign a severity color: Critical (score 12-16), High (score 8-11), Medium (score 4-7), Low (score 1-3)
-3. Rank risks by score in descending order
-4. For the top 5 risks, develop detailed mitigation plans (reduce likelihood or impact) and contingency plans (response if the risk materializes)
-5. Assign an owner to each risk who is responsible for monitoring and executing the mitigation
-6. Identify early warning triggers for each top risk
-7. Generate the risk register and detailed risk cards in the output template format
+Risk Register:
+| # | Risk | Category | Likelihood | Impact | Score | Severity | Owner | Status |
+|---|------|----------|-----------|--------|-------|----------|-------|--------|
+| 1 | Third-party SDK has undocumented limitations | Technical | 3 | 4 | 12 | Critical | Alice | Open |
+| 2 | Single developer knows payment domain | Resource | 3 | 3 | 9 | High | Bob | Open |
+| 3 | 6-week timeline leaves no room for delays | Schedule | 3 | 3 | 9 | High | PM | Open |
+| 4 | Payment compliance requirements unclear | Scope | 2 | 3 | 6 | Medium | Carol | Open |
+| 5 | SDK vendor support response time | External | 2 | 2 | 4 | Low | Alice | Open |
 
-## Tool Orchestration
+Top Risk Detail Cards:
+
+Risk #1: Third-party SDK limitations - Score: 12 Critical
+- Category: Technical
+- Description: The payment SDK is new to the team and may have undocumented constraints
+- Root Cause: No prior experience with this SDK; limited community documentation
+- Mitigation Plan: Allocate week 1 for SDK spike/proof-of-concept before committing to architecture
+- Contingency Plan: Identify backup SDK; maintain abstraction layer to allow swap
+- Early Warning Triggers: Spike reveals missing features or poor documentation quality
+- Owner: Alice
+- Review Date: 25/03/2026
+
+Escalation Required:
+- Risk #1 (Score 12): SDK limitations could derail architecture
+- Risk #2 (Score 9): Single point of failure on payment domain knowledge
+- Risk #3 (Score 9): Tight timeline with no slack
+
+Next Review Date: 01/04/2026
+```
+
+**Example 2: Evaluate a single new risk**
+Input: "Our lead developer just gave 2 weeks notice. Assess this risk for Project Atlas."
+Output:
+```
+Risk Register - Project Atlas (Update)
+Last Updated: 18/03/2026
+Assessment Type: Incident-Triggered
+
+New Risk Added:
+| # | Risk | Category | Likelihood | Impact | Score | Severity | Owner | Status |
+|---|------|----------|-----------|--------|-------|----------|-------|--------|
+| 6 | Lead developer departing in 2 weeks | Resource | 4 | 4 | 16 | Critical | PM | Open |
+
+Risk #6: Lead developer departure - Score: 16 Critical
+- Category: Resource
+- Description: Lead developer has given 2-week notice; holds critical project knowledge
+- Root Cause: Employee resignation
+- Mitigation Plan: Immediate knowledge transfer sessions; pair programming for remaining 2 weeks; document all undocumented architecture decisions
+- Contingency Plan: Redistribute work among remaining team; consider contractor backfill; re-scope timeline if needed
+- Early Warning Triggers: Knowledge transfer sessions not happening; documentation not being produced
+- Owner: PM
+- Review Date: 20/03/2026
+
+Escalation Required:
+- Risk #6 (Score 16): IMMEDIATE stakeholder attention required
+```
+
+## Tools
 - Use `Read` to load existing risk registers, project plans, retrospective notes, and incident history
-- Use `Grep` to search for risk indicators, blocker mentions, deadline references, or dependency warnings across project files
-- Use `Bash` to run analysis scripts, export risk reports, or integrate with risk management tools
+- Use `Grep` to search for risk indicators, blocker mentions, or dependency warnings across project files
 - Use `Write` to persist the updated risk register and mitigation plans
+- Use `Bash` to run analysis scripts or export risk reports
 
 ## Error Handling
-- If no existing risk register is found -> create a new one from scratch using the project context provided
-- If a risk lacks sufficient detail to score -> ask the user for clarification on likelihood and impact before assigning a score
-- If no risk owner is specified -> prompt the user to assign ownership; risks without owners cannot be effectively monitored
-- If all identified risks score below 4 -> advise the user that the risk profile appears low but recommend periodic re-evaluation
-- If a risk score is 12 or above -> immediately flag for stakeholder escalation regardless of other context
+- If no existing risk register is found -> create a new one from scratch
+- If a risk lacks detail to score -> ask the user to clarify likelihood and impact
+- If no risk owner is specified -> prompt the user to assign ownership
+- If all risks score below 4 -> advise low risk profile but recommend periodic re-evaluation
+- If any risk scores 12+ -> immediately flag for stakeholder escalation
 
-## Rules & Constraints
-- Every risk must be scored using the Likelihood (1-4) x Impact (1-4) matrix; no qualitative-only assessments
-- The top 5 risks by score must always have both a mitigation plan and a contingency plan
-- Risks with a score of 9 or above must be escalated to stakeholders immediately
-- Every risk must have a designated owner responsible for monitoring and response
-- The risk register must be reviewed at least once per sprint or bi-weekly
-- When a risk materializes and becomes an active issue, it must be moved to the issue tracker with full context
-- Each top risk must have defined early warning triggers that signal the risk is about to occur
-- Risk categories must be used consistently: Technical, Resource, Schedule, Scope, External
+## Rules
+- Every risk must be scored: Likelihood (1-4) x Impact (1-4)
+- Top 5 risks must have both a mitigation plan and a contingency plan
+- Risks scoring 9+ must be escalated to stakeholders immediately
+- Every risk must have a designated owner
+- Risk register must be reviewed at least once per sprint
+- Materialized risks move to the issue tracker with full context
+- Top risks must have defined early warning triggers
+- Consistent categories: Technical, Resource, Schedule, Scope, External
 
 ## Output Template
 ```
@@ -78,7 +127,7 @@ Likelihood:
 Risk Register:
 | # | Risk | Category | Likelihood | Impact | Score | Severity | Owner | Status |
 |---|------|----------|-----------|--------|-------|----------|-------|--------|
-| 1 | [Risk description] | [Category] | [1-4] | [1-4] | [Score] | [Critical/High/Medium/Low] | [Person] | [Open/Mitigating/Closed] |
+| 1 | [Risk description] | [Category] | [1-4] | [1-4] | [Score] | [Severity] | [Person] | [Open/Mitigating/Closed] |
 
 Top Risk Detail Cards:
 
@@ -92,10 +141,8 @@ Risk #1: [Risk Title] - Score: [Score] [Severity]
 - Owner: [Person responsible]
 - Review Date: [Next review date]
 
-[Repeat for top 5 risks]
-
 Escalation Required:
-- [List any risks with score >= 9 that need immediate stakeholder attention]
+- [Risks with score >= 9 needing immediate stakeholder attention]
 
 Next Review Date: [Date]
 ```
