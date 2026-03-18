@@ -1,60 +1,81 @@
+---
+name: faq-lookup
+description: Finds, retrieves, or creates standardized answers to common customer questions from the FAQ database. Use when the user asks about frequently asked questions, needs a canned response, wants a quick template answer, or needs to add or update an FAQ entry.
+---
+
 # FAQ Lookup
 
-## Metadata
-- **ID**: cs-faq-lookup
-- **Role**: cs
-- **Version**: 1.0.0
-
-## Persona
-You are a knowledgeable customer service librarian with 6 years of experience curating and maintaining FAQ databases for high-volume support teams. You are precise, organized, and obsessed with clarity. You always provide the most concise answer first, then offer a detailed explanation for those who need it.
-
-## Trigger Patterns
-- **Keywords**: ["FAQ", "frequently asked questions", "customers often ask", "canned response", "common question", "standard answer", "template answer", "quick answer"]
-- **Intent**: Find, retrieve, or create a standardized answer to a common customer question from the FAQ database
-- **Context Clues**: User asks a question that sounds like a recurring customer inquiry; user needs a quick template response; user wants to add or update an FAQ entry
+## Quick Start
+Search the FAQ database for the best matching answer to a customer question. Return a concise answer first, then a detailed explanation. If no match exists, draft a new FAQ entry.
 
 ## Workflow
+1. Parse the incoming question to extract the core topic, keywords, and intent
+2. Classify by category: Products, Orders, Payments, Account, Technical, or Policies
+3. Determine the request type: lookup (find existing), creation (draft new), or update (modify existing)
+4. Search FAQ entries using keyword matching and semantic similarity
+5. Customize the answer with specifics from the user's scenario (product name, order details, dates)
+6. Check freshness — flag entries older than 90 days as potentially outdated
+7. Return the matched FAQ or draft a new entry if no match is found
 
-### Phase 1: Discovery & Analysis
-1. **Parse the incoming question**: Extract the core topic, keywords, and intent from the user's query or the customer question being referenced
-2. **Classify by category**:
-   - **Products**: Features, specifications, comparisons, warranty
-   - **Orders**: Tracking, delivery time, order modifications
-   - **Payments**: Payment methods, refunds, promotions
-   - **Account**: Registration, login, password reset
-   - **Technical**: Setup, usage, troubleshooting
-   - **Policies**: Returns, warranty, refunds, privacy
-3. **Determine the request type**: Is this a lookup (find existing FAQ), a creation (draft new FAQ entry), or an update (modify existing FAQ)?
+## Examples
 
-### Phase 2: Context Integration
-1. **Search the FAQ database**: Match the parsed question against existing FAQ entries using keyword matching and semantic similarity
-2. **Substitute context variables**: Customize the standardized answer with any specifics from the user's scenario (product name, order details, applicable dates)
-3. **Check freshness**: Verify the matched FAQ entry's last-updated date and flag if it may be outdated or if policies have changed since the entry was written
+**Example 1: FAQ lookup**
+Input: "What's our return policy for electronics?"
+Output:
+```
+FAQ Match
 
-### Phase 3: Execution & Output
-1. **If FAQ match found**: Return both the short answer and the detailed answer, customized to the current context
-2. **If no FAQ match found**: Draft a new answer based on available knowledge, and recommend adding it to the FAQ database
-3. **If creating or updating an FAQ entry**: Structure it with the required fields (question, short answer, detailed answer, category, tags, reference link)
-4. **Track frequency**: Note if this question is being asked repeatedly, suggesting it should be prioritized in the FAQ
-5. **Generate the structured output** using the output template below
+Q: What is the return policy for electronics?
 
-## Tool Orchestration
+A (Short):
+Electronics can be returned within 30 days of purchase with original packaging and receipt for a full refund.
+
+A (Detailed):
+Customers may return electronics within 30 days of the purchase date. The item must be in its original packaging with all accessories included. A valid receipt or order confirmation is required. Opened items may be subject to a 15% restocking fee. Defective items are exempt from the restocking fee and can be returned within 90 days.
+
+Reference: /policies/returns-electronics.md
+Category: Policies
+Tags: returns, electronics, refund, restocking
+Last Updated: 2026-02-15
+Match Confidence: High
+```
+
+**Example 2: No FAQ match found**
+Input: "Does our warranty cover water damage on the new X200 model?"
+Output:
+```
+FAQ Match
+
+Q: Does the warranty cover water damage on the X200 model?
+
+A (Short):
+No existing FAQ entry found for this question.
+
+A (Detailed):
+Based on available product documentation, the standard warranty for the X200 does not cover water damage, as it falls under accidental damage. However, customers with the Extended Protection Plan are covered. Recommend creating a new FAQ entry for this question.
+
+Reference: /products/x200-warranty.md (partial match)
+Category: Products
+Tags: warranty, water-damage, x200, protection-plan
+Last Updated: N/A (new entry recommended)
+Match Confidence: Low
+```
+
+## Tools
 - Use `Grep` to search across knowledge base files and documentation for matching FAQ content
-- Use `Read` to load specific FAQ entries, policy documents, or product documentation for accurate answers
+- Use `Read` to load specific FAQ entries, policy documents, or product documentation
 - Use `WebSearch` to verify current information when FAQ entries may be outdated
 
 ## Error Handling
-- If the question is too vague to match any FAQ → ask the user to rephrase or provide more context
-- If multiple FAQ entries match → return the top 3 matches ranked by relevance, and let the user select the best fit
-- If the matched FAQ entry is older than 90 days → flag it for review and warn the user that the information may be outdated
-- If the question involves a topic not covered by any FAQ category → suggest creating a new category and draft the entry
+- If the question is too vague → ask the user to rephrase or provide more context
+- If multiple FAQ entries match → return the top 3 ranked by relevance for the user to select
+- If the matched entry is older than 90 days → flag it for review and warn the information may be outdated
+- If the question involves an uncovered topic → suggest creating a new category and draft the entry
 
-## Rules & Constraints
-- FAQ answers must be concise and free of jargon; write for a general audience
+## Rules
+- FAQ answers must be concise and jargon-free; write for a general audience
 - Each FAQ entry must have: question, short answer, detailed answer, category, tags, and reference link
-- Tag all FAQ entries by category for searchability
-- When policies or products change, update affected FAQ entries immediately
-- Review FAQs monthly: remove outdated entries, add new recurring questions
+- Tag all entries by category for searchability
 - Track question frequency to prioritize which FAQs to create or update first
 - Never include internal-only information in customer-facing FAQ answers
 

@@ -1,55 +1,87 @@
-# Color Palette
+---
+name: color-palette
+description: Creates, evaluates, adjusts, or extends color palettes for brands, products, and UIs with accessibility verification. Use when the user asks for a color palette, color scheme, theme colors, dark mode colors, contrast ratio checks, or brand color generation.
+---
 
-## Metadata
-- **ID**: color-palette
-- **Role**: designer
-- **Version**: 1.0.0
+# Color Palette Generator
 
-## Persona
-You are a Color Theory Specialist and Design Systems Expert with 10 years of experience in brand identity, UI theming, and accessibility-compliant color design. You are precise, creative, and accessibility-conscious. You always provide colors with exact values (hex, RGB, HSL) and verify every combination against WCAG contrast requirements before recommending it.
-
-## Trigger Patterns
-- **Keywords**: ["color palette", "color scheme", "theme colors", "contrast ratio", "dark mode", "light mode", "brand colors", "color harmony", "tint", "shade", "accent color", "WCAG contrast"]
-- **Intent**: The user wants to create, evaluate, adjust, or extend a color palette for a brand, product, or UI — including theme variations and accessibility verification.
-- **Context Clues**: User mentions a new brand or project needing colors. User wants to generate a dark mode from an existing light theme. User asks about contrast ratios or color accessibility. User references complementary, analogous, or other color harmony types.
+## Quick Start
+Provide at least one base color (hex), brand personality keywords, or industry context. Optionally specify the color harmony type (complementary, analogous, triadic, split-complementary, monochromatic), whether you need dark mode, and any existing design system constraints. All generated colors include hex, RGB, and HSL values with WCAG contrast verification.
 
 ## Workflow
+1. Determine the goal: new palette, modification, dark/light mode variation, or contrast audit
+2. Gather context: brand personality, target audience, industry, existing brand colors
+3. Select color harmony model based on the goal
+4. Generate the palette: Primary, Secondary, Accent, Semantic colors (Success/Warning/Error/Info), Neutral scale (50-900)
+5. Verify every foreground/background combination against WCAG AA (4.5:1 normal text, 3:1 large text)
+6. Generate dark mode equivalents if requested (adjusted lightness/saturation, not simple inversion)
+7. Compile the structured output with usage guidelines and contrast table
 
-### Phase 1: Discovery & Analysis
-1. **Parse the request**: Determine whether the user needs a new palette from scratch, a modification of an existing palette, a theme variation (dark/light mode), or a contrast audit of existing colors.
-2. **Gather context**: Identify the brand personality, target audience, industry, and any existing brand colors or constraints. Determine the palette purpose (marketing site, SaaS product, mobile app, print).
-3. **Classify harmony type**: Based on the user's needs, select the appropriate color harmony model — Complementary (high contrast, 2 colors), Analogous (harmonious, 3 adjacent), Triadic (vibrant, 3 at 120 degrees), Split-complementary (balanced, 1 base + 2 adjacent to complement), or Monochromatic (1 hue, multiple tints/shades).
+## Examples
 
-### Phase 2: Context Integration
-1. **Load palette structure template**: Apply the standard palette architecture — Primary, Secondary, Accent, Semantic colors (Success, Warning, Error, Info), and a Neutral scale (50-900).
-2. **Substitute variables from user input**: Map user-provided brand colors, preferences, or constraints into the palette structure. Calculate complementary and supporting colors based on the chosen harmony model.
-3. **Integrate with existing context**: If the user has an existing design system, align generated colors with their token naming conventions, usage patterns, and component requirements.
+**Example 1: New brand palette**
+Input: "Create a color palette for a fintech startup. Primary color is #2563EB. Modern, trustworthy feel."
+Output:
+```
+Color Palette: Fintech Brand
 
-### Phase 3: Execution & Output
-1. **Generate the palette**: Produce all color values with hex, RGB, and HSL representations. Create a full neutral scale (50, 100, 200, 300, 400, 500, 600, 700, 800, 900) for each primary color.
-2. **Verify accessibility**: Test every foreground/background combination against WCAG AA (4.5:1 for normal text, 3:1 for large text/icons) and flag AAA compliance where achieved. Ensure no information is conveyed by color alone.
-3. **Generate theme variations**: If requested, produce dark mode equivalents by adjusting lightness, saturation, and contrast — not by simple inversion. Ensure dark mode maintains the same contrast hierarchy.
-4. **Compile the structured output**: Present the full palette with usage guidelines, contrast verification table, and tint/shade scales.
+## Brand Colors
+| Name      | Hex     | RGB           | HSL              | Usage                    |
+|-----------|---------|---------------|------------------|--------------------------|
+| Primary   | #2563EB | rgb(37,99,235)| hsl(217,84%,53%) | CTAs, links, key actions |
+| Secondary | #0F172A | rgb(15,23,42) | hsl(222,47%,11%) | Headers, dark backgrounds|
+| Accent    | #F59E0B | rgb(245,158,11)| hsl(38,92%,50%) | Highlights, badges       |
 
-## Tool Orchestration
-- Use `Read` to load existing design system files, CSS custom properties, or theme configuration files from the project.
-- Use `Grep` to search for existing color tokens, hex values, or CSS variables in the codebase to ensure consistency with what is already implemented.
-- Use `Glob` to locate theme files, style tokens, or color configuration files within the project structure.
+## Semantic Colors
+| Name    | Hex     | Usage                       |
+|---------|---------|-----------------------------|
+| Success | #16A34A | Confirmations, positive     |
+| Warning | #EAB308 | Caution, non-critical alerts |
+| Error   | #DC2626 | Errors, destructive actions  |
+| Info    | #0EA5E9 | Informational messages       |
+
+## Contrast Check (WCAG AA)
+| Foreground | Background | Ratio  | Result |
+|------------|------------|--------|--------|
+| #FFFFFF    | #2563EB    | 4.56:1 | AA     |
+| #0F172A    | #FFFFFF    | 15.4:1 | AAA    |
+| #FFFFFF    | #DC2626    | 4.63:1 | AA     |
+```
+
+**Example 2: Dark mode generation**
+Input: "Generate dark mode colors from our existing light palette. Primary is #3B82F6."
+Output:
+```
+Color Palette: Dark Mode Variant
+
+## Dark Mode Equivalents
+| Token          | Light Mode | Dark Mode  | Notes                        |
+|----------------|------------|------------|------------------------------|
+| Background     | #FFFFFF    | #0F172A    | Deep slate, not pure black   |
+| Surface        | #F8FAFC    | #1E293B    | Elevated surfaces            |
+| Primary        | #3B82F6    | #60A5FA    | Lightened for dark bg contrast|
+| Primary Text   | #0F172A    | #F1F5F9    | High contrast on dark bg     |
+| Secondary Text | #64748B    | #94A3B8    | Readable at 4.5:1 on dark   |
+```
+
+## Tools
+- Use `Read` to load existing design system files, CSS custom properties, or theme configs
+- Use `Grep` to search for existing color tokens or hex values in the codebase
+- Use `Glob` to locate theme files, style tokens, or color configuration files
 
 ## Error Handling
-- If no base color or brand direction is provided -> Ask the user for at least one primary color, brand personality keywords, or industry context before generating.
-- If a user-provided color fails WCAG contrast requirements -> Flag it clearly, explain the failure, and suggest the closest accessible alternative.
-- If the user requests too many colors (more than 7 main colors) -> Warn about inconsistency risks and recommend consolidation, but proceed if the user confirms.
-- If dark mode conversion is requested without a light mode palette -> Generate both light and dark palettes together from the provided base colors.
+- If no base color or brand direction is provided -> Ask for at least one primary color, personality keywords, or industry context
+- If a user-provided color fails WCAG contrast -> Flag it, explain the failure, and suggest the closest accessible alternative
+- If more than 7 main colors are requested -> Warn about consistency risks, recommend consolidation, but proceed if confirmed
+- If dark mode is requested without a light palette -> Generate both together from provided base colors
 
-## Rules & Constraints
-- WCAG AA minimum: 4.5:1 contrast ratio for normal text, 3:1 for large text and icons.
-- Never rely on color alone to convey information — always pair with icons, labels, or patterns.
-- Primary color must have sufficient contrast on both white and dark backgrounds, or provide variants for each.
-- Dark mode must adjust saturation and brightness, not simply invert colors.
-- Limit main palette to 5-7 colors to maintain design consistency.
-- Always provide exact values — no vague color names without corresponding hex/RGB/HSL.
-- Semantic colors (success, warning, error, info) should be universally recognizable and culturally appropriate.
+## Rules
+- WCAG AA minimum: 4.5:1 for normal text, 3:1 for large text and icons
+- Never rely on color alone to convey information -- pair with icons, labels, or patterns
+- Dark mode must adjust saturation and brightness, not simply invert colors
+- Limit main palette to 5-7 colors for design consistency
+- Always provide exact values (hex, RGB, HSL) -- no vague color names without values
+- Semantic colors (success, warning, error, info) should be universally recognizable
 
 ## Output Template
 ```
@@ -58,46 +90,38 @@ Color Palette: [Project/Brand Name]
 ## Brand Colors
 | Name | Hex | RGB | HSL | Usage |
 |------|-----|-----|-----|-------|
-| Primary | #XXXXXX | rgb(X,X,X) | hsl(X,X%,X%) | [Usage] |
+| Primary   | #XXXXXX | rgb(X,X,X) | hsl(X,X%,X%) | [Usage] |
 | Secondary | #XXXXXX | rgb(X,X,X) | hsl(X,X%,X%) | [Usage] |
-| Accent | #XXXXXX | rgb(X,X,X) | hsl(X,X%,X%) | [Usage] |
+| Accent    | #XXXXXX | rgb(X,X,X) | hsl(X,X%,X%) | [Usage] |
 
 ## Semantic Colors
 | Name | Hex | Usage |
 |------|-----|-------|
 | Success | #XXXXXX | Positive actions, confirmations |
-| Warning | #XXXXXX | Caution, non-critical alerts |
-| Error | #XXXXXX | Errors, destructive actions |
-| Info | #XXXXXX | Informational messages |
+| Warning | #XXXXXX | Caution, non-critical alerts    |
+| Error   | #XXXXXX | Errors, destructive actions     |
+| Info    | #XXXXXX | Informational messages          |
 
 ## Neutral Scale
-| Weight | Hex | Usage |
-|--------|-----|-------|
-| 50 | #XXXXXX | Background |
-| 100 | #XXXXXX | Subtle background |
-| 200 | #XXXXXX | Borders |
-| 300 | #XXXXXX | Disabled states |
-| 500 | #XXXXXX | Secondary text |
-| 700 | #XXXXXX | Primary text |
-| 900 | #XXXXXX | Headings |
+| Weight | Hex     | Usage            |
+|--------|---------|------------------|
+| 50     | #XXXXXX | Background       |
+| 100    | #XXXXXX | Subtle background|
+| 200    | #XXXXXX | Borders          |
+| 300    | #XXXXXX | Disabled states  |
+| 500    | #XXXXXX | Secondary text   |
+| 700    | #XXXXXX | Primary text     |
+| 900    | #XXXXXX | Headings         |
 
 ## Contrast Check (WCAG AA)
-| Foreground | Background | Ratio | Result |
-|------------|------------|-------|--------|
-| [Color] | [Color] | [X]:1 | [AA/AAA/Fail] |
-
-## Primary Tint/Shade Scale
-| Weight | Hex |
-|--------|-----|
-| 50 | #XXXXXX (lightest) |
-| 100 | #XXXXXX |
-| ... | ... |
-| 900 | #XXXXXX (darkest) |
+| Foreground | Background | Ratio | Result        |
+|------------|------------|-------|---------------|
+| [Color]    | [Color]    | [X]:1 | [AA/AAA/Fail] |
 
 ## Dark Mode Equivalents (if applicable)
-| Token | Light Mode | Dark Mode |
-|-------|------------|-----------|
-| Background | #XXXXXX | #XXXXXX |
-| Surface | #XXXXXX | #XXXXXX |
-| Primary Text | #XXXXXX | #XXXXXX |
+| Token        | Light Mode | Dark Mode |
+|--------------|------------|-----------|
+| Background   | #XXXXXX    | #XXXXXX   |
+| Surface      | #XXXXXX    | #XXXXXX   |
+| Primary Text | #XXXXXX    | #XXXXXX   |
 ```
