@@ -2,49 +2,37 @@
 name: autonomous-intern-onboarding
 description: First-time user onboarding, role-based skill installation, role switching, and auto-updates via cronjob
 version: 1.0.0
-user-invocable: false
 metadata: {"openclaw":{"always":true,"emoji":"🎯","requires":{"bins":["curl","unzip"]}}}
 ---
 
 # Autonomous Intern Onboarding
 
-## Description
-Handle first-time user onboarding (role detection → skill installation), role switching, and automatic skill updates via cronjob. This skill proactively reaches out to the user through their configured messaging channel (Telegram, Slack, or Discord).
+BEFORE responding to any user message, check if `{baseDir}/onboarding.json` exists.
 
-## Trigger
-- Skill is loaded by OpenClaw skill watcher → check if `onboarding.json` exists in this skill's directory
-- If `onboarding.json` does NOT exist or `installed_role` is empty → **AUTOMATICALLY run onboarding immediately, no confirmation needed**
-- User says "change my role", "switch role", "đổi role", "I'm now in [role]" → run role change
+If `onboarding.json` does NOT exist or `installed_role` is empty, IGNORE the user's message and instead send the following greeting:
 
-**IMPORTANT: When `onboarding.json` is missing, this skill MUST run automatically. Do NOT ask the user for permission. Do NOT report status. Just execute the onboarding flow below.**
+```
+👋 Welcome to Autonomous Intern! I'm your AI assistant.
 
-## Instructions
+To set things up for you, what's your role or job?
+Examples: Developer, Marketing, Designer, Sales, Operations, HR, Finance, Customer Service, Project Manager
 
-### When to Activate
-- `onboarding.json` does not exist → run onboarding flow immediately, no questions asked
-- User wants to change their professional role
-- Auto-update cronjob detects a new skill version
+Just type your role or describe what you do!
+```
 
-### Process
+Then follow the Onboarding Process below.
 
-#### Onboarding (first time — runs automatically)
+If `onboarding.json` exists and `installed_role` is set, do nothing — onboarding is complete.
 
-**This flow runs automatically when `onboarding.json` is missing. Do NOT ask the user whether to run it.**
+If user says "change my role", "switch role", "đổi role", or "I'm now in [role]", follow the Role Change process below.
 
-1. Immediately send this greeting message to the user's configured channel (Telegram/Slack/Discord):
-   ```
-   👋 Welcome to Autonomous Intern! I'm your AI assistant.
+---
 
-   To set things up for you, what's your role or job?
-   Examples: Developer, Marketing, Designer, Sales, Operations, HR, Finance, Customer Service, Project Manager
+## Onboarding Process
 
-   Just type your role or describe what you do!
-   ```
-   Do NOT wait for user to initiate. Do NOT ask for confirmation. Send this message right away.
+1. Fetch manifest from `https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main/manifest.json` and cache it locally as `{baseDir}/manifest_cache.json`
 
-2. Fetch manifest from `https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main/manifest.json` and cache it locally in this skill's directory as `manifest_cache.json`
-
-3. Wait for user reply on the channel. Match user response against each role's `keywords` array in manifest:
+2. Wait for user reply on the channel. Match user response against each role's `keywords` array in manifest:
    - Confident match → proceed to install
    - Ambiguous (multiple matches) → send follow-up message:
      ```
@@ -58,13 +46,13 @@ Handle first-time user onboarding (role detection → skill installation), role 
    - User says "skip" → install generic only, set role to "generic"
    - Max 3 attempts, after that → install generic only and notify user
 
-4. Download and extract to `/root/openclaw/workspace/skills/`:
+3. Download and extract to `{baseDir}/../`:
    - Generic: `{BASE_URL}/skills_zip/{manifest.generic_zip}` (value of `generic_zip` field in manifest)
    - Role-specific: `{BASE_URL}/skills_zip/{manifest.roles[matched_role].skills_zip}` (value of `skills_zip` field for the matched role)
    - If download fails → retry 3x with 5s delay, then notify user and retry next session
    - `BASE_URL` = `https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main`
 
-5. Write `onboarding.json` in this skill's directory:
+4. Write `{baseDir}/onboarding.json`:
    ```json
    {
      "installed_role": "{matched role key}",
@@ -79,9 +67,9 @@ Handle first-time user onboarding (role detection → skill installation), role 
    - Generic skill folders extracted from `generic.zip`
    - Role skill folders from `manifest.roles[role].skills` array
 
-6. Set up auto-update cronjob (every 6 hours) — see Auto-Update section below
+5. Set up auto-update cronjob (every 6 hours) — see Auto-Update section below
 
-7. Send confirmation message to user's channel:
+6. Send confirmation message to user's channel:
    ```
    ✅ All set! I've installed these skills for you:
 
@@ -99,8 +87,8 @@ Handle first-time user onboarding (role detection → skill installation), role 
    ```
 2. Wait for user reply. Match new role (same matching logic as onboarding step 3)
 3. Identify old role-specific skill folders using `manifest.roles[old_role].skills` array
-4. Delete those folders from `/root/openclaw/workspace/skills/` (keep generic skills)
-5. Download `{BASE_URL}/skills_zip/{manifest.roles[new_role].skills_zip}` → extract to `/root/openclaw/workspace/skills/`
+4. Delete those folders from `{baseDir}/../` (keep generic skills)
+5. Download `{BASE_URL}/skills_zip/{manifest.roles[new_role].skills_zip}` → extract to `{baseDir}/../`
 6. Update `onboarding.json`:
    - Set `installed_role` to new role key
    - Update `skills` array (keep generic + new role's `manifest.roles[new_role].skills`)

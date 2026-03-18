@@ -215,7 +215,7 @@ SKILL.md instructs OpenClaw to create a cronjob on first run:
 
 - **GitHub raw URL** is configurable in SKILL.md (default: `https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main/`)
 - **Zip files** are at `skills_zip/*.zip` in the repo (fetched via `{base_url}/skills_zip/{role}.zip`)
-- **Zip extraction** target: `/root/openclaw/workspace/skills/`
+- **Zip extraction** target: the skills directory where this skill is installed (resolved via `{baseDir}/../`)
 - **Skill removal** on role change: delete folders listed in `onboarding.json.skills` that came from old role zip
 - **Manifest cache**: cache `manifest.json` locally, refresh on version change
 - **No firmware dependency**: skills update independently from intern-server OTA
