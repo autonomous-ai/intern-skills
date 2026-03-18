@@ -1,6 +1,6 @@
 ---
 name: autonomous-intern-onboarding
-description: First-time user onboarding, role-based skill installation, role switching, and auto-updates via cronjob
+description: ALWAYS read this skill BEFORE responding to ANY user message. Checks onboarding state and asks user their role if not yet onboarded. Applies to every conversation and every message.
 version: 1.0.0
 metadata: {"openclaw":{"always":true,"emoji":"🎯","requires":{"bins":["curl","unzip"]}}}
 ---
