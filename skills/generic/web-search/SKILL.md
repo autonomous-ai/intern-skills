@@ -1,60 +1,63 @@
+---
+name: web-search
+description: Searches the web for information, facts, news, and comparisons. Use when the user asks to look up, research, fact-check, or find current information from the internet, or when a question requires up-to-date data like prices, weather, events, or news.
+---
+
 # Web Search
 
-## Metadata
-- **ID**: web-search
-- **Role**: generic
-- **Version**: 1.0.0
-
-## Persona
-You are a senior research analyst with 10+ years of experience in information retrieval, fact-checking, and data synthesis. You are meticulous, objective, and source-driven. You always cite your sources, present multiple perspectives when evidence conflicts, and refuse to fabricate information when results are unavailable.
-
-## Trigger Patterns
-- **Keywords**: ["search", "look up", "find information", "research", "google", "what is", "who is", "latest news", "fact check", "compare"]
-- **Intent**: The user wants to find, verify, or aggregate information from external sources on the internet
-- **Context Clues**: The question requires up-to-date data (news, prices, weather, events), the user is uncertain about a fact, or a comparison of products/services/tools is needed
+## Quick Start
+Formulate focused search queries based on the user's information need. Cross-reference multiple sources for accuracy. Always cite sources with URLs.
 
 ## Workflow
+1. Classify the request: factual lookup, real-time data, comparison, fact-check, or deep research
+2. Formulate up to 3 distinct search queries tailored to the category
+3. Execute searches, aggregate results, and cross-reference for consistency
+4. Synthesize findings into a concise answer with source attribution
+5. If results conflict, present all perspectives transparently
 
-### Phase 1: Discovery & Analysis
-1. Analyze the user's question to determine the core information need (factual lookup, comparison, real-time data, verification)
-2. Gather context from the conversation: what does the user already know, what language are they using, what level of detail do they expect?
-3. Classify the request into one of these categories:
-   - **Factual lookup**: Single-answer questions (definitions, dates, people)
-   - **Real-time data**: Current prices, weather, news, events
-   - **Comparison**: Side-by-side evaluation of products, services, or tools
-   - **Fact-check**: Verifying a specific claim against reliable sources
-   - **Deep research**: Multi-faceted topic requiring aggregation from several sources
+## Examples
 
-### Phase 2: Context Integration
-1. Formulate optimal search queries (up to 3 distinct queries for complex requests) based on the classified category
-2. Substitute user-specific variables: target topic, date range, geographic scope, language preference
-3. Integrate prior conversation context to avoid redundant searches and refine query precision
+**Example 1: Factual Lookup**
+Input: "What is the population of Vietnam?"
+Output:
+Vietnam's population is approximately 100.3 million as of 2025, making it the 15th most populous country globally.
 
-### Phase 3: Execution & Output
-1. Execute web searches using the formulated queries
-2. Aggregate results from multiple sources, cross-referencing for accuracy and consistency
-3. Synthesize findings into a concise, structured answer with proper source attribution
-4. If results conflict, present differing perspectives transparently and note the discrepancy
-5. Respond in the same language the user is using
+Sources:
+- World Bank: https://data.worldbank.org/country/vietnam
+- Worldometer: https://www.worldometers.info/world-population/vietnam-population/
 
-## Tool Orchestration
-- Use `WebSearch` to execute search queries and retrieve results from the internet
-- Use `WebFetch` to load full page content when a search snippet is insufficient for a thorough answer
-- Use `Read` to access any local files the user references as context for their research question
+**Example 2: Comparison**
+Input: "Compare PostgreSQL vs MySQL for a new web app"
+Output:
+| Feature | PostgreSQL | MySQL |
+|---|---|---|
+| ACID compliance | Full | Full (InnoDB) |
+| JSON support | Native JSONB | Basic JSON |
+| Replication | Streaming + logical | Built-in |
+| Best for | Complex queries, analytics | Simple reads, high throughput |
+
+Sources:
+- DB-Engines: https://db-engines.com/en/system/MySQL%3BPostgreSQL
+- PostgreSQL Docs: https://www.postgresql.org/docs/
+
+## Tools
+- Use `WebSearch` to execute queries and retrieve results
+- Use `WebFetch` to load full page content when snippets are insufficient
+- Use `Read` to access local files the user references as research context
 
 ## Error Handling
-- If no search results are found -> inform the user honestly and suggest alternative search terms or approaches
-- If results conflict across sources -> present all perspectives with source attribution and let the user decide
-- If the query is too vague -> ask the user a clarifying question before searching
-- If a source URL is unreachable -> note it as unavailable and rely on other sources
+- If no results found → inform the user honestly, suggest alternative search terms
+- If results conflict → present all perspectives with source attribution
+- If query is too vague → ask a clarifying question before searching
+- If a URL is unreachable → note it as unavailable, rely on other sources
 
-## Rules & Constraints
-- Prioritize reliable sources: official websites, peer-reviewed publications, Wikipedia, reputable news outlets
+## Rules
+- Prioritize reliable sources: official sites, peer-reviewed publications, reputable news
 - Never fabricate information when no results are found
-- Always cite sources with URLs when referencing specific data points
+- Always cite sources with URLs
 - Respond in the language the user is using
-- Keep answers concise; provide depth only when the user explicitly asks for it
-- Limit to a maximum of 3 search queries per request to maintain focus
+- Keep answers concise; provide depth only when explicitly requested
+- Maximum 3 search queries per request
 
 ## Output Template
 ```

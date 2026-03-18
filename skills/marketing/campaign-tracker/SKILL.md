@@ -1,63 +1,106 @@
+---
+name: campaign-tracker
+description: Analyzes marketing campaign performance, calculates KPIs, compares A/B test results, and provides budget optimization recommendations. Use when the user asks about campaign ROI, ad performance, ROAS, CPA, conversion tracking, marketing reports, or budget allocation across channels.
+---
+
 # Campaign Tracker
 
-## Metadata
-- **ID**: campaign-tracker
-- **Role**: marketing
-- **Version**: 1.0.0
-
-## Persona
-You are a performance marketing analyst with 10+ years of experience in campaign measurement, attribution modeling, and ROI optimization across paid, owned, and earned channels. You are numbers-driven, methodical, and relentlessly focused on converting data into decisions. You always tie every metric back to business impact, and you never present data without an actionable recommendation.
-
-## Trigger Patterns
-- **Keywords**: ["campaign", "marketing campaign", "ROI", "conversion", "ads performance", "marketing KPI", "ROAS", "CTR", "CPA", "CPM", "CPC", "campaign report", "ad spend", "budget allocation", "A/B test results", "UTM"]
-- **Intent**: The user wants to track, monitor, analyze, or report on marketing campaign performance, compare A/B test results, or optimize budget allocation across channels.
-- **Context Clues**: References to specific campaigns or ad platforms (Google Ads, Meta Ads, email campaigns), mentions of budget figures, conversion numbers, or performance data. Questions about why a campaign is underperforming or how to allocate remaining budget.
+## Quick Start
+Analyze campaign data and generate performance reports with actionable recommendations. Always track the full funnel (impressions > clicks > conversions > revenue) and tie every metric to a business decision.
 
 ## Workflow
+1. Determine the need: new campaign setup, active campaign monitoring, post-campaign report, A/B test comparison, or budget reallocation.
+2. Collect campaign name, objective, channels, budget, timeline, and available performance data.
+3. Map to the correct KPI framework per channel (Paid Ads, Email, Social, SEO/Content).
+4. Calculate all derived metrics (CTR, CPA, ROAS, ROI) and compute variance vs. targets.
+5. Break down performance by channel or ad set. Identify top and bottom performers.
+6. If A/B variants exist, evaluate statistical significance and declare a winner.
+7. Generate 2-3 key insights and specific recommendations with expected impact.
 
-### Phase 1: Discovery & Analysis
-1. **Identify the tracking need** -- Determine whether the user needs to set up tracking for a new campaign, monitor an active campaign, generate a post-campaign report, compare A/B test variants, or optimize budget allocation.
-2. **Gather campaign details** -- Collect campaign name, objective (awareness, engagement, conversion, retention), channels, budget, timeline, target audience, and any performance data already available.
-3. **Classify the channel mix** -- Map the campaign to the relevant KPI frameworks:
-   - **Paid Ads**: CPC, CPM, CTR, CPA, ROAS, Conversion Rate
-   - **Email**: Open Rate, Click Rate, Unsubscribe Rate, Revenue per Email
-   - **Social**: Reach, Engagement Rate, Shares, Saves, Click-through
-   - **SEO/Content**: Organic Traffic, Keyword Rankings, Bounce Rate, Time on Page, Lead Generation
-   - **Overall**: Total Spend, Total Revenue, ROI, Customer Acquisition Cost
+## Examples
 
-### Phase 2: Context Integration
-1. **Load the measurement framework** -- Select the appropriate KPI set and benchmarks based on the campaign channel and objective. Apply industry-standard benchmarks where the user's historical data is unavailable.
-2. **Substitute variables** -- Insert the user's campaign data (spend, impressions, clicks, conversions, revenue) into the analysis framework to calculate derived metrics (CTR, CPA, ROAS, ROI).
-3. **Integrate existing context** -- Reference any prior campaign data, seasonal trends, or historical benchmarks from the conversation to enable period-over-period comparison.
+**Example 1: Post-campaign report**
+Input: "Here's our Q1 campaign data: Google Ads spent $5,000 (120K impressions, 3,600 clicks, 180 conversions, $27,000 revenue). Meta Ads spent $3,000 (200K impressions, 2,800 clicks, 84 conversions, $10,080 revenue). Goal was 300 total conversions."
+Output:
+```
+Campaign Report: Q1 Digital Advertising
+Period: Jan 1 - Mar 31, 2026
+Objective: Conversion
+Budget: $8,000 / $8,000 (100% spent)
 
-### Phase 3: Execution & Output
-1. **Calculate performance metrics** -- Compute all relevant KPIs from raw data. Compare actuals vs. targets and compute variance (delta) for each metric.
-2. **Channel breakdown** -- Analyze performance by individual channel or ad set to identify top and bottom performers.
-3. **A/B test evaluation** -- If variants are provided, calculate statistical significance and declare a winner with confidence level.
-4. **Generate insights** -- Identify the 2-3 most important findings: what is working, what is underperforming, and why. Look for patterns in audience segments, creative types, or time-of-day performance.
-5. **Formulate recommendations** -- Provide specific, actionable next steps: budget reallocation suggestions, creative changes, audience adjustments, or scaling decisions.
-6. **Deliver structured output** -- Present the complete report in the standardized output template.
+Performance Overview:
+| Metric        | Target  | Actual  | Variance  |
+|---------------|---------|---------|-----------|
+| Impressions   | --      | 320,000 | --        |
+| Clicks        | --      | 6,400   | --        |
+| CTR           | --      | 2.0%    | --        |
+| Conversions   | 300     | 264     | -12.0%    |
+| CPA           | $26.67  | $30.30  | +13.6%    |
+| Revenue       | --      | $37,080 | --        |
+| ROAS          | --      | 4.64x   | --        |
+| ROI           | --      | 363.5%  | --        |
 
-## Tool Orchestration
-- Use `Read` to load campaign data files, CSV exports, or previous report documents provided by the user.
-- Use `Write` to save completed campaign performance reports to file when requested.
-- Use `WebSearch` to look up industry benchmark data for comparison when the user lacks historical baselines.
+Channel Breakdown:
+| Channel    | Spend  | Impressions | Clicks | Conv | CPA    | ROAS  |
+|------------|--------|-------------|--------|------|--------|-------|
+| Google Ads | $5,000 | 120,000     | 3,600  | 180  | $27.78 | 5.40x |
+| Meta Ads   | $3,000 | 200,000     | 2,800  | 84   | $35.71 | 3.36x |
+
+Key Insights:
+1. Google Ads outperforms Meta on every efficiency metric -- 5.40x ROAS vs. 3.36x, CPA $8 lower.
+2. Missed conversion target by 12%. Meta's low conversion rate (3.0% vs. Google's 5.0%) is the primary drag.
+3. Overall ROAS of 4.64x is strong. The campaign is profitable; the issue is volume, not efficiency.
+
+Recommendations:
+1. Shift $1,000 from Meta to Google Ads -- Expected impact: ~36 additional conversions at $27.78 CPA, closing the gap on the 300 target.
+2. Audit Meta ad creatives and landing page experience -- 3.0% conversion rate suggests a disconnect between ad promise and landing page.
+3. Test lookalike audiences on Meta based on Google Ads converter profiles -- Expected impact: improve Meta conversion rate by 1-2 percentage points.
+
+Next Steps:
+- Reallocate Q2 budget with 70/30 Google/Meta split (was 62/38)
+- A/B test 2 new Meta ad creatives by April 15
+- Set up cross-platform conversion tracking to unify attribution
+```
+
+**Example 2: A/B test evaluation**
+Input: "We ran an A/B test on email subject lines. Version A: 'Your order is waiting' -- 12,000 sends, 2,640 opens, 396 clicks. Version B: 'Don't miss out: 24hrs left' -- 12,000 sends, 3,120 opens, 312 clicks."
+Output:
+```
+A/B Test Report: Email Subject Line
+
+| Metric     | Version A             | Version B                 | Winner |
+|------------|-----------------------|---------------------------|--------|
+| Sends      | 12,000                | 12,000                    | --     |
+| Opens      | 2,640 (22.0%)         | 3,120 (26.0%)             | B      |
+| Clicks     | 396 (3.3% of sends)   | 312 (2.6% of sends)       | A      |
+| Click/Open | 15.0%                 | 10.0%                     | A      |
+
+Verdict: Split -- depends on your objective.
+- If goal is awareness/opens: Version B wins (+4pp open rate).
+- If goal is clicks/conversions: Version A wins (+0.7pp CTR, +27% more clicks).
+
+Recommendation: Use Version A. Opens are a vanity metric; clicks drive revenue. Version A generated 27% more clicks despite fewer opens, indicating higher-quality engagement.
+```
+
+## Tools
+- Use `Read` to load campaign data files, CSV exports, or previous reports.
+- Use `Write` to save completed reports to a file.
+- Use `WebSearch` to look up industry benchmarks when the user lacks historical baselines.
 
 ## Error Handling
-- If no campaign data is provided -> Ask: "Please share the campaign metrics you have (impressions, clicks, conversions, spend, revenue) so I can build the analysis."
-- If the campaign objective is unclear -> Ask: "What is the primary goal of this campaign -- awareness, engagement, conversions, or retention?"
-- If the data is incomplete (e.g., spend but no conversions) -> Analyze what is available and clearly note which metrics cannot be calculated without additional data.
-- If the user expects real-time dashboard data -> Clarify that this skill analyzes provided data and generates reports; recommend connecting to Google Analytics, Meta Ads Manager, or similar platforms for live dashboards.
+- If no campaign data is provided --> ask: "Please share the campaign metrics (impressions, clicks, conversions, spend, revenue) so I can build the analysis."
+- If campaign objective is unclear --> ask: "What is the primary goal -- awareness, engagement, conversions, or retention?"
+- If data is incomplete --> analyze what is available and note which metrics cannot be calculated.
+- If user expects live dashboard data --> clarify this skill analyzes provided data; recommend platform-native dashboards for real-time monitoring.
 
-## Rules & Constraints
+## Rules
 - All campaign links must use UTM parameters -- flag any that do not.
-- Always track to the end of the funnel: impressions > clicks > conversions > revenue. Never report on vanity metrics alone.
-- Daily monitoring is required for paid campaigns -- recommend stopping underperforming ads early to preserve budget.
-- Benchmarking must compare against the same period last year or a stated industry average -- never compare without context.
-- Attribution model must be explicitly stated and consistent within the same report.
-- Every data point presented must have a "so what" -- no metric without interpretation.
-- Budget reallocation recommendations must include the rationale and expected impact.
-- Round percentages to one decimal place and currency to two decimal places for consistency.
+- Track the full funnel: impressions > clicks > conversions > revenue. Never report vanity metrics alone.
+- Benchmarking must compare against same period last year or stated industry average -- never without context.
+- Attribution model must be explicitly stated and consistent within a report.
+- Every metric must have an interpretation -- no data without a "so what."
+- Budget reallocation recommendations must include rationale and expected impact.
+- Round percentages to one decimal place, currency to two decimal places.
 
 ## Output Template
 ```
@@ -79,9 +122,9 @@ Performance Overview:
 | ROI           | [%]     | [%]     | [+/- pp] |
 
 Channel Breakdown:
-| Channel   | Spend  | Impressions | Clicks | Conv | CPA   | ROAS |
-|-----------|--------|-------------|--------|------|-------|------|
-| [Channel] | [$]    | [N]         | [N]    | [N]  | [$]   | [X]  |
+| Channel   | Spend | Impressions | Clicks | Conv | CPA  | ROAS |
+|-----------|-------|-------------|--------|------|------|------|
+| [Channel] | [$]   | [N]         | [N]    | [N]  | [$]  | [X]  |
 
 Key Insights:
 1. [What is working and why]
@@ -89,9 +132,9 @@ Key Insights:
 3. [Notable pattern or anomaly]
 
 Recommendations:
-1. [Specific action] - Expected impact: [description]
-2. [Specific action] - Expected impact: [description]
-3. [Specific action] - Expected impact: [description]
+1. [Action] - Expected impact: [description]
+2. [Action] - Expected impact: [description]
+3. [Action] - Expected impact: [description]
 
 Next Steps:
 - [Immediate action items with owner and deadline]

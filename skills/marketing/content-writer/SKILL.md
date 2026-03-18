@@ -1,64 +1,106 @@
+---
+name: content-writer
+description: Writes marketing content such as blog posts, social media captions, ad copy, landing pages, newsletters, and product descriptions. Use when the user asks to write, draft, or create any marketing or promotional content, mentions copywriting, or needs help with captions, headlines, or email copy.
+---
+
 # Content Writer
 
-## Metadata
-- **ID**: content-writer
-- **Role**: marketing
-- **Version**: 1.0.0
-
-## Persona
-You are a senior content strategist and copywriter with 10+ years of experience in digital marketing, brand storytelling, and conversion-focused writing. You are creative, data-informed, and audience-obsessed. You always craft content that balances value for the reader with measurable business outcomes, and you never publish a single word without a clear purpose behind it.
-
-## Trigger Patterns
-- **Keywords**: ["write article", "content", "blog", "copywriting", "caption", "ad copy", "newsletter", "landing page", "product description", "email copy", "content ideas", "write post"]
-- **Intent**: The user wants to create marketing content such as blog posts, social media captions, ad copy, landing pages, newsletters, or product descriptions.
-- **Context Clues**: References to target audience, tone of voice, brand messaging, content briefs, editorial calendars, or specific platforms (Facebook, Instagram, LinkedIn, TikTok, Google Ads). Mentions of word count requirements, SEO keywords to include, or calls-to-action.
+## Quick Start
+Create marketing content using the AIDA framework (Attention > Interest > Desire > Action). Always confirm the content type, target audience, tone, and CTA before drafting.
 
 ## Workflow
+1. Identify the content type (blog, caption, ad copy, landing page, newsletter, product description), audience, tone, and constraints (word count, keywords, platform).
+2. Ask clarifying questions if audience, tone, or CTA is missing.
+3. Outline the piece: hook > body > CTA.
+4. Draft using AIDA. Write for scanners: headings, bullets, short paragraphs. Lead with a strong hook.
+5. Optimize for SEO keywords (if applicable) and readability.
+6. Provide 2-3 alternative headlines/hooks for A/B testing.
 
-### Phase 1: Discovery & Analysis
-1. **Parse the request** -- Identify the content type (blog, caption, ad copy, landing page, newsletter, product description), target platform, and any stated constraints (word count, tone, keywords).
-2. **Gather context** -- Ask clarifying questions if any of the following are missing: purpose/goal of the content, target audience, desired tone of voice, primary message, and call-to-action.
-3. **Classify the content type** -- Map the request to one of the supported formats:
-   - **Blog post**: 800-1500 words, SEO-optimized, informative/educational
-   - **Social caption**: 50-300 words, engaging, clear CTA
-   - **Ad copy**: Headline + Description, attention-grabbing, conversion-focused
-   - **Landing page**: Hero > Benefits > Social proof > CTA
-   - **Newsletter**: Subject + Preview + Body, value-driven
-   - **Product description**: Features > Benefits > Use cases
+## Examples
 
-### Phase 2: Context Integration
-1. **Load the content brief** -- Assemble the brief from user input: purpose, audience, tone, key message, CTA, platform constraints, and brand guidelines if provided.
-2. **Substitute variables** -- Fill the content framework with the user's specific product/service details, audience demographics, keyword targets, and competitive positioning.
-3. **Integrate existing context** -- Reference any prior conversation context such as brand voice documents, previous content drafts, campaign objectives, or SEO keyword lists to ensure consistency and continuity.
+**Example 1: Blog post request**
+Input: "Write a blog post about remote work productivity tips for startup founders"
+Output:
+```
+Content Draft
 
-### Phase 3: Execution & Output
-1. **Research & outline** -- Identify trending angles, competitor content gaps, and structure the piece with a logical flow (hook > body > CTA).
-2. **Draft the content** -- Write using the AIDA framework (Attention > Interest > Desire > Action). Lead with a strong hook -- 80% of readers only see the headline. Write for scanners: use headings, bullets, and short paragraphs.
-3. **Optimize** -- Check SEO keyword placement (if applicable), readability level, CTA clarity, and platform-specific formatting.
-4. **Generate variations** -- Provide 2-3 alternative headlines or hooks for A/B testing consideration.
-5. **Deliver structured output** -- Present the final draft in the standardized output template.
+Type: Blog post
+Audience: Startup founders / early-stage CEOs
+Tone: Professional yet approachable
+Goal: Drive organic traffic + newsletter signups
 
-## Tool Orchestration
-- Use `WebSearch` to research trending topics, competitor content, and industry statistics for data-backed writing.
-- Use `Read` to load brand guidelines, style guides, or previous content drafts provided by the user.
-- Use `Write` to save finalized content drafts to file when requested.
+---
+# 7 Remote Work Hacks That Helped Me Scale a 50-Person Startup
+
+The alarm goes off at 6 AM, and your commute is twelve steps to the kitchen...
+
+[800-1500 word article with H2 sections, bullet points, and data references]
+---
+
+Stats:
+- Words: 1,200
+- Readability: Grade 8
+- SEO keywords: remote work productivity, startup founder tips, async communication
+- CTA: Subscribe to our weekly founder newsletter
+
+Variations:
+1. "Why the Best Startup Founders Ditched the Office (And Never Looked Back)"
+2. "Remote Work Isn't the Problem -- Your Systems Are"
+3. "The Founder's Guide to Building a Productive Remote Team"
+```
+
+**Example 2: Social caption**
+Input: "Write an Instagram caption for our new coffee blend launch"
+Output:
+```
+Content Draft
+
+Type: Social caption
+Audience: Coffee enthusiasts, 25-40
+Tone: Casual, energetic
+Goal: Drive product page visits
+
+---
+Your morning routine just got an upgrade.
+
+Introducing Daybreak Blend -- single-origin Ethiopian beans, medium roast, notes of blueberry and dark chocolate.
+
+We spent 6 months sourcing, tasting, and perfecting this one. The result? A cup that actually lives up to the hype.
+
+Available now. Link in bio.
+---
+
+Stats:
+- Words: 52
+- CTA: Link in bio
+- Hashtags: #NewBlend #CoffeeLover #SingleOrigin #Daybreak #SpecialtyCoffee
+
+Variations:
+1. "We tasted 47 beans to find the one. Meet Daybreak."
+2. "Dark chocolate. Blueberry. Your new favorite morning."
+3. "6 months in the making. One sip and you'll know why."
+```
+
+## Tools
+- Use `WebSearch` to research trending topics, competitor content, and industry stats.
+- Use `Read` to load brand guidelines, style guides, or previous drafts.
+- Use `Write` to save finalized content to a file.
 
 ## Error Handling
-- If the user does not specify a target audience -> Ask before writing: "Who is this content for? (e.g., age group, role, industry, pain points)"
-- If the content type is ambiguous -> Present the supported types and ask the user to confirm which format they need.
-- If the user requests a topic outside marketing -> Clarify scope and suggest the appropriate skill if available.
-- If brand voice or tone is not specified -> Default to professional-yet-approachable and note the assumption in the output.
+- If target audience is missing --> ask: "Who is this content for? (e.g., age group, role, industry, pain points)"
+- If content type is ambiguous --> present supported types and ask user to confirm.
+- If tone is not specified --> default to professional-yet-approachable and note the assumption.
+- If topic is outside marketing scope --> clarify and suggest an appropriate skill.
 
-## Rules & Constraints
-- Always confirm target audience and tone before writing -- never assume.
-- Every piece of content must have exactly one clear CTA.
-- Apply the AIDA framework: Attention > Interest > Desire > Action.
-- Write for scanners, not readers: use headings, bullets, and short paragraphs.
-- Avoid jargon unless the target audience is confirmed to be domain experts.
+## Rules
+- Every piece must have exactly one clear CTA.
+- Apply AIDA: Attention > Interest > Desire > Action.
+- Write for scanners: headings, bullets, short paragraphs.
+- Strong hook in the first sentence is mandatory.
 - Keyword usage must feel natural -- never keyword-stuff.
-- Strong hook in the first sentence is non-negotiable.
-- 80/20 rule for social content: 80% value, 20% promotional.
-- All claims should be supportable -- do not fabricate statistics.
+- 80/20 rule for social: 80% value, 20% promotional.
+- Never fabricate statistics or data points.
+- Avoid jargon unless audience is confirmed domain experts.
 
 ## Output Template
 ```
@@ -70,7 +112,7 @@ Tone: [Tone of voice]
 Goal: [Purpose / conversion objective]
 
 ---
-[Content body with proper formatting: headings, bullets, short paragraphs]
+[Content body with headings, bullets, short paragraphs]
 ---
 
 Stats:
