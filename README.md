@@ -14,18 +14,20 @@ workspace/skills/autonomous-intern-onboarding/
 └── onboarding.json   ← Local state (installed role, version, timestamp)
 ```
 
-### Remote Skill Repository (Public)
+### Remote Skill Repository (GitHub)
 
 ```
-https://cdn.autonomous.ai/intern/skills/   (or GitHub public repo)
+https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main/
 ├── version.txt                             ← Global version string (e.g. "1.0.3")
 ├── manifest.json                           ← Role → skills mapping
-├── generic.zip                             ← Skills installed for ALL users
-├── developer.zip                           ← Developer-specific skills
-├── marketing.zip                           ← Marketing-specific skills
-├── designer.zip                            ← Designer-specific skills
-├── sales.zip                               ← Sales-specific skills
-└── ops.zip                                 ← Operations-specific skills
+├── skills_zip/
+│   ├── generic.zip                         ← Skills installed for ALL users
+│   ├── developer.zip                       ← Developer-specific skills
+│   ├── marketing.zip                       ← Marketing-specific skills
+│   ├── designer.zip                        ← Designer-specific skills
+│   ├── sales.zip                           ← Sales-specific skills
+│   └── ops.zip                             ← Operations-specific skills
+│   └── ...
 ```
 
 Each `.zip` contains N sub-skill folders:
@@ -113,8 +115,8 @@ Just type your role or describe what you do!
 
 ### Step 3: Install Skills
 
-1. Download `generic.zip` → extract to `workspace/skills/`
-2. Download `{role}.zip` → extract to `workspace/skills/`
+1. Download `skills_zip/generic.zip` → extract to `workspace/skills/`
+2. Download `skills_zip/{role}.zip` → extract to `workspace/skills/`
 3. Save state to `onboarding.json`:
    ```json
    {
@@ -159,8 +161,8 @@ SKILL.md instructs OpenClaw to create a cronjob on first run:
   1. Fetch `version.txt` from CDN
   2. Compare with `onboarding.json.installed_version`
   3. If newer:
-     - Download `generic.zip` → overwrite existing generic skills
-     - Download `{installed_role}.zip` → overwrite existing role skills
+     - Download `skills_zip/generic.zip` → overwrite existing generic skills
+     - Download `skills_zip/{installed_role}.zip` → overwrite existing role skills
      - Update `onboarding.json.installed_version`
      - Notify user: "🔄 Skills updated to version X.Y.Z"
   4. If same → do nothing
@@ -211,7 +213,8 @@ SKILL.md instructs OpenClaw to create a cronjob on first run:
 
 ## Implementation Notes
 
-- **CDN URL** should be configurable in SKILL.md (default: `https://cdn.autonomous.ai/intern/skills/`)
+- **GitHub raw URL** is configurable in SKILL.md (default: `https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main/`)
+- **Zip files** are at `skills_zip/*.zip` in the repo (fetched via `{base_url}/skills_zip/{role}.zip`)
 - **Zip extraction** target: `/root/openclaw/workspace/skills/`
 - **Skill removal** on role change: delete folders listed in `onboarding.json.skills` that came from old role zip
 - **Manifest cache**: cache `manifest.json` locally, refresh on version change
@@ -221,9 +224,9 @@ SKILL.md instructs OpenClaw to create a cronjob on first run:
 
 ## TODO
 
-- [ ] Define CDN URL / repo location
-- [ ] Create initial role → skills mapping (which skills go in which zip)
-- [ ] Write the actual SKILL.md content
-- [ ] Build generic skills pack
-- [ ] Build role-specific skills packs
+- [x] Define CDN URL / repo location — using GitHub raw URLs from this repo
+- [x] Create initial role → skills mapping (which skills go in which zip)
+- [ ] Write the actual SKILL.md content for the onboarding skill
+- [x] Build generic skills pack
+- [x] Build role-specific skills packs
 - [ ] Test onboarding flow end-to-end on staging device
