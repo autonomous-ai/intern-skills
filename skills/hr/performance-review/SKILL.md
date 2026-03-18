@@ -1,70 +1,89 @@
+---
+name: performance-review
+description: Helps write, structure, and consolidate performance reviews including self-assessments, manager evaluations, 360 feedback, goal setting, and development plans. Use when the user asks to write a performance review, set OKRs/KPIs, prepare for a review meeting, or consolidate feedback.
+---
+
 # Performance Review
 
-## Metadata
-- **ID**: performance-review
-- **Role**: hr
-- **Version**: 1.0.0
-
-## Persona
-You are a seasoned organizational development consultant with 12+ years of experience in performance management, talent development, and executive coaching. You are objective, constructive, and growth-oriented. You always frame feedback using the SBI (Situation-Behavior-Impact) model, balance strengths with development areas, and ensure every review includes an actionable development plan.
-
-## Trigger Patterns
-- **Keywords**: ["performance review", "evaluation", "KPI", "OKR", "employee review", "self-review", "self-assessment", "360 feedback", "review form", "performance cycle", "calibration", "1:1 review", "development plan", "quarterly review", "annual review"]
-- **Intent**: The user wants to create, write, consolidate, or manage performance reviews, including goal-setting, mid-cycle check-ins, self-assessments, manager evaluations, 360-degree feedback, and development planning.
-- **Context Clues**: User mentions a review cycle or period (Q1, H1, annual); user asks for help writing feedback for a direct report; user needs to consolidate multiple feedback sources; user wants to set or track OKRs/KPIs; user is preparing for a 1:1 review meeting.
+## Quick Start
+Create structured performance reviews using a weighted criteria model (Performance 60%, Competency 20%, Culture 20%) with a 5-point rating scale. All feedback must follow the SBI framework (Situation-Behavior-Impact) and be backed by specific evidence. Every review must include a development plan.
 
 ## Workflow
+1. Determine the review stage: goal setting, mid-cycle check-in, self-review, manager review, 360 consolidation, or 1:1 preparation
+2. Collect employee name, position, review period, goals/OKRs, and any existing feedback
+3. Evaluate each criterion with evidence-based scoring:
+   - Performance (60%): KPI/OKR completion, deliverable quality, measurable outcomes
+   - Competency (20%): technical skills, problem-solving, communication
+   - Culture (20%): teamwork, initiative, values alignment, leadership
+4. Structure all feedback using SBI: Situation (when/where) → Behavior (what they did) → Impact (the result)
+5. Assign overall rating: 5-Outstanding, 4-Exceeds, 3-Meets, 2-Below, 1-Needs Improvement
+6. Build a development plan with 2-4 specific actions, owners, resources, and deadlines
+7. If preparing for a 1:1, generate a structured discussion agenda
 
-### Phase 1: Discovery & Analysis
-1. **Parse the request**: Determine which stage of the review process the user needs help with (goal setting, mid-cycle check-in, self-review, manager review, 360 consolidation, calibration, or 1:1 preparation).
-2. **Gather context**: Identify the employee name, position, review period, the employee's goals/OKRs, and any existing feedback or data points.
-3. **Classify the review type**:
-   - Self-review: employee assessing their own performance.
-   - Manager review: manager evaluating a direct report.
-   - 360-degree consolidation: aggregating feedback from peers, reports, and stakeholders.
-   - Goal setting: defining OKRs/KPIs for the upcoming cycle.
-   - Mid-cycle check-in: progress review and course correction.
+## Examples
 
-### Phase 2: Context Integration
-1. **Load the evaluation framework**: Apply the weighted criteria model (Performance 60%, Competency 20%, Culture 20%) and the 5-point rating scale.
-2. **Substitute variables**: Map the employee's goals, achievements, and feedback data into the review template. Match each criterion with specific evidence from the review period.
-3. **Integrate with existing context**: If prior review cycles, OKRs, or feedback exist in the conversation, use them as a baseline to track progression and identify trends.
+**Example 1: Manager review**
+Input: "Write a performance review for Tom Nguyen, Software Engineer, for Q4 2025. He completed 4/5 OKRs, led the API migration project, but needs to improve documentation."
+Output:
+```
+Performance Review: Tom Nguyen
+Review Period: Q4 2025
+Position: Software Engineer - Engineering
+Manager: [Manager Name]
 
-### Phase 3: Execution & Output
-1. **Evaluate each criterion**:
-   - Performance (60%): Assess KPI/OKR completion rates, quality of deliverables, and measurable outcomes.
-   - Competency (20%): Assess technical skills, problem-solving ability, and communication effectiveness.
-   - Culture (20%): Assess teamwork, initiative, alignment with company values, and leadership behaviors.
-2. **Apply the SBI framework**: For every piece of feedback, structure it as Situation (when/where) -> Behavior (what the person did) -> Impact (the result or effect).
-3. **Compute the overall rating**:
-   - 5 - Outstanding: Far exceeds expectations across all criteria.
-   - 4 - Exceeds: Consistently exceeds expectations in most criteria.
-   - 3 - Meets: Reliably meets expectations.
-   - 2 - Below: Falls short of expectations in key areas.
-   - 1 - Needs Improvement: Significant gaps requiring immediate attention.
-4. **Build the development plan**: Identify 2-4 specific development actions with owners, resources, and deadlines.
-5. **Prepare 1:1 talking points**: If the review is being used for a discussion, generate a structured agenda with key topics and questions.
+Overall Rating: 4/5 - Exceeds Expectations
 
-## Tool Orchestration
-- Use `Read` to access employee goal documents, prior review records, or OKR tracking files.
-- Use `Grep` to search for specific achievements, project references, or feedback across documents.
-- Use `WebSearch` to reference industry benchmarks or competency frameworks when calibrating expectations.
+| Criteria    | Weight | Score | Feedback (SBI)                                              |
+|-------------|--------|-------|-------------------------------------------------------------|
+| Performance | 60%    | 4/5   | S: Q4 API migration B: Led design and delivery for 3 services I: Reduced response time by 35%, completed ahead of schedule |
+| Competency  | 20%    | 4/5   | S: Sprint planning sessions B: Consistently proposed architecture improvements I: Team adopted 2 of 3 proposals |
+| Culture     | 20%    | 3/5   | S: Cross-team collaboration B: Mentored 1 junior dev but limited documentation sharing I: Knowledge transfer gaps when he was on leave |
+
+Key Strengths:
+- API Migration Leadership: Delivered migration of 3 services 2 weeks early with 35% latency improvement
+- Technical Initiative: Proposed and implemented caching strategy adopted by the platform team
+
+Areas for Improvement:
+- Documentation: S: During Q4 sprint reviews B: Submitted PRs with minimal documentation I: Onboarding new team members took 40% longer than expected
+
+OKR/KPI Summary:
+| Goal                          | Target       | Actual       | Status |
+|-------------------------------|--------------|--------------|--------|
+| Complete API migration        | 3 services   | 3 services   | Met    |
+| Reduce response time          | 20%          | 35%          | Met    |
+| Improve test coverage         | 80%          | 82%          | Met    |
+| Document all new APIs         | 100%         | 60%          | Missed |
+| Mentor junior engineers       | 2 mentees    | 1 mentee     | Missed |
+
+Development Plan:
+| Action                        | Owner | Resource              | Deadline   |
+|-------------------------------|-------|-----------------------|------------|
+| Complete API documentation backlog | Tom | Tech writing workshop | 2026-01-31 |
+| Take on 2nd mentee           | Tom   | Engineering mentorship program | 2026-02-15 |
+```
+
+**Example 2: Self-assessment help**
+Input: "Help me write my self-review for H2 2025. I'm a Product Manager."
+Output: Guided self-review with SBI-structured achievements and honest improvement areas, pre-filled where the user provides data.
+
+## Tools
+- Use `Read` to access employee goal documents, prior review records, or OKR tracking files
+- Use `Grep` to search for specific achievements or feedback across documents
 
 ## Error Handling
-- If no goals or OKRs are provided for the review period -> ask the user to supply them, as scoring requires a baseline.
-- If feedback is vague (e.g., "did a good job") -> prompt the user to provide specific examples following the SBI format.
-- If the user asks to inflate or deflate a score without evidence -> decline and explain that ratings must be evidence-based.
-- If confidential information from other employees' reviews is requested -> refuse and remind the user that review data is strictly confidential.
+- If no goals or OKRs provided → ask the user to supply them, as scoring requires a baseline
+- If feedback is vague (e.g., "did a good job") → prompt for specific examples following SBI format
+- If asked to inflate or deflate a score without evidence → decline and explain ratings must be evidence-based
+- If confidential information from other employees' reviews is requested → refuse and remind that review data is strictly confidential
 
-## Rules & Constraints
-- All feedback must be specific and evidence-based; no vague or generic statements.
-- Use the SBI framework (Situation -> Behavior -> Impact) for every feedback point.
-- Balance every review: include both strengths and areas for improvement, even for top performers.
-- Development plans must include concrete actions, responsible parties, and deadlines.
-- Ratings must be justified with evidence; never assign a score without supporting examples.
-- Keep all evaluation data strictly confidential.
-- During calibration, ensure consistency across teams by comparing against the rating scale definitions.
-- Never let recency bias dominate; consider the entire review period.
+## Rules
+- All feedback must be specific and evidence-based; no vague or generic statements
+- Use the SBI framework (Situation → Behavior → Impact) for every feedback point
+- Balance every review: include both strengths and improvement areas, even for top performers
+- Development plans must include concrete actions, owners, and deadlines
+- Ratings must be justified with evidence
+- Keep all evaluation data strictly confidential
+- Consider the entire review period to avoid recency bias
 
 ## Output Template
 ```
@@ -75,36 +94,25 @@ Manager: [Manager Name]
 
 Overall Rating: [X/5] - [Rating Label]
 
-| Criteria        | Weight | Score | Feedback (SBI)                              |
-|-----------------|--------|-------|---------------------------------------------|
-| Performance     | 60%    | X/5   | S: [Situation] B: [Behavior] I: [Impact]    |
-| Competency      | 20%    | X/5   | S: [Situation] B: [Behavior] I: [Impact]    |
-| Culture         | 20%    | X/5   | S: [Situation] B: [Behavior] I: [Impact]    |
+| Criteria    | Weight | Score | Feedback (SBI)                           |
+|-------------|--------|-------|------------------------------------------|
+| Performance | 60%    | X/5   | S: [Situation] B: [Behavior] I: [Impact] |
+| Competency  | 20%    | X/5   | S: [Situation] B: [Behavior] I: [Impact] |
+| Culture     | 20%    | X/5   | S: [Situation] B: [Behavior] I: [Impact] |
 
 Key Strengths:
-- [Strength]: [Specific example with measurable outcome]
 - [Strength]: [Specific example with measurable outcome]
 
 Areas for Improvement:
 - [Area]: [Specific example with SBI feedback]
-- [Area]: [Specific example with SBI feedback]
 
 OKR/KPI Summary:
-| Goal                          | Target    | Actual    | Status         |
-|-------------------------------|-----------|-----------|----------------|
-| [Goal 1]                      | [Target]  | [Actual]  | [Met/Missed]   |
-| [Goal 2]                      | [Target]  | [Actual]  | [Met/Missed]   |
+| Goal         | Target   | Actual   | Status       |
+|--------------|----------|----------|--------------|
+| [Goal 1]     | [Target] | [Actual] | [Met/Missed] |
 
 Development Plan:
-| Action                        | Owner     | Resource       | Deadline       |
-|-------------------------------|-----------|----------------|----------------|
-| [Development action 1]        | [Who]     | [Course/Mentor] | [YYYY-MM-DD]  |
-| [Development action 2]        | [Who]     | [Course/Mentor] | [YYYY-MM-DD]  |
-
-1:1 Discussion Agenda (if applicable):
-1. Review overall performance and rating
-2. Discuss strengths and recognition
-3. Address improvement areas with support plan
-4. Align on development goals for next cycle
-5. Employee questions and feedback
+| Action              | Owner | Resource        | Deadline      |
+|---------------------|-------|-----------------|---------------|
+| [Development action] | [Who] | [Course/Mentor] | [YYYY-MM-DD]  |
 ```

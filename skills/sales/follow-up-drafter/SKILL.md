@@ -1,56 +1,113 @@
+---
+name: follow-up-drafter
+description: Drafts value-driven follow-up emails for sales touchpoints including post-meeting recaps, post-demo highlights, proposal follow-ups, re-engagement messages, and closed-deal thank-yous. Use when the user asks to write a follow-up, check in with a prospect, draft a recap email, or re-engage a silent lead.
+---
+
 # Follow-up Drafter
 
-## Metadata
-- **ID**: follow-up-drafter
-- **Role**: sales
-- **Version**: 1.0.0
-
-## Persona
-You are a senior sales engagement specialist with 11 years of experience in B2B communication and deal nurturing. You are persistent without being pushy, empathetic to the prospect's time constraints, and masterful at adding genuine value with every touchpoint. You always write follow-ups that give the recipient a reason to respond rather than simply "checking in."
-
-## Trigger Patterns
-- **Keywords**: ["follow up", "follow-up", "remind", "resend", "check in", "track deal", "recap", "post-meeting", "nurture", "re-engage", "thank you email", "no response"]
-- **Intent**: Draft a follow-up email or message after a meeting, demo, or proposal, or re-engage a prospect who has gone silent, while maintaining a professional and value-driven communication cadence
-- **Context Clues**: User mentions a recent meeting or demo that needs a recap, a proposal that was sent and needs follow-up, a prospect who has not replied, or a deal that was won and needs a thank-you and onboarding kickoff message
+## Quick Start
+Describe the context: what happened (meeting, demo, proposal), who the prospect is, and which follow-up attempt this is. The skill drafts a personalized, value-adding email with a single clear call to action.
 
 ## Workflow
+1. Identify the triggering event: post-meeting, post-demo, post-proposal, re-engagement, or post-close thank you
+2. Determine the follow-up attempt number (enforce Rule of 3: max 3 per touchpoint)
+3. Gather conversation history: topics discussed, action items, objections, commitments
+4. Select the matching template and inject personalization (name, company, pain points, features shown)
+5. Attach a value-add element: case study, industry article, demo recording, or ROI data
+6. Craft subject line (use "Re: [original subject]" for ongoing threads)
+7. Write the email: context reminder (1 sentence) + value-add content + single CTA
+8. Recommend send timing (Tue-Thu, 9-11 AM in prospect's timezone)
+9. Schedule next follow-up or recommend moving to nurture sequence
 
-### Phase 1: Discovery & Analysis
-1. **Identify the follow-up context** -- determine the triggering event: post-meeting, post-demo, post-proposal (and which attempt: 1st, 2nd, or 3rd), nurture sequence, re-engagement after silence, or post-close thank you
-2. **Assess the relationship stage** -- map the prospect to the current deal stage and understand their engagement level (responsive, lukewarm, or gone silent)
-3. **Gather conversation history** -- collect details from the previous interaction including discussion topics, action items, objections raised, questions pending, and any commitments made by either side
+## Examples
 
-### Phase 2: Context Integration
-1. **Select the appropriate follow-up template** -- match the context to one of seven templates: post-meeting recap, post-demo highlights, post-proposal day 3 (clarification offer), post-proposal day 7 (social proof), post-proposal day 14 (urgency), win-back after 90 days, or thank-you for closed deal
-2. **Inject personalization variables** -- substitute the prospect's name, company, specific pain points discussed, features demonstrated, proposal details, and any personal rapport elements into the template
-3. **Attach a value-add element** -- select an appropriate resource to include: relevant case study, industry article, demo recording, ROI calculator, or product update announcement, ensuring every follow-up delivers something useful
+**Example 1: Post-meeting follow-up**
+Input: "Follow up with David Park at Zenith Labs after our demo yesterday. He was interested in the API integrations and asked about SOC 2 compliance."
+Output:
+```
+Follow-up Email
 
-### Phase 3: Execution & Output
-1. **Craft the subject line** -- use a reply-thread format (Re: [original subject]) when continuing an existing conversation to maximize open rates, or a compelling new subject for re-engagement
-2. **Write the email body** -- structure the message with: brief context reminder (1 sentence), value-add content or insight (core of the email), and a single clear call to action that is easy to say yes to
-3. **Set the send timing** -- recommend the optimal send window (Tuesday through Thursday, 9:00 to 11:00 AM in the prospect's timezone) for maximum engagement
-4. **Define the next follow-up** -- if this is not the final attempt, schedule the next follow-up date and outline what the escalation or pivot strategy will be
-5. **Track the cadence** -- ensure this follow-up fits within the Rule of 3 (maximum 3 follow-ups per touchpoint) and recommend a shift to nurture if all attempts are exhausted
+Context: Post-demo
+Attempt: #1 of 3
+Recommended Send Time: Tuesday, 19/03/2026, 9:30 AM PST
 
-## Tool Orchestration
-- Use `Read` to access meeting notes, prior email threads, proposal documents, or CRM exports that the user provides for context
-- Use `WebSearch` to find relevant case studies, industry articles, or recent news about the prospect's company to include as value-add content
-- Use `WebFetch` to pull specific articles or resources that will be referenced or attached in the follow-up
+---
+
+Subject: Re: Zenith Labs x [Your Company] — API Integration Demo
+
+Hi David,
+
+Thanks for your time yesterday — great conversation about how our API integrations can streamline Zenith's data pipeline.
+
+You asked about SOC 2 compliance, so I wanted to share our compliance overview doc (attached) which covers our full security posture including SOC 2 Type II certification.
+
+I also pulled a quick case study from MediTrack, a similar biotech company that cut their integration time by 60% using our API suite — thought it might be relevant as you evaluate options.
+
+Would a 20-minute call on Thursday work to walk through your specific integration requirements?
+
+Best,
+[Your Name]
+
+---
+
+Value-Add Included: SOC 2 compliance doc + MediTrack case study
+Call to Action: 20-minute technical call Thursday
+Next Follow-up: 24/03/2026 — share ROI calculator if no response
+Deal Stage: Qualified → Proposal Sent
+```
+
+**Example 2: Third attempt on a proposal**
+Input: "This is my 3rd follow-up on the proposal I sent to Lisa at Orbit Media. Still no response."
+Output:
+```
+Follow-up Email
+
+Context: Post-proposal
+Attempt: #3 of 3 (Final)
+Recommended Send Time: Wednesday, 19/03/2026, 10:00 AM EST
+
+---
+
+Subject: Re: Orbit Media Proposal — Quick Question
+
+Hi Lisa,
+
+I understand things get busy — just wanted to share a quick win from a recent client in your space: Pixel Agency reduced their campaign turnaround by 45% in the first quarter after onboarding.
+
+If the timing isn't right, no pressure at all. I'll keep you in the loop on product updates that might be relevant down the road.
+
+Is this still on your radar, or should I check back in a few months?
+
+Best,
+[Your Name]
+
+---
+
+Value-Add Included: Pixel Agency case study
+Call to Action: Confirm interest or defer
+Next Follow-up: Move to nurture sequence (quarterly check-in)
+Deal Stage: Proposal Sent
+```
+
+## Tools
+- Use `Read` to access meeting notes, prior email threads, proposal docs, or CRM exports
+- Use `WebSearch` to find relevant case studies, articles, or prospect company news for value-add content
+- Use `WebFetch` to pull specific articles or resources to reference in the follow-up
 
 ## Error Handling
-- If the follow-up context is unclear (no mention of what preceded this follow-up) --> ask the user to specify the triggering event (meeting, demo, proposal, or cold re-engagement) and provide key details from the interaction
-- If the follow-up attempt number is unknown --> ask the user how many times they have already followed up on this specific touchpoint to ensure compliance with the Rule of 3
-- If the prospect's response history is unavailable --> draft a general-purpose follow-up and flag that personalization could be improved with more context
-- If the user requests a 4th follow-up on the same touchpoint --> advise against it, recommend moving to a nurture sequence instead, and offer to draft a nurture email
+- If follow-up context is unclear → ask for the triggering event and key details from the interaction
+- If attempt number is unknown → ask how many times they have already followed up
+- If prospect response history is unavailable → draft a general follow-up and flag that more context improves personalization
+- If user requests a 4th follow-up on the same touchpoint → advise against it and offer to draft a nurture email instead
 
-## Rules & Constraints
-- **Rule of 3**: Maximum 3 follow-ups per touchpoint -- after 3 unanswered attempts, move the prospect to a nurture sequence, never push further
-- Every follow-up must add tangible value -- "just checking in" or "bumping this to the top of your inbox" messages are never acceptable
-- Use reply-thread subject lines (Re: [original subject]) for ongoing conversations to maintain context and improve open rates
-- Optimal send timing: Tuesday through Thursday, 9:00 to 11:00 AM in the prospect's local timezone
-- Each email must contain exactly one clear, specific call to action -- do not give the prospect multiple choices that create decision paralysis
-- Tone must be professional, warm, and respectful of the prospect's time -- never guilt-trip or use manipulative urgency
-- If a deal is closed-won, the thank-you email must confirm onboarding next steps and set expectations for the relationship going forward
+## Rules
+- **Rule of 3**: Max 3 follow-ups per touchpoint; after 3 unanswered, move to nurture
+- Every follow-up must add tangible value — "just checking in" is never acceptable
+- Use reply-thread subject lines ("Re: [original]") for ongoing conversations
+- Optimal send timing: Tuesday through Thursday, 9:00-11:00 AM in prospect's timezone
+- Each email must contain exactly one clear call to action
+- Tone: professional, warm, respectful of prospect's time — never guilt-trip or use manipulative urgency
+- Post-close thank-yous must confirm onboarding next steps
 
 ## Output Template
 ```
@@ -68,8 +125,8 @@ Subject: [Subject line]
 
 ---
 
-Value-Add Included: [Case study / Article / Demo recording / ROI data / Product update]
+Value-Add Included: [Case study / Article / Demo recording / ROI data]
 Call to Action: [Specific action requested]
-Next Follow-up: [Date and planned approach, or "Move to nurture" if attempt 3]
+Next Follow-up: [Date and approach, or "Move to nurture"]
 Deal Stage: [Current pipeline stage]
 ```

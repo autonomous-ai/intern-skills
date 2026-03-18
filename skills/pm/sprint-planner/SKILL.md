@@ -1,63 +1,102 @@
+---
+name: sprint-planner
+description: Plans and organizes Agile sprints by selecting backlog items, calculating team capacity, and distributing workload. Use when the user asks to plan a sprint, groom the backlog, estimate team capacity, rebalance mid-sprint, or review carry-over items.
+---
+
 # Sprint Planner
 
-## Metadata
-- **ID**: sprint-planner
-- **Role**: pm
-- **Version**: 1.0.0
-
-## Persona
-You are a seasoned Agile coach and Scrum Master with 12+ years of experience running sprint planning ceremonies for cross-functional teams ranging from 3 to 20 members. You are pragmatic, data-driven, and focused on sustainable velocity. You always protect the team from overcommitment by enforcing capacity buffers and WIP limits.
-
-## Trigger Patterns
-- **Keywords**: ["sprint planning", "plan the sprint", "backlog grooming", "capacity", "sprint backlog", "velocity", "story points", "sprint goal", "iteration", "sprint review", "WIP limit", "carry-over"]
-- **Intent**: The user wants to plan, organize, or rebalance a sprint by selecting tasks from the backlog, estimating capacity, and distributing workload across the team
-- **Context Clues**: A new sprint is about to start, the user mentions team bandwidth or availability, references to backlog prioritization, questions about how many points the team can take on, mid-sprint rebalancing needs
+## Quick Start
+Plan sprints by pulling prioritized backlog items into a sprint backlog based on team capacity. Default sprint is 2 weeks. Always maintain a 20% capacity buffer for unplanned work and enforce a WIP limit of 3 in-progress tasks per person.
 
 ## Workflow
+1. Determine planning context: new sprint kickoff, mid-sprint rebalancing, or backlog grooming
+2. Identify sprint parameters: sprint number, duration, start/end dates
+3. Gather team availability (accounting for PTO, holidays, meeting overhead)
+4. Review carry-over items from the previous sprint and re-evaluate priority
+5. Calculate team capacity: Available hours = (Working days x 8h) - Leave - Meeting overhead, then apply 0.7 velocity factor
+6. Rank backlog items by business value and urgency
+7. Pull tasks into the sprint until reaching 80% capacity threshold
+8. Assign tasks by skill match and workload balance
+9. Define a clear, measurable sprint goal
+10. Flag risks: overallocation, skill gaps, heavy dependencies, carry-over debt
 
-### Phase 1: Discovery & Analysis
-1. Determine the planning context: new sprint kickoff, mid-sprint rebalancing, or backlog grooming session
-2. Identify the sprint parameters: sprint number, duration (default 2 weeks), start and end dates
-3. Gather team composition and individual availability (accounting for PTO, holidays, meeting overhead)
-4. Review carry-over items from the previous sprint and assess whether their priority still holds
-5. Analyze historical velocity data if available to inform capacity estimates
+## Examples
 
-### Phase 2: Context Integration
-1. Load the product backlog with current priority rankings, story point estimates, and dependency information
-2. Calculate team capacity using the formula: Available hours = (Working days x 8h) - (Leave x 8h) - (Meeting overhead x days), then apply a 0.7 velocity factor
-3. Substitute sprint-specific variables: sprint number, dates, team member names, and availability percentages
-4. Map task dependencies to ensure sequencing constraints are respected in the sprint plan
-5. Apply the 80% utilization rule: reserve 20% capacity buffer for bug fixes, ad-hoc requests, and technical debt
+**Example 1: New sprint planning**
+Input: "Plan sprint 5 for our team. 2-week sprint starting March 18. Team: Alice (full), Bob (3 days PTO), Carol (full)."
+Output:
+```
+Sprint Planning - Sprint 5
+18/03/2026 -> 01/04/2026 (10 working days)
+Sprint Goal: Complete user authentication module and begin payment integration
 
-### Phase 3: Execution & Output
-1. Rank backlog items by business value combined with urgency
-2. Pull tasks into the sprint backlog until reaching the 80% capacity threshold
-3. Assign tasks based on skill match, current workload balance, and individual availability
-4. Enforce WIP limits: no more than 3 In Progress tasks per person at any time
-5. Define a clear, measurable sprint goal that the selected tasks collectively achieve
-6. Generate the sprint plan in the structured output template format
-7. Flag any risks: overallocation, skill gaps, heavy dependencies, or carry-over debt
+Team Capacity:
+| Member | Available Days | Available Points | Allocated Points | Remaining |
+|--------|---------------|-----------------|-----------------|-----------|
+| Alice  | 10            | 14 pts          | 11 pts          | 3 pts     |
+| Bob    | 7             | 10 pts          | 8 pts           | 2 pts     |
+| Carol  | 10            | 14 pts          | 12 pts          | 2 pts     |
+| TOTAL  | 27            | 38 pts          | 31 pts          | 7 pts     |
 
-## Tool Orchestration
+Sprint Backlog:
+| # | Task | Story Points | Assignee | Priority | Dependencies |
+|---|------|-------------|----------|----------|-------------|
+| 1 | Auth API endpoints | 5 | Alice | Critical | - |
+| 2 | Login UI | 3 | Carol | High | #1 |
+| 3 | Payment SDK setup | 5 | Bob | High | - |
+| 4 | Session management | 3 | Alice | High | #1 |
+| 5 | Unit tests for auth | 3 | Carol | Medium | #1, #4 |
+
+Capacity Utilization: 31/38 points (82% of available capacity)
+Buffer Remaining: 7 points (18%)
+
+Risks & Flags:
+- Bob's reduced availability may impact payment SDK delivery
+- Tasks #2 and #5 depend on #1; any delay to auth API cascades
+```
+
+**Example 2: Mid-sprint rebalancing**
+Input: "Alice is sick for the rest of the sprint. Redistribute her 8 remaining points."
+Output:
+```
+Sprint 5 - Rebalance
+
+Redistributed from Alice:
+| Task | Points | New Assignee | Rationale |
+|------|--------|-------------|-----------|
+| Session management | 3 | Bob | Backend skill match |
+| Auth bugfixes | 5 | Carol | Familiar with auth module |
+
+Updated Capacity:
+| Member | Remaining Capacity | New Allocation | Status |
+|--------|-------------------|----------------|--------|
+| Bob    | 2 pts → -1 pts    | Over by 1 pt   | At risk |
+| Carol  | 2 pts → -3 pts    | Over by 3 pts  | At risk |
+
+Risks & Flags:
+- Both Bob and Carol are now over capacity; recommend deferring 1 low-priority task
+```
+
+## Tools
 - Use `Read` to load backlog data, team rosters, previous sprint reports, and velocity history
-- Use `Grep` to search for carry-over tasks, unresolved blockers, or dependency references in project files
-- Use `Bash` to run capacity calculation scripts or export sprint plans to project management tools
+- Use `Grep` to search for carry-over tasks, unresolved blockers, or dependency references
 - Use `Write` to persist the finalized sprint backlog and capacity plan
+- Use `Bash` to run capacity calculation scripts or export sprint plans
 
 ## Error Handling
-- If team availability data is missing -> ask the user for each team member's availability or assume full availability with a warning
-- If backlog items lack story point estimates -> prompt the user to estimate before planning or use historical averages
-- If capacity is exceeded by selected tasks -> warn the user and suggest which lower-priority tasks to defer
-- If carry-over items exceed 30% of the new sprint -> flag a velocity concern and recommend a retrospective discussion
-- If no sprint goal is provided -> draft a suggested goal based on the highest-priority items selected
+- If team availability data is missing -> ask the user or assume full availability with a warning
+- If backlog items lack story point estimates -> prompt the user or use historical averages
+- If capacity is exceeded -> warn and suggest lower-priority tasks to defer
+- If carry-over exceeds 30% of the new sprint -> flag a velocity concern and recommend a retrospective
+- If no sprint goal is provided -> draft a suggested goal from the highest-priority items
 
-## Rules & Constraints
-- Default sprint length is 2 weeks (10 working days); adjustable per user input
-- Never fill to 100% capacity; always maintain a 20% buffer for unplanned work
-- WIP limit: maximum 3 In Progress tasks per person at any time
-- Carry-over tasks from the previous sprint must have their priority re-evaluated before inclusion
+## Rules
+- Default sprint length: 2 weeks (10 working days)
+- Never fill to 100% capacity; maintain 20% buffer for unplanned work
+- WIP limit: max 3 in-progress tasks per person
+- Carry-over tasks must have priority re-evaluated before inclusion
 - Sprint goal must be clear, specific, and measurable
-- Every task in the sprint backlog must have a story point estimate and an assignee
+- Every sprint task must have a story point estimate and an assignee
 - Dependencies between tasks must be explicitly documented
 
 ## Output Template
@@ -70,7 +109,7 @@ Team Capacity:
 | Member | Available Days | Available Points | Allocated Points | Remaining |
 |--------|---------------|-----------------|-----------------|-----------|
 | [Name] | [Days] | [X] pts | [Y] pts | [Z] pts |
-| TOTAL | [Days] | [X] pts | [Y] pts | [Z] pts |
+| TOTAL  | [Days] | [X] pts | [Y] pts | [Z] pts |
 
 Sprint Backlog:
 | # | Task | Story Points | Assignee | Priority | Dependencies |

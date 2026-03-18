@@ -1,62 +1,106 @@
+---
+name: budget-planner
+description: Creates, adjusts, and analyzes budget plans with variance analysis, trend detection, and contingency reserves. Use when the user asks to build a budget, review spending vs. plan, forecast future costs, or allocate funds across departments or projects.
+---
+
 # Budget Planner
 
-## Metadata
-- **ID**: budget-planner
-- **Role**: finance
-- **Version**: 1.0.0
-
-## Persona
-You are a strategic financial planner with 15 years of experience in corporate budgeting, cost allocation, and financial forecasting. You are analytical, forward-thinking, and disciplined about fiscal responsibility. You always ground budget proposals in historical data, separate fixed costs from variable costs, and maintain contingency reserves to protect against unforeseen expenses.
-
-## Trigger Patterns
-- **Keywords**: ["budget", "allocation", "spending plan", "cost estimate", "budget planning", "budget forecast", "budget variance", "cost allocation"]
-- **Intent**: The user wants to create, adjust, review, or analyze a budget plan for a specific period, department, or project
-- **Context Clues**: References to fiscal periods (monthly, quarterly, yearly), mentions of departments or projects with cost context, requests to compare planned versus actual spending, language about forecasting or projecting future expenses
+## Quick Start
+Build and analyze budget plans for any scope (company, department, project) and period (monthly, quarterly, yearly). Separates fixed from variable costs, applies contingency reserves, and flags categories approaching their limits.
 
 ## Workflow
+1. Determine budget scope: company-wide, department, or project
+2. Identify budget period: monthly, quarterly, or yearly
+3. Classify request: new budget, mid-period adjustment, variance analysis, or forecast
+4. Gather baseline data: historical spending, known commitments, planned initiatives
+5. Separate fixed costs (rent, salaries) from variable costs (marketing, travel)
+6. Calculate allocations per category based on historical trends and stated priorities
+7. Apply 5-10% contingency reserve
+8. For variance analysis: compute actual vs. planned with absolute and percentage differences
+9. Flag any category exceeding 70% of monthly allocation
+10. Output budget document with summary, detail, insights, and recommendations
 
-### Phase 1: Discovery & Analysis
-1. Determine the budget scope: company-wide, specific department, or individual project
-2. Identify the budget period: monthly, quarterly, or yearly
-3. Classify the request type: new budget creation, mid-period adjustment, variance analysis, or next-period forecast
-4. Gather baseline information: historical spending data from the previous equivalent period, known commitments, and planned initiatives
-5. Identify fixed costs (rent, salaries, subscriptions) versus variable costs (marketing, travel, supplies)
+## Examples
 
-### Phase 2: Context Integration
-1. Load historical spending data for the same scope and the equivalent prior period
-2. Pull current-period actuals if performing variance analysis or mid-period adjustment
-3. Substitute user-provided parameters (scope, period, target amounts) into the budget template
-4. Integrate known upcoming commitments, seasonal patterns, and planned initiatives into the allocation model
+**Example 1: Quarterly department budget**
+Input: "Create a Q2 2026 budget for the Marketing department, total 200M VND"
+Output:
+```
+BUDGET PLAN: Q2/2026 - Marketing Department
+============================================
 
-### Phase 3: Execution & Output
-1. Calculate proposed allocations per category based on historical trends, growth factors, and stated priorities
-2. Apply a contingency reserve of 5-10% of the total budget
-3. For variance analysis: compute actual vs. planned for each category, calculate absolute and percentage variances
-4. Generate early warnings for any department or category exceeding 70% of its monthly allocation
-5. Identify trends and anomalies: categories with significant year-over-year changes (>10%)
-6. Produce insights and actionable recommendations based on the analysis
-7. Format the final budget document with summary, detail table, insights, and warnings
+SUMMARY
+-------
+Total Budget:        200,000K VND
+Contingency (10%):   20,000K VND
+Allocable Budget:    180,000K VND
 
-## Tool Orchestration
-- Use `Read` to load historical budget files, prior-period actuals, and existing allocation plans
-- Use `Grep` to search for specific department or category spending patterns across records
+DETAIL BY CATEGORY
+------------------
+| Category          | Type     | Planned    |
+|-------------------|----------|------------|
+| Digital Ads       | Variable | 70,000K    |
+| Events            | Variable | 40,000K    |
+| Content Creation  | Variable | 30,000K    |
+| Staff Salaries    | Fixed    | 25,000K    |
+| Software/Tools    | Fixed    | 10,000K    |
+| Print Materials   | Variable | 5,000K     |
+| TOTAL             |          | 180,000K   |
+
+RECOMMENDATIONS
+---------------
+- Prioritize digital ads with measurable ROI tracking
+- Reserve event budget for Q2 product launch
+- Review tool subscriptions for cost optimization
+```
+
+**Example 2: Variance analysis**
+Input: "Compare January actual spending vs budget for IT department"
+Output:
+```
+BUDGET PLAN: Jan/2026 - IT Department (Variance Analysis)
+==========================================================
+
+DETAIL BY CATEGORY
+------------------
+| Category        | Type     | Planned  | Actual   | Variance  | % Used |
+|-----------------|----------|----------|----------|-----------|--------|
+| Cloud Services  | Variable | 15,000K  | 18,200K  | +3,200K   | 121%   |
+| Staff Salaries  | Fixed    | 40,000K  | 40,000K  | 0         | 100%   |
+| Equipment       | Variable | 10,000K  | 6,500K   | -3,500K   | 65%    |
+| Software        | Fixed    | 8,000K   | 8,000K   | 0         | 100%   |
+| TOTAL           |          | 73,000K  | 72,700K  | -300K     | 99.6%  |
+
+WARNINGS
+--------
+- Cloud Services: 21% over budget - investigate usage spike
+
+RECOMMENDATIONS
+---------------
+- Review cloud resource provisioning to reduce overspend
+- Reallocate unused equipment budget to cover cloud costs
+```
+
+## Tools
+- Use `Read` to load historical budget files and prior-period actuals
+- Use `Grep` to search for department or category spending patterns
 - Use `Write` to save new or updated budget plans
-- Use `Bash` to run aggregation calculations, variance computations, and trend analysis
+- Use `Bash` to run aggregation, variance, and trend calculations
 
 ## Error Handling
-- If the budget period or scope is not specified -> ask the user to define the period (monthly/quarterly/yearly) and scope (company/department/project)
-- If historical data is unavailable -> create the budget from scratch using industry benchmarks and user-provided estimates, noting the absence of historical baseline
-- If actual spending data is incomplete for variance analysis -> perform analysis on available data and clearly note which categories lack actuals
-- If the total of category allocations exceeds the stated total budget -> highlight the overage and suggest rebalancing options
+- If period or scope is not specified -> ask user to define period and scope
+- If historical data is unavailable -> create budget from scratch using estimates, noting the absence of baseline
+- If actual data is incomplete for variance analysis -> analyze available data and note gaps
+- If category totals exceed stated budget -> highlight overage and suggest rebalancing
 
-## Rules & Constraints
-- Always include a contingency reserve of 5-10% of the total budget
-- Clearly distinguish fixed costs from variable costs in all budget documents
-- Compare with the same period from the prior year when creating or reviewing budgets
-- Trigger early warning when any department or category uses more than 70% of its monthly budget
-- Use abbreviated formats for readability: thousands (K), millions (M), billions (B)
-- All budget figures must reconcile: category totals must sum to the overall budget total
-- Round to the nearest thousand for VND; use two decimal places for USD
+## Rules
+- Always include a 5-10% contingency reserve
+- Clearly distinguish fixed costs from variable costs
+- Compare with the same prior-year period when data is available
+- Trigger early warning when any category exceeds 70% of monthly budget
+- Use abbreviated formats: thousands (K), millions (M), billions (B)
+- Category totals must sum to the overall budget total
+- Round to nearest thousand for VND; two decimal places for USD
 
 ## Output Template
 ```
@@ -73,25 +117,18 @@ DETAIL BY CATEGORY
 ------------------
 | Category         | Type     | Planned    | Actual     | Variance   | % Used |
 |------------------|----------|------------|------------|------------|--------|
-| [Category name]  | [Fixed/  | [Planned   | [Actual    | [+/- diff] | [%]    |
-|                  |  Variable]| amount]   |  amount]   |            |        |
-| ...              | ...      | ...        | ...        | ...        | ...    |
+| [Category name]  | [Fixed/Variable] | [Amount] | [Amount] | [+/- diff] | [%] |
 | TOTAL            |          | [Sum]      | [Sum]      | [Sum]      | [%]    |
 
 INSIGHTS
 --------
-- [Key insight about spending trends or patterns]
-- [Notable year-over-year change with percentage]
-- [Observation on fixed vs. variable cost balance]
+- [Key spending trends or patterns]
 
 WARNINGS
 --------
-- [Category/department approaching or exceeding budget threshold]
-- [Any reconciliation issues or data gaps]
+- [Categories approaching or exceeding budget threshold]
 
 RECOMMENDATIONS
 ---------------
-- [Actionable recommendation 1]
-- [Actionable recommendation 2]
-- [Actionable recommendation 3]
+- [Actionable recommendation]
 ```

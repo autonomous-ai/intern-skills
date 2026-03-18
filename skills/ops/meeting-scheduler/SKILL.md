@@ -1,57 +1,93 @@
+---
+name: meeting-scheduler
+description: Schedules, reschedules, and manages business meetings including finding available time slots, preparing agendas, and generating follow-up notes. Use when the user asks to schedule a meeting, find a time slot, book a room, create a meeting agenda, or handle post-meeting follow-ups.
+---
+
 # Meeting Scheduler
 
-## Metadata
-- **ID**: meeting-scheduler
-- **Role**: ops
-- **Version**: 1.0.0
-
-## Persona
-You are a seasoned executive assistant with 10 years of experience coordinating schedules across large, multi-department organizations. You are proactive, organized, and diplomatic when navigating calendar conflicts. You always ensure every meeting has a clear purpose, a structured agenda, and respectful time boundaries for all participants.
-
-## Trigger Patterns
-- **Keywords**: ["schedule meeting", "book meeting", "meeting room", "organize meeting", "find time slot", "calendar invite", "meeting agenda", "reschedule", "cancel meeting", "meeting reminder"]
-- **Intent**: The user wants to schedule a new meeting, find a common available time slot for multiple attendees, book a room, or manage an existing meeting (reschedule, cancel, follow up).
-- **Context Clues**: User mentions specific attendees or teams; user references a date range or deadline; user asks about room availability; user needs to send an agenda or follow-up notes.
+## Quick Start
+Coordinate and schedule meetings with structured agendas and proper time management. Identify attendees, find available slots, prepare agendas with timed items, and handle follow-up actions.
 
 ## Workflow
+1. Determine the request type: new meeting, reschedule, cancellation, or post-meeting follow-up
+2. Gather core details: purpose, attendees, preferred date/time range, duration, and room/platform preference
+3. Identify constraints: blocked periods (lunch 12:00-13:30), priority level, and buffer requirements
+4. Generate 2-3 ranked time slot options based on availability and priority
+5. Once confirmed, compile the full calendar event with agenda and send invitation content
+6. After the meeting, offer to distribute notes and action items
 
-### Phase 1: Discovery & Analysis
-1. **Identify Request Type** -- Determine whether the user needs to schedule a new meeting, reschedule an existing one, cancel a meeting, or handle post-meeting follow-up (notes, action items).
-2. **Gather Core Details** -- Extract the meeting purpose, list of attendees, preferred date/time range, estimated duration, and any room or platform preferences.
-3. **Assess Constraints** -- Note blocked periods (lunch 12:00-13:30, existing commitments), priority level (important meetings should be morning slots), and buffer requirements (15 minutes between consecutive meetings).
+## Examples
 
-### Phase 2: Context Integration
-1. **Check Availability** -- Cross-reference attendees' calendars to identify overlapping free windows within the requested date range.
-2. **Generate Options** -- Produce 2-3 candidate time slots ranked by suitability (morning preference for high-priority meetings, minimal disruption to existing schedules).
-3. **Prepare Agenda Template** -- Structure the meeting agenda based on the stated purpose, allocating time to each discussion item and including any pre-read materials.
+**Example 1: New Meeting**
+Input: "Schedule a project kickoff meeting with the dev team and design team next Tuesday, about 45 minutes."
+Output:
+```
+Meeting Request
+---------------------------------------
+Subject:    Project Kickoff - Dev & Design Teams
+Time:       Option A: Tue 24/03/2026, 09:00 - 09:45 (Recommended)
+            Option B: Tue 24/03/2026, 14:00 - 14:45
+            Option C: Tue 24/03/2026, 16:00 - 16:45
+Duration:   45 minutes
+Location:   TBD (please confirm room or virtual link)
+Attendees:  Dev Team, Design Team
 
-### Phase 3: Execution & Output
-1. **Present Slot Options** -- Show the user the ranked time slot options with room/platform availability for each.
-2. **Confirm & Create Event** -- Once the user selects a slot, compile the full calendar event: subject, time, location/link, attendees, and agenda.
-3. **Send Invitations** -- Generate the invitation content including the agenda and any attached materials.
-4. **Set Reminders** -- Configure a 30-minute pre-meeting reminder for all attendees.
-5. **Post-Meeting Follow-Up** -- After the meeting, offer to distribute meeting notes and action items to attendees.
+Agenda:
+1. Welcome & introductions .......... 5 min
+2. Project scope overview ........... 15 min
+3. Timeline & milestones ............ 10 min
+4. Role assignments ................. 10 min
+5. Wrap-up & action items ........... 5 min
 
-## Tool Orchestration
-- Use `Read` to review attendee lists, existing calendar data, or agenda documents provided by the user.
-- Use `Write` to save meeting agendas, invitations, or follow-up notes to files.
-- Use `Grep` to search for prior meeting records or recurring meeting patterns.
-- Use `Glob` to locate related documents (previous agendas, meeting note templates).
+Reminder: 30 minutes before the meeting.
+---------------------------------------
+Status: Draft
+```
+
+**Example 2: Reschedule**
+Input: "Reschedule the Friday standup to Thursday same time, same attendees."
+Output:
+```
+Meeting Request
+---------------------------------------
+Subject:    Standup (Rescheduled from Friday)
+Time:       Thu 27/03/2026, 09:30 - 10:00
+Duration:   30 minutes
+Location:   [Same as original]
+Attendees:  [Same as original]
+
+Note: All attendees will be notified of the date change.
+
+Agenda:
+1. Progress updates ................. 15 min
+2. Blockers & support needed ........ 10 min
+3. Wrap-up .......................... 5 min
+
+Reminder: 30 minutes before the meeting.
+---------------------------------------
+Status: Draft
+```
+
+## Tools
+- Use `Read` to review attendee lists, calendar data, or agenda documents provided by the user
+- Use `Write` to save meeting agendas, invitations, or follow-up notes to files
+- Use `Grep` to search for prior meeting records or recurring meeting patterns
+- Use `Glob` to locate related documents like previous agendas or meeting note templates
 
 ## Error Handling
-- If no common free slot exists within the requested range --> widen the search window by 2 business days and notify the user of the expanded range.
-- If the user does not specify attendees --> ask for the attendee list before generating time slots.
-- If the estimated duration exceeds 60 minutes --> warn the user and suggest splitting into multiple sessions.
-- If a requested meeting room is unavailable for all proposed slots --> suggest alternative rooms or a virtual meeting link.
-- If the user omits an agenda --> remind them that an agenda is required and offer to help draft one.
+- If no common free slot exists in the requested range → widen the search by 2 business days and notify the user
+- If attendees are not specified → ask for the attendee list before generating time slots
+- If duration exceeds 60 minutes → warn the user and suggest splitting into multiple sessions
+- If the requested room is unavailable → suggest alternative rooms or a virtual meeting link
+- If no agenda is provided → remind the user that an agenda is required and offer to draft one
 
-## Rules & Constraints
-- Never schedule meetings during lunch (12:00-13:30) unless the user explicitly requests it.
-- Default meeting duration is 30 minutes; maximum is 60 minutes.
-- Every meeting invitation must include an agenda with timed items.
-- Prioritize morning time slots for meetings flagged as important or high-priority.
-- Maintain a 15-minute buffer between consecutive meetings to allow transition time.
-- Always confirm the final time slot with the user before creating the event.
+## Rules
+- Never schedule during lunch (12:00-13:30) unless explicitly requested
+- Default meeting duration is 30 minutes; maximum is 60 minutes
+- Every invitation must include an agenda with timed items
+- Prioritize morning slots for high-priority meetings
+- Maintain a 15-minute buffer between consecutive meetings
+- Always confirm the final slot with the user before creating the event
 
 ## Output Template
 ```
@@ -72,7 +108,7 @@ Agenda:
 Pre-read Materials:
 - [Document/link, if any]
 
-Reminder: A notification will be sent 30 minutes before the meeting.
+Reminder: 30 minutes before the meeting.
 ---------------------------------------
 Status: [Draft / Confirmed / Sent]
 ```
