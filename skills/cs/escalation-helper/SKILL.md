@@ -1,62 +1,122 @@
+---
+name: escalation-helper
+description: Guides the escalation of support tickets to higher authority or specialized teams with proper documentation, routing, and customer communication. Use when the user needs to escalate an issue, mentions a manager or supervisor request, encounters an SLA breach, or faces a critical issue beyond their authority.
+---
+
 # Escalation Helper
 
-## Metadata
-- **ID**: cs-escalation-helper
-- **Role**: cs
-- **Version**: 1.0.0
-
-## Persona
-You are a senior escalation manager with 10 years of experience in customer service operations and crisis management. You are decisive, methodical, and calm in high-pressure situations. You always ensure full context is transferred so the customer never has to repeat themselves, and you set realistic expectations for resolution timelines.
-
-## Trigger Patterns
-- **Keywords**: ["escalate", "need to escalate", "cannot handle", "need manager", "supervisor", "beyond my authority", "SLA breach", "critical issue", "emergency ticket"]
-- **Intent**: Guide the escalation of a support ticket to a higher authority or specialized team, ensuring proper documentation, routing, and customer communication
-- **Context Clues**: The agent cannot resolve the issue within their authority; customer is angry or threatening; the issue is systemic or affects multiple customers; SLA has been exceeded; legal or security concerns are mentioned
+## Quick Start
+Assess the situation, determine the correct escalation level, compile full context so the customer never repeats themselves, and draft both the internal escalation brief and the customer notification.
 
 ## Workflow
-
-### Phase 1: Discovery & Analysis
-1. **Assess the situation**: Review the ticket history, customer sentiment, and the agent's attempts so far to understand why escalation is needed
-2. **Classify the escalation level**:
-   - **L1 to L2**: Agent to Senior Agent — complex technical issues requiring deeper expertise
-   - **L2 to L3**: Senior Agent to Team Lead — requires special approval (large refunds, policy exceptions)
-   - **L3 to L4**: Team Lead to Manager — serious complaints, public relations risk
+1. Review the ticket history, customer sentiment, and resolution attempts so far
+2. Classify the escalation level:
+   - **L1 to L2**: Agent to Senior Agent — complex technical issues
+   - **L2 to L3**: Senior Agent to Team Lead — special approvals (large refunds, policy exceptions)
+   - **L3 to L4**: Team Lead to Manager — serious complaints, PR risk
    - **Emergency**: Direct to C-level — data breach, legal action, media coverage
-3. **Identify the trigger**: Determine the specific reason for escalation (authority limit, customer request, systemic issue, SLA breach, legal/security concern)
-4. **Evaluate urgency**: Determine whether this needs immediate action or can follow standard escalation timelines
+3. Identify the trigger: authority limit, customer request, systemic issue, SLA breach, or legal/security concern
+4. Compile the escalation package: full ticket history, actions taken, outcomes, and relevant account data
+5. Route to the correct team or individual based on issue type and severity
+6. Draft the customer notification with realistic timeline expectations
+7. Set the follow-up schedule: every 2 hours for urgent, every 24 hours for normal
 
-### Phase 2: Context Integration
-1. **Compile the escalation package**: Gather the full ticket history, all prior communications, actions already taken and their results, and any relevant account or order data
-2. **Map to the correct routing**: Identify the specific team or individual who should receive the escalation based on issue type, severity, and required expertise
-3. **Prepare customer communication**: Draft a message to the customer acknowledging the escalation, explaining what will happen next, and setting a realistic timeline for resolution
+## Examples
 
-### Phase 3: Execution & Output
-1. **Generate the escalation request document**: Create a structured escalation brief that gives the receiving team everything they need to act without re-investigating
-2. **Draft the customer notification**: Write the message that will be sent to the customer about the escalation
-3. **Define follow-up schedule**: Set check-in intervals based on severity (every 2 hours for urgent, every 24 hours for normal)
-4. **Flag post-mortem requirement**: For all L3+ escalations, note that a post-mortem review is required after resolution
-5. **Generate the structured output** using the output template below
+**Example 1: Refund beyond agent authority**
+Input: "Customer is requesting a $500 refund for a defective product. My limit is $100. They've already contacted us 3 times about this."
+Output:
+```
+Escalation Request
 
-## Tool Orchestration
-- Use `Grep` to search ticket history and prior escalation records for similar cases and their resolutions
+Ticket: #[Ticket ID]
+Customer: [Customer Name]
+Severity: L2-L3
+Category: Billing / Refund
+SLA Status: Within SLA
+
+Context:
+Customer received a defective product and is requesting a $500 refund. They have contacted support 3 times without resolution. Sentiment is negative and frustration is escalating due to repeated contacts.
+
+Actions Already Taken:
+- Contact 1 — Troubleshooting attempted, issue confirmed as hardware defect
+- Contact 2 — Offered replacement, customer insisted on refund
+- Contact 3 — Agent unable to process refund above $100 limit
+
+Escalation Reason:
+Refund amount ($500) exceeds L2 agent authority limit ($100). Repeated contacts increase churn risk.
+
+What Is Needed:
+- Approval for $500 refund or alternative resolution with Team Lead authority
+
+Route To:
+- Team/Person: CS Team Lead — Refunds & Exceptions
+- Expected Response: Within 4 hours
+
+Follow-Up Schedule:
+- Next check-in: [Today + 4 hours]
+- Interval: Every 4h until resolved
+
+Customer Communication Draft:
+"Dear [Customer Name], thank you for your patience. I've escalated your refund request to our senior team for expedited review. You can expect an update within 4 hours. We're committed to resolving this for you."
+```
+
+**Example 2: Legal threat**
+Input: "Customer is threatening legal action over a data privacy issue. They say their personal info was exposed."
+Output:
+```
+Escalation Request
+
+Ticket: #[Ticket ID]
+Customer: [Customer Name]
+Severity: Emergency
+Category: Security / Data Privacy
+SLA Status: Immediate action required
+
+Context:
+Customer reports that their personal information was exposed and is threatening legal action. This is a potential data breach requiring emergency protocol.
+
+Actions Already Taken:
+- Initial report received, no investigation yet
+
+Escalation Reason:
+Potential data breach with legal implications. Customer has explicitly threatened legal action.
+
+What Is Needed:
+- Immediate security team investigation
+- Legal team notification
+- Customer data exposure assessment
+
+Route To:
+- Team/Person: Security Team + Legal Department + VP of Customer Operations
+- Expected Response: Within 1 hour
+
+Follow-Up Schedule:
+- Next check-in: [Now + 1 hour]
+- Interval: Every 1h until contained
+
+Customer Communication Draft:
+"Dear [Customer Name], we take data privacy extremely seriously. Your report has been escalated to our security and leadership teams for immediate investigation. A senior representative will contact you within 1 hour with an update. We appreciate you bringing this to our attention."
+```
+
+## Tools
+- Use `Grep` to search ticket history and prior escalation records for similar cases
 - Use `Read` to load escalation SOPs, routing matrices, and authority-level documentation
 - Use `WebSearch` to check for known system outages or external issues that may be related
 
 ## Error Handling
-- If the ticket lacks sufficient context for escalation → list the missing information and ask the user to provide it before proceeding
-- If the appropriate escalation target is unclear → recommend the most likely team and flag for the user to confirm routing
-- If the customer is in immediate distress (threats of self-harm, extreme emotional state) → flag for emergency protocol and recommend immediate human intervention
-- If the SLA has already been breached → note the breach duration and recommend an expedited escalation path
+- If the ticket lacks sufficient context → list missing information and ask the user to provide it before proceeding
+- If the appropriate escalation target is unclear → recommend the most likely team and flag for the user to confirm
+- If the customer is in immediate distress → flag for emergency protocol and recommend immediate human intervention
+- If the SLA has already been breached → note the breach duration and recommend an expedited path
 
-## Rules & Constraints
-- NEVER make the customer explain their issue again; always transfer full context with the escalation
+## Rules
+- Never make the customer explain their issue again; always transfer full context
 - Every escalation must include: reason, severity level, expected resolution time, and full context summary
 - Communicate realistic timelines; do not overpromise resolution speed
-- Follow up on schedule: every 2 hours for urgent escalations, every 24 hours for normal
 - All L3+ escalations require a post-mortem review after resolution
 - Document every escalation for trend analysis and process improvement
 - Never expose internal escalation levels or team structures to the customer
-- Maintain professional, reassuring tone in all customer-facing communications
 
 ## Output Template
 ```
@@ -87,7 +147,7 @@ Route To:
 
 Follow-Up Schedule:
 - Next check-in: [Date/time]
-- Interval: [Every 2h / Every 24h]
+- Interval: [Every 1h / Every 2h / Every 4h / Every 24h]
 
 Customer Communication Draft:
 [Draft message to send to the customer about the escalation]

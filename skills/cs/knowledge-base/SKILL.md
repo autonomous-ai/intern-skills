@@ -1,65 +1,124 @@
+---
+name: knowledge-base
+description: Searches, retrieves, creates, or updates articles in the internal knowledge base covering product docs, troubleshooting guides, SOPs, and policies. Use when the user asks to look up a procedure, find documentation, troubleshoot an issue, create a handling guide, or update outdated KB articles.
+---
+
 # Knowledge Base
 
-## Metadata
-- **ID**: cs-knowledge-base
-- **Role**: cs
-- **Version**: 1.0.0
-
-## Persona
-You are a technical knowledge management specialist with 8 years of experience building and maintaining internal knowledge bases for customer service organizations. You are meticulous, structured, and passionate about making information findable. You always ensure articles follow a consistent format and are written so that any team member can use them without prior context.
-
-## Trigger Patterns
-- **Keywords**: ["knowledge base", "KB", "documentation", "handling guide", "troubleshoot", "SOP", "how to handle", "lookup procedure", "find article", "product docs"]
-- **Intent**: Search, retrieve, create, or update articles in the internal knowledge base covering product documentation, troubleshooting guides, SOPs, and policy references
-- **Context Clues**: User encounters an unfamiliar issue and needs guidance; user wants to look up a specific procedure; user resolved a new case type and wants to document it; user mentions outdated documentation
+## Quick Start
+Search the internal knowledge base for the best matching article. If no match exists, draft a new article following the standard format. Flag outdated content for review.
 
 ## Workflow
-
-### Phase 1: Discovery & Analysis
-1. **Parse the request**: Determine whether the user needs to search for an existing article, create a new article, or update an existing one
-2. **Extract search parameters**: Identify keywords, product names, error codes, issue descriptions, or category filters from the user's input
-3. **Classify by KB section**:
+1. Determine the request type: search for an existing article, create a new one, or update an existing one
+2. Extract search parameters: keywords, product names, error codes, issue descriptions, or category filters
+3. Classify by KB section:
    - **Product Docs**: Specifications, features, compatibility, release notes
    - **How-to Guides**: Step-by-step instructions for end users
    - **Troubleshooting**: Problem, cause, and solution articles
-   - **SOP (Standard Operating Procedures)**: Internal procedures for the CS team
+   - **SOP**: Internal procedures for the CS team
    - **Policies**: Returns, warranty, refunds, privacy, terms of service
+4. Search and rank results by keyword match strength, article freshness, and usage frequency
+5. For lookups: return the article with related articles noted
+6. For new articles: draft using the appropriate template with all required fields
+7. For updates: show current content alongside proposed changes
+8. Flag any article older than 90 days for review
 
-### Phase 2: Context Integration
-1. **Search the knowledge base**: Match the extracted parameters against KB articles using keyword matching, category filters, and tag associations
-2. **Rank results by relevance**: Consider keyword match strength, article freshness (last updated date), and view/search frequency
-3. **Load the best match**: Retrieve the full article content and check its last-updated date to assess whether the information is still current
-4. **For new articles**: Load the appropriate template (troubleshooting, how-to, SOP, or policy) and pre-fill any known information from the user's input
+## Examples
 
-### Phase 3: Execution & Output
-1. **For lookups**: Present the most relevant article in the structured format, including any related articles that may also be useful
-2. **For new article creation**: Draft a complete KB article following the standard format, with all required fields populated
-3. **For updates**: Show the current article content alongside the proposed changes, highlighting what has been modified
-4. **Flag maintenance needs**: If the retrieved article is older than 90 days, flag it for review; if no article exists for a common issue, recommend creation
-5. **Generate the structured output** using the output template below
+**Example 1: Troubleshooting lookup**
+Input: "How do we handle the E-4012 error on the X200 printer?"
+Output:
+```
+Knowledge Base Result
 
-## Tool Orchestration
-- Use `Grep` to search across knowledge base files, documentation directories, and article repositories for matching content
+Title: Resolving E-4012 Paper Feed Error on X200 Series
+Category: Troubleshooting
+Tags: x200, e-4012, paper-feed, printer, hardware
+Last Updated: 2026-02-20
+Relevance: High
+
+Problem:
+X200 printer displays error code E-4012, indicating a paper feed mechanism failure. The printer stops all jobs and the paper tray light blinks red.
+
+Cause:
+Paper feed rollers are worn or debris is obstructing the feed path. Most common after 50,000+ pages or in dusty environments.
+
+Solution:
+1. Power off the printer and unplug it
+2. Open the rear access panel (release lever on the left side)
+3. Remove any jammed paper carefully — pull in the direction of the paper path
+4. Clean the feed rollers with a lint-free cloth dampened with isopropyl alcohol
+5. Inspect rollers for wear — if visibly smooth or cracked, order replacement (part #XR-412)
+6. Close the panel, power on, and run a test print
+7. If error persists after roller replacement, escalate to hardware support (L2)
+
+Notes:
+- Do NOT use compressed air — it pushes debris further into the mechanism
+- Replacement rollers ship within 2 business days under warranty
+
+Related Articles:
+- X200 General Troubleshooting Guide
+- How to Order Replacement Parts Under Warranty
+
+Article Status: Current
+```
+
+**Example 2: New article creation**
+Input: "We just resolved a new issue — customers on the v4.1 app can't reset passwords if they have special characters in their email. Can you draft a KB article?"
+Output:
+```
+Knowledge Base Result
+
+Title: Password Reset Failure for Emails with Special Characters (App v4.1)
+Category: Troubleshooting
+Tags: password-reset, special-characters, app-v4.1, authentication, bug
+Last Updated: 2026-03-18
+Relevance: N/A (New Article)
+
+Problem:
+Customers using app version 4.1 cannot complete the password reset flow if their email address contains special characters (e.g., +, !, or %). The reset email is never sent and no error message is displayed.
+
+Cause:
+The v4.1 update introduced a new email validation regex that incorrectly rejects RFC-5322 compliant special characters. Bug tracked in JIRA-8834.
+
+Solution:
+1. Confirm the customer's email contains special characters
+2. Ask the customer to use the web portal (portal.example.com/reset) as a workaround — the web version is not affected
+3. If the customer cannot access the web portal, manually trigger a password reset from the admin panel: Admin > Users > Search > Reset Password
+4. Inform the customer that a fix is scheduled for v4.1.1 (ETA: next release cycle)
+
+Notes:
+- Affected characters: + ! % & ' / = ? ^ ` { | } ~
+- Web portal workaround is the preferred first step
+- Fix confirmed for v4.1.1 — update this article when the patch ships
+
+Related Articles:
+- Password Reset Standard Procedure
+- Known Issues: App v4.1 Release Notes
+
+Article Status: Current
+```
+
+## Tools
+- Use `Grep` to search across knowledge base files and documentation directories for matching content
 - Use `Read` to load specific KB articles, SOP documents, product manuals, or policy files
 - Use `Glob` to find all articles within a specific category or matching a naming pattern
-- Use `WebSearch` to verify technical information or check for updated product specifications from external sources
+- Use `WebSearch` to verify technical information or check for updated product specifications
 
 ## Error Handling
-- If no matching KB article is found → inform the user, suggest related articles if any partial matches exist, and recommend creating a new article
-- If multiple articles match with similar relevance → return the top 3 ranked results and let the user select the most appropriate one
-- If the matched article is older than 90 days → display it but add a prominent warning that the content may be outdated and should be verified
-- If the user wants to create an article but provides insufficient information → list the required fields and ask the user to supply the missing details
-- If conflicting information exists across multiple articles → flag the conflict and recommend a review to reconcile the discrepancy
+- If no matching article is found → inform the user, suggest partial matches, and recommend creating a new article
+- If multiple articles match with similar relevance → return the top 3 ranked results for the user to select
+- If the matched article is older than 90 days → display it with a prominent warning that content may be outdated
+- If the user wants to create an article but provides insufficient info → list required fields and ask for the missing details
+- If conflicting information exists across articles → flag the conflict and recommend a review
 
-## Rules & Constraints
+## Rules
 - Every KB article must include: title, category, tags, author, created date, and last-updated date
 - Troubleshooting articles must follow the Problem, Cause, Solution format
 - How-to guides must include numbered step-by-step instructions
-- Review the KB monthly: archive outdated articles, update stale content, and add documentation for newly resolved case types
-- When a new case is resolved that is not covered in the KB, always draft a new article
-- Track article search and view frequency to prioritize updates on high-traffic content
-- Write all articles so they are self-contained; a reader should not need tribal knowledge to follow the instructions
+- Write all articles so they are self-contained; no tribal knowledge required
 - Never include customer personal data in KB articles; use anonymized examples
+- When a new case is resolved that is not covered, always draft a new article
 
 ## Output Template
 ```

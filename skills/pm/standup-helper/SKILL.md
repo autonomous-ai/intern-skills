@@ -1,61 +1,115 @@
+---
+name: standup-helper
+description: Helps prepare, capture, and summarize daily standup meetings using the Done/Today/Blockers format. Use when the user asks to prepare a standup update, capture team standup notes, compile a standup summary, or track and escalate blockers.
+---
+
 # Standup Helper
 
-## Metadata
-- **ID**: standup-helper
-- **Role**: pm
-- **Version**: 1.0.0
-
-## Persona
-You are a sharp and efficient Scrum facilitator with 8+ years of experience running daily standups for distributed and co-located teams. You are concise, action-oriented, and relentless about surfacing and tracking blockers. You always keep standups focused under 15 minutes by enforcing time discipline and parking lot discussions for later.
-
-## Trigger Patterns
-- **Keywords**: ["standup", "daily", "scrum", "daily standup", "what did you do yesterday", "what will you do today", "blockers", "standup notes", "standup summary", "morning sync"]
-- **Intent**: The user wants to prepare personal standup updates, capture team standup notes, compile a standup summary, or track and escalate blockers
-- **Context Clues**: It is the start of the workday, the user mentions preparing for a meeting, references to yesterday's work and today's plan, mentions of blocked items or impediments needing attention
+## Quick Start
+Facilitate daily standups using the three-question format: Done, Today, Blockers. Keep each person's update to 3-5 bullet points. Track blockers with owner, age, and next action. Escalate blockers older than 3 days.
 
 ## Workflow
+1. Determine standup mode: preparing a personal update, capturing team notes, or compiling a summary
+2. Identify sprint context (sprint number, day within sprint, sprint goal)
+3. Load previous standup notes to track continuity and flag slippage
+4. Organize updates into Done/Today/Blockers format
+5. Cross-reference blockers against previous standups to update age counts
+6. Flag items from yesterday's "Today" list that did not appear in today's "Done"
+7. Move detailed discussion topics to the Parking Lot
+8. Generate compiled standup summary
 
-### Phase 1: Discovery & Analysis
-1. Determine the standup mode: preparing a personal update, capturing notes for the full team, or compiling/distributing a summary
-2. Identify the sprint context: current sprint number, day within the sprint, and sprint goal for reference
-3. Gather participant list: which team members need to provide or have provided updates
-4. Scan for any pre-existing blockers from previous standups that need follow-up
+## Examples
 
-### Phase 2: Context Integration
-1. Load previous standup notes to provide continuity and track whether yesterday's planned items were completed
-2. Substitute date, sprint number, and sprint day variables into the standup template
-3. Cross-reference reported blockers against the existing blocker tracker to update age counts and resolution status
-4. Identify any items from yesterday's "Today" list that did not appear in today's "Done" list to flag slippage
+**Example 1: Personal standup prep**
+Input: "Help me prep my standup. Yesterday I finished the login API and reviewed Bob's PR. Today I'll start session management and fix the auth bug. I'm blocked on the staging deploy."
+Output:
+```
+Daily Standup - 18/03/2026
+Sprint 5 - Day 3/10
 
-### Phase 3: Execution & Output
-1. For personal standup preparation: organize the user's input into the three-question format (Done, Today, Blockers) with concise bullet points
-2. For team standup capture: collect and organize each team member's update, enforcing the 2-minute-per-person guideline
-3. Highlight all blockers with owner, age in days, and next action step
-4. Identify discussion topics that are too detailed for standup and move them to the Parking Lot section
-5. Generate the compiled standup summary in the output template format
-6. Flag any blocker older than 2 days for immediate escalation
+Alice
+Done:
+- Completed login API implementation
+- Reviewed Bob's PR (#142)
+Today:
+- Start session management feature
+- Fix auth token refresh bug
+Blockers:
+- Staging deployment pipeline failing (Day 1) -> Need DevOps to investigate
+```
 
-## Tool Orchestration
-- Use `Read` to load previous standup notes, sprint information, and blocker tracking files
-- Use `Grep` to search for unresolved blockers, team member references, or task status updates across project documentation
+**Example 2: Full team summary**
+Input: "Compile standup notes for the team: Alice did login API, today auth bug, blocked on staging. Bob did payment SDK research, today start integration. Carol did nothing yesterday (sick), today resume unit tests."
+Output:
+```
+Daily Standup - 18/03/2026
+Sprint 5 - Day 3/10
+Sprint Goal: Complete user authentication module
+
+---
+
+Alice
+Done:
+- Completed login API implementation
+Today:
+- Fix auth token refresh bug
+Blockers:
+- Staging deployment pipeline failing (Day 1) -> Escalate to DevOps
+
+---
+
+Bob
+Done:
+- Researched payment SDK options
+Today:
+- Begin payment SDK integration
+Blockers:
+- None
+
+---
+
+Carol
+Done:
+- (Out sick yesterday)
+Today:
+- Resume unit tests for auth module
+Blockers:
+- None
+
+---
+
+Blockers Summary:
+| # | Blocker | Owner | Age (days) | Action | Target Date |
+|---|---------|-------|-----------|--------|-------------|
+| 1 | Staging deploy pipeline failing | Alice / DevOps | 1 | DevOps to investigate | 19/03/2026 |
+
+Parking Lot (topics for follow-up):
+- Payment SDK vendor decision -> Scheduled with Bob and PM on 19/03
+
+Absent / No Update:
+- None
+```
+
+## Tools
+- Use `Read` to load previous standup notes, sprint info, and blocker tracking files
+- Use `Grep` to search for unresolved blockers or task status updates across project docs
 - Use `Write` to persist the standup summary and updated blocker tracker
-- Use `Bash` to send standup summaries via communication tools or export to project management platforms
+- Use `Bash` to send standup summaries via communication tools or export to PM platforms
 
 ## Error Handling
 - If a team member's update is missing -> note them as absent and flag for follow-up
-- If a blocker has no assigned owner -> prompt the user to assign ownership before finalizing the summary
-- If a blocker has no action plan -> require at minimum a next step and target resolution date
-- If the standup exceeds 15 minutes worth of content -> suggest splitting into a focused standup and a follow-up discussion
-- If no sprint context is provided -> ask the user for the current sprint number or omit sprint-specific fields with a note
+- If a blocker has no assigned owner -> prompt the user to assign ownership
+- If a blocker has no action plan -> require at minimum a next step and target date
+- If standup content is excessive -> suggest splitting into focused standup and follow-up discussion
+- If no sprint context is provided -> ask the user or omit sprint fields with a note
 
-## Rules & Constraints
-- Each person's update must be kept to 3-5 bullet points maximum, covering no more than 2 minutes of speaking time
-- Detailed discussions must be moved to the Parking Lot and scheduled as separate follow-ups
-- Every blocker must have three attributes: an owner, an age (days since first reported), and a concrete next action
-- Standup notes must be distributed within 30 minutes after the standup concludes
-- Blocker age tracking is mandatory: increment the day count for unresolved blockers carried over from previous standups
+## Rules
+- Each person's update: 3-5 bullet points max (about 2 minutes of speaking time)
+- Detailed discussions go to the Parking Lot for separate follow-ups
+- Every blocker must have: owner, age (days), and concrete next action
 - Blockers older than 3 days must be escalated to the PM or team lead
 - The three standup questions are non-negotiable: Done, Today, Blockers
+- Increment blocker age for unresolved items carried from previous standups
 
 ## Output Template
 ```
@@ -67,16 +121,13 @@ Sprint Goal: [Current sprint goal]
 
 [Team Member Name]
 Done:
-- [Completed item 1]
-- [Completed item 2]
+- [Completed item]
 Today:
-- [Planned item 1]
-- [Planned item 2]
+- [Planned item]
 Blockers:
 - [Blocker description, if any]
 
 ---
-[Repeat for each team member]
 
 Blockers Summary:
 | # | Blocker | Owner | Age (days) | Action | Target Date |
@@ -84,8 +135,7 @@ Blockers Summary:
 | 1 | [Issue description] | [Person] | [N] | [Next step] | [Date] |
 
 Parking Lot (topics for follow-up):
-- [Topic 1] -> Scheduled with [Person] on [Date/Time]
-- [Topic 2] -> To be discussed in [Meeting]
+- [Topic] -> Scheduled with [Person] on [Date/Time]
 
 Absent / No Update:
 - [Team member name] - [Reason if known]

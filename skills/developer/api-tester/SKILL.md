@@ -1,108 +1,139 @@
+---
+name: api-tester
+description: >
+  Tests and validates API endpoints by constructing requests, executing them, and verifying responses.
+  Use when the user asks to test an API, debug an endpoint, validate a response, create a curl command,
+  or check API behavior against a specification.
+---
+
 # API Tester
 
-## Metadata
-- **ID**: api-tester
-- **Role**: developer
-- **Version**: 1.0.0
-
-## Persona
-You are a QA engineer and API specialist with 10+ years of experience designing test strategies for RESTful and GraphQL APIs across microservice architectures. You are thorough, systematic, and security-minded. You always test both the happy path and the edge cases, validate response schemas rather than just status codes, and treat every endpoint as a potential attack surface.
-
-## Trigger Patterns
-- **Keywords**: ["test API", "API request", "curl", "Postman", "endpoint", "HTTP request", "REST", "GraphQL", "status code", "response", "API test", "integration test", "request body", "headers"]
-- **Intent**: The user wants to test, validate, or debug an API endpoint, create a test collection, or verify API behavior against a specification
-- **Context Clues**: User shares an endpoint URL, mentions HTTP methods, pastes a curl command, references an API spec or Swagger doc, or reports unexpected API responses
+## Quick Start
+Parse the endpoint details, construct test requests covering both happy path and error cases, execute them, and validate responses against expected status codes, schemas, and response times.
 
 ## Workflow
+1. Extract endpoint details: HTTP method, URL, path/query params, headers, auth scheme, and request body
+2. Build a test matrix: happy path, validation errors (400), auth failures (401), not found (404), and edge cases
+3. Execute each test case, capture the full response (status, headers, body, time), and validate against expectations
+4. Compile results into a structured test report with pass/fail for each case
 
-### Phase 1: Discovery & Analysis
-1. **Parse the endpoint**: Extract the HTTP method, URL, path parameters, query parameters, headers, authentication scheme, and request body from the user's input
-2. **Gather API context**: Identify the API framework, version, authentication mechanism (JWT, API key, OAuth), and any referenced specification (OpenAPI/Swagger)
-3. **Classify the test scope**: Determine if this is a single endpoint test, a multi-endpoint flow test, a schema validation, a performance test, or a security probe
-4. **Identify test dimensions**: Map out the test matrix -- happy path, validation errors, authentication failures, authorization checks, not found cases, edge cases, and idempotency
+## Examples
 
-### Phase 2: Context Integration
-1. **Load test templates**: Select the appropriate test case templates based on the HTTP method and endpoint type (CRUD, search, file upload, webhook)
-2. **Substitute variables**: Map the user's endpoint URL, headers, auth tokens, request body, and expected responses into the test templates. Use environment variables for sensitive values
-3. **Integrate API spec**: If an OpenAPI/Swagger spec is available, cross-reference the endpoint definition to validate request format and expected response schema
+**Example 1: Test a REST endpoint**
+Input: "Test GET /api/v1/users/123 with Bearer token"
+Output:
+```
+## Test Cases
 
-### Phase 3: Execution & Output
-1. **Construct test requests**: Build the complete HTTP request for each test case, including headers, authentication, and properly formatted body
-2. **Execute requests**: Run each test case and capture the full response -- status code, headers, body, and response time
-3. **Validate responses**: Check status code, response body schema, required fields, data types, error message format, and response time against thresholds
-4. **Compare against spec**: If a spec is available, validate that the actual response matches the documented contract
-5. **Generate test report**: Compile all test results into a structured summary with pass/fail status for each case
+### 1. Happy Path - Get existing user
+$ curl -s -w "\nTime: %{time_total}s" \
+  -H "Authorization: Bearer $API_TOKEN" \
+  https://api.example.com/api/v1/users/123
 
-## Tool Orchestration
+Status: 200 OK | Time: 0.142s
+Body: { "id": "123", "name": "Jane Doe", "email": "jane@example.com" }
+Result: PASS
+
+### 2. Auth Failure - No token
+$ curl -s https://api.example.com/api/v1/users/123
+
+Status: 401 Unauthorized
+Body: { "error": { "code": "UNAUTHORIZED", "message": "Missing auth token" } }
+Result: PASS
+
+### 3. Not Found - Non-existent user
+$ curl -s -H "Authorization: Bearer $API_TOKEN" \
+  https://api.example.com/api/v1/users/999999
+
+Status: 404 Not Found
+Body: { "error": { "code": "NOT_FOUND", "message": "User not found" } }
+Result: PASS
+
+## Summary
+Total: 3 | Passed: 3 | Failed: 0
+Avg Response Time: 0.138s
+```
+
+**Example 2: Test a POST endpoint with validation**
+Input: "Test creating a user at POST /api/v1/users"
+Output:
+```
+## Test Cases
+
+### 1. Happy Path - Valid user creation
+$ curl -s -X POST \
+  -H "Authorization: Bearer $API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"email":"new@example.com","name":"New User"}' \
+  https://api.example.com/api/v1/users
+
+Status: 201 Created
+Result: PASS
+
+### 2. Validation Error - Missing required field
+$ curl -s -X POST \
+  -H "Authorization: Bearer $API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"name":"No Email User"}' \
+  https://api.example.com/api/v1/users
+
+Status: 400 Bad Request
+Body: { "error": { "code": "VALIDATION_ERROR", "message": "email is required" } }
+Result: PASS
+
+### 3. Duplicate - Existing email
+$ curl -s -X POST \
+  -H "Authorization: Bearer $API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"email":"existing@example.com","name":"Dupe"}' \
+  https://api.example.com/api/v1/users
+
+Status: 409 Conflict
+Result: PASS
+
+## Summary
+Total: 3 | Passed: 3 | Failed: 0
+```
+
+## Tools
 - Use `Bash` with `curl` to execute HTTP requests and capture responses
-- Use `Read` to load API specification files (OpenAPI, Swagger) or existing test files for reference
-- Use `Grep` to search for endpoint definitions, route handlers, or middleware in the codebase
-- Use `Glob` to discover related test files, API route files, or specification documents
-- Use `Bash` to run existing test suites or validate JSON schemas
+- Use `Read` to load API specification files (OpenAPI/Swagger) or existing test files
+- Use `Grep` to search for endpoint definitions and route handlers in the codebase
+- Use `Glob` to discover test files, API route files, or specification documents
 
 ## Error Handling
-- If the user does not specify the HTTP method, infer from context or ask for clarification
-- If authentication details are missing, ask the user for the auth mechanism and credentials (remind them not to share production secrets)
-- If the endpoint returns an unexpected error (5xx), suggest checking server logs and provide common troubleshooting steps
-- If the response does not match the spec, clearly highlight every discrepancy between expected and actual behavior
+- If the HTTP method is not specified → infer from context or ask for clarification
+- If auth details are missing → ask for the auth mechanism (remind not to share production secrets)
+- If the endpoint returns 5xx → suggest checking server logs and provide common troubleshooting steps
+- If the response does not match the spec → highlight every discrepancy between expected and actual
 
-## Rules & Constraints
+## Rules
 - Always test both success AND error cases for every endpoint
 - Validate the full response schema, not just the status code
-- Never hardcode authentication tokens -- use environment variables or placeholders
-- Check response time against thresholds: < 500ms for reads, < 2000ms for writes
+- Never hardcode auth tokens -- use environment variables or placeholders like `$API_TOKEN`
 - Test idempotency for PUT and DELETE operations
-- Test pagination for list endpoints (first page, last page, out-of-range page)
-- Include edge cases: empty body, special characters in parameters, maximum payload size, concurrent requests
-- Sanitize all output -- never display raw auth tokens or secrets in test results
+- Test pagination for list endpoints (first page, last page, out-of-range)
+- Include edge cases: empty body, special characters, max payload size
 
 ## Output Template
 ```
-API Test Report
-
 ## Endpoint
 [METHOD] [URL]
-Authentication: [Auth type]
-Content-Type: [Content type]
+Auth: [type] | Content-Type: [type]
 
 ## Test Cases
 
-### 1. Happy Path
-Request:
-  [METHOD] [URL]
-  Headers: [Relevant headers]
-  Body: [Request body if applicable]
-Response:
-  Status: [Code] [Text]
-  Time: [ms]
-  Body: [Response body]
+### 1. [Test name]
+$ curl [command]
+Status: [code] [text] | Time: [ms]
+Body: [response]
 Result: [PASS / FAIL]
 
-### 2. Validation Error
-Request:
-  [METHOD] [URL]
-  Body: [Invalid/missing fields]
-Response:
-  Status: 400 Bad Request
-  Body: [Error response]
-Result: [PASS / FAIL]
-
-### 3. Authentication Failure
-Request:
-  [METHOD] [URL] (no auth token)
-Response:
-  Status: 401 Unauthorized
-Result: [PASS / FAIL]
-
-### 4. Not Found
-Request:
-  [METHOD] [URL with non-existent ID]
-Response:
-  Status: 404 Not Found
-Result: [PASS / FAIL]
+### 2. [Test name]
+...
 
 ## Summary
-Total: [N] tests | Passed: [N] | Failed: [N]
-Average Response Time: [ms]
+Total: [N] | Passed: [N] | Failed: [N]
+Avg Response Time: [ms]
 Schema Validation: [PASS / FAIL]
 ```

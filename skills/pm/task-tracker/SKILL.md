@@ -1,60 +1,87 @@
+---
+name: task-tracker
+description: Tracks project tasks including creation, assignment, status updates, and progress reporting. Use when the user asks to create tasks, update task status, check project progress, find overdue or blocked items, or generate a task board summary.
+---
+
 # Task Tracker
 
-## Metadata
-- **ID**: task-tracker
-- **Role**: pm
-- **Version**: 1.0.0
-
-## Persona
-You are a meticulous project management specialist with 10+ years of experience in Agile and Waterfall task management across software, product, and operations teams. You are organized, detail-oriented, and proactive about surfacing risks before they become problems. You always ensure every task has clear ownership, priority, and a definition of done.
-
-## Trigger Patterns
-- **Keywords**: ["task", "to-do", "assign", "progress", "work items", "track", "task board", "backlog", "overdue", "blocked", "completion rate", "task status"]
-- **Intent**: The user wants to create, assign, update, or report on project tasks and their statuses
-- **Context Clues**: Mentions of team members needing work assignments, requests for project progress visibility, references to deadlines or task completion, questions about what is blocked or overdue
+## Quick Start
+Create, assign, update, and report on project tasks. Organize work into a task board with statuses: Backlog, To Do, In Progress, In Review, Done, Blocked. Every task requires a title, assignee, priority (Critical/High/Medium/Low), and deadline.
 
 ## Workflow
+1. Parse the user's request to determine the operation: create task, update status, query progress, or generate report
+2. Identify the project context (project name, sprint, team)
+3. Load existing task data and cross-reference to avoid duplicates or invalid transitions
+4. Execute the operation:
+   - **Create**: Validate required fields, estimate effort, assign status
+   - **Update**: Transition through valid workflow (Backlog -> To Do -> In Progress -> In Review -> Done)
+   - **Report**: Calculate completion rates, flag overdue/blocked tasks, surface trends
+   - **Blocked**: Identify root cause, suggest resolution, flag escalation
+5. Output structured task board or report
 
-### Phase 1: Discovery & Analysis
-1. Parse the user's input to determine the operation type: create task, update status, query progress, or generate report
-2. Identify the project context: which project, sprint, or team the tasks belong to
-3. Classify the request priority: is this a routine status check, an urgent blocker escalation, or a new task creation
-4. Detect any implicit information such as deadlines mentioned in natural language, team member names, or priority indicators
+## Examples
 
-### Phase 2: Context Integration
-1. Load the current task board state including all statuses: Backlog, To Do, In Progress, In Review, Done, Blocked
-2. Substitute variables from user input: project name, assignee names, priority levels, deadlines, and task descriptions
-3. Cross-reference with existing tasks to avoid duplicates, validate assignees, and check for dependency conflicts
-4. Apply priority mapping: Critical > High > Medium > Low
+**Example 1: Create a task**
+Input: "Create a task for Alice to build the login API, high priority, due March 25"
+Output:
+```
+Task Created:
+| # | Task | Assignee | Priority | Status | Deadline | Est. |
+|---|------|----------|----------|--------|----------|------|
+| 42 | Build login API | Alice | High | To Do | 25/03/2026 | 3d |
+```
 
-### Phase 3: Execution & Output
-1. For task creation: validate required fields (title, assignee, priority, deadline), estimate effort, and slot into the appropriate status column
-2. For status updates: transition the task through the valid workflow (Backlog -> To Do -> In Progress -> In Review -> Done), flag invalid transitions
-3. For progress reports: calculate completion rates, identify overdue tasks, count blocked items, and surface trends
-4. For blocked tasks: identify the root cause, suggest resolution paths, and flag escalation needs
-5. Generate a structured task board or report in the output template format
+**Example 2: Progress report**
+Input: "Show me the task board for Project Atlas"
+Output:
+```
+Task Board - Project Atlas
+Sprint 4 / Week 2
 
-## Tool Orchestration
-- Use `Read` to load existing task data, project configuration, or team rosters from project files
-- Use `Grep` to search for task references, assignee mentions, or status keywords across project documentation
-- Use `Bash` to run project management CLI tools or scripts for task synchronization
+| # | Task | Assignee | Priority | Status | Deadline | Est. |
+|---|------|----------|----------|--------|----------|------|
+| 38 | Design DB schema | Bob | Critical | Done | 18/03/2026 | 2d |
+| 39 | Build auth service | Alice | High | In Progress | 22/03/2026 | 3d |
+| 40 | Write unit tests | Carol | Medium | To Do | 25/03/2026 | 2d |
+
+Progress: 1/3 (33% complete)
+Overdue: 0 tasks
+Blocked: 0 tasks
+In Review: 0 tasks
+```
+
+**Example 3: Flag blocked task**
+Input: "Task 39 is blocked because the staging server is down"
+Output:
+```
+Task #39 updated: In Progress -> Blocked
+
+Blocked Tasks:
+| Task | Assignee | Blocked By | Action |
+|------|----------|------------|--------|
+| Build auth service | Alice | Staging server down | Escalate to DevOps; ETA needed |
+```
+
+## Tools
+- Use `Read` to load existing task data, project config, or team rosters
+- Use `Grep` to search for task references, assignee mentions, or status keywords across project files
 - Use `Write` to persist updated task board state or export reports
+- Use `Bash` to run project management CLI tools or sync scripts
 
 ## Error Handling
-- If a required field is missing (title, assignee, priority, or deadline) -> prompt the user for the missing information before proceeding
-- If an assignee is not recognized -> list available team members and ask the user to confirm
-- If a status transition is invalid (e.g., Backlog directly to Done) -> warn the user and suggest the correct workflow path
-- If no project context is provided -> ask the user to specify the project or default to the most recent active project
-- If a task exceeds 3 days of estimated effort -> recommend splitting into sub-tasks
+- If required fields are missing (title, assignee, priority, deadline) -> prompt the user before proceeding
+- If assignee is not recognized -> list available team members and ask for confirmation
+- If status transition is invalid (e.g., Backlog directly to Done) -> warn and suggest correct workflow path
+- If no project context is provided -> ask the user to specify the project
+- If a task exceeds 3 days estimated effort -> recommend splitting into sub-tasks
 
-## Rules & Constraints
+## Rules
 - Every task must have: title, assignee, priority, and deadline
-- Priority levels follow strict ordering: Critical > High > Medium > Low
-- Tasks estimated at more than 3 days of effort must be split into sub-tasks
-- Overdue tasks must be highlighted and escalated to the PM immediately
-- Each task must have a clear Definition of Done before moving to In Progress
-- Blocked tasks must include a description of the blocking issue and an action plan for resolution
-- Task IDs must be unique within a project scope
+- Priority ordering: Critical > High > Medium > Low
+- Tasks over 3 days effort must be split into sub-tasks
+- Overdue tasks must be highlighted and escalated
+- Blocked tasks must include blocking reason and action plan
+- Task IDs must be unique within a project
 
 ## Output Template
 ```
