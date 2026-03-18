@@ -18,13 +18,26 @@ This is the **intern-skills** repository — a collection of AI skill definition
 
 Nine roles defined in `manifest.json`: `ops`, `finance`, `hr`, `pm`, `cs`, `developer`, `marketing`, `designer`, `sales`. Plus a `generic` role installed for all users. Each role has 5 skills.
 
-## SKILL.md Format
+## SKILL.md Format (Official Anthropic Best Practices)
 
-Each skill follows a consistent structure:
-- **Description** — One-line summary
-- **Trigger** — When the skill activates (user phrases/intents)
-- **Instructions** — When to activate, process steps, rules
-- **Output Format** — Expected response template with emoji markers
+Each skill follows the official Anthropic SKILL.md structure:
+
+```yaml
+---
+name: skill-name          # Required. Lowercase, hyphens only. Must match folder name.
+description: >            # Required. Third person. Max 1024 chars. WHAT it does + WHEN to use it.
+  Does X and Y. Use when the user asks for Z.
+---
+```
+
+Body sections (in order):
+- **Quick Start** — Concise instructions (Claude is already smart — only add what it doesn't know)
+- **Workflow** — Flat numbered steps (not verbose multi-phase)
+- **Examples** — Concrete input/output pairs (at least 2)
+- **Tools** — Which tools to use and when
+- **Error Handling** — Scenario → action pairs
+- **Rules** — Constraints and priorities
+- **Output Template** — Expected response format
 
 ## Release Process
 
@@ -35,7 +48,19 @@ Each skill follows a consistent structure:
 ./release.sh 2.3.1   # exact version
 ```
 
-This script: updates `version.txt`, updates `manifest.json` version field, rebuilds all zip files in `skills_zip/`, then prompts to commit, tag, and push. Requires `jq` for clean JSON updates (falls back to `sed`).
+**What the script does (in order):**
+1. Reads current version from `version.txt`
+2. Computes new version based on bump type
+3. Updates `version.txt` with new version
+4. Updates `manifest.json` version field (uses `jq` if available, falls back to `sed`)
+5. Rebuilds all zip files in `skills_zip/` from `skills/` directories
+6. Stages changes (`version.txt`, `manifest.json`, `skills_zip/`)
+7. Prompts to commit + create git tag `vX.Y.Z`
+8. Prompts to push to remote (with tags)
+
+**Branch protection:** Only authorized users can push to `main`. All others must create a PR.
+
+**Prerequisites:** `zip` command required. `jq` recommended for clean JSON updates.
 
 ## Key Conventions
 
