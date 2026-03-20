@@ -88,7 +88,7 @@ done
 echo ""
 info "Staging changes..."
 cd "$ROOT_DIR"
-git add version.txt manifest.json skills_zip/
+git add -A
 
 warn "Ready to commit & tag version ${CYAN}v$NEW_VERSION${NC}"
 read -rp "Proceed with commit and tag? [y/N] " confirm
