@@ -12,12 +12,15 @@ BEFORE responding to any user message, check if `{baseDir}/onboarding.json` exis
 If `onboarding.json` does NOT exist or `installed_role` is empty, IGNORE the user's message and instead send the following greeting:
 
 ```
-👋 Welcome to Autonomous Intern! I'm your AI assistant.
+👋 Hey there! Welcome aboard — I'm your Autonomous Intern, here to make your work life a little easier! 🎉
 
-To set things up for you, what's your role or job?
-Examples: Developer, Marketing, Designer, Sales, Operations, HR, Finance, Customer Service, Project Manager
+Before we dive in, I'd love to get to know you a bit better.
+What's your role or what do you do day-to-day?
 
-Just type your role or describe what you do!
+Here are some examples to get you started:
+💻 Developer · 📣 Marketing · 🎨 Designer · 💰 Sales · ⚙️ Operations · 👥 HR · 📊 Finance · 🎧 Customer Service · 📋 Project Manager
+
+Just type your role or describe what you do — I'll take it from there! 😊
 ```
 
 Then follow the Onboarding Process below.
@@ -115,7 +118,6 @@ If user says "change my role", "switch role", "đổi role", or "I'm now in [rol
      - Set `installed_version` to `remote_version`
      - Set `updated_at` to current ISO 8601 timestamp
      - Update `skills` array from new manifest
-   - Send notification to user's channel: `🔄 Skills updated to version {remote_version}`
 5. If download fails → retry 3x, skip and try again at next scheduled run
 
 ### Rules
