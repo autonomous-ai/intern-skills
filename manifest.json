@@ -1,69 +1,221 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.2",
   "generic_zip": "generic.zip",
   "roles": {
     "ops": {
       "label": "Office / Admin / Secretary",
-      "keywords": ["office", "admin", "secretary", "assistant", "receptionist", "administrative", "clerk", "front desk", "office manager"],
+      "keywords": [
+        "office",
+        "admin",
+        "secretary",
+        "assistant",
+        "receptionist",
+        "administrative",
+        "clerk",
+        "front desk",
+        "office manager"
+      ],
       "skills_zip": "ops.zip",
       "description": "Document formatting, meeting scheduling, inventory tracking, travel planning, operational reports",
-      "skills": ["document-formatter", "meeting-scheduler", "inventory-tracker", "travel-planner", "report-generator"]
+      "skills": [
+        "document-formatter",
+        "meeting-scheduler",
+        "inventory-tracker",
+        "travel-planner",
+        "report-generator"
+      ]
     },
     "finance": {
       "label": "Accounting / Finance",
-      "keywords": ["accounting", "finance", "accountant", "bookkeeper", "budget", "auditor", "treasury", "financial analyst", "controller", "cfo"],
+      "keywords": [
+        "accounting",
+        "finance",
+        "accountant",
+        "bookkeeper",
+        "budget",
+        "auditor",
+        "treasury",
+        "financial analyst",
+        "controller",
+        "cfo"
+      ],
       "skills_zip": "finance.zip",
       "description": "Expense tracking, invoicing, budget planning, tax assistance, financial reporting",
-      "skills": ["expense-tracker", "invoice-generator", "budget-planner", "tax-helper", "financial-report"]
+      "skills": [
+        "expense-tracker",
+        "invoice-generator",
+        "budget-planner",
+        "tax-helper",
+        "financial-report"
+      ]
     },
     "hr": {
       "label": "Human Resources / Recruitment",
-      "keywords": ["hr", "human resources", "recruitment", "recruiter", "talent", "people ops", "c&b", "hiring", "talent acquisition", "people"],
+      "keywords": [
+        "hr",
+        "human resources",
+        "recruitment",
+        "recruiter",
+        "talent",
+        "people ops",
+        "c&b",
+        "hiring",
+        "talent acquisition",
+        "people"
+      ],
       "skills_zip": "hr.zip",
       "description": "Resume screening, interview scheduling, onboarding, policy lookup, performance reviews",
-      "skills": ["resume-screener", "interview-scheduler", "onboarding-checklist", "policy-lookup", "performance-review"]
+      "skills": [
+        "resume-screener",
+        "interview-scheduler",
+        "onboarding-checklist",
+        "policy-lookup",
+        "performance-review"
+      ]
     },
     "pm": {
       "label": "Project Management",
-      "keywords": ["project manager", "pm", "scrum master", "product owner", "po", "agile", "project lead", "program manager", "delivery manager"],
+      "keywords": [
+        "project manager",
+        "pm",
+        "scrum master",
+        "product owner",
+        "po",
+        "agile",
+        "project lead",
+        "program manager",
+        "delivery manager"
+      ],
       "skills_zip": "pm.zip",
       "description": "Task tracking, sprint planning, daily standups, risk assessment, timeline generation",
-      "skills": ["task-tracker", "sprint-planner", "standup-helper", "risk-assessor", "timeline-generator"]
+      "skills": [
+        "task-tracker",
+        "sprint-planner",
+        "standup-helper",
+        "risk-assessor",
+        "timeline-generator"
+      ]
     },
     "cs": {
       "label": "Customer Service / Support",
-      "keywords": ["customer service", "customer support", "cs", "support", "helpdesk", "call center", "service desk", "client support", "cx"],
+      "keywords": [
+        "customer service",
+        "customer support",
+        "cs",
+        "support",
+        "helpdesk",
+        "call center",
+        "service desk",
+        "client support",
+        "cx"
+      ],
       "skills_zip": "cs.zip",
       "description": "Ticket responses, FAQ lookup, escalation handling, feedback analysis, knowledge base",
-      "skills": ["ticket-responder", "faq-lookup", "escalation-helper", "feedback-analyzer", "knowledge-base"]
+      "skills": [
+        "ticket-responder",
+        "faq-lookup",
+        "escalation-helper",
+        "feedback-analyzer",
+        "knowledge-base"
+      ]
     },
     "developer": {
       "label": "Software Developer / Engineer",
-      "keywords": ["developer", "engineer", "programmer", "coder", "devops", "sre", "backend", "frontend", "fullstack", "software engineer", "dev"],
+      "keywords": [
+        "developer",
+        "engineer",
+        "programmer",
+        "coder",
+        "devops",
+        "sre",
+        "backend",
+        "frontend",
+        "fullstack",
+        "software engineer",
+        "dev"
+      ],
       "skills_zip": "developer.zip",
       "description": "Code review, Git workflows, debugging, API testing, documentation generation",
-      "skills": ["code-reviewer", "git-helper", "debug-assistant", "api-tester", "doc-generator"]
+      "skills": [
+        "code-reviewer",
+        "git-helper",
+        "debug-assistant",
+        "api-tester",
+        "doc-generator"
+      ]
     },
     "marketing": {
       "label": "Marketing / Content",
-      "keywords": ["marketing", "content", "growth", "seo", "social media", "ads", "copywriter", "digital marketing", "brand", "communications"],
+      "keywords": [
+        "marketing",
+        "content",
+        "growth",
+        "seo",
+        "social media",
+        "ads",
+        "copywriter",
+        "digital marketing",
+        "brand",
+        "communications"
+      ],
       "skills_zip": "marketing.zip",
       "description": "Content writing, SEO optimization, social media planning, campaign tracking, competitor analysis",
-      "skills": ["content-writer", "seo-optimizer", "social-media-planner", "campaign-tracker", "competitor-analyzer"]
+      "skills": [
+        "content-writer",
+        "seo-optimizer",
+        "social-media-planner",
+        "campaign-tracker",
+        "competitor-analyzer"
+      ]
     },
     "designer": {
       "label": "Designer / Creative",
-      "keywords": ["designer", "ui", "ux", "graphic", "creative", "figma", "photoshop", "illustrator", "visual designer", "product designer"],
+      "keywords": [
+        "designer",
+        "ui",
+        "ux",
+        "graphic",
+        "creative",
+        "figma",
+        "photoshop",
+        "illustrator",
+        "visual designer",
+        "product designer"
+      ],
       "skills_zip": "designer.zip",
       "description": "Design review, color palettes, asset management, wireframing, brand consistency",
-      "skills": ["design-reviewer", "color-palette", "asset-organizer", "wireframe-helper", "brand-checker"]
+      "skills": [
+        "design-reviewer",
+        "color-palette",
+        "asset-organizer",
+        "wireframe-helper",
+        "brand-checker"
+      ]
     },
     "sales": {
       "label": "Sales / Business Development",
-      "keywords": ["sales", "business development", "account", "crm", "lead", "revenue", "account executive", "ae", "bdm", "sales rep", "closer"],
+      "keywords": [
+        "sales",
+        "business development",
+        "account",
+        "crm",
+        "lead",
+        "revenue",
+        "account executive",
+        "ae",
+        "bdm",
+        "sales rep",
+        "closer"
+      ],
       "skills_zip": "sales.zip",
       "description": "Lead research, proposal writing, CRM management, follow-up drafting, competitive intelligence",
-      "skills": ["lead-researcher", "proposal-writer", "crm-helper", "follow-up-drafter", "competitor-briefer"]
+      "skills": [
+        "lead-researcher",
+        "proposal-writer",
+        "crm-helper",
+        "follow-up-drafter",
+        "competitor-briefer"
+      ]
     }
   }
 }
