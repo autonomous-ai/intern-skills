@@ -18,13 +18,13 @@ Formulate focused search queries based on the user's information need. Cross-ref
 ## Examples
 
 **Example 1: Factual Lookup**
-Input: "What is the population of Vietnam?"
+Input: "What is the current US GDP?"
 Output:
-Vietnam's population is approximately 100.3 million as of 2025, making it the 15th most populous country globally.
+The US GDP is approximately $28.8 trillion as of 2024, making it the largest economy in the world.
 
 Sources:
-- World Bank: https://data.worldbank.org/country/vietnam
-- Worldometer: https://www.worldometers.info/world-population/vietnam-population/
+- Bureau of Economic Analysis: https://www.bea.gov/data/gdp/gross-domestic-product
+- World Bank: https://data.worldbank.org/country/united-states
 
 **Example 2: Comparison**
 Input: "Compare PostgreSQL vs MySQL for a new web app"

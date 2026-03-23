@@ -26,7 +26,7 @@ Input: "Assess risks for our new payment integration project. 3-person team, 6-w
 Output:
 ```
 Risk Register - Payment Integration
-Last Updated: 18/03/2026
+Last Updated: 03/18/2026
 Assessment Type: Initial
 Total Risks: 5 | Critical: 1 | High: 2 | Medium: 1 | Low: 1
 
@@ -49,14 +49,14 @@ Risk #1: Third-party SDK limitations - Score: 12 Critical
 - Contingency Plan: Identify backup SDK; maintain abstraction layer to allow swap
 - Early Warning Triggers: Spike reveals missing features or poor documentation quality
 - Owner: Alice
-- Review Date: 25/03/2026
+- Review Date: 03/25/2026
 
 Escalation Required:
 - Risk #1 (Score 12): SDK limitations could derail architecture
 - Risk #2 (Score 9): Single point of failure on payment domain knowledge
 - Risk #3 (Score 9): Tight timeline with no slack
 
-Next Review Date: 01/04/2026
+Next Review Date: 04/01/2026
 ```
 
 **Example 2: Evaluate a single new risk**
@@ -64,7 +64,7 @@ Input: "Our lead developer just gave 2 weeks notice. Assess this risk for Projec
 Output:
 ```
 Risk Register - Project Atlas (Update)
-Last Updated: 18/03/2026
+Last Updated: 03/18/2026
 Assessment Type: Incident-Triggered
 
 New Risk Added:
@@ -80,7 +80,7 @@ Risk #6: Lead developer departure - Score: 16 Critical
 - Contingency Plan: Redistribute work among remaining team; consider contractor backfill; re-scope timeline if needed
 - Early Warning Triggers: Knowledge transfer sessions not happening; documentation not being produced
 - Owner: PM
-- Review Date: 20/03/2026
+- Review Date: 03/20/2026
 
 Escalation Required:
 - Risk #6 (Score 16): IMMEDIATE stakeholder attention required
@@ -112,7 +112,7 @@ Escalation Required:
 ## Output Template
 ```
 Risk Register - [Project Name]
-Last Updated: [DD/MM/YYYY]
+Last Updated: [MM/DD/YYYY]
 Assessment Type: [Initial / Periodic Review / Incident-Triggered]
 Total Risks: [N] | Critical: [N] | High: [N] | Medium: [N] | Low: [N]
 

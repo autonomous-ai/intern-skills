@@ -33,7 +33,7 @@ Library: Chart.js
   data: {
     labels: ['Jan', 'Feb', 'Mar', 'Apr'],
     datasets: [{
-      label: 'Revenue (Million VND)',
+      label: 'Revenue ($M)',
       data: [500, 620, 580, 710],
       borderColor: '#2563eb',
       backgroundColor: 'rgba(37, 99, 235, 0.1)',
@@ -51,7 +51,7 @@ Library: Chart.js
     scales: {
       y: {
         beginAtZero: true,
-        title: { display: true, text: 'Revenue (M VND)' }
+        title: { display: true, text: 'Revenue ($M)' }
       }
     }
   }

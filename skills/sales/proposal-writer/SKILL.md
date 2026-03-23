@@ -28,9 +28,9 @@ Output:
 Sales Proposal: Customer Analytics Platform
 
 Client: DataFlow Inc.
-Date: 18/03/2026
+Date: 03/18/2026
 Estimated Deal Value: $150,000
-Proposal Valid Until: 17/04/2026
+Proposal Valid Until: 04/17/2026
 
 ## Executive Summary
 DataFlow Inc. currently relies on fragmented spreadsheet-based reporting, costing an estimated 30+ hours per week in manual analysis. Our analytics platform consolidates all customer data into real-time dashboards, enabling DataFlow to reduce reporting time by 80% and surface revenue opportunities 3x faster. Within 90 days of deployment, DataFlow can expect a measurable uplift in customer retention through data-driven engagement.
@@ -53,8 +53,8 @@ Unified analytics platform with automated ingestion, real-time dashboards, and p
 | Enterprise | + Custom ML + dedicated CSM | $220,000 | 7x in 12 months |
 
 ## Next Steps
-1. Stakeholder alignment call — 21/03/2026
-2. Technical deep-dive demo — 28/03/2026
+1. Stakeholder alignment call — 03/21/2026
+2. Technical deep-dive demo — 03/28/2026
 3. Contract review — 04/04/2026
 
 Follow-up Schedule: Day 3 / Day 7 / Day 14
@@ -88,7 +88,7 @@ Output: A streamlined quotation with scope summary, single price point, delivera
 Sales Proposal: [Project / Deal Name]
 
 Client: [Company Name]
-Date: [DD/MM/YYYY]
+Date: [MM/DD/YYYY]
 Estimated Deal Value: [Amount]
 Proposal Valid Until: [Date — 30 days from issue]
 

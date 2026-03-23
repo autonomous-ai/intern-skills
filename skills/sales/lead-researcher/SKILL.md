@@ -78,7 +78,7 @@ Output: A BANT-scored brief focused on qualification criteria with a Hot/Warm/Co
 
 ## Rules
 - Only use publicly available information (websites, LinkedIn, news, public filings)
-- Remain GDPR/PDPA compliant; never collect unnecessary personal data
+- Remain GDPR/CCPA compliant; never collect unnecessary personal data
 - Verify critical facts from at least 2 independent sources
 - Mark financial estimates clearly as "estimated" or "approximate"
 - Lead scores must include explicit BANT reasoning

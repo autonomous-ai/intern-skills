@@ -38,8 +38,8 @@ Email:          [Email - to be provided]
 CONTRACT DETAILS
 ----------------
 Contract #:     [To be assigned]
-Start Date:     [DD/MM/YYYY]
-End Date:       [DD/MM/YYYY]
+Start Date:     [MM/DD/YYYY]
+End Date:       [MM/DD/YYYY]
 Value:          [Contract value]
 Payment Terms:  [Net 30 / COD / etc.]
 Auto-Renewal:   [Yes / No]
@@ -66,13 +66,13 @@ Output:
 ```
 CONTRACT RENEWAL CALENDAR
 =========================
-Period: 23/03/2026 — 21/06/2026
+Period: 03/23/2026 — 06/21/2026
 
 | Supplier         | Contract # | Expiry     | Days Left | Action Needed |
 |------------------|-----------|------------|-----------|---------------|
-| ABC Supplies     | SUP-001   | 15/04/2026 | 23 days   | 🔴 Urgent     |
-| XYZ Logistics    | SUP-005   | 30/04/2026 | 38 days   | 🟡 Review     |
-| Tech Solutions   | SUP-012   | 15/06/2026 | 84 days   | 🟢 Plan       |
+| ABC Supplies     | SUP-001   | 04/15/2026 | 23 days   | 🔴 Urgent     |
+| XYZ Logistics    | SUP-005   | 04/30/2026 | 38 days   | 🟡 Review     |
+| Tech Solutions   | SUP-012   | 06/15/2026 | 84 days   | 🟢 Plan       |
 
 ACTIONS:
 🔴 ≤30 days: Initiate renewal or replacement immediately
@@ -99,8 +99,8 @@ ACTIONS:
 - Track at minimum: on-time delivery, quality score, response time
 - Supplier categories: Office Supplies, IT/Technology, Logistics, Services, Raw Materials, Other
 - Always include a checklist of missing required information
-- Date format: DD/MM/YYYY
-- Contract values in VND unless otherwise specified
+- Date format: MM/DD/YYYY
+- Contract values in USD unless otherwise specified
 
 ## Output Template
 ```

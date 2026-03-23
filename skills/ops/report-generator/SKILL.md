@@ -24,11 +24,11 @@ Produce executive-level operational reports with data-backed analysis and action
 Input: "Generate a weekly ops report for March 9-15, 2026. We processed 1,250 orders (last week was 1,100), had 3 incidents (down from 5), and team utilization was 87%."
 Output:
 ```
-Weekly Report - 09/03/2026 to 15/03/2026
+Weekly Report - 03/09/2026 to 03/15/2026
 =======================================
-Period: 09/03/2026 - 15/03/2026
+Period: 03/09/2026 - 03/15/2026
 Prepared By: Operations Team
-Date Generated: 18/03/2026
+Date Generated: 03/18/2026
 
 EXECUTIVE SUMMARY
 -----------------
@@ -46,7 +46,7 @@ RECOMMENDATIONS & ACTION ITEMS
 -------------------------------
 | # | Action                              | Owner    | Deadline   | Priority |
 |---|-------------------------------------|----------|------------|----------|
-| 1 | Investigate order volume growth     | Ops Lead | 22/03/2026 | M        |
+| 1 | Investigate order volume growth     | Ops Lead | 03/22/2026 | M        |
 | 2 | Continue incident reduction efforts | SRE Team | Ongoing    | H        |
 
 =======================================
@@ -59,18 +59,18 @@ Output:
 ```
 Ad-hoc Report - Warehouse System Outage
 =======================================
-Period: 14/03/2026
+Period: 03/14/2026
 Prepared By: [To be confirmed]
-Date Generated: 18/03/2026
+Date Generated: 03/18/2026
 
 EXECUTIVE SUMMARY
 -----------------
-A 2-hour warehouse system outage on 14/03/2026 disrupted order fulfillment due to database connection pool exhaustion. Immediate remediation restored service; permanent fix is in progress.
+A 2-hour warehouse system outage on 03/14/2026 disrupted order fulfillment due to database connection pool exhaustion. Immediate remediation restored service; permanent fix is in progress.
 
 INCIDENT DETAILS
 -----------------
-- Start: 14/03/2026, 10:15
-- End: 14/03/2026, 12:15
+- Start: 03/14/2026, 10:15
+- End: 03/14/2026, 12:15
 - Duration: 2 hours
 - Impact: Order fulfillment halted
 - Root Cause: Database connection pool exhaustion
@@ -79,9 +79,9 @@ RECOMMENDATIONS & ACTION ITEMS
 -------------------------------
 | # | Action                          | Owner    | Deadline   | Priority |
 |---|---------------------------------|----------|------------|----------|
-| 1 | Increase connection pool limits | DBA Team | 21/03/2026 | H        |
-| 2 | Add connection pool monitoring  | SRE Team | 28/03/2026 | H        |
-| 3 | Document runbook for DB issues  | Ops Lead | 31/03/2026 | M        |
+| 1 | Increase connection pool limits | DBA Team | 03/21/2026 | H        |
+| 2 | Add connection pool monitoring  | SRE Team | 03/28/2026 | H        |
+| 3 | Document runbook for DB issues  | Ops Lead | 03/31/2026 | M        |
 
 =======================================
 Status: Draft
@@ -115,7 +115,7 @@ Status: Draft
 =======================================
 Period: [Start Date] - [End Date]
 Prepared By: [Name/Role]
-Date Generated: [DD/MM/YYYY]
+Date Generated: [MM/DD/YYYY]
 
 EXECUTIVE SUMMARY
 -----------------

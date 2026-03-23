@@ -26,14 +26,14 @@ KPI SCORECARD
 =============
 Department: Sales
 Period: March 2026
-Report Date: 23/03/2026
+Report Date: 03/23/2026
 
 | # | KPI                    | Target    | Actual    | Achievement | Trend | Status |
 |---|------------------------|-----------|-----------|-------------|-------|--------|
-| 1 | Revenue                | 2,000M    | 1,850M    | 92.5%       | ↗️    | 🟡     |
+| 1 | Revenue                | $2M       | $1.85M    | 92.5%       | ↗️    | 🟡     |
 | 2 | New Customers          | 50        | 62        | 124.0%      | ↗️    | 🟢     |
 | 3 | Conversion Rate        | 25%       | 22%       | 88.0%       | ↘️    | 🔴     |
-| 4 | Avg Deal Size          | 40M       | 38M       | 95.0%       | →     | 🟡     |
+| 4 | Avg Deal Size          | $40K      | $38K      | 95.0%       | →     | 🟡     |
 | 5 | Customer Retention     | 90%       | 93%       | 103.3%      | ↗️    | 🟢     |
 
 OVERALL SCORE: 100.6% (weighted average)
@@ -78,7 +78,7 @@ Output: A structured KPI framework with 5-7 metrics, definitions, targets, and m
 - Limit to 5-7 KPIs per scorecard for focus
 - Weight KPIs by importance when calculating overall scores
 - Always include recommended actions for underperforming metrics
-- Currency defaults to VND; percentages to one decimal place
+- Currency defaults to USD; percentages to one decimal place
 
 ## Output Template
 ```
@@ -86,7 +86,7 @@ KPI SCORECARD
 =============
 Department: [Department Name]
 Period: [Time Period]
-Report Date: [DD/MM/YYYY]
+Report Date: [MM/DD/YYYY]
 
 | # | KPI | Target | Actual | Achievement | Trend | Status |
 |---|-----|--------|--------|-------------|-------|--------|

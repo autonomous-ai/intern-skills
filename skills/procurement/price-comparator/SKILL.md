@@ -26,33 +26,33 @@ PRICE COMPARISON
 ================
 Product: A4 Paper 80gsm
 Quantity: 500 ream
-Date: 23/03/2026
+Date: 03/23/2026
 
 SIDE-BY-SIDE
 -------------
 | Cost Component    | Vendor A       | Vendor B       | Vendor C       |
 |-------------------|----------------|----------------|----------------|
-| Unit Price        | 58,000 VND     | 55,000 VND     | 62,000 VND     |
+| Unit Price        | $2.30          | $2.20          | $2.50          |
 | Volume Discount   | -5% (≥500)     | -3% (≥300)     | -8% (≥500)     |
-| Price After Disc  | 55,100 VND     | 53,350 VND     | 57,040 VND     |
-| Subtotal          | 27,550,000 VND | 26,675,000 VND | 28,520,000 VND |
-| Delivery Fee      | Free           | 500,000 VND    | Free           |
-| VAT (10%)         | 2,755,000 VND  | 2,717,500 VND  | 2,852,000 VND  |
-| TOTAL COST        | 30,305,000 VND | 29,892,500 VND | 31,372,000 VND |
+| Price After Disc  | $2.19          | $2.13          | $2.30          |
+| Subtotal          | $1,095.00      | $1,065.00      | $1,150.00      |
+| Delivery Fee      | Free           | $20.00         | Free           |
+| Sales Tax (varies)| $87.60         | $86.80         | $92.00         |
+| TOTAL COST        | $1,182.60      | $1,171.80      | $1,242.00      |
 |                   |                |                |                |
 | Payment Terms     | Net 30         | COD            | Net 45         |
 | Delivery Time     | 3 days         | 1 day          | 5 days         |
 | Min Order         | 100 ream       | 50 ream        | 200 ream       |
 
 RANKING BY TOTAL COST:
-1. Vendor B: 29,892,500 VND (cheapest)
-2. Vendor A: 30,305,000 VND (+412,500 / +1.4%)
-3. Vendor C: 31,372,000 VND (+1,479,500 / +4.9%)
+1. Vendor B: $1,171.80 (cheapest)
+2. Vendor A: $1,182.60 (+$10.80 / +0.9%)
+3. Vendor C: $1,242.00 (+$70.20 / +6.0%)
 
-SAVINGS: Choosing Vendor B saves 1,479,500 VND vs most expensive option.
+SAVINGS: Choosing Vendor B saves $70.20 vs most expensive option.
 
 RECOMMENDATION: Vendor B offers best price, but requires COD payment.
-If cash flow is a concern, Vendor A is 1.4% more but offers Net 30 terms.
+If cash flow is a concern, Vendor A is 0.9% more but offers Net 30 terms.
 ```
 
 **Example 2: Subscription Plan Comparison**
@@ -78,7 +78,7 @@ Output: Monthly/annual cost comparison with feature matrix and per-user TCO.
 - Show both absolute difference and percentage difference
 - Rank options by total cost with clear #1, #2, #3
 - Note non-price factors: payment terms, delivery speed, minimum orders
-- Currency defaults to VND; show exchange rate when converting
+- Currency defaults to USD; show exchange rate when converting
 - Flag any pricing that seems unusually low (potential quality concern)
 
 ## Output Template
@@ -87,7 +87,7 @@ PRICE COMPARISON
 ================
 Product: [Product/Service]
 Quantity: [Amount]
-Date: [DD/MM/YYYY]
+Date: [MM/DD/YYYY]
 
 SIDE-BY-SIDE
 -------------

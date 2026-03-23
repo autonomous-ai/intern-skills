@@ -25,23 +25,23 @@ Output:
 MEETING SUMMARY
 ===============
 Meeting: Q1 Budget Review
-Date: 15/03/2026
+Date: 03/15/2026
 Attendees: 8 (Finance, Ops, Marketing leads)
 Duration: 60 minutes
 
 TL;DR: Marketing budget approved for 15% increase; Engineering hiring frozen until Q3.
 
 Key Decisions:
-1. Marketing Q2 budget increased from 500M to 575M VND (+15%)
+1. Marketing Q2 budget increased from $500K to $575K (+15%)
 2. Engineering headcount freeze extended through Q2
 3. Cloud infrastructure migration moved to Q3
 
 Action Items:
 | Owner    | Task                              | Deadline   |
 |----------|-----------------------------------|------------|
-| Sarah    | Submit revised Q2 forecast        | 20/03/2026 |
-| Tom      | Schedule CFO follow-up            | 22/03/2026 |
-| Marketing| Present campaign ROI breakdown    | 25/03/2026 |
+| Sarah    | Submit revised Q2 forecast        | 03/20/2026 |
+| Tom      | Schedule CFO follow-up            | 03/22/2026 |
+| Marketing| Present campaign ROI breakdown    | 03/25/2026 |
 
 Open Issues:
 - Cloud cost overrun (12% over budget) — pending vendor negotiation

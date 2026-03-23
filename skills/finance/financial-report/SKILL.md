@@ -31,25 +31,25 @@ FINANCIAL REPORT: P&L - February 2026
 
 SUMMARY
 -------
-Revenue:      850,000K VND (+6.3% vs. Jan 2026)
-Expenses:     620,000K VND (+8.8% vs. Jan 2026)
-Net Profit:   230,000K VND (Margin: 27.1%)
+Revenue:      $850K (+6.3% vs. Jan 2026)
+Expenses:     $620K (+8.8% vs. Jan 2026)
+Net Profit:   $230K (Margin: 27.1%)
 
 DETAIL
 ------
-| Line Item           | Feb 2026   | Jan 2026   | Change     | Change % |
-|---------------------|------------|------------|------------|----------|
-| Product Revenue     | 600,000K   | 560,000K   | +40,000K   | +7.1%   |
-| Service Revenue     | 250,000K   | 240,000K   | +10,000K   | +4.2%   |
-| COGS                | 340,000K   | 300,000K   | +40,000K   | +13.3%  |
-| Staff Costs         | 180,000K   | 180,000K   | 0          | 0%      |
-| Marketing           | 60,000K    | 50,000K    | +10,000K   | +20.0%  |
-| Operations          | 40,000K    | 40,000K    | 0          | 0%      |
+| Line Item           | Feb 2026 | Jan 2026 | Change   | Change % |
+|---------------------|----------|----------|----------|----------|
+| Product Revenue     | $600K    | $560K    | +$40K    | +7.1%   |
+| Service Revenue     | $250K    | $240K    | +$10K    | +4.2%   |
+| COGS                | $340K    | $300K    | +$40K    | +13.3%  |
+| Staff Costs         | $180K    | $180K    | $0       | 0%      |
+| Marketing           | $60K     | $50K     | +$10K    | +20.0%  |
+| Operations          | $40K     | $40K     | $0       | 0%      |
 
 MATERIAL VARIANCES (>10% change)
 ---------------------------------
-- COGS: 340,000K vs. 300,000K (+13.3%) - Higher input costs
-- Marketing: 60,000K vs. 50,000K (+20.0%) - Lunar New Year campaign spend
+- COGS: $340K vs. $300K (+13.3%) - Higher input costs
+- Marketing: $60K vs. $50K (+20.0%) - Seasonal campaign spend
 
 RECOMMENDATIONS
 ---------------
@@ -67,10 +67,10 @@ FINANCIAL REPORT: Dashboard - Q1/2026
 
 SUMMARY
 -------
-Revenue:      2,400M VND (+12% vs. Q1/2025)
-Expenses:     1,750M VND (+9% vs. Q1/2025)
-Net Profit:   650M VND (Margin: 27.1%)
-Cash Position: 1,200M VND
+Revenue:      $2.4M (+12% vs. Q1/2025)
+Expenses:     $1.75M (+9% vs. Q1/2025)
+Net Profit:   $650K (Margin: 27.1%)
+Cash Position: $1.2M
 
 KEY METRICS
 -----------
@@ -90,7 +90,7 @@ ratio improved by 2 percentage points, indicating better cost control.
 RECOMMENDATIONS
 ---------------
 - Continue investment in high-margin product lines
-- Set Q2 revenue target at 2,600M VND based on growth trajectory
+- Set Q2 revenue target at $2.6M based on growth trajectory
 ```
 
 ## Tools
@@ -110,7 +110,7 @@ RECOMMENDATIONS
 - All figures must be accurate and cross-checked; totals must reconcile
 - Always include period-over-period comparison when comparison data is available
 - Highlight any line item with >10% variance vs. comparison period
-- Round to nearest thousand for VND; note currency unit clearly
+- Round to two decimal places for USD; note currency unit clearly
 - Use abbreviated formats: thousands (K), millions (M), billions (B)
 - Every report must include: summary, detail section, analysis, and recommendations
 - Label one-time or non-recurring items separately from ongoing operations
