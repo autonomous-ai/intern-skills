@@ -3,8 +3,8 @@ name: memory-keeper
 description: >
   Periodically extracts important context from the current session, writes it to memory.md,
   then compacts the session to free up context window. Runs automatically via cronjob every
-  2 hours. Also triggers when the user says "save memory", "ghi nhớ lại", "compact session",
-  "dọn session", or when context usage feels heavy.
+  2 hours. Also triggers when the user says "save memory", "remember this", "compact session",
+  "clean session", or when context usage feels heavy.
 metadata: {"openclaw":{"emoji":"🧠","cronjob":"0 */2 * * *"}}
 ---
 
