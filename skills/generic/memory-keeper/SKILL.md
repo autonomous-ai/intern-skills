@@ -30,12 +30,12 @@ Scan the current session for valuable context, write it to `{baseDir}/memory.md`
 ## Examples
 
 **Example 1 — Cronjob run (silent):**
-Session contains: user prefers Vietnamese, working on a React project, deadline Friday.
+Session contains: user prefers English, working on a React project, deadline Friday.
 
 → Appends to memory.md:
 ```markdown
 ## User Preferences
-- Language: Vietnamese
+- Language: English
 - Communication style: direct, brief
 
 ## Active Work

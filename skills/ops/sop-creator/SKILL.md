@@ -27,7 +27,7 @@ STANDARD OPERATING PROCEDURE
 SOP #: SOP-OPS-[AUTO]
 Title: Purchase Request Processing
 Department: Operations / Procurement
-Effective Date: 23/03/2026
+Effective Date: 03/23/2026
 Version: 1.0
 
 1. PURPOSE
@@ -39,7 +39,7 @@ authorization and budget compliance.
 2. SCOPE
 --------
 Applies to all departments submitting purchase requests for goods or
-services with a value of 500,000 VND or above.
+services with a value of $500 or above.
 
 3. ROLES & RESPONSIBILITIES
 ----------------------------
@@ -70,7 +70,7 @@ Step 2: DEPARTMENT APPROVAL
 Step 3: PROCUREMENT PROCESSING
   3.1 Procurement receives approved request
   3.2 Check existing inventory or contracts
-  3.3 If new purchase needed: obtain 3 quotes for orders >10,000,000 VND
+  3.3 If new purchase needed: obtain 3 quotes for orders >$5,000
   3.4 Select vendor and generate Purchase Order
   3.5 Send PO to vendor for confirmation
   ✅ Checkpoint: PO must match approved request specifications
@@ -94,7 +94,7 @@ Step 5: PAYMENT
 | Scenario                    | Action                              |
 |-----------------------------|-------------------------------------|
 | Urgent request (<5 days)    | Requires Director approval + email  |
-| Amount >50,000,000 VND      | Requires Finance Director approval  |
+| Amount >$25,000             | Requires Finance Director approval  |
 | Single-source vendor        | Requires written justification      |
 | Delivery discrepancy        | Hold payment, notify procurement    |
 
@@ -109,7 +109,7 @@ Step 5: PAYMENT
 --------------------
 | Version | Date       | Author    | Changes           |
 |---------|------------|-----------|-------------------|
-| 1.0     | 23/03/2026 | [Author]  | Initial release   |
+| 1.0     | 03/23/2026 | [Author]  | Initial release   |
 
 APPROVED BY:
 - Prepared: [Name, Title]
@@ -151,7 +151,7 @@ STANDARD OPERATING PROCEDURE
 SOP #: SOP-[DEPT]-[NNN]
 Title: [Procedure Title]
 Department: [Department]
-Effective Date: [DD/MM/YYYY]
+Effective Date: [MM/DD/YYYY]
 Version: [X.X]
 
 1. PURPOSE

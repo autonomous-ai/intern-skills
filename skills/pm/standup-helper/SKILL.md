@@ -24,7 +24,7 @@ Facilitate daily standups using the three-question format: Done, Today, Blockers
 Input: "Help me prep my standup. Yesterday I finished the login API and reviewed Bob's PR. Today I'll start session management and fix the auth bug. I'm blocked on the staging deploy."
 Output:
 ```
-Daily Standup - 18/03/2026
+Daily Standup - 03/18/2026
 Sprint 5 - Day 3/10
 
 Alice
@@ -42,7 +42,7 @@ Blockers:
 Input: "Compile standup notes for the team: Alice did login API, today auth bug, blocked on staging. Bob did payment SDK research, today start integration. Carol did nothing yesterday (sick), today resume unit tests."
 Output:
 ```
-Daily Standup - 18/03/2026
+Daily Standup - 03/18/2026
 Sprint 5 - Day 3/10
 Sprint Goal: Complete user authentication module
 
@@ -81,10 +81,10 @@ Blockers:
 Blockers Summary:
 | # | Blocker | Owner | Age (days) | Action | Target Date |
 |---|---------|-------|-----------|--------|-------------|
-| 1 | Staging deploy pipeline failing | Alice / DevOps | 1 | DevOps to investigate | 19/03/2026 |
+| 1 | Staging deploy pipeline failing | Alice / DevOps | 1 | DevOps to investigate | 03/19/2026 |
 
 Parking Lot (topics for follow-up):
-- Payment SDK vendor decision -> Scheduled with Bob and PM on 19/03
+- Payment SDK vendor decision -> Scheduled with Bob and PM on 03/19
 
 Absent / No Update:
 - None
@@ -113,7 +113,7 @@ Absent / No Update:
 
 ## Output Template
 ```
-Daily Standup - [Date DD/MM/YYYY]
+Daily Standup - [Date MM/DD/YYYY]
 Sprint [N] - Day [X/10]
 Sprint Goal: [Current sprint goal]
 

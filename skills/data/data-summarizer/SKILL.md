@@ -26,7 +26,7 @@ DATA SUMMARY
 ============
 Dataset: Q1 Sales Data
 Records: 2,847 rows × 12 columns
-Period: 01/01/2026 – 31/03/2026
+Period: 01/01/2026 – 03/31/2026
 
 DATA QUALITY
 -------------
@@ -34,23 +34,23 @@ DATA QUALITY
 |----------------|---------------------------|
 | Missing Values | 23 rows (0.8%) in 'region'|
 | Duplicates     | 5 duplicate order IDs     |
-| Outliers       | 3 orders > 500M VND       |
+| Outliers       | 3 orders > $25,000        |
 
 DESCRIPTIVE STATISTICS
 ----------------------
 | Metric        | Value              |
 |---------------|--------------------|
-| Total Revenue | 12,450,000,000 VND |
-| Avg Order     | 4,372,000 VND      |
-| Median Order  | 2,850,000 VND      |
-| Max Order     | 580,000,000 VND    |
-| Min Order     | 125,000 VND        |
+| Total Revenue | $12.45M            |
+| Avg Order     | $4,372             |
+| Median Order  | $2,850             |
+| Max Order     | $580,000           |
+| Min Order     | $125               |
 
 KEY INSIGHTS
 ------------
 1. Revenue grew 18% month-over-month (Jan→Feb→Mar)
 2. Top 3 products account for 45% of total revenue
-3. Ho Chi Minh City region leads with 38% of orders
+3. New York metro area leads with 38% of orders
 4. Weekend orders are 35% lower than weekday average
 5. Average order value increased 12% compared to Q4 2025
 
@@ -80,7 +80,7 @@ Output: A concise overview with row/column count, data types, missing values, an
 - Always start with data quality assessment before analysis
 - Report exact numbers — never round without stating the original value
 - Flag outliers but do not remove them without user confirmation
-- Currency defaults to VND; adjust when data indicates otherwise
+- Currency defaults to USD; adjust when data indicates otherwise
 - Percentages should include the base number for context
 - Suggest appropriate chart types for key findings
 - Note any assumptions made during analysis

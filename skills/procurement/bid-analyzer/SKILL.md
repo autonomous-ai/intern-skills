@@ -25,7 +25,7 @@ Output:
 BID ANALYSIS REPORT
 ===================
 Tender: Security Camera System Installation
-Bid Opening Date: 23/03/2026
+Bid Opening Date: 03/23/2026
 Number of Bids: 3
 
 TECHNICAL EVALUATION (Pass threshold: 70/100)
@@ -46,10 +46,10 @@ FINANCIAL EVALUATION (Qualified bidders only)
 ----------------------------------------------
 | Component              | Bidder A         | Bidder B         | Bidder C         |
 |------------------------|------------------|------------------|------------------|
-| Equipment Cost         | 450,000,000 VND  | 380,000,000 VND  | 520,000,000 VND  |
-| Installation           | 80,000,000 VND   | 95,000,000 VND   | 65,000,000 VND   |
-| Annual Maintenance     | 25,000,000 VND   | 30,000,000 VND   | 20,000,000 VND   |
-| 3-Year TCO             | 605,000,000 VND  | 565,000,000 VND  | 645,000,000 VND  |
+| Equipment Cost         | $450,000         | $380,000         | $520,000         |
+| Installation           | $80,000          | $95,000          | $65,000          |
+| Annual Maintenance     | $25,000          | $30,000          | $20,000          |
+| 3-Year TCO             | $605,000         | $565,000         | $645,000         |
 | Financial Score        | 93.4/100         | 100/100          | 87.6/100         |
 
 (Financial Score = Lowest Bid ÷ Bidder's Bid × 100)
@@ -64,12 +64,12 @@ COMBINED SCORE (Technical 60% + Financial 40%)
 
 RECOMMENDATION: Bidder B
 - Highest combined score (89.8)
-- Lowest 3-year TCO (565M VND)
+- Lowest 3-year TCO ($565K)
 - Strong technical capability with best implementation plan
 
 NOTES:
 - All 3 bidders passed technical threshold (≥70)
-- Bidder B saves 40M VND over 3 years vs Bidder A
+- Bidder B saves $40K over 3 years vs Bidder A
 - Bidder C's lower technical score and highest cost make it least favorable
 ```
 
@@ -105,7 +105,7 @@ Output: A summary table with key metrics and quick recommendation.
 BID ANALYSIS REPORT
 ===================
 Tender: [Tender Title]
-Bid Opening Date: [DD/MM/YYYY]
+Bid Opening Date: [MM/DD/YYYY]
 Number of Bids: [N]
 
 TECHNICAL EVALUATION (Pass threshold: 70/100)

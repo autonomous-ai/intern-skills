@@ -55,12 +55,12 @@ Step 1: Remove Duplicates
 - Formula approach: =UNIQUE(A2:F1000) to extract unique rows
 
 Step 2: Standardize Date Formats
-- Select the date column → Format Cells → Date → Choose DD/MM/YYYY
+- Select the date column → Format Cells → Date → Choose MM/DD/YYYY
 - For text-to-date conversion:
   Excel: =DATEVALUE(A2)
   Google Sheets: =DATEVALUE(A2) or =TO_DATE(A2)
 - If dates are mixed formats (01/03/2026 vs Mar 1, 2026):
-  =TEXT(A2, "DD/MM/YYYY") to standardize output
+  =TEXT(A2, "MM/DD/YYYY") to standardize output
 
 Step 3: Verify
 - Sort by date column to spot remaining inconsistencies
@@ -84,7 +84,7 @@ Step 3: Verify
 - Prefer modern functions (XLOOKUP over VLOOKUP, FILTER over helper columns)
 - Note platform differences when Excel and Google Sheets syntax diverge
 - For large datasets (>10,000 rows), suggest performance-optimized approaches
-- Currency formatting defaults to VND unless specified
+- Currency formatting defaults to USD unless specified
 - Always warn about common pitfalls (date format locale, number-as-text issues)
 
 ## Output Template

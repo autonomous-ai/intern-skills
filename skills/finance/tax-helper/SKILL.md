@@ -1,19 +1,19 @@
 ---
 name: tax-helper
-description: Calculates Vietnamese taxes (VAT, PIT, CIT, FCT, import tax), performs gross-to-net salary conversions, and provides filing checklists with legal citations. Use when the user asks about tax rates, tax calculations, gross-to-net conversion, tax deadlines, or Vietnamese tax regulations.
+description: Calculates US taxes (federal/state income tax, sales tax, corporate tax, excise tax), performs gross-to-net salary conversions, and provides filing checklists with legal citations. Use when the user asks about tax rates, tax calculations, gross-to-net conversion, tax deadlines, or US tax regulations (IRS).
 ---
 
 # Tax Helper
 
 ## Quick Start
-Calculate Vietnamese taxes step by step with legal citations. Supports VAT, Personal Income Tax (PIT), Corporate Income Tax (CIT), Foreign Contractor Tax (FCT), and import tax. All results include a disclaimer recommending confirmation with a certified accountant.
+Calculate US taxes step by step with legal citations. Supports federal/state income tax, sales tax, corporate tax, and excise tax. All results include a disclaimer recommending confirmation with a certified accountant or CPA.
 
 ## Workflow
-1. Identify the tax type: VAT, PIT, CIT, FCT, or Import Tax
+1. Identify the tax type: federal income tax, state income tax, sales tax, corporate tax, or excise tax
 2. Determine the task: calculation, regulation lookup, filing checklist, deadline reminder, or gross/net conversion
-3. Extract inputs: income amount, revenue, number of dependents, goods category, period
+3. Extract inputs: income amount, revenue, filing status, number of dependents, state, period
 4. Load applicable tax rates and legal references
-5. For PIT: apply personal deduction (11,000,000 VND/month) and dependent deduction (4,400,000 VND/person/month)
+5. For federal income tax: apply standard deduction ($14,600 single / $29,200 married filing jointly) and child tax credit ($2,000/child)
 6. Perform step-by-step calculation showing all intermediate results
 7. Cross-verify arithmetic accuracy
 8. Cite legal basis for every rate and deduction
@@ -22,56 +22,53 @@ Calculate Vietnamese taxes step by step with legal citations. Supports VAT, Pers
 ## Examples
 
 **Example 1: Gross-to-net salary**
-Input: "Convert 30,000,000 VND gross salary to net, 1 dependent"
+Input: "Convert $5,000/month gross salary to net, 1 dependent child, single filer"
 Output:
 ```
-TAX CALCULATION: PIT - Gross to Net
-====================================
+TAX CALCULATION: Federal Income Tax - Gross to Net
+====================================================
 
 INPUT
 -----
-- Gross salary: 30,000,000 VND/month
-- Dependents: 1
+- Gross salary: $5,000/month ($60,000/year)
+- Filing status: Single
+- Dependents: 1 child
 
 CALCULATION
 -----------
-Step 1: Social insurance (8%)
-       30,000,000 x 8% = 2,400,000 VND
+Step 1: Social Security tax (6.2%)
+       $5,000 x 6.2% = $310.00
 
-Step 2: Health insurance (1.5%)
-       30,000,000 x 1.5% = 450,000 VND
+Step 2: Medicare tax (1.45%)
+       $5,000 x 1.45% = $72.50
 
-Step 3: Unemployment insurance (1%)
-       30,000,000 x 1% = 300,000 VND
+Step 3: Total FICA deductions
+       $310.00 + $72.50 = $382.50
 
-Step 4: Total insurance deductions
-       2,400,000 + 450,000 + 300,000 = 3,150,000 VND
+Step 4: Standard deduction (annualized monthly)
+       $14,600 / 12 = $1,216.67
 
-Step 5: Personal deduction
-       11,000,000 VND
+Step 5: Taxable income (monthly)
+       $5,000 - $382.50 - $1,216.67 = $3,400.83
 
-Step 6: Dependent deduction
-       4,400,000 x 1 = 4,400,000 VND
+Step 6: Federal income tax (progressive brackets, monthly estimate)
+       $996.67 x 10% = $99.67
+       $2,404.16 x 12% = $288.50
+       Total federal tax = $388.17
 
-Step 7: Taxable income
-       30,000,000 - 3,150,000 - 11,000,000 - 4,400,000 = 11,450,000 VND
-
-Step 8: PIT (progressive brackets)
-       5,000,000 x 5% = 250,000
-       5,000,000 x 10% = 500,000
-       1,450,000 x 15% = 217,500
-       Total PIT = 967,500 VND
+Step 7: Child tax credit (monthly)
+       $2,000 / 12 = $166.67
 
 RESULT
 ------
-Net salary:      25,882,500 VND
-Total deductions: 4,117,500 VND
-Effective rate:   3.2%
+Net salary:      $3,895.50/month
+Total deductions: $1,104.50/month
+Effective rate:   8.3%
 
 LEGAL BASIS
 -----------
-- Circular 111/2013/TT-BTC on PIT guidelines
-- Law on Social Insurance 58/2014/QH13
+- IRS Publication 15 (Circular E) on employer tax guide
+- FICA (Federal Insurance Contributions Act) - 26 USC §3101
 
 DISCLAIMER
 ----------
@@ -79,36 +76,37 @@ These results are for reference purposes only. Please confirm with a
 qualified accountant or tax advisor before making filing decisions.
 ```
 
-**Example 2: VAT calculation**
-Input: "Calculate 10% VAT on a 50,000,000 VND consulting service"
+**Example 2: Sales tax calculation**
+Input: "Calculate sales tax on a $5,000 consulting service in California"
 Output:
 ```
-TAX CALCULATION: VAT
-====================
+TAX CALCULATION: Sales Tax
+==========================
 
 INPUT
 -----
 - Service: Consulting
-- Amount before VAT: 50,000,000 VND
-- VAT rate: 10%
+- Amount before tax: $5,000.00
+- State: California
+- Sales tax rate: 7.25% (state base rate; local rates may apply)
 
 CALCULATION
 -----------
-Step 1: VAT amount
-       50,000,000 x 10% = 5,000,000 VND
+Step 1: Sales tax amount
+       $5,000.00 x 7.25% = $362.50
 
-Step 2: Total amount including VAT
-       50,000,000 + 5,000,000 = 55,000,000 VND
+Step 2: Total amount including sales tax
+       $5,000.00 + $362.50 = $5,362.50
 
 RESULT
 ------
-VAT payable:     5,000,000 VND
-Total with VAT:  55,000,000 VND
+Sales tax payable: $362.50
+Total with tax:    $5,362.50
 
 LEGAL BASIS
 -----------
-- Law on VAT 13/2008/QH12 (amended)
-- Decree 209/2013/ND-CP
+- California Revenue and Taxation Code
+- Note: Local district taxes may increase the effective rate
 
 DISCLAIMER
 ----------
@@ -118,26 +116,28 @@ qualified accountant or tax advisor before making filing decisions.
 
 ## Tools
 - Use `Read` to load tax rate tables, regulation references, and filing checklists
-- Use `Grep` to search for specific tax regulations, HS codes, or industry-specific rates
+- Use `Grep` to search for specific tax regulations, IRS publications, or industry-specific rates
 - Use `Bash` to perform multi-step tax calculations and bracket computations
 - Use `Write` to save tax computation worksheets or filing checklists
 
 ## Error Handling
 - If tax type cannot be determined -> present supported tax types and ask user to specify
-- If required inputs are missing (income, dependents, goods category) -> ask user to provide them
+- If required inputs are missing (income, filing status, state) -> ask user to provide them
 - If user references an outdated regulation -> apply the current regulation and cite the update
 - If calculation produces an unexpected result (negative tax, invalid rate) -> recheck inputs and flag the anomaly
 
 ## Rules
-- Always apply the latest Vietnamese tax regulations in force
-- Cite legal basis (circular, decree number) for every rate and deduction
+- Always apply the latest US tax regulations (IRS) in force
+- Cite legal basis (IRS publication, USC section) for every rate and deduction
 - Include disclaimer on every output: results are for reference only
-- PIT deductions: personal 11,000,000 VND/month, dependent 4,400,000 VND/person/month
-- VAT supported rates: 0%, 5%, 8%, 10%
-- CIT standard rate: 20%
+- Federal income tax standard deduction: $14,600 (single) / $29,200 (married filing jointly)
+- Child tax credit: $2,000 per qualifying child
+- FICA: Social Security 6.2% (up to wage base limit), Medicare 1.45%
+- US corporate tax rate: 21%
+- Sales tax rates vary by state and locality
 - Show all intermediate calculation steps
-- Default currency is VND; support USD conversions when requested
-- Remind about filing deadlines when relevant (5 days before due date)
+- Default currency is USD
+- Remind about filing deadlines when relevant (April 15 for individual returns)
 
 ## Output Template
 ```
@@ -163,7 +163,7 @@ Effective rate:  [Effective tax percentage]%
 
 LEGAL BASIS
 -----------
-- [Circular/Decree number and description]
+- [IRS Publication / USC section and description]
 
 DEADLINES
 ---------

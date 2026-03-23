@@ -25,7 +25,7 @@ Output:
 VENDOR EVALUATION
 =================
 Category: Office Supplies
-Evaluation Date: 23/03/2026
+Evaluation Date: 03/23/2026
 Evaluator: [User]
 
 CRITERIA & WEIGHTS
@@ -86,14 +86,14 @@ Output: A detailed single-vendor scorecard with pass/fail recommendation.
 - Flag any vendor with a score below 5 on any criterion as a concern
 - For tied scores, recommend based on the highest-weighted criterion
 - Include both quantitative scores and qualitative observations
-- Currency comparisons in VND unless otherwise specified
+- Currency comparisons in USD unless otherwise specified
 
 ## Output Template
 ```
 VENDOR EVALUATION
 =================
 Category: [Product/Service Category]
-Evaluation Date: [DD/MM/YYYY]
+Evaluation Date: [MM/DD/YYYY]
 
 VENDOR SCORECARD
 ----------------
