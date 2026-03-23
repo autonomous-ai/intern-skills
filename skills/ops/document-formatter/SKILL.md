@@ -18,7 +18,7 @@ Create structured, professionally formatted business documents. Determine the do
 ## Examples
 
 **Example 1: Official Letter**
-Input: "Format an official letter from the HR department to all employees about the new remote work policy effective April 1, 2026. Signed by Director Nguyen Van A."
+Input: "Format an official letter from the HR department to all employees about the new remote work policy effective April 1, 2026. Signed by Director James Anderson."
 Output:
 ```
 [Document Type]: Internal Official Letter
@@ -41,7 +41,7 @@ I. Purpose
    b. Requests must be submitted via the HR portal 48 hours in advance.
 
 Signatory:
-Nguyen Van A
+James Anderson
 Director, Human Resources
 
 [Page 1 of 1]

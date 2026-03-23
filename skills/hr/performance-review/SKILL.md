@@ -23,10 +23,10 @@ Create structured performance reviews using a weighted criteria model (Performan
 ## Examples
 
 **Example 1: Manager review**
-Input: "Write a performance review for Tom Nguyen, Software Engineer, for Q4 2025. He completed 4/5 OKRs, led the API migration project, but needs to improve documentation."
+Input: "Write a performance review for Tom Wilson, Software Engineer, for Q4 2025. He completed 4/5 OKRs, led the API migration project, but needs to improve documentation."
 Output:
 ```
-Performance Review: Tom Nguyen
+Performance Review: Tom Wilson
 Review Period: Q4 2025
 Position: Software Engineer - Engineering
 Manager: [Manager Name]
