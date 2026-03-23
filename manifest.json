@@ -16,13 +16,14 @@
         "office manager"
       ],
       "skills_zip": "ops.zip",
-      "description": "Document formatting, meeting scheduling, inventory tracking, travel planning, operational reports",
+      "description": "Document formatting, meeting scheduling, inventory tracking, travel planning, operational reports, SOP creation",
       "skills": [
         "document-formatter",
         "meeting-scheduler",
         "inventory-tracker",
         "travel-planner",
-        "report-generator"
+        "report-generator",
+        "sop-creator"
       ]
     },
     "finance": {
@@ -40,13 +41,14 @@
         "cfo"
       ],
       "skills_zip": "finance.zip",
-      "description": "Expense tracking, invoicing, budget planning, tax assistance, financial reporting",
+      "description": "Expense tracking, invoicing, budget planning, tax assistance, financial reporting, payroll calculation",
       "skills": [
         "expense-tracker",
         "invoice-generator",
         "budget-planner",
         "tax-helper",
-        "financial-report"
+        "financial-report",
+        "payroll-helper"
       ]
     },
     "hr": {
@@ -64,13 +66,15 @@
         "people"
       ],
       "skills_zip": "hr.zip",
-      "description": "Resume screening, interview scheduling, onboarding, policy lookup, performance reviews",
+      "description": "Resume screening, interview scheduling, onboarding, policy lookup, performance reviews, leave management, training planning",
       "skills": [
         "resume-screener",
         "interview-scheduler",
         "onboarding-checklist",
         "policy-lookup",
-        "performance-review"
+        "performance-review",
+        "leave-manager",
+        "training-planner"
       ]
     },
     "pm": {
@@ -215,6 +219,78 @@
         "crm-helper",
         "follow-up-drafter",
         "competitor-briefer"
+      ]
+    },
+    "legal": {
+      "label": "Legal / Compliance",
+      "keywords": [
+        "legal",
+        "lawyer",
+        "compliance",
+        "contract",
+        "regulatory",
+        "counsel",
+        "paralegal",
+        "legal officer",
+        "corporate counsel",
+        "law"
+      ],
+      "skills_zip": "legal.zip",
+      "description": "Contract review, NDA drafting, compliance checking, legal document summarization, clause extraction",
+      "skills": [
+        "contract-reviewer",
+        "nda-drafter",
+        "compliance-checker",
+        "legal-summarizer",
+        "clause-extractor"
+      ]
+    },
+    "data": {
+      "label": "Data / BI Analyst",
+      "keywords": [
+        "data analyst",
+        "data",
+        "bi",
+        "business intelligence",
+        "analytics",
+        "reporting",
+        "dashboard",
+        "sql",
+        "data scientist",
+        "bi analyst"
+      ],
+      "skills_zip": "data.zip",
+      "description": "Data summarization, chart generation, SQL queries, KPI tracking, data cleaning",
+      "skills": [
+        "data-summarizer",
+        "chart-generator",
+        "sql-helper",
+        "kpi-tracker",
+        "data-cleaner"
+      ]
+    },
+    "procurement": {
+      "label": "Procurement / Purchasing",
+      "keywords": [
+        "procurement",
+        "purchasing",
+        "buyer",
+        "vendor management",
+        "supply chain",
+        "sourcing",
+        "tender",
+        "bidding",
+        "purchase officer",
+        "mua hàng"
+      ],
+      "skills_zip": "procurement.zip",
+      "description": "Vendor evaluation, purchase order generation, price comparison, supplier tracking, bid analysis",
+      "skills": [
+        "vendor-evaluator",
+        "po-generator",
+        "price-comparator",
+        "supplier-tracker",
+        "bid-analyzer"
       ]
     }
   }
