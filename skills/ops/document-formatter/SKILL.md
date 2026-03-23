@@ -22,19 +22,19 @@ Input: "Format an official letter from the HR department to all employees about 
 Output:
 ```
 [Document Type]: Internal Official Letter
-Date Created: 18/03/2026
+Date Created: 03/18/2026
 
 ---
 [COMPANY NAME]
 
 Ref: HR-2026/03-001
-Date: 18/03/2026
+Date: 03/18/2026
 
 To: All Employees
 Subject: New Remote Work Policy
 
 I. Purpose
-   This letter announces the updated Remote Work Policy effective 01/04/2026.
+   This letter announces the updated Remote Work Policy effective 04/01/2026.
 
 1. Policy Summary
    a. Employees may work remotely up to 3 days per week.
@@ -52,11 +52,11 @@ Input: "Create meeting minutes for the Q1 budget review held on March 15, 2026, 
 Output:
 ```
 [Document Type]: Meeting Minutes
-Date Created: 15/03/2026
+Date Created: 03/15/2026
 
 ---
 Meeting Minutes: Q1 Budget Review
-Date/Time: 15/03/2026, 09:00 - 10:00
+Date/Time: 03/15/2026, 09:00 - 10:00
 Location: Conference Room A
 Attendees: Finance Team, Operations Team
 
@@ -87,7 +87,7 @@ III. Action Items
 - If content contains ambiguous or conflicting information → highlight the discrepancy and ask for clarification
 
 ## Rules
-- Vietnamese documents: Times New Roman 13pt, 1.5 line spacing, A4 paper size
+- US business documents: Times New Roman 12pt, single or 1.15 line spacing, Letter (8.5×11 in) paper size
 - Every document must include clear section numbering (I, 1, a, -) and consistent header/footer
 - Always include a header (company name) and footer (page number)
 - Use formal language for official and administrative documents -- no colloquial expressions
@@ -96,7 +96,7 @@ III. Action Items
 ## Output Template
 ```
 [Document Type]: [Title]
-Date Created: [DD/MM/YYYY]
+Date Created: [MM/DD/YYYY]
 Pages: [N]
 
 ---

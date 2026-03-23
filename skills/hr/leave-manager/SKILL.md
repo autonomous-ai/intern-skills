@@ -1,12 +1,12 @@
 ---
 name: leave-manager
-description: Manages employee leave requests, tracks balances, calculates entitlements, and maintains leave calendars. Use when the user asks to process a leave request, check leave balance, plan team coverage, or calculate leave entitlements per Vietnamese labor law.
+description: Manages employee leave requests, tracks balances, calculates entitlements, and maintains leave calendars. Use when the user asks to process a leave request, check leave balance, plan team coverage, or calculate leave entitlements per FMLA and company policy.
 ---
 
 # Leave Manager
 
 ## Quick Start
-Process leave requests, track balances, and ensure compliance with Vietnamese labor law leave entitlements. Maintain team coverage visibility and flag potential conflicts.
+Process leave requests, track balances, and ensure compliance with FMLA, applicable state laws, and company policy leave entitlements. Maintain team coverage visibility and flag potential conflicts.
 
 ## Workflow
 1. Identify action: submit request, check balance, approve/reject, plan coverage, calculate entitlements
@@ -19,7 +19,7 @@ Process leave requests, track balances, and ensure compliance with Vietnamese la
 ## Examples
 
 **Example 1: Leave Request Processing**
-Input: "Employee John Smith requests 3 days of annual leave from 25-27/03/2026"
+Input: "Employee John Smith requests 3 days of PTO from 03/25-03/27/2026"
 Output:
 ```
 LEAVE REQUEST
@@ -27,28 +27,28 @@ LEAVE REQUEST
 Employee:    John Smith
 Employee ID: [ID]
 Department:  [Department]
-Request Date: 23/03/2026
+Request Date: 03/23/2026
 
 REQUEST DETAILS
 ---------------
-Leave Type:   Annual Leave
-Period:       25/03/2026 — 27/03/2026 (3 working days)
+Leave Type:   PTO (Paid Time Off)
+Period:       03/25/2026 — 03/27/2026 (3 working days)
 Days Requested: 3
 
 BALANCE CHECK
 -------------
 | Leave Type    | Entitlement | Used | Pending | Remaining |
 |---------------|-------------|------|---------|-----------|
-| Annual Leave  | 12 days     | 4    | 3       | 5         |
-| Sick Leave    | —           | 1    | 0       | Per policy|
+| PTO           | 15 days     | 4    | 3       | 8         |
+| Sick Leave    | Per policy  | 1    | 0       | Per policy|
 | Personal Leave| 3 days      | 0    | 0       | 3         |
 
-Status: ✅ Sufficient balance (5 days remaining after this request)
+Status: ✅ Sufficient balance (8 days remaining after this request)
 
 COVERAGE CHECK
 --------------
-Team members on leave 25-27/03:
-- Jane Doe: 25/03 (1 day)
+Team members on leave 03/25-03/27:
+- Jane Doe: 03/25 (1 day)
 - No other conflicts
 
 Coverage: ✅ Adequate — 80% team available
@@ -63,19 +63,21 @@ RECOMMENDATION: Approve — sufficient balance and no coverage issues.
 ```
 
 **Example 2: Entitlement Calculation**
-Input: "Calculate annual leave for an employee with 8 years of seniority"
+Input: "Calculate leave entitlements for an employee with 8 years of tenure"
 Output:
 ```
 LEAVE ENTITLEMENT
 =================
-Per Vietnamese Labor Code 2019:
+Per company policy and applicable federal/state law:
 
-Base annual leave: 12 days/year
-Seniority bonus: +1 day per 5 years of service
-Employee seniority: 8 years → +1 bonus day
+PTO: per company policy (typical 10-15 days/year; no federal mandate)
+Tenure adjustments: varies by company policy
+Employee tenure: 8 years → check company handbook for additional PTO accrual
 
-Total Annual Leave: 13 days/year
-Public Holidays: 11 days/year (per government decree)
+Total PTO: per company policy
+Federal holidays: 11 days/year (per 5 USC 6103)
+FMLA: 12 weeks unpaid, job-protected leave (if eligible — 12+ months employed, 1,250+ hours worked, 50+ employees within 75 miles)
+State paid family leave: check applicable state law (CA, NY, NJ, WA, and others offer paid programs)
 ```
 
 ## Tools
@@ -91,11 +93,11 @@ Public Holidays: 11 days/year (per government decree)
 - If dates include public holidays → exclude them from the working day count
 
 ## Rules
-- Vietnamese Labor Code 2019 base entitlements: 12 days annual leave, +1 day per 5 years seniority
-- Public holidays per government decree (currently 11 days/year)
-- Sick leave requires medical certificate for absences >2 consecutive days
-- Maternity leave: 6 months (female employees per labor law)
-- Paternity leave: 5-7 days depending on circumstances
+- PTO: per company policy (typical 10-15 days/year; no federal mandate); tenure-based accrual varies by company
+- Federal holidays: 11 days/year (per 5 USC 6103)
+- Sick leave per company policy and applicable state/local sick leave laws
+- FMLA: 12 weeks unpaid, job-protected leave for qualifying events (birth/adoption, serious health condition, family member care); some states (CA, NY, NJ, WA) offer paid family leave
+- Parental leave: FMLA 12 weeks unpaid (same entitlement for both parents); some companies offer separate paid parental leave
 - Leave requests must be submitted at least 3 working days in advance (except emergencies)
 - Always check team coverage before recommending approval
 - Weekend days (Sat/Sun) are excluded from working day calculations

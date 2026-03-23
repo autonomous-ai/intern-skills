@@ -19,36 +19,36 @@ Plan complete business trips with multi-tier options for transport and accommoda
 ## Examples
 
 **Example 1: Domestic Trip**
-Input: "Plan a 2-day business trip to Da Nang for 2 people, March 25-26. Budget around 10 million VND."
+Input: "Plan a 2-day business trip to Chicago for 2 people, March 25-26. Budget around $2,500."
 Output:
 ```
-Business Trip Plan: Da Nang
+Business Trip Plan: Chicago
 ---------------------------------------
-Dates:      25/03/2026 - 26/03/2026
+Dates:      03/25/2026 - 03/26/2026
 Travelers:  2
 Purpose:    [To be confirmed]
 
 Transportation Options:
-| Option | Type   | Departure       | Arrival         | Price/person | Notes          |
-|--------|--------|-----------------|-----------------|-------------|----------------|
-| A      | Flight | 25/03 06:00 HCM | 25/03 07:20 DAD | 1,200,000   | VietJet early  |
-| B      | Flight | 25/03 08:00 HCM | 25/03 09:20 DAD | 1,800,000   | VNA morning    |
-| C      | Flight | 25/03 18:30 HCM | 25/03 19:50 DAD | 1,500,000   | VNA evening    |
+| Option | Type   | Departure          | Arrival            | Price/person | Notes             |
+|--------|--------|--------------------|--------------------|-------------|-------------------|
+| A      | Flight | 03/25 06:00 JFK    | 03/25 08:30 ORD    | $180        | Southwest early   |
+| B      | Flight | 03/25 08:00 JFK    | 03/25 10:20 ORD    | $280        | United morning    |
+| C      | Flight | 03/25 18:30 JFK    | 03/25 20:50 ORD    | $220        | Delta evening     |
 
 Accommodation Options:
-| Option | Hotel           | Location | Per Night | Rating | Includes         |
-|--------|-----------------|----------|-----------|--------|------------------|
-| A      | Fivitel Hotel   | 1.2 km   | 800,000   | 3*     | WiFi, breakfast  |
-| B      | Sala Danang     | 0.5 km   | 1,500,000 | 4*     | WiFi, breakfast  |
+| Option | Hotel              | Location | Per Night | Rating | Includes         |
+|--------|--------------------|----------|-----------|--------|------------------|
+| A      | Hampton Inn        | 1.2 mi   | $140      | 3*     | WiFi, breakfast  |
+| B      | Hilton Chicago     | 0.5 mi   | $230      | 4*     | WiFi, breakfast  |
 
 Cost Estimate (2 travelers):
-  Transportation:      4,800,000
-  Accommodation:       1,600,000
-  Meals:               1,200,000
-  Local Transport:       400,000
-  Contingency (10%):     800,000
+  Transportation:      $720
+  Accommodation:       $280
+  Meals:               $200
+  Local Transport:     $80
+  Contingency (10%):   $128
   -------------------------
-  TOTAL:               8,800,000
+  TOTAL:               $1,408
 
 Pre-Trip Checklist:
   [ ] Travel approval obtained
@@ -65,11 +65,12 @@ Output:
 ```
 Business Trip Plan: Singapore
 ---------------------------------------
-Dates:      10/04/2026 - 13/04/2026
+Dates:      04/10/2026 - 04/13/2026
 Travelers:  1
 Purpose:    Conference attendance
 
-Note: Visa requirement check - Vietnam passport holders need a visa for Singapore.
+Note: US passport holders: check visa requirements for destination country.
+      Singapore allows visa-free entry for US citizens (up to 90 days).
       Added to pre-departure checklist.
 
 [Transportation options, accommodation options, itinerary, cost estimate, and checklist follow same format]

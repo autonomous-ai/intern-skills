@@ -11,7 +11,7 @@ Generate structured Purchase Orders with vendor details, line items, pricing, de
 ## Workflow
 1. Gather PO details: vendor, requester, department, delivery date
 2. Collect line items: item description, quantity, unit price, specifications
-3. Calculate subtotals, taxes (VAT 10% default), and grand total
+3. Calculate subtotals, taxes (sales tax, varies by state), and grand total
 4. Determine approval level based on total amount
 5. Generate the formatted PO document
 6. Flag any items requiring special procurement procedures
@@ -19,13 +19,13 @@ Generate structured Purchase Orders with vendor details, line items, pricing, de
 ## Examples
 
 **Example 1: Standard PO**
-Input: "Create a PO to purchase 50 office desk and chair sets from ABC Furniture Co., unit price 3,500,000 VND/set"
+Input: "Create a PO to purchase 50 office desk and chair sets from ABC Furniture Co., unit price $350/set"
 Output:
 ```
 PURCHASE ORDER
 ==============
 PO Number: PO-2026-[AUTO]
-Date: 23/03/2026
+Date: 03/23/2026
 Status: Draft — Pending Approval
 
 FROM (Buyer):
@@ -40,7 +40,7 @@ TO (Vendor):
 
 DELIVERY
 --------
-  Required Date: [DD/MM/YYYY]
+  Required Date: [MM/DD/YYYY]
   Location: [Delivery Address]
   Terms: [FOB / CIF / DAP]
 
@@ -48,18 +48,18 @@ LINE ITEMS
 ----------
 | # | Description          | Qty | Unit Price     | Total           |
 |---|----------------------|-----|----------------|-----------------|
-| 1 | Office desk and chair set | 50  | 3,500,000 VND  | 175,000,000 VND |
+| 1 | Office desk and chair set | 50  | $350.00        | $17,500.00      |
 |---|----------------------|-----|----------------|-----------------|
-|   | Subtotal             |     |                | 175,000,000 VND |
-|   | VAT (10%)            |     |                |  17,500,000 VND |
-|   | GRAND TOTAL          |     |                | 192,500,000 VND |
+|   | Subtotal             |     |                | $17,500.00      |
+|   | Sales Tax (varies)   |     |                | [Based on state] |
+|   | GRAND TOTAL          |     |                | [Subtotal + Tax] |
 
 PAYMENT TERMS: Net 30 days upon delivery and inspection
 
 APPROVAL REQUIRED:
-- [x] Department Manager (≤200M VND)
-- [ ] Finance Director (>200M VND)
-- [ ] CEO (>500M VND)
+- [x] Department Manager (≤$100,000)
+- [ ] Finance Director (>$100,000)
+- [ ] CEO (>$250,000)
 
 NOTES:
 - Warranty: [Specify warranty terms]
@@ -68,7 +68,7 @@ NOTES:
 
 ---
 Prepared by: [Requester Name]
-Date: 23/03/2026
+Date: 03/23/2026
 ```
 
 **Example 2: Multi-Item PO**
@@ -83,25 +83,25 @@ Output: A multi-line PO with USD pricing, subtotals per line, and total with app
 ## Error Handling
 - If vendor details are missing → create PO with placeholders and list required fields
 - If unit price not specified → leave blank and flag for pricing confirmation
-- If tax rate unclear → default to VAT 10% and note the assumption
+- If tax rate unclear → default to applicable state sales tax and note the assumption
 - If delivery date not specified → flag as required before submission
 
 ## Rules
 - PO numbers follow format: PO-YYYY-[sequential]
-- Default tax: VAT 10% for Vietnam; specify if different
-- Approval thresholds: ≤200M (Dept Manager), >200M (Finance Director), >500M (CEO)
+- Default tax: Sales tax (varies by state); specify if different
+- Approval thresholds: ≤$100,000 (Dept Manager), >$100,000 (Finance Director), >$250,000 (CEO)
 - All amounts must show subtotal, tax, and grand total
 - Always include: vendor details, line items, delivery terms, payment terms
-- Currency defaults to VND; support USD with exchange rate note
+- Currency defaults to USD
 - Quantities must be positive whole numbers
-- Flag items over 100M VND individually for asset tracking
+- Flag items over $5,000 individually for asset tracking
 
 ## Output Template
 ```
 PURCHASE ORDER
 ==============
 PO Number: PO-[YYYY]-[NNN]
-Date: [DD/MM/YYYY]
+Date: [MM/DD/YYYY]
 Status: Draft — Pending Approval
 
 FROM (Buyer):
@@ -116,7 +116,7 @@ LINE ITEMS
 |---|-------------|-----|------------|-------|
 | [N] | [Item] | [Qty] | [Price] | [Total] |
 |   | Subtotal    |     |            | [Amount] |
-|   | VAT ([%])   |     |            | [Amount] |
+|   | Sales Tax ([%]) |     |            | [Amount] |
 |   | GRAND TOTAL |     |            | [Amount] |
 
 PAYMENT TERMS: [Terms]

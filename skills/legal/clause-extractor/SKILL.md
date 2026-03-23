@@ -25,7 +25,7 @@ Output:
 CLAUSE EXTRACTION
 =================
 Document: Vendor Service Agreement — ABC Corp
-Date Extracted: 23/03/2026
+Date Extracted: 03/23/2026
 
 PAYMENT CLAUSES
 ---------------
@@ -111,7 +111,7 @@ uptime guarantee and most generous credit structure.
 CLAUSE EXTRACTION
 =================
 Document: [Document title]
-Date Extracted: [DD/MM/YYYY]
+Date Extracted: [MM/DD/YYYY]
 
 [CLAUSE TYPE]
 -------------

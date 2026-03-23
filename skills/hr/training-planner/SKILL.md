@@ -69,11 +69,11 @@ BUDGET ESTIMATE
 ---------------
 | Item              | Cost            |
 |-------------------|-----------------|
-| External Trainer  | 15,000,000 VND  |
-| Materials         | 2,000,000 VND   |
+| External Trainer  | $3,000          |
+| Materials         | $500            |
 | Room & Equipment  | Internal        |
-| Certificates      | 500,000 VND     |
-| TOTAL             | 17,500,000 VND  |
+| Certificates      | $100            |
+| TOTAL             | $3,600          |
 ```
 
 **Example 2: Individual Development Plan**

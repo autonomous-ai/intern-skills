@@ -23,7 +23,7 @@ Build and analyze budget plans for any scope (company, department, project) and 
 ## Examples
 
 **Example 1: Quarterly department budget**
-Input: "Create a Q2 2026 budget for the Marketing department, total 200M VND"
+Input: "Create a Q2 2026 budget for the Marketing department, total $200K"
 Output:
 ```
 BUDGET PLAN: Q2/2026 - Marketing Department
@@ -31,21 +31,21 @@ BUDGET PLAN: Q2/2026 - Marketing Department
 
 SUMMARY
 -------
-Total Budget:        200,000K VND
-Contingency (10%):   20,000K VND
-Allocable Budget:    180,000K VND
+Total Budget:        $200,000.00
+Contingency (10%):   $20,000.00
+Allocable Budget:    $180,000.00
 
 DETAIL BY CATEGORY
 ------------------
-| Category          | Type     | Planned    |
-|-------------------|----------|------------|
-| Digital Ads       | Variable | 70,000K    |
-| Events            | Variable | 40,000K    |
-| Content Creation  | Variable | 30,000K    |
-| Staff Salaries    | Fixed    | 25,000K    |
-| Software/Tools    | Fixed    | 10,000K    |
-| Print Materials   | Variable | 5,000K     |
-| TOTAL             |          | 180,000K   |
+| Category          | Type     | Planned      |
+|-------------------|----------|--------------|
+| Digital Ads       | Variable | $70,000.00   |
+| Events            | Variable | $40,000.00   |
+| Content Creation  | Variable | $30,000.00   |
+| Staff Salaries    | Fixed    | $25,000.00   |
+| Software/Tools    | Fixed    | $10,000.00   |
+| Print Materials   | Variable | $5,000.00    |
+| TOTAL             |          | $180,000.00  |
 
 RECOMMENDATIONS
 ---------------
@@ -63,13 +63,13 @@ BUDGET PLAN: Jan/2026 - IT Department (Variance Analysis)
 
 DETAIL BY CATEGORY
 ------------------
-| Category        | Type     | Planned  | Actual   | Variance  | % Used |
-|-----------------|----------|----------|----------|-----------|--------|
-| Cloud Services  | Variable | 15,000K  | 18,200K  | +3,200K   | 121%   |
-| Staff Salaries  | Fixed    | 40,000K  | 40,000K  | 0         | 100%   |
-| Equipment       | Variable | 10,000K  | 6,500K   | -3,500K   | 65%    |
-| Software        | Fixed    | 8,000K   | 8,000K   | 0         | 100%   |
-| TOTAL           |          | 73,000K  | 72,700K  | -300K     | 99.6%  |
+| Category        | Type     | Planned     | Actual      | Variance    | % Used |
+|-----------------|----------|-------------|-------------|-------------|--------|
+| Cloud Services  | Variable | $15,000.00  | $18,200.00  | +$3,200.00  | 121%   |
+| Staff Salaries  | Fixed    | $40,000.00  | $40,000.00  | $0.00       | 100%   |
+| Equipment       | Variable | $10,000.00  | $6,500.00   | -$3,500.00  | 65%    |
+| Software        | Fixed    | $8,000.00   | $8,000.00   | $0.00       | 100%   |
+| TOTAL           |          | $73,000.00  | $72,700.00  | -$300.00    | 99.6%  |
 
 WARNINGS
 --------
@@ -100,7 +100,7 @@ RECOMMENDATIONS
 - Trigger early warning when any category exceeds 70% of monthly budget
 - Use abbreviated formats: thousands (K), millions (M), billions (B)
 - Category totals must sum to the overall budget total
-- Round to nearest thousand for VND; two decimal places for USD
+- Round to two decimal places for USD
 
 ## Output Template
 ```

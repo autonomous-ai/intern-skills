@@ -26,11 +26,11 @@ Output:
 ## Activity Log
 - Type: Meeting (Demo)
 - Contact: Sarah Chen, NovaTech
-- Date: 18/03/2026
+- Date: 03/18/2026
 - Duration: 45 minutes
 - Outcome: Completed
 - Key Notes: Positive response to reporting features. Strong interest in dashboard customization.
-- Next Step: Send proposal — 21/03/2026
+- Next Step: Send proposal — 03/21/2026
 
 Deal Update: NovaTech moved from Qualified → Proposal Sent
 ```
@@ -80,7 +80,7 @@ Sales Pipeline Overview — Q1 2026
 - Flag stale deals (30+ days without activity) for review: re-engage, downgrade, or close lost
 - Forecast probabilities must be evidence-based — never inflated to meet targets
 - CRM is the single source of truth — all sales info must be recorded
-- Consistent formatting: currency in one format, dates as DD/MM/YYYY, deal names as [Company - Product/Service]
+- Consistent formatting: currency in one format, dates as MM/DD/YYYY, deal names as [Company - Product/Service]
 - Log activities immediately — details degrade over time
 
 ## Output Template
@@ -111,7 +111,7 @@ Sales Pipeline Overview
 ## Activity Log
 - Type: [Call / Email / Meeting / Demo]
 - Contact: [Name]
-- Date: [DD/MM/YYYY]
+- Date: [MM/DD/YYYY]
 - Duration: [Minutes]
 - Outcome: [Result]
 - Key Notes: [Summary]

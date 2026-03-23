@@ -19,44 +19,46 @@ Convert complex legal documents into clear, structured plain-language summaries.
 ## Examples
 
 **Example 1: Regulation Summary**
-Input: "Summarize Decree 13/2023 on personal data protection"
+Input: "Summarize the CCPA (California Consumer Privacy Act)"
 Output:
 ```
 LEGAL SUMMARY
 =============
-Document: Decree 13/2023/ND-CP — Personal Data Protection
-Issued: 17/04/2023 | Effective: 01/07/2023
-Issuer: Government of Vietnam
+Document: CCPA — California Consumer Privacy Act (California Civil Code §1798.100 et seq.)
+Signed: 06/28/2018 | Effective: 01/01/2020 | Amended by CPRA: 01/01/2023
+Issuer: State of California / California Legislature
 
 PURPOSE:
-Establishes the legal framework for personal data protection in Vietnam,
-covering collection, processing, storage, and transfer of personal data.
+Establishes comprehensive consumer privacy rights for California residents,
+covering collection, use, sharing, and sale of personal information by businesses.
 
 KEY DEFINITIONS:
-- Personal Data: Information that identifies or can identify an individual
-- Sensitive Data: political views, health, finances, biometrics, location, etc.
-- Data Controller: Entity that decides purpose and means of processing
-- Data Processor: Entity that processes data on behalf of a controller
+- Personal Information: Information that identifies, relates to, or could be linked to a consumer or household
+- Sensitive Personal Information: SSN, financial accounts, precise geolocation, race/ethnicity, biometrics, health data, etc.
+- Business: For-profit entity meeting revenue/data thresholds that collects consumers' personal information
+- Service Provider: Entity that processes personal information on behalf of a business
 
 KEY OBLIGATIONS:
-1. Consent: Must obtain consent before collecting/processing personal data
-2. Impact Assessment: Required for processing sensitive data
-3. Registration: Data controllers/processors of sensitive data must register
-   with the Ministry of Public Security
-4. Breach Notification: Must notify within 72 hours of discovering a breach
-5. Cross-border Transfer: Requires impact assessment and filing with authorities
+1. Right to Know: Consumers can request what personal information is collected and how it is used
+2. Right to Delete: Consumers can request deletion of their personal information
+3. Right to Opt-Out: Consumers can opt out of the sale or sharing of their personal information
+4. Non-Discrimination: Businesses cannot discriminate against consumers who exercise their CCPA rights
+5. Privacy Notice: Must provide a clear, conspicuous privacy policy at or before the point of collection
+6. Data Security: Must implement reasonable security procedures and practices
 
 PENALTIES:
-- Administrative fines per related decrees on administrative violations
-- Criminal liability for serious violations under the Penal Code
+- Civil penalties up to $2,500 per violation or $7,500 per intentional violation,
+  enforced by the California Attorney General / California Privacy Protection Agency
+- Private right of action for data breaches: $100–$750 per consumer per incident
 
 IMPORTANT DEADLINES:
-- Compliance required from 01/07/2023
-- Existing data processing activities must be brought into compliance
+- CCPA effective 01/01/2020; CPRA amendments effective 01/01/2023
+- Businesses must respond to consumer requests within 45 days
 
 WHO THIS AFFECTS:
-All organizations and individuals in Vietnam processing personal data,
-and foreign entities processing data of Vietnamese citizens.
+Businesses that collect personal information of California residents and meet
+one or more thresholds: $25M+ annual revenue, buy/sell/share data of 100,000+
+consumers/households, or derive 50%+ of revenue from selling/sharing personal information.
 
 ---
 ⚠️ This is a plain-language summary for informational purposes only.

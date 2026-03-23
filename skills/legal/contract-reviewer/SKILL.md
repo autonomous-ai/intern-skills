@@ -26,7 +26,7 @@ CONTRACT REVIEW
 ===============
 Type: Service Agreement
 Parties: [Company] ↔ [IT Vendor]
-Effective Date: 01/04/2026
+Effective Date: 04/01/2026
 Duration: 24 months, auto-renewal
 
 KEY TERMS
@@ -46,7 +46,7 @@ RISK SUMMARY
 HIGH RISK:
 1. No liability cap — company exposed to unlimited damages
 2. Vendor retains all IP — including customizations built for your use case
-3. No data protection clause — non-compliant with PDPA/GDPR
+3. No data protection clause — non-compliant with CCPA/GDPR
 
 MEDIUM RISK:
 4. 99.5% SLA is below industry standard (99.9%)

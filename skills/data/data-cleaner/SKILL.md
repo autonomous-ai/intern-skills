@@ -35,7 +35,7 @@ ISSUES FOUND
 | 2  | Missing values           | phone        | 342   | Medium   |
 | 3  | Missing values           | email        | 89    | Medium   |
 | 4  | Inconsistent date format | created_date | 1,205 | HIGH     |
-|    |   (DD/MM/YYYY vs MM/DD)  |              |       |          |
+|    |   (MM/DD/YYYY vs DD/MM)  |              |       |          |
 | 5  | Invalid email format     | email        | 45    | Medium   |
 | 6  | Extra whitespace         | name         | 892   | Low      |
 | 7  | Inconsistent casing      | city         | 318   | Low      |
@@ -50,10 +50,10 @@ Step 1: Remove exact duplicates
             SELECT MIN(id) FROM customers GROUP BY email, phone
           )
 
-Step 2: Standardize date format → DD/MM/YYYY
-  Excel:  =TEXT(DATEVALUE(A2), "DD/MM/YYYY")
+Step 2: Standardize date format → MM/DD/YYYY
+  Excel:  =TEXT(DATEVALUE(A2), "MM/DD/YYYY")
   Python: df['created_date'] = pd.to_datetime(df['created_date'],
-            dayfirst=True).dt.strftime('%d/%m/%Y')
+            dayfirst=False).dt.strftime('%m/%d/%Y')
 
 Step 3: Fix email format issues
   Python: df['email'] = df['email'].str.strip().str.lower()
@@ -74,7 +74,7 @@ VALIDATION CHECKS (run after cleaning):
 ```
 
 **Example 2: Quick Fix**
-Input: "My phone number column has mixed formats: 0912345678, +84912345678, 091-234-5678"
+Input: "My phone number column has mixed formats: (555) 123-4567, +15551234567, 555-123-4567"
 Output: A standardization script to normalize all phone numbers to a consistent format.
 
 ## Tools
@@ -96,7 +96,7 @@ Output: A standardization script to normalize all phone numbers to a consistent 
 - Document every transformation for reproducibility
 - Preserve original data — work on copies or add cleaned columns
 - Validate data quality after each cleaning step
-- Default date format: DD/MM/YYYY; default phone format: +84XXXXXXXXX
+- Default date format: MM/DD/YYYY; default phone format: +1 (XXX) XXX-XXXX
 - Sort issues by severity: HIGH → Medium → Low
 
 ## Output Template

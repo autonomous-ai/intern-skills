@@ -25,7 +25,7 @@ Output:
 ```
 Inventory Report
 ---------------------------------------
-Date: 18/03/2026
+Date: 03/18/2026
 Operation: Stock Check
 Performed By: [Requestor]
 
@@ -41,12 +41,12 @@ Alerts:
 ```
 
 **Example 2: Equipment Allocation**
-Input: "Allocate a MacBook Pro (asset MBP-0112) to new hire Tran Minh B starting today."
+Input: "Allocate a MacBook Pro (asset MBP-0112) to new hire Michael Chen starting today."
 Output:
 ```
 Inventory Report
 ---------------------------------------
-Date: 18/03/2026
+Date: 03/18/2026
 Operation: Allocation
 Performed By: IT Admin
 
@@ -56,7 +56,7 @@ Item Summary:
 | MacBook Pro | MBP-0112   | 4 → 3   | 5       | LOW    |
 
 Change Log:
-- 18/03/2026 09:00 | IT Admin | MacBook Pro (MBP-0112) | -1 | Allocated to Tran Minh B (new hire onboarding)
+- 03/18/2026 09:00 | IT Admin | MacBook Pro (MBP-0112) | -1 | Allocated to Michael Chen (new hire onboarding)
 
 Alerts:
 - MacBook Pro: Current stock (3) is below minimum threshold (5). Recommended reorder: 5 units.
@@ -88,7 +88,7 @@ Alerts:
 ```
 Inventory Report
 ---------------------------------------
-Date: [DD/MM/YYYY]
+Date: [MM/DD/YYYY]
 Operation: [Stock Check / Allocation / Retrieval / Reorder / Audit]
 Performed By: [Name]
 

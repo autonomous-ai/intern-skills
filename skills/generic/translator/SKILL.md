@@ -1,12 +1,12 @@
 ---
 name: translator
-description: Translates text between languages (primarily Vietnamese and English) with appropriate tone, context, and domain accuracy. Use when the user asks to translate a document, email, message, or any text between languages, or needs bilingual support.
+description: Translates text between languages (between any languages, with strong support for Spanish and English) with appropriate tone, context, and domain accuracy. Use when the user asks to translate a document, email, message, or any text between languages, or needs bilingual support.
 ---
 
 # Translator
 
 ## Quick Start
-Translate text between languages while preserving tone, context, and domain-specific terminology. Default pair is Vietnamese ↔ English. Auto-detect source language when not specified.
+Translate text between languages while preserving tone, context, and domain-specific terminology. Default pair is Spanish ↔ English (most common US bilingual need). Auto-detect source language when not specified.
 
 ## Workflow
 1. Detect or confirm source and target languages
@@ -18,11 +18,11 @@ Translate text between languages while preserving tone, context, and domain-spec
 
 ## Examples
 
-**Example 1: Vietnamese to English (formal email)**
-Input: "Translate to English: [Vietnamese formal business email about warranty policy update effective April 1, 2026]"
+**Example 1: Spanish to English (formal email)**
+Input: "Translate to English: [Spanish formal business email about warranty policy update effective April 1, 2026]"
 Output:
 ```
-Translation (Vietnamese → English)
+Translation (Spanish → English)
 Tone: Formal
 
 Dear Valued Customer,
@@ -31,24 +31,23 @@ We would like to inform you that our product warranty policy will be updated eff
 
 ---
 Notes:
-- Formal business greeting adapted to "Dear Valued Customer"
-- Date format converted from DD/MM/YYYY to Month D, YYYY for English convention
+- Formal business greeting "Estimado cliente" adapted to "Dear Valued Customer"
+- Date format adjusted to US convention (Month D, YYYY)
 ```
 
-**Example 2: English to Vietnamese (technical)**
-Input: "Translate to Vietnamese: The API endpoint returns a paginated response with a default page size of 20 records."
+**Example 2: English to Spanish (technical)**
+Input: "Translate to Spanish: The API endpoint returns a paginated response with a default page size of 20 records."
 Output:
 ```
-Translation (English → Vietnamese)
+Translation (English → Spanish)
 Tone: Technical
 
-The API endpoint returns a paginated response with a default page size of 20 records.
-(Vietnamese output: technical terms preserved, "paginated response" translated appropriately)
+El endpoint de la API devuelve una respuesta paginada con un tamano de pagina predeterminado de 20 registros.
 
 ---
 Notes:
-- "API endpoint" kept as-is (standard technical term)
-- "paginated response" translated using the widely accepted term in Vietnamese developer community
+- "API endpoint" kept as "endpoint de la API" (standard technical term in Spanish dev community)
+- "paginated response" translated as "respuesta paginada" (widely accepted term)
 ```
 
 ## Tools
@@ -66,8 +65,8 @@ Notes:
 - Preserve the original formatting and structure (headings, bullet points, paragraphs)
 - Never omit or add content that changes the original meaning
 - Flag ambiguous terms and offer alternative translations
-- Use standard Vietnamese diacritics correctly at all times
-- For technical terms with no widely accepted Vietnamese equivalent, keep the English term and add a Vietnamese explanation in parentheses
+- Use target language diacritics and special characters correctly at all times
+- For technical terms with no widely accepted equivalent in the target language, keep the English term and add an explanation in parentheses
 - Match the formality level of the source text unless user requests otherwise
 - Date and number formats should follow the target language convention
 
