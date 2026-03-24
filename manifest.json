@@ -1,5 +1,5 @@
 {
-  "version": "1.0.7",
+  "version": "1.0.9",
   "generic_zip": "generic.zip",
   "roles": {
     "ops": {
@@ -281,7 +281,7 @@
         "tender",
         "bidding",
         "purchase officer",
-        "mua hàng"
+        "purchasing agent"
       ],
       "skills_zip": "procurement.zip",
       "description": "Vendor evaluation, purchase order generation, price comparison, supplier tracking, bid analysis",
@@ -291,6 +291,30 @@
         "price-comparator",
         "supplier-tracker",
         "bid-analyzer"
+      ]
+    },
+    "smarthome": {
+      "label": "Smart Home / Home Automation",
+      "keywords": [
+        "smart home",
+        "home automation",
+        "home assistant",
+        "iot",
+        "homeassistant",
+        "ha",
+        "smart devices",
+        "automation",
+        "smarthome",
+        "home control"
+      ],
+      "skills_zip": "smarthome.zip",
+      "description": "Connect to Home Assistant, control smart devices, build automations, monitor sensors, and manage scenes",
+      "skills": [
+        "ha-connector",
+        "device-controller",
+        "automation-builder",
+        "sensor-monitor",
+        "scene-manager"
       ]
     }
   }
