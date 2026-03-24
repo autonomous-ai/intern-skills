@@ -1,6 +1,10 @@
 {
-  "version": "1.0.9",
+  "version": "1.0.10",
   "generic_zip": "generic.zip",
+  "default_zips": [
+    "generic.zip",
+    "smarthome.zip"
+  ],
   "roles": {
     "ops": {
       "label": "Office / Admin / Secretary",
