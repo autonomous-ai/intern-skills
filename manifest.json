@@ -23,7 +23,8 @@
       "document-summarizer",
       "gmail-reader",
       "drive-reader",
-      "sheets-reader"
+      "sheets-reader",
+      "count-task"
     ]
   },
   "roles": {
