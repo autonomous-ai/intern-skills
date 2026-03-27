@@ -1,6 +1,12 @@
 ---
 name: compliance-checker
-description: Checks business processes, documents, and policies against regulatory requirements and internal standards. Use when the user asks about compliance requirements, regulatory checks, policy adherence, audit preparation, or whether a process meets specific standards (GDPR, CCPA/CPRA, HIPAA, SOX, ISO, labor law).
+description: >
+  Checks business processes, documents, and policies against regulatory requirements and internal standards.
+  Use when the user says "check compliance with GDPR", "are we CCPA compliant", "audit preparation checklist",
+  "does this policy meet HIPAA requirements", "SOX compliance review", "ISO 27001 gap analysis",
+  "check if our process meets labor law", "regulatory requirements for this",
+  "compliance gap analysis", "are we meeting data privacy rules",
+  "pre-audit readiness check", or "what regulations apply to our industry".
 ---
 
 # Compliance Checker
@@ -74,6 +80,16 @@ Output: A section-by-section review of the handbook against FLSA, FMLA, ADA, OSH
 - If regulation has recently changed → flag that requirements may need re-verification
 - If assessment requires domain expertise beyond scope → recommend specialist consultation
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~document management | Access policies, handbooks, and process documents for review |
+| ~~contract system | Check contract terms against regulatory compliance requirements |
+| ~~email | Retrieve audit correspondence and compliance notifications |
+| ~~compliance database | Cross-reference against up-to-date regulatory frameworks |
+
 ## Rules
 - Always specify which version/date of the regulation is being referenced
 - Never claim a process is "fully compliant" — use "appears compliant based on available information"
@@ -111,3 +127,9 @@ REMEDIATION PLAN:
 Note: This assessment is based on available information and does not constitute legal advice.
 Recommend specialist review for high-risk items.
 ```
+
+## Related Skills
+- `contract-reviewer` — For reviewing contracts flagged during compliance checks
+- `legal-summarizer` — For summarizing regulations being checked against
+- `clause-extractor` — For extracting compliance-relevant clauses from contracts
+- `nda-drafter` — For drafting NDAs that meet data protection compliance requirements

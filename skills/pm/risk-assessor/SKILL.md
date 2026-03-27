@@ -1,6 +1,10 @@
 ---
 name: risk-assessor
-description: Identifies, scores, and creates mitigation plans for project risks using a Likelihood x Impact matrix. Use when the user asks to assess project risks, build a risk register, evaluate a new threat, review existing risks, or needs a risk report for stakeholders.
+description: >
+  Identifies, scores, and creates mitigation plans for project risks using a Likelihood x Impact matrix.
+  Use when the user says "assess project risks", "build a risk register", "evaluate this threat",
+  "review existing risks", "create a risk report", "what could go wrong",
+  "score this risk", or "we have a new risk to track".
 ---
 
 # Risk Assessor
@@ -99,6 +103,16 @@ Escalation Required:
 - If all risks score below 4 -> advise low risk profile but recommend periodic re-evaluation
 - If any risk scores 12+ -> immediately flag for stakeholder escalation
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~project tracker | Pull project status, blockers, and dependency data for risk identification |
+| ~~CI/CD | Monitor build failures and deployment issues as technical risk indicators |
+| ~~docs | Access past risk registers, retrospective notes, and incident reports |
+| ~~calendar | Schedule risk review meetings and set escalation reminders |
+
 ## Rules
 - Every risk must be scored: Likelihood (1-4) x Impact (1-4)
 - Top 5 risks must have both a mitigation plan and a contingency plan
@@ -146,3 +160,9 @@ Escalation Required:
 
 Next Review Date: [Date]
 ```
+
+## Related Skills
+- `task-tracker` -- For tracking tasks related to risk mitigation actions
+- `sprint-planner` -- For factoring risks into sprint capacity planning
+- `timeline-generator` -- For adjusting timelines when risks materialize
+- `standup-helper` -- For surfacing active risks and blockers during daily standups

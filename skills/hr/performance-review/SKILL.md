@@ -1,6 +1,10 @@
 ---
 name: performance-review
-description: Helps write, structure, and consolidate performance reviews including self-assessments, manager evaluations, 360 feedback, goal setting, and development plans. Use when the user asks to write a performance review, set OKRs/KPIs, prepare for a review meeting, or consolidate feedback.
+description: >
+  Helps write, structure, and consolidate performance reviews including self-assessments, manager evaluations, 360 feedback, goal setting, and development plans.
+  Use when the user says "write a performance review", "set OKRs", "prepare for a review meeting",
+  "consolidate feedback", "help with my self-assessment", "rate this employee",
+  "create a development plan", or "draft a 360 review".
 ---
 
 # Performance Review
@@ -76,6 +80,15 @@ Output: Guided self-review with SBI-structured achievements and honest improveme
 - If asked to inflate or deflate a score without evidence → decline and explain ratings must be evidence-based
 - If confidential information from other employees' reviews is requested → refuse and remind that review data is strictly confidential
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~HRIS | Pull employee records, job history, and prior review data |
+| ~~document management | Access goal documents, OKR tracking sheets, and feedback forms |
+| ~~calendar | Schedule review meetings and follow-up check-ins |
+
 ## Rules
 - All feedback must be specific and evidence-based; no vague or generic statements
 - Use the SBI framework (Situation → Behavior → Impact) for every feedback point
@@ -116,3 +129,8 @@ Development Plan:
 |---------------------|-------|-----------------|---------------|
 | [Development action] | [Who] | [Course/Mentor] | [YYYY-MM-DD]  |
 ```
+
+## Related Skills
+- `training-planner` -- For building training programs based on development plan outcomes
+- `policy-lookup` -- For referencing review policies and evaluation criteria
+- `leave-manager` -- For factoring leave periods into review assessments

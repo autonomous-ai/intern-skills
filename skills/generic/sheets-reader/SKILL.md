@@ -1,6 +1,11 @@
 ---
 name: sheets-reader
-description: Reads, queries, and summarizes data from Google Sheets using the Sheets API (read-only). Use when the user wants to read cell values, get a range of data, summarize a spreadsheet, find a row by a key value, list all sheets in a workbook, or extract data for analysis.
+description: >
+  Reads, queries, and summarizes data from Google Sheets using the Sheets API (read-only).
+  Use when the user says "read my spreadsheet", "get data from Google Sheets",
+  "look up a value in the sheet", "what's in cell A1", "show me the sales data",
+  "list sheets in this workbook", "find Bob's row", "pull data from Sheets",
+  or wants to read cell values, get a range, summarize a spreadsheet, find a row, or extract data for analysis.
 ---
 
 # Sheets Reader
@@ -83,6 +88,15 @@ Sheets (4 total):
 - If range is invalid → call `GET /v4/spreadsheets/<id>` to list valid sheet names, then ask user to confirm the range
 - If values array is empty → sheet or range is empty; confirm with user
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~drive | Discover and access spreadsheets stored in Google Drive |
+| ~~email | Email spreadsheet data summaries and reports to teammates |
+| ~~notes | Save key data insights and table snapshots to notes |
+
 ## Rules
 - Scope required: `https://www.googleapis.com/auth/spreadsheets.readonly`
 - Base URL: `https://sheets.googleapis.com/v4/spreadsheets`
@@ -109,3 +123,8 @@ Rows:   [N] (+ 1 header)
 
 Summary: [Key insight or row count]
 ```
+
+## Related Skills
+- `spreadsheet-helper` -- For writing formulas and structuring data in spreadsheets
+- `drive-reader` -- For browsing Google Drive to find spreadsheets
+- `document-summarizer` -- For summarizing large datasets or exported spreadsheet reports

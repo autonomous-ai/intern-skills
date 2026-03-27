@@ -1,6 +1,11 @@
 ---
 name: crm-helper
-description: Manages CRM data including pipeline updates, activity logging, deal tracking, sales forecasting, and pipeline health analysis. Use when the user asks to update a deal, log a call or meeting, review the pipeline, generate a sales forecast, or identify at-risk deals.
+description: >
+  Manages CRM data including pipeline updates, activity logging, deal tracking, sales forecasting,
+  and pipeline health analysis.
+  Use when the user says "update the deal", "log this call", "log my meeting with X",
+  "show me the pipeline", "how's my pipeline looking", "generate a forecast",
+  "which deals are at risk", "move this deal to negotiation", or "review my deals".
 ---
 
 # CRM Helper
@@ -75,6 +80,16 @@ Sales Pipeline Overview — Q1 2026
 - If forecast data is insufficient → generate forecast with explicit caveats about data quality
 - If activity details are vague → prompt for interaction type, outcomes, and next step
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~CRM | Read and write deal records, contacts, and activities directly in the CRM |
+| ~~email | Auto-log email interactions as CRM activities |
+| ~~calendar | Sync meeting data to activity logs and next-step dates |
+| ~~LinkedIn | Enrich contact records with LinkedIn profile data |
+
 ## Rules
 - Every deal must have a defined next step with a specific date
 - Flag stale deals (30+ days without activity) for review: re-engage, downgrade, or close lost
@@ -117,3 +132,9 @@ Sales Pipeline Overview
 - Key Notes: [Summary]
 - Next Step: [Action] — [Date]
 ```
+
+## Related Skills
+- `lead-researcher` -- For enriching CRM records with fresh company intelligence
+- `follow-up-drafter` -- For drafting follow-up emails triggered by CRM activity
+- `proposal-writer` -- For creating proposals when deals move to the proposal stage
+- `competitor-briefer` -- For competitive context on deals where rivals are involved

@@ -1,6 +1,11 @@
 ---
 name: exa-web-search
-description: Search the web for current information using Exa.ai. Use when the user asks to search, research, find current information, look up facts, or when you need up-to-date data that may not be in your training data. Triggers on "search for", "look up", "find information about", "research", "what is the latest", "current news about", "deep search".
+description: >
+  Search the web for current information using Exa.ai neural search engine.
+  Use when the user says "search for", "look up", "find information about", "research",
+  "what is the latest", "current news about", "deep search", "find companies that",
+  "semantic search", "find similar pages to", "neural search for",
+  or when you need up-to-date data that may not be in your training data.
 ---
 
 # Exa Web Search
@@ -65,3 +70,24 @@ Use the `exec` tool to call the search script:
 - **401**: Missing API key — ensure x-api-key header is set
 - **429**: Rate limit reached — inform the user their plan limit is reached
 - **502**: Exa API error — retry once, then inform the user search is temporarily unavailable
+
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~search engine | Combine Exa neural search with traditional keyword search for broader coverage |
+| ~~notes | Save research findings and source links directly to your notes |
+| ~~drive | Store detailed research reports in Google Drive for team sharing |
+
+## Rules
+- Always cite sources with URLs when presenting results to the user
+- Maximum 3 search refinements per request to avoid excessive API calls
+- Prefer `include_summary: true` over `include_text: true` to conserve context window
+- For multi-step research, start broad then narrow with domain filters
+- Never fabricate information when no results are found
+
+## Related Skills
+- `web-search` -- For traditional keyword-based web searches when neural search is not ideal
+- `document-summarizer` -- For condensing lengthy articles found through Exa search
+- `translator` -- For translating search results in foreign languages

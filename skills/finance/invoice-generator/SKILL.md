@@ -1,6 +1,12 @@
 ---
 name: invoice-generator
-description: Generates invoices, quotations, receipts, payment vouchers, and debit notes with auto-numbering, sales tax calculation, and amount-in-words verification. Use when the user asks to create an invoice, draft a quotation, issue a receipt, or prepare any billing document.
+description: >
+  Generates invoices, quotations, receipts, payment vouchers, and debit notes with auto-numbering,
+  sales tax calculation, and amount-in-words verification.
+  Use when the user says "create an invoice", "bill this client", "generate invoice for project X",
+  "draft a quotation", "issue a receipt", "prepare a payment voucher", "track unpaid invoices",
+  "send a payment reminder", "make a debit note", "how much does this client owe",
+  "accounts receivable summary", or "invoice this order".
 ---
 
 # Invoice Generator
@@ -92,6 +98,16 @@ Status:         Draft
 - If duplicate document number is detected -> increment sequence and regenerate
 - If unsupported document type is requested -> list the five supported types
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~accounting | Sync invoices with the general ledger and accounts receivable |
+| ~~ERP | Pull customer records, product catalogs, and pricing rules |
+| ~~spreadsheet | Import line items from spreadsheets and export invoices |
+| ~~banking | Match invoice payments against bank deposits |
+
 ## Rules
 - Document number formats: INV-YYYYMM-XXXX, QUO-YYYYMM-XXXX, REC-YYYYMM-XXXX, PV-YYYYMM-XXXX, DN-YYYYMM-XXXX
 - Sales tax rates vary by state and locality; ask user to specify when not provided
@@ -132,3 +148,9 @@ NOTES
 -----
 - [Any additional terms, conditions, or remarks]
 ```
+
+## Related Skills
+- `expense-tracker` — For tracking expenses related to invoiced projects
+- `budget-planner` — For budget planning and forecasting against invoiced revenue
+- `financial-report` — For revenue summaries incorporating invoice data
+- `tax-helper` — For sales tax calculations and compliance on invoices

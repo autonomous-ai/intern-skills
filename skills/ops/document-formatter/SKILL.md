@@ -1,6 +1,10 @@
 ---
 name: document-formatter
-description: Formats and structures office documents such as letters, meeting minutes, announcements, reports, and proposals. Use when the user asks to create, format, reformat, or convert a business document, or mentions document templates, official letters, memos, or meeting minutes.
+description: >
+  Formats and structures office documents such as letters, meeting minutes, announcements, reports, and proposals.
+  Use when the user says "format this document", "create an official letter", "write meeting minutes",
+  "draft a memo", "format this report", "create a proposal template",
+  "reformat this document", or "make this look professional".
 ---
 
 # Document Formatter
@@ -86,6 +90,15 @@ III. Action Items
 - If format conversion is not possible with available tools → explain the limitation and suggest alternatives
 - If content contains ambiguous or conflicting information → highlight the discrepancy and ask for clarification
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~document management | Access stored templates, letterheads, and style guides |
+| ~~calendar | Pull meeting details for auto-populating meeting minutes |
+| ~~project tracker | Link documents to projects and track document versions |
+
 ## Rules
 - US business documents: Times New Roman 12pt, single or 1.15 line spacing, Letter (8.5×11 in) paper size
 - Every document must include clear section numbering (I, 1, a, -) and consistent header/footer
@@ -118,3 +131,8 @@ Formatting Notes:
 - Spacing: [Line spacing]
 - Paper: [Paper size]
 ```
+
+## Related Skills
+- `meeting-scheduler` -- For scheduling meetings that produce documents like minutes
+- `report-generator` -- For generating data-driven reports that need formatting
+- `sop-creator` -- For creating structured Standard Operating Procedures

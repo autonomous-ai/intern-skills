@@ -1,6 +1,10 @@
 ---
 name: policy-lookup
-description: Looks up and explains company HR policies, benefits, leave entitlements, and internal processes with cited sources. Use when the user asks about leave days, benefits, work-from-home rules, dress code, disciplinary procedures, or any company policy question.
+description: >
+  Looks up and explains company HR policies, benefits, leave entitlements, and internal processes with cited sources.
+  Use when the user says "what is the policy on", "how many leave days do I get", "what are the benefits",
+  "work-from-home rules", "dress code policy", "disciplinary procedure",
+  "explain the company policy", or "where can I find the handbook".
 ---
 
 # Policy Lookup
@@ -61,6 +65,15 @@ Output: Step-by-step process with form references, approval chain, and policy co
 - If query involves legal advice (wrongful termination, discrimination claims) → clarify this is policy guidance only and recommend consulting the legal team
 - If user's employment type or location makes a policy inapplicable → explain why and point to the correct policy
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~document management | Access policy documents, employee handbooks, and benefit guides directly |
+| ~~HRIS | Pull employee-specific data to determine policy applicability |
+| ~~ATS | Reference hiring policies and offer letter terms |
+
 ## Rules
 - Only answer based on official, documented policies -- never infer or improvise
 - Always cite the source: policy name, version, and last-updated date
@@ -93,3 +106,9 @@ Related Policies:
 
 Contact: [HR representative name/email for further questions]
 ```
+
+## Related Skills
+- `leave-manager` -- For processing leave requests after looking up entitlements
+- `onboarding-checklist` -- For referencing onboarding-related policies
+- `performance-review` -- For referencing evaluation criteria and review policies
+- `training-planner` -- For mandatory compliance training requirements

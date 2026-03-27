@@ -1,6 +1,6 @@
 ---
 name: brand-checker
-description: Audits designs and materials against brand guidelines for logo usage, color accuracy, typography, imagery, and tone of voice compliance. Use when the user asks for a brand check, brand audit, brand consistency review, or wants to verify materials are on-brand before publication.
+description: Audits designs and materials against brand guidelines for logo usage, color accuracy, typography, imagery, and tone of voice compliance. Use when the user asks for a brand check, brand audit, brand consistency review, or wants to verify materials are on-brand before publication. Trigger phrases include "is this on-brand", "check this against our brand guidelines", "audit this for brand consistency", "does this match our brand", "review this material before we publish", "verify the logo usage", "are we using the right colors and fonts".
 ---
 
 # Brand Checker
@@ -87,6 +87,16 @@ Brand Consistency Check
 - If brand guidelines are outdated or conflicting -> Flag the discrepancy, note which version was used, recommend a guidelines review
 - If a violation might be intentional creative deviation -> Flag it, note the possibility, recommend confirming with the brand owner
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~design tool | Pull design files from Figma, Sketch, or Adobe XD for automated brand auditing |
+| ~~asset management | Cross-check materials against approved brand assets in the DAM |
+| ~~project tracker | Create tickets for brand violations and track remediation |
+| ~~brand guidelines | Auto-load the latest brand guidelines document as the audit reference |
+
 ## Rules
 - Brand guidelines are the single source of truth -- no exceptions unless approved by the brand owner
 - Logo violations are always highest priority -- incorrect logo usage directly undermines brand identity
@@ -125,3 +135,8 @@ Brand Consistency Check
 
 ## Verdict: [On-Brand / Needs Fixes / Off-Brand]
 ```
+
+## Related Skills
+- **color-palette** -- generate or fix color palettes that comply with brand specifications
+- **design-reviewer** -- combine brand checks with full UX and accessibility reviews
+- **asset-organizer** -- ensure brand assets are properly cataloged and up to date

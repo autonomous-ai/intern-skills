@@ -1,6 +1,10 @@
 ---
 name: sop-creator
-description: Creates Standard Operating Procedures (SOPs) with clear step-by-step instructions, roles, and quality checkpoints. Use when the user asks to create an SOP, document a process, write a procedure, or standardize a workflow.
+description: >
+  Creates Standard Operating Procedures (SOPs) with clear step-by-step instructions, roles, and quality checkpoints.
+  Use when the user says "create an SOP", "document this process", "write a procedure",
+  "standardize this workflow", "how do we formalize this process",
+  "create step-by-step instructions", or "write an operations manual".
 ---
 
 # SOP Creator
@@ -133,6 +137,16 @@ Output: A shorter SOP with streamlined steps for a simpler process.
 - If process has too many exceptions → suggest simplifying the main flow
 - If SOP references other documents → list them in the Documents section
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~document management | Access existing SOPs, templates, and version-controlled documents |
+| ~~project tracker | Link SOPs to project workflows and track implementation |
+| ~~inventory system | Reference inventory processes for supply chain SOPs |
+| ~~calendar | Schedule SOP review dates and training sessions |
+
 ## Rules
 - Every SOP must have: purpose, scope, roles, numbered procedures, and revision history
 - Steps must be clear enough for someone new to follow without additional guidance
@@ -165,3 +179,9 @@ Version: [X.X]
 APPROVED BY:
 - Prepared / Reviewed / Approved
 ```
+
+## Related Skills
+- `document-formatter` -- For formatting SOPs into professional document layouts
+- `report-generator` -- For generating compliance and audit reports tied to SOPs
+- `inventory-tracker` -- For SOPs related to inventory and asset management
+- `meeting-scheduler` -- For scheduling SOP review and training meetings

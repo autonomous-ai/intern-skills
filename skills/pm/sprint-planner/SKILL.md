@@ -1,6 +1,10 @@
 ---
 name: sprint-planner
-description: Plans and organizes Agile sprints by selecting backlog items, calculating team capacity, and distributing workload. Use when the user asks to plan a sprint, groom the backlog, estimate team capacity, rebalance mid-sprint, or review carry-over items.
+description: >
+  Plans and organizes Agile sprints by selecting backlog items, calculating team capacity, and distributing workload.
+  Use when the user says "plan a sprint", "groom the backlog", "estimate team capacity",
+  "rebalance the sprint", "review carry-over items", "what can we fit in this sprint",
+  "calculate our velocity", or "distribute the workload".
 ---
 
 # Sprint Planner
@@ -90,6 +94,16 @@ Risks & Flags:
 - If carry-over exceeds 30% of the new sprint -> flag a velocity concern and recommend a retrospective
 - If no sprint goal is provided -> draft a suggested goal from the highest-priority items
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~project tracker | Pull backlog items, story points, and velocity history from the PM tool |
+| ~~calendar | Check team availability, PTO, and holidays for capacity planning |
+| ~~CI/CD | Link sprint deliverables to deployment pipelines and release schedules |
+| ~~docs | Access sprint retrospective notes and planning documents |
+
 ## Rules
 - Default sprint length: 2 weeks (10 working days)
 - Never fill to 100% capacity; maintain 20% buffer for unplanned work
@@ -127,3 +141,9 @@ Carry-Over from Sprint [N-1]:
 Risks & Flags:
 - [Risk or concern identified during planning]
 ```
+
+## Related Skills
+- `task-tracker` -- For tracking individual task progress within the sprint
+- `standup-helper` -- For daily standup updates during the sprint
+- `risk-assessor` -- For assessing risks that may impact sprint delivery
+- `timeline-generator` -- For generating project-level timelines across sprints

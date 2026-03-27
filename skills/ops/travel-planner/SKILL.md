@@ -1,6 +1,10 @@
 ---
 name: travel-planner
-description: Plans and organizes business trips including transportation, accommodation, itineraries, cost estimates, and pre-departure checklists. Use when the user asks to plan a business trip, book flights or hotels, create a travel itinerary, estimate travel expenses, or mentions per diem and travel budgets.
+description: >
+  Plans and organizes business trips including transportation, accommodation, itineraries, cost estimates, and pre-departure checklists.
+  Use when the user says "plan a business trip", "book flights", "find a hotel",
+  "create a travel itinerary", "estimate travel expenses", "what's the per diem",
+  "organize a trip to", or "prepare a travel budget".
 ---
 
 # Travel Planner
@@ -91,6 +95,16 @@ Status: Draft
 - If no transport options fit the budget → present closest options and suggest alternatives (different dates, nearby airports, different class)
 - If number of travelers is unclear → confirm headcount before calculating costs
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~calendar | Check traveler availability and block travel dates |
+| ~~document management | Access travel policies, expense templates, and approval forms |
+| ~~inventory system | Check availability of company travel equipment (laptops, adapters) |
+| ~~project tracker | Link trips to project milestones and deliverables |
+
 ## Rules
 - Always present 2-3 options at different price levels for both transport and accommodation
 - Prioritize early morning or evening departures to minimize lost working hours
@@ -145,3 +159,9 @@ Pre-Trip Checklist:
 ---------------------------------------
 Status: [Draft / Pending Approval / Confirmed]
 ```
+
+## Related Skills
+- `report-generator` -- For creating post-trip expense reports
+- `document-formatter` -- For formatting travel proposals and itineraries
+- `meeting-scheduler` -- For scheduling meetings at the travel destination
+- `inventory-tracker` -- For checking out travel equipment before departure

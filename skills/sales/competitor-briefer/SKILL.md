@@ -1,6 +1,11 @@
 ---
 name: competitor-briefer
-description: Creates competitive intelligence materials including battle cards, feature comparison tables, objection-handling scripts, and win/loss analyses for sales teams. Use when the user mentions a competitor, asks for a comparison, needs objection handling, or wants to prepare for a competitive deal.
+description: >
+  Creates competitive intelligence materials including battle cards, feature comparison tables,
+  objection-handling scripts, and win/loss analyses for sales teams.
+  Use when the user says "create a battle card", "how do we compare to X", "the prospect mentioned
+  a competitor", "handle this objection about X", "prepare me for a competitive deal",
+  "what are X's weaknesses", or "why do we lose to X".
 ---
 
 # Competitor Briefer
@@ -84,6 +89,16 @@ Output: A scripted ACKNOWLEDGE-REFRAME-PROVE-CTA response with specific proof po
 - If competitor operates in a different category → clarify overlap areas and scope comparison to relevant dimensions only
 - If user wants a win/loss post-mortem but lacks details → provide a structured questionnaire to gather the data
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~CRM | Pull win/loss data and competitor mentions from deal records |
+| ~~email | Search email threads for competitor objections raised by prospects |
+| ~~calendar | Review upcoming meetings where competitive positioning is needed |
+| ~~LinkedIn | Research competitor employees, company updates, and hiring signals |
+
 ## Rules
 - Never badmouth or disparage competitors — focus on articulating your own differentiated value
 - All competitive claims must be accurate and sourced — incorrect info destroys credibility
@@ -133,3 +148,9 @@ Objection: "[Objection]"
 - Top reason we win: [Reason]
 - Top reason we lose: [Reason]
 ```
+
+## Related Skills
+- `lead-researcher` -- For researching prospects who use competing products
+- `proposal-writer` -- For embedding competitive differentiators in proposals
+- `follow-up-drafter` -- For follow-up emails that address competitive objections
+- `crm-helper` -- For tracking win/loss reasons and competitor mentions in the pipeline

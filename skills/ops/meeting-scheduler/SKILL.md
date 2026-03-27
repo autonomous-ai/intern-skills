@@ -1,6 +1,10 @@
 ---
 name: meeting-scheduler
-description: Schedules, reschedules, and manages business meetings including finding available time slots, preparing agendas, and generating follow-up notes. Use when the user asks to schedule a meeting, find a time slot, book a room, create a meeting agenda, or handle post-meeting follow-ups.
+description: >
+  Schedules, reschedules, and manages business meetings including finding available time slots, preparing agendas, and generating follow-up notes.
+  Use when the user says "schedule a meeting", "find a time slot", "book a room",
+  "create a meeting agenda", "reschedule the meeting", "set up a call",
+  "send meeting notes", or "when is everyone available".
 ---
 
 # Meeting Scheduler
@@ -81,6 +85,15 @@ Status: Draft
 - If the requested room is unavailable → suggest alternative rooms or a virtual meeting link
 - If no agenda is provided → remind the user that an agenda is required and offer to draft one
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~calendar | Check attendee availability and create calendar events in real time |
+| ~~document management | Access agenda templates and store meeting notes |
+| ~~project tracker | Link meetings to project milestones and action items |
+
 ## Rules
 - Never schedule during lunch (12:00-13:30) unless explicitly requested
 - Default meeting duration is 30 minutes; maximum is 60 minutes
@@ -112,3 +125,8 @@ Reminder: 30 minutes before the meeting.
 ---------------------------------------
 Status: [Draft / Confirmed / Sent]
 ```
+
+## Related Skills
+- `document-formatter` -- For formatting meeting minutes and follow-up documents
+- `report-generator` -- For compiling meeting outcomes into operational reports
+- `sop-creator` -- For documenting recurring meeting processes as SOPs

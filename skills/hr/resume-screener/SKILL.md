@@ -1,6 +1,10 @@
 ---
 name: resume-screener
-description: Screens and evaluates candidate resumes against job descriptions, providing scored assessments with strengths, concerns, and recommendations. Use when the user asks to review a CV, evaluate a candidate, shortlist applicants, compare candidates, or check resume fit for a role.
+description: >
+  Screens and evaluates candidate resumes against job descriptions, providing scored assessments with strengths, concerns, and recommendations.
+  Use when the user says "review this CV", "screen this resume", "is this candidate a good fit",
+  "shortlist these applicants", "compare these candidates", "evaluate this resume",
+  "check resume fit for a role", or "rank these applicants".
 ---
 
 # Resume Screener
@@ -63,6 +67,15 @@ Output: A unified ranking table followed by individual breakdowns for each candi
 - If the CV is unreadable or empty → inform the user and request a different format
 - If asked to evaluate based on protected characteristics (age, gender, ethnicity) → decline and explain assessments are skills-based only
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~ATS | Pull candidate profiles and application status directly |
+| ~~HRIS | Cross-reference employee records for internal candidates |
+| ~~document management | Access stored resumes and job descriptions from the document repository |
+
 ## Rules
 - Zero tolerance for bias based on gender, age, ethnicity, disability, or institution prestige
 - All scores must cite specific evidence from the CV
@@ -98,3 +111,8 @@ Suggested Interview Questions:
 
 Recommendation: [Pass / Consider / Reject] -- [One-sentence rationale]
 ```
+
+## Related Skills
+- `interview-scheduler` -- For scheduling interviews with shortlisted candidates
+- `onboarding-checklist` -- For onboarding after a hire decision is made
+- `performance-review` -- For evaluating the employee after they are hired

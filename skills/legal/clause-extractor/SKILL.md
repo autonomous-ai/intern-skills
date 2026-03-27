@@ -1,6 +1,13 @@
 ---
 name: clause-extractor
-description: Extracts and categorizes specific clauses from contracts and legal documents for comparison or analysis. Use when the user asks to find specific clauses, extract terms from multiple contracts, compare clauses across agreements, or build a clause library.
+description: >
+  Extracts and categorizes specific clauses from contracts and legal documents for comparison or analysis.
+  Use when the user says "extract the termination clause", "find the liability section",
+  "compare payment terms across these contracts", "pull out all indemnification clauses",
+  "build a clause library", "what does the SLA say in each vendor contract",
+  "side-by-side clause comparison", "pull the confidentiality section from each agreement",
+  "which contracts have auto-renewal clauses", "compile all warranty terms",
+  or "compare penalty clauses across vendors".
 ---
 
 # Clause Extractor
@@ -97,6 +104,16 @@ uptime guarantee and most generous credit structure.
 - If document format prevents clean extraction → note formatting issues
 - If clause references external documents → note the dependency
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~document management | Access contracts and legal documents from centralized storage |
+| ~~contract system | Pull clause data from contract lifecycle management platforms |
+| ~~email | Extract clauses from contracts shared as email attachments |
+| ~~compliance database | Tag extracted clauses against regulatory compliance requirements |
+
 ## Rules
 - Always preserve the exact original wording when extracting clauses
 - Label each clause with: section reference, category, and standard/non-standard assessment
@@ -127,3 +144,9 @@ Standard: [N] | Non-standard: [N] | Needs review: [N]
 
 ⚠️ [Key flags or recommendations]
 ```
+
+## Related Skills
+- `contract-reviewer` — For full contract reviews beyond individual clause extraction
+- `legal-summarizer` — For plain-language summaries of extracted clauses
+- `compliance-checker` — For checking extracted clauses against regulatory standards
+- `nda-drafter` — For drafting NDA clauses based on extracted best practices

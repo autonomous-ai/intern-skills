@@ -2,8 +2,9 @@
 name: debug-assistant
 description: >
   Diagnoses bugs, errors, and unexpected behavior by tracing root causes and providing fixes.
-  Use when the user reports a bug, shares an error message or stack trace, says something is
-  "not working" or "broken", or needs help with crashes, exceptions, or unexpected behavior.
+  Use when the user says "debug this", "why is this not working", "fix this error",
+  "I'm getting an exception", "help me troubleshoot", "trace this bug",
+  "my app is crashing", or "something is broken".
 ---
 
 # Debug Assistant
@@ -84,6 +85,16 @@ app.use(cors({ origin: 'http://localhost:3000' }))
 - If the bug cannot be reproduced → guide through systematic reproduction steps
 - If multiple bugs are present → triage by severity and address the most critical first
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~code repository | Access source files and recent diffs to correlate changes with bugs |
+| ~monitoring | Pull live error logs, metrics, and traces to speed up diagnosis |
+| ~CI/CD | Inspect build logs and failing test output for additional context |
+| ~issue tracker | Look up related bug reports and link fixes to existing tickets |
+
 ## Rules
 - Always read the ENTIRE error message and stack trace before forming hypotheses
 - Never fix symptoms -- trace back to the root cause
@@ -116,3 +127,8 @@ Reasoning: [Evidence chain leading to this conclusion]
 - [ ] Add test covering this failure case
 - [ ] [Additional safeguards]
 ```
+
+## Related Skills
+- `code-reviewer` — Review the fix for correctness before committing
+- `api-tester` — Verify API endpoints work correctly after applying the fix
+- `git-helper` — Bisect commits or revert changes to isolate the bug
