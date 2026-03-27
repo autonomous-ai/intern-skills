@@ -1,6 +1,11 @@
 ---
 name: gmail-reader
-description: Reads, searches, and summarizes Gmail messages and threads using the Gmail API (read-only). Use when the user wants to find emails by sender, subject, or keyword, read an email thread, list unread messages, summarize an inbox, or check if a specific message was received.
+description: >
+  Reads, searches, and summarizes Gmail messages and threads using the Gmail API (read-only).
+  Use when the user says "check my email", "find emails from", "show unread messages",
+  "read the email about", "search my inbox for", "what did John send me",
+  "any new emails today", "open that email thread", "who emailed me about",
+  or wants to find emails by sender, subject, or keyword, read a thread, list unread messages, or summarize an inbox.
 ---
 
 # Gmail Reader
@@ -101,6 +106,16 @@ Looks great, thanks! I have one question about the expense line...
 - If query returns 0 results → suggest broadening the search (remove date filters, check spelling)
 - If message body is empty → check for multipart MIME parts; try `text/plain` then `text/html`
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~email | Read Gmail inbox and search messages via the Gmail API |
+| ~~calendar | Cross-reference emails with calendar events for meeting context |
+| ~~drive | Access attachments and linked Google Drive files from emails |
+| ~~notes | Save important email content and action items to notes |
+
 ## Rules
 - Scope required: `https://www.googleapis.com/auth/gmail.readonly`
 - Base URL: `https://gmail.googleapis.com/gmail/v1/users/me`
@@ -124,3 +139,8 @@ Found:   [N] messages
     Date:    [MM/DD/YYYY HH:MM AM/PM]
     Snippet: [first ~100 chars of body]
 ```
+
+## Related Skills
+- `email-assistant` -- For composing replies to emails found via Gmail Reader
+- `document-summarizer` -- For summarizing long email threads
+- `drive-reader` -- For accessing files attached or linked in emails

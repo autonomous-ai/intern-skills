@@ -1,6 +1,6 @@
 ---
 name: color-palette
-description: Creates, evaluates, adjusts, or extends color palettes for brands, products, and UIs with accessibility verification. Use when the user asks for a color palette, color scheme, theme colors, dark mode colors, contrast ratio checks, or brand color generation.
+description: Creates, evaluates, adjusts, or extends color palettes for brands, products, and UIs with accessibility verification. Use when the user asks for a color palette, color scheme, theme colors, dark mode colors, contrast ratio checks, or brand color generation. Trigger phrases include "pick colors for my brand", "generate a color palette", "I need dark mode colors", "check this contrast ratio", "suggest a color scheme", "what colors go with this hex", "create theme colors for our app".
 ---
 
 # Color Palette Generator
@@ -75,6 +75,16 @@ Color Palette: Dark Mode Variant
 - If more than 7 main colors are requested -> Warn about consistency risks, recommend consolidation, but proceed if confirmed
 - If dark mode is requested without a light palette -> Generate both together from provided base colors
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~design tool | Sync generated palettes directly into Figma, Sketch, or Adobe XD color styles |
+| ~~asset management | Register new color tokens in the shared asset library for team-wide use |
+| ~~project tracker | Log color decisions and palette changes as tracked design tasks |
+| ~~brand guidelines | Auto-validate generated palettes against existing brand color specs |
+
 ## Rules
 - WCAG AA minimum: 4.5:1 for normal text, 3:1 for large text and icons
 - Never rely on color alone to convey information -- pair with icons, labels, or patterns
@@ -125,3 +135,8 @@ Color Palette: [Project/Brand Name]
 | Surface      | #XXXXXX    | #XXXXXX   |
 | Primary Text | #XXXXXX    | #XXXXXX   |
 ```
+
+## Related Skills
+- **brand-checker** -- verify that generated palettes align with brand guidelines
+- **design-reviewer** -- use palette colors during design reviews to check contrast and consistency
+- **wireframe-helper** -- apply palette colors to wireframes for higher-fidelity mockups

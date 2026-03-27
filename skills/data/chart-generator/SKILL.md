@@ -1,6 +1,6 @@
 ---
 name: chart-generator
-description: Generates chart specifications, data visualization recommendations, and chart code snippets for common charting libraries. Use when the user asks to create a chart, graph, visualization, or dashboard component from data.
+description: Generates chart specifications, data visualization recommendations, and chart code snippets for common charting libraries. Use when the user asks to create a chart, graph, visualization, or dashboard component from data. Trigger phrases include "make me a chart", "visualize this data", "I need a graph for", "create a bar chart", "plot this as a line chart", "build a dashboard chart", "show me this data visually".
 ---
 
 # Chart Generator
@@ -76,6 +76,16 @@ Output: A horizontal bar chart or donut chart configuration with proper labels a
 - If too many categories (>10) → suggest grouping or filtering top N
 - If data has missing values → note the gaps and suggest handling approach
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~database | Pull live data directly from databases to generate up-to-date charts |
+| ~~BI tool | Embed generated chart configs into dashboards and scheduled visual reports |
+| ~~spreadsheet | Read chart data from linked spreadsheets and export configs back |
+| ~~data warehouse | Access aggregated warehouse tables for large-scale visualizations |
+
 ## Rules
 - Always recommend the chart type before generating code
 - Match chart type to analytical goal: line (trend), bar (comparison), pie (composition), scatter (relationship)
@@ -99,3 +109,8 @@ Library: [Chart.js / ECharts / Google Sheets / Excel]
 Key Insight: [What the chart reveals]
 Suggestion: [Improvement or additional visualization]
 ```
+
+## Related Skills
+- **data-summarizer** -- analyze and summarize the dataset before choosing the right chart
+- **kpi-tracker** -- pair charts with KPI scorecards for performance dashboards
+- **sql-helper** -- write queries to extract and shape the data for visualization

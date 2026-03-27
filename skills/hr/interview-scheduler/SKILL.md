@@ -1,6 +1,10 @@
 ---
 name: interview-scheduler
-description: Schedules, reschedules, and coordinates interviews between candidates and interviewers, including drafting confirmations and preparing scorecards. Use when the user asks to book an interview, find available slots, reschedule a candidate, or coordinate a panel interview.
+description: >
+  Schedules, reschedules, and coordinates interviews between candidates and interviewers, including drafting confirmations and preparing scorecards.
+  Use when the user says "book an interview", "schedule a candidate", "find available interview slots",
+  "reschedule the interview", "coordinate a panel interview", "set up a phone screen",
+  "when can we interview this person", or "prepare interview scorecard".
 ---
 
 # Interview Scheduler
@@ -61,6 +65,15 @@ Output: Updated schedule with the new date, re-sent confirmation drafts, and adj
 - If gap between rounds is less than 2 business days → flag the conflict and recommend an adjusted date
 - If an interviewer is double-booked → identify the conflict and propose alternative interviewers or time slots
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~calendar | Check interviewer and candidate availability in real time |
+| ~~ATS | Pull candidate profiles, application stage, and interview history |
+| ~~HRIS | Look up interviewer details, titles, and reporting structure |
+
 ## Rules
 - Never schedule interviews before 9:00 AM or after 5:30 PM local time
 - Maintain a minimum 2 business-day gap between consecutive rounds for the same candidate
@@ -93,3 +106,8 @@ Interviewer Briefing:
 - Candidate summary: [Key highlights from CV]
 - Focus areas: [What to evaluate in this round]
 ```
+
+## Related Skills
+- `resume-screener` -- For screening candidates before scheduling interviews
+- `onboarding-checklist` -- For onboarding after a successful interview process
+- `leave-manager` -- For checking interviewer availability against leave calendars

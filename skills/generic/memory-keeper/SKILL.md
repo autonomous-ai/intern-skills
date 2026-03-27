@@ -4,7 +4,8 @@ description: >
   Periodically extracts important context from the current session, writes it to memory.md,
   then compacts the session to free up context window. Runs automatically via cronjob every
   2 hours. Also triggers when the user says "save memory", "remember this", "compact session",
-  "clean session", or when context usage feels heavy.
+  "clean session", "store this for later", "don't forget this", "save what we discussed",
+  "free up context", or when context usage feels heavy.
 metadata: {"openclaw":{"emoji":"🧠","cronjob":"0 */2 * * *"}}
 ---
 
@@ -69,6 +70,15 @@ Session contains: user prefers English, working on a React project, deadline Fri
 | `/compact` fails | Skip compaction silently, memory write still counts |
 | Triggered manually with empty session | Inform user: "No new context found to save" |
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~notes | Sync memory entries to Notion or Obsidian for persistent storage |
+| ~~drive | Back up memory.md to Google Drive automatically |
+| ~~calendar | Remember upcoming deadlines and scheduled events across sessions |
+
 ## Rules
 
 - Run silently on cronjob — no channel messages unless manually triggered
@@ -86,3 +96,8 @@ Session contains: user prefers English, working on a React project, deadline Fri
 
 Added {N} new entries to memory.md.
 ```
+
+## Related Skills
+- `note-taker` -- For structured note-taking that memory-keeper can persist across sessions
+- `file-manager` -- For managing memory.md and related files on disk
+- `document-summarizer` -- For condensing long session content before saving to memory

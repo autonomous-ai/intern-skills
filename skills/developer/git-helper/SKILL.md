@@ -2,8 +2,9 @@
 name: git-helper
 description: >
   Helps with Git operations, conflict resolution, commit messages, and branching workflows.
-  Use when the user asks about git commands, needs to resolve merge conflicts, wants to undo
-  a commit, asks about rebase vs merge, or needs help with branching strategy.
+  Use when the user says "help me with git", "resolve merge conflict", "undo my commit",
+  "rebase vs merge", "write a commit message", "fix my git history",
+  "create a branch", or "how do I push my changes".
 ---
 
 # Git Helper
@@ -81,6 +82,15 @@ You are now on a new branch `feat/your-feature-name` based on the latest `main`.
 - If destructive commands are requested (force push, hard reset) → confirm intent and explain consequences before executing
 - If merge conflicts are present → walk through each file systematically
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~code repository | Access remote branches, PRs/MRs, and repository metadata directly |
+| ~CI/CD | Check pipeline status before merging and trigger builds after push |
+| ~issue tracker | Auto-link commits and branches to issue tickets |
+
 ## Rules
 - Never use `--force` push without explicit user confirmation
 - Never skip pre-commit hooks (`--no-verify`) unless the user explicitly requests it
@@ -109,3 +119,7 @@ $ [git command]
 ## Rollback (if applicable)
 $ [Command to undo if something goes wrong]
 ```
+
+## Related Skills
+- `code-reviewer` — Review code changes before committing or merging
+- `debug-assistant` — Diagnose issues introduced by recent commits or merges

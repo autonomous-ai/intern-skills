@@ -1,6 +1,11 @@
 ---
 name: content-writer
-description: Writes marketing content such as blog posts, social media captions, ad copy, landing pages, newsletters, and product descriptions. Use when the user asks to write, draft, or create any marketing or promotional content, mentions copywriting, or needs help with captions, headlines, or email copy.
+description: >
+  Writes marketing content such as blog posts, social media captions, ad copy, landing pages,
+  newsletters, and product descriptions.
+  Use when the user says "write a blog post about X", "draft some ad copy", "create a landing page",
+  "write a caption for this", "help me with headlines", "draft a newsletter",
+  "write product descriptions", or "I need copy for X".
 ---
 
 # Content Writer
@@ -92,6 +97,16 @@ Variations:
 - If tone is not specified --> default to professional-yet-approachable and note the assumption.
 - If topic is outside marketing scope --> clarify and suggest an appropriate skill.
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~analytics | Pull traffic data and top-performing content for inspiration |
+| ~~social media | Publish drafts directly to social platforms |
+| ~~CMS | Create and update blog posts or landing pages in the CMS |
+| ~~email marketing | Push newsletter drafts into the email platform for sending |
+
 ## Rules
 - Every piece must have exactly one clear CTA.
 - Apply AIDA: Attention > Interest > Desire > Action.
@@ -126,3 +141,9 @@ Variations:
 2. [Alternative headline/hook B]
 3. [Alternative headline/hook C]
 ```
+
+## Related Skills
+- `seo-optimizer` -- For optimizing content for search engines after drafting
+- `social-media-planner` -- For scheduling and distributing social content
+- `campaign-tracker` -- For measuring content performance after publication
+- `competitor-analyzer` -- For researching competitor content strategies before writing

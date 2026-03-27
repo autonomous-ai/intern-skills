@@ -1,6 +1,10 @@
 ---
 name: standup-helper
-description: Helps prepare, capture, and summarize daily standup meetings using the Done/Today/Blockers format. Use when the user asks to prepare a standup update, capture team standup notes, compile a standup summary, or track and escalate blockers.
+description: >
+  Helps prepare, capture, and summarize daily standup meetings using the Done/Today/Blockers format.
+  Use when the user says "prepare my standup", "capture standup notes", "compile the standup summary",
+  "track blockers", "what did the team do yesterday", "prep for daily scrum",
+  "escalate this blocker", or "write my standup update".
 ---
 
 # Standup Helper
@@ -103,6 +107,16 @@ Absent / No Update:
 - If standup content is excessive -> suggest splitting into focused standup and follow-up discussion
 - If no sprint context is provided -> ask the user or omit sprint fields with a note
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~project tracker | Pull task status and recent activity for automated standup prep |
+| ~~calendar | Check meeting schedules and team availability for standup timing |
+| ~~CI/CD | Surface build/deploy status as discussion items |
+| ~~docs | Access previous standup notes and blocker history |
+
 ## Rules
 - Each person's update: 3-5 bullet points max (about 2 minutes of speaking time)
 - Detailed discussions go to the Parking Lot for separate follow-ups
@@ -140,3 +154,9 @@ Parking Lot (topics for follow-up):
 Absent / No Update:
 - [Team member name] - [Reason if known]
 ```
+
+## Related Skills
+- `task-tracker` -- For updating task statuses discussed during standup
+- `sprint-planner` -- For context on sprint goals and capacity during standup
+- `risk-assessor` -- For escalating blockers identified during standup as formal risks
+- `timeline-generator` -- For checking project timeline impact of reported delays

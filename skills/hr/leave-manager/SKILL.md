@@ -1,6 +1,10 @@
 ---
 name: leave-manager
-description: Manages employee leave requests, tracks balances, calculates entitlements, and maintains leave calendars. Use when the user asks to process a leave request, check leave balance, plan team coverage, or calculate leave entitlements per FMLA and company policy.
+description: >
+  Manages employee leave requests, tracks balances, calculates entitlements, and maintains leave calendars.
+  Use when the user says "process a leave request", "check leave balance", "how many PTO days do I have",
+  "plan team coverage", "calculate leave entitlements", "submit time off",
+  "who is out next week", or "approve this leave request".
 ---
 
 # Leave Manager
@@ -92,6 +96,15 @@ State paid family leave: check applicable state law (CA, NY, NJ, WA, and others 
 - If leave type not specified → ask employee to classify the leave type
 - If dates include public holidays → exclude them from the working day count
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~HRIS | Pull employee records, tenure data, and leave balances automatically |
+| ~~calendar | Check team availability and block leave dates on shared calendars |
+| ~~document management | Access leave policy documents and approval forms |
+
 ## Rules
 - PTO: per company policy (typical 10-15 days/year; no federal mandate); tenure-based accrual varies by company
 - Federal holidays: 11 days/year (per 5 USC 6103)
@@ -126,3 +139,9 @@ COVERAGE CHECK
 
 RECOMMENDATION: [Approve / Reject / Pending — with rationale]
 ```
+
+## Related Skills
+- `policy-lookup` -- For referencing leave policies and entitlement rules
+- `interview-scheduler` -- For checking interviewer availability against leave calendars
+- `onboarding-checklist` -- For setting up leave entitlements during onboarding
+- `performance-review` -- For factoring attendance into performance evaluations

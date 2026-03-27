@@ -1,6 +1,10 @@
 ---
 name: onboarding-checklist
-description: Creates, customizes, and tracks onboarding checklists for new employees covering pre-arrival through the first month. Use when the user asks to prepare for a new hire, set up onboarding, create a first-day plan, or track onboarding progress.
+description: >
+  Creates, customizes, and tracks onboarding checklists for new employees covering pre-arrival through the first month.
+  Use when the user says "prepare for a new hire", "set up onboarding", "create a first-day plan",
+  "track onboarding progress", "what do we need before the new employee starts",
+  "new joiner checklist", or "onboard this person".
 ---
 
 # Onboarding Checklist
@@ -76,6 +80,15 @@ Output: Updated checklist with those items marked complete and revised progress 
 - If buddy not assigned → add a highlighted action item for the manager to assign one at least 3 days before the start date
 - If start date is less than 7 days away → flag urgent items and prioritize the critical path (IT setup, accounts, contract)
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~HRIS | Pull new hire details, department info, and manager assignments |
+| ~~calendar | Schedule orientation meetings and check-in reminders |
+| ~~document management | Access onboarding templates, policy documents, and handbooks |
+
 ## Rules
 - The checklist must be sent to both the manager and HR at least 7 days before the start date
 - Every new hire must have an assigned buddy from the same team
@@ -125,3 +138,9 @@ Manager  | Set probation goals                      | [ ]
 Manager  | Weekly 1:1 check-ins                     | [ ]
 HR       | Two-way feedback session at end of month | [ ]
 ```
+
+## Related Skills
+- `interview-scheduler` -- For scheduling interviews before the hire decision
+- `training-planner` -- For planning training programs during onboarding
+- `policy-lookup` -- For looking up policies relevant to the new hire
+- `leave-manager` -- For setting up leave entitlements for the new employee

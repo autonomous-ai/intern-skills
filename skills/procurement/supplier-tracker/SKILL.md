@@ -1,6 +1,11 @@
 ---
 name: supplier-tracker
-description: Tracks supplier information, contract status, delivery performance, and renewal dates in a structured format. Use when the user asks to manage supplier records, check contract expiry, track delivery performance, or maintain a vendor database.
+description: >
+  Tracks supplier information, contract status, delivery performance, and renewal dates in a structured
+  format. Use when the user says "add a new supplier", "check contract expiry dates",
+  "track delivery performance", "update vendor records", "which contracts are expiring soon",
+  "supplier performance report", "maintain our vendor database",
+  or "show me the supplier renewal calendar".
 ---
 
 # Supplier Tracker
@@ -92,6 +97,16 @@ ACTIONS:
 - If contract dates are missing → flag as critical missing information
 - If duplicate supplier detected → warn and suggest merging records
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~ERP | Access vendor master data, purchase history, and contract records |
+| ~~vendor portal | Pull supplier certifications, compliance documents, and delivery updates |
+| ~~spreadsheet | Import supplier lists and export performance reports |
+| ~~email | Retrieve supplier correspondence and delivery notifications |
+
 ## Rules
 - Every supplier must have: company name, category, contract dates, and primary contact
 - Flag contracts expiring within 30 days as urgent (🔴)
@@ -125,3 +140,8 @@ PERFORMANCE
 ⚠️ MISSING INFORMATION:
 - [ ] [Required field not yet provided]
 ```
+
+## Related Skills
+- `vendor-evaluator` — For scoring and comparing vendors tracked in the supplier database
+- `po-generator` — For generating purchase orders with tracked suppliers
+- `bid-analyzer` — For evaluating new bids from tracked or prospective suppliers

@@ -1,6 +1,11 @@
 ---
 name: document-summarizer
-description: Summarizes long documents, reports, email threads, meeting transcripts, and articles into concise, structured overviews. Use when the user asks to summarize, condense, extract key points, or create a TL;DR of any text content.
+description: >
+  Summarizes long documents, reports, email threads, meeting transcripts, and articles into concise, structured overviews.
+  Use when the user says "summarize this", "give me the key points", "TL;DR",
+  "condense this report", "what are the main takeaways", "extract action items",
+  "break down this document", "cliff notes of this", "what does this say",
+  or asks to summarize, condense, or extract key points from any text content.
 ---
 
 # Document Summarizer
@@ -86,6 +91,16 @@ Outlook:
 - If document contains conflicting information → flag discrepancies in the summary
 - If summary depth not specified → default to standard (key points with action items)
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~drive | Read and summarize documents stored in Google Drive |
+| ~~email | Summarize email threads and long message chains directly |
+| ~~notes | Save summaries to your note-taking app for future reference |
+| ~~search engine | Provide additional context for technical or industry-specific documents |
+
 ## Rules
 - Never fabricate information — only include what is in the source content
 - Always include action items with owners and deadlines when present
@@ -122,3 +137,8 @@ Action Items:
 Summary generated from: [Source description]
 Summary depth: [TL;DR / Standard / Detailed]
 ```
+
+## Related Skills
+- `gmail-reader` -- For fetching email threads that need summarization
+- `drive-reader` -- For accessing documents stored in Google Drive to summarize
+- `note-taker` -- For organizing summaries into structured meeting notes or action items

@@ -1,6 +1,11 @@
 ---
 name: proposal-writer
-description: Drafts persuasive B2B sales proposals, quotations, and pitch documents customized to a specific client's needs with value-led messaging and tiered pricing. Use when the user asks to write a proposal, create a quote, draft a pitch deck, respond to an RFP, or revise pricing options for a deal.
+description: >
+  Drafts persuasive B2B sales proposals, quotations, and pitch documents customized to a specific
+  client's needs with value-led messaging and tiered pricing.
+  Use when the user says "write a proposal for X", "create a quote", "draft a pitch deck",
+  "respond to this RFP", "put together pricing options", "send a proposal",
+  "build a sales deck", or "revise the pricing for this deal".
 ---
 
 # Proposal Writer
@@ -74,6 +79,16 @@ Output: A streamlined quotation with scope summary, single price point, delivera
 - If pricing info is unavailable → generate template with placeholder pricing marked for user input
 - If proposal type is ambiguous → present options (full proposal, quotation, pitch deck) and confirm
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~CRM | Pull deal details, contact info, and prior interactions for personalization |
+| ~~email | Access email threads to reference past discussions in the proposal |
+| ~~calendar | Check stakeholder availability for proposed next-step meetings |
+| ~~LinkedIn | Research client decision-makers for tailored messaging |
+
 ## Rules
 - Always lead with value and outcomes, never features alone
 - Personalize every section to the specific client — no generic proposals
@@ -126,3 +141,9 @@ Proposal Valid Until: [Date — 30 days from issue]
 
 Follow-up Schedule: Day 3 / Day 7 / Day 14
 ```
+
+## Related Skills
+- `lead-researcher` -- For researching the client before writing the proposal
+- `follow-up-drafter` -- For follow-up emails after the proposal is sent
+- `competitor-briefer` -- For competitive positioning when the client is evaluating alternatives
+- `crm-helper` -- For logging the proposal and updating the deal stage

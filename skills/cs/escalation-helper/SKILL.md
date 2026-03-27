@@ -1,6 +1,11 @@
 ---
 name: escalation-helper
-description: Guides the escalation of support tickets to higher authority or specialized teams with proper documentation, routing, and customer communication. Use when the user needs to escalate an issue, mentions a manager or supervisor request, encounters an SLA breach, or faces a critical issue beyond their authority.
+description: >
+  Guides the escalation of support tickets to higher authority or specialized teams with proper
+  documentation, routing, and customer communication.
+  Use when the user says "escalate this ticket", "the customer wants a manager",
+  "this is beyond my authority", "we've breached SLA on this", "how do I escalate this",
+  "route this to a supervisor", "this needs senior approval", or "this customer is threatening legal action".
 ---
 
 # Escalation Helper
@@ -110,6 +115,16 @@ Customer Communication Draft:
 - If the customer is in immediate distress → flag for emergency protocol and recommend immediate human intervention
 - If the SLA has already been breached → note the breach duration and recommend an expedited path
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~helpdesk | Pull full ticket history and auto-route to the correct team |
+| ~~CRM | Access customer account details, lifetime value, and prior escalations |
+| ~~knowledge base | Check SOPs for escalation procedures and authority limits |
+| ~~email | Send escalation notifications to internal teams and customer updates |
+
 ## Rules
 - Never make the customer explain their issue again; always transfer full context
 - Every escalation must include: reason, severity level, expected resolution time, and full context summary
@@ -152,3 +167,9 @@ Follow-Up Schedule:
 Customer Communication Draft:
 [Draft message to send to the customer about the escalation]
 ```
+
+## Related Skills
+- `ticket-responder` -- For drafting the initial response before escalation is needed
+- `faq-lookup` -- For checking if a standard answer exists before escalating
+- `knowledge-base` -- For reviewing SOPs and escalation procedures
+- `feedback-analyzer` -- For tracking escalation trends and identifying systemic issues

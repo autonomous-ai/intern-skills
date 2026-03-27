@@ -1,6 +1,10 @@
 ---
 name: task-tracker
-description: Tracks project tasks including creation, assignment, status updates, and progress reporting. Use when the user asks to create tasks, update task status, check project progress, find overdue or blocked items, or generate a task board summary.
+description: >
+  Tracks project tasks including creation, assignment, status updates, and progress reporting.
+  Use when the user says "create a task", "update task status", "check project progress",
+  "what's overdue", "show blocked items", "generate a task board",
+  "assign this to", or "how far along are we".
 ---
 
 # Task Tracker
@@ -75,6 +79,16 @@ Blocked Tasks:
 - If no project context is provided -> ask the user to specify the project
 - If a task exceeds 3 days estimated effort -> recommend splitting into sub-tasks
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~project tracker | Sync tasks with Jira, Asana, or other project management tools |
+| ~~CI/CD | Link tasks to build/deploy status and pull requests |
+| ~~calendar | Set task deadlines as calendar events and track milestones |
+| ~~docs | Access requirements documents and specifications linked to tasks |
+
 ## Rules
 - Every task must have: title, assignee, priority, and deadline
 - Priority ordering: Critical > High > Medium > Low
@@ -107,3 +121,9 @@ Blocked Tasks:
 |------|----------|------------|--------|
 | [Title] | [Person] | [Reason] | [Resolution plan] |
 ```
+
+## Related Skills
+- `sprint-planner` -- For planning sprints and allocating tasks to team members
+- `standup-helper` -- For daily standup updates on task progress
+- `risk-assessor` -- For assessing risks related to blocked or overdue tasks
+- `timeline-generator` -- For visualizing task timelines and dependencies

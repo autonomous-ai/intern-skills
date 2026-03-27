@@ -1,6 +1,11 @@
 ---
 name: sensor-monitor
-description: Queries and monitors Home Assistant sensor states including temperature, humidity, motion, energy consumption, door/window contacts, and air quality. Use when the user wants to read the current value of a sensor, check if a binary sensor is on or off, get energy usage data, compare multiple sensors, or identify sensors that are unavailable or reporting abnormal values.
+description: >
+  Queries and monitors Home Assistant sensor states including temperature, humidity, motion, energy consumption, door/window contacts, and air quality.
+  Use when the user says "what's the temperature", "check humidity levels",
+  "is there motion in the hallway", "show energy usage", "are any doors open",
+  "what are my sensor readings", "is the garage door closed", "air quality check",
+  "how much power am I using", or wants to read sensor values, check binary sensor states, or monitor environmental data.
 ---
 
 # Sensor Monitor
@@ -78,6 +83,15 @@ Active: 1 sensor (hallway)
 - If no sensors match the search term → list all sensors by device_class and ask user to pick
 - If unit_of_measurement is missing → display raw state value with a note
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~home assistant | Read real-time sensor data from the Home Assistant REST API |
+| ~~IoT platform | Monitor sensors across multiple smart home ecosystems |
+| ~~voice assistant | Ask for sensor readings via voice and receive spoken responses |
+
 ## Rules
 - Temperature: display as °F by default (convert from °C if `unit_of_measurement` is °C)
 - Energy: display kWh for cumulative, W for instantaneous power
@@ -99,3 +113,8 @@ Sensor                  | Value | Unit | Status
 
 Summary: [X] sensors active, [Y] warnings, [Z] unavailable
 ```
+
+## Related Skills
+- `automation-builder` -- For creating automations triggered by sensor thresholds
+- `device-controller` -- For controlling devices based on sensor readings
+- `ha-connector` -- For discovering all available sensors in the entity registry

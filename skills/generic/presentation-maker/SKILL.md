@@ -1,6 +1,11 @@
 ---
 name: presentation-maker
-description: Creates structured presentation outlines, slide content, and speaker notes for business presentations. Use when the user asks to create a presentation, build slides, prepare a pitch deck, or draft a talk outline.
+description: >
+  Creates structured presentation outlines, slide content, and speaker notes for business presentations.
+  Use when the user says "create a presentation", "build slides", "prepare a pitch deck",
+  "draft a talk outline", "make a slide deck", "help me with my keynote",
+  "presentation for the board meeting", "I need slides for",
+  or asks to create, structure, or improve any presentation or slide content.
 ---
 
 # Presentation Maker
@@ -87,6 +92,15 @@ Output: A 6-slide deck following: Problem → Solution → Market Size → Busin
 - If audience not specified → ask who will be viewing the presentation
 - If data is needed but not provided → add placeholder markers and list what data to fill in
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~drive | Access reference documents and save presentation files to Google Drive |
+| ~~search engine | Research market data, statistics, and competitor info for slide content |
+| ~~notes | Pull key points from meeting notes to build presentation content |
+
 ## Rules
 - Maximum 5 bullet points per slide — keep text minimal
 - One key idea per slide
@@ -118,3 +132,8 @@ Preparation Notes:
 - [Data or materials to gather before finalizing]
 - [Design suggestions]
 ```
+
+## Related Skills
+- `document-summarizer` -- For condensing source materials into key points for slides
+- `spreadsheet-helper` -- For extracting data and charts to include in presentations
+- `web-search` -- For researching market data and statistics for presentation content

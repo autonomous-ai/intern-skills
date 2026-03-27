@@ -1,6 +1,10 @@
 ---
 name: faq-lookup
-description: Finds, retrieves, or creates standardized answers to common customer questions from the FAQ database. Use when the user asks about frequently asked questions, needs a canned response, wants a quick template answer, or needs to add or update an FAQ entry.
+description: >
+  Finds, retrieves, or creates standardized answers to common customer questions from the FAQ database.
+  Use when the user says "what's our policy on X", "find the FAQ for this", "do we have a canned
+  response for X", "look up the answer to this question", "add a new FAQ entry",
+  "what do we tell customers about X", or "update the FAQ for this topic".
 ---
 
 # FAQ Lookup
@@ -72,6 +76,16 @@ Match Confidence: Low
 - If the matched entry is older than 90 days → flag it for review and warn the information may be outdated
 - If the question involves an uncovered topic → suggest creating a new category and draft the entry
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~helpdesk | Search ticket history for previously answered similar questions |
+| ~~CRM | Pull customer-specific context to personalize FAQ answers |
+| ~~knowledge base | Search and sync with the full internal knowledge base for deeper answers |
+| ~~email | Send FAQ answers directly to customers via email |
+
 ## Rules
 - FAQ answers must be concise and jargon-free; write for a general audience
 - Each FAQ entry must have: question, short answer, detailed answer, category, tags, and reference link
@@ -97,3 +111,9 @@ Tags: [tag1, tag2, tag3]
 Last Updated: [YYYY-MM-DD]
 Match Confidence: [High / Medium / Low]
 ```
+
+## Related Skills
+- `ticket-responder` -- For drafting full ticket responses that incorporate FAQ answers
+- `knowledge-base` -- For deeper product documentation and troubleshooting guides
+- `escalation-helper` -- For escalating when no FAQ covers the customer's issue
+- `feedback-analyzer` -- For identifying frequent questions that need new FAQ entries

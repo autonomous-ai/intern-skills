@@ -2,8 +2,9 @@
 name: api-tester
 description: >
   Tests and validates API endpoints by constructing requests, executing them, and verifying responses.
-  Use when the user asks to test an API, debug an endpoint, validate a response, create a curl command,
-  or check API behavior against a specification.
+  Use when the user says "test this API", "send a request to this endpoint", "generate a curl command",
+  "validate this response", "check if this endpoint works", "debug this API call",
+  "test my REST endpoint", or "verify API behavior".
 ---
 
 # API Tester
@@ -107,6 +108,15 @@ Total: 3 | Passed: 3 | Failed: 0
 - If the endpoint returns 5xx → suggest checking server logs and provide common troubleshooting steps
 - If the response does not match the spec → highlight every discrepancy between expected and actual
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~code repository | Read route definitions and OpenAPI specs directly from the repo |
+| ~monitoring | Correlate test results with server-side logs and performance metrics |
+| ~documentation | Pull API specs and endpoint documentation to auto-generate test cases |
+
 ## Rules
 - Always test both success AND error cases for every endpoint
 - Validate the full response schema, not just the status code
@@ -137,3 +147,8 @@ Total: [N] | Passed: [N] | Failed: [N]
 Avg Response Time: [ms]
 Schema Validation: [PASS / FAIL]
 ```
+
+## Related Skills
+- `debug-assistant` — Diagnose root causes when API tests reveal failures
+- `doc-generator` — Generate API documentation from tested endpoint behavior
+- `code-reviewer` — Review the endpoint implementation for correctness and security
