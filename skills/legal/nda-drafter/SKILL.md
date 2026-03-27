@@ -1,6 +1,13 @@
 ---
 name: nda-drafter
-description: Drafts and reviews Non-Disclosure Agreements (NDAs) with appropriate confidentiality terms, exclusions, and duration. Use when the user asks to create an NDA, draft a confidentiality agreement, or review NDA terms.
+description: >
+  Drafts and reviews Non-Disclosure Agreements (NDAs) with appropriate confidentiality terms,
+  exclusions, and duration.
+  Use when the user says "create an NDA", "draft a confidentiality agreement", "review this NDA",
+  "is this NDA fair", "mutual NDA for a partnership", "one-way NDA for a contractor",
+  "what should be in our NDA", "confidentiality agreement for a new hire",
+  "NDA template for vendor discussions", "how long should NDA confidentiality last",
+  or "two-way NDA for joint venture".
 ---
 
 # NDA Drafter
@@ -98,6 +105,16 @@ Output: A clause-by-clause analysis with fairness assessment and suggested modif
 - If duration seems unusual (>5 years or perpetual) → warn the user
 - If user requests legally binding document → remind that legal review is required
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~document management | Store and version-control NDA drafts centrally |
+| ~~contract system | Access NDA templates and track signing workflows |
+| ~~email | Send NDA drafts to counterparties for review |
+| ~~compliance database | Verify NDA terms against data protection regulations |
+
 ## Rules
 - NEVER claim the output is a legally binding document — always recommend legal review
 - Default to mutual NDA unless specified otherwise
@@ -125,3 +142,9 @@ Purpose: [Reason for NDA]
 
 ⚠️ Recommend legal counsel review before execution.
 ```
+
+## Related Skills
+- `contract-reviewer` — For reviewing broader contract terms beyond NDA scope
+- `clause-extractor` — For extracting and comparing confidentiality clauses across agreements
+- `compliance-checker` — For ensuring NDA terms meet regulatory requirements
+- `legal-summarizer` — For summarizing NDA terms in plain language

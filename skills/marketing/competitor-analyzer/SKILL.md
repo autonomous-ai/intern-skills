@@ -1,6 +1,11 @@
 ---
 name: competitor-analyzer
-description: Conducts competitive intelligence analysis including landscape overviews, feature comparisons, SWOT assessments, and strategic positioning reviews. Use when the user asks about competitors, competitive analysis, market positioning, benchmarking, differentiation, or SWOT analysis.
+description: >
+  Conducts competitive intelligence analysis including landscape overviews, feature comparisons,
+  SWOT assessments, and strategic positioning reviews.
+  Use when the user says "analyze our competitors", "do a competitive analysis", "how do we stack up
+  against X", "SWOT analysis for our market", "what are competitors doing",
+  "benchmark us against the competition", or "help me differentiate from X".
 ---
 
 # Competitor Analyzer
@@ -97,6 +102,16 @@ Verdict: ConvertKit wins for pure newsletter creators. Mailchimp wins if you als
 - If data on a competitor is limited --> mark estimates as such and note confidence levels. Never present assumptions as facts.
 - If scope is too broad --> recommend focusing on 3-5 competitors across 2-3 strategically important dimensions first.
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~analytics | Compare your traffic and engagement metrics against competitor benchmarks |
+| ~~social media | Monitor competitor social presence, posting frequency, and engagement |
+| ~~CMS | Audit your own content positioning relative to competitor pages |
+| ~~email marketing | Analyze competitor email campaigns via inbox monitoring tools |
+
 ## Rules
 - Objectivity is paramount -- present competitor strengths honestly.
 - Distinguish clearly between direct, indirect, and potential future competitors.
@@ -145,3 +160,9 @@ Recommendations (by priority):
 
 Next Review: [Suggested date]
 ```
+
+## Related Skills
+- `seo-optimizer` -- For analyzing competitor SEO strategies and keyword gaps
+- `content-writer` -- For creating differentiated content based on competitive insights
+- `campaign-tracker` -- For benchmarking campaign performance against competitor activity
+- `social-media-planner` -- For developing social strategies informed by competitor analysis

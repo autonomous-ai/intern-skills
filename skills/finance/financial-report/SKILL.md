@@ -1,6 +1,12 @@
 ---
 name: financial-report
-description: Generates and analyzes financial reports including P&L statements, cash flow, balance sheets, dashboards, and variance analyses with period-over-period comparisons. Use when the user asks for a financial report, revenue summary, profit analysis, or any financial performance review.
+description: >
+  Generates and analyzes financial reports including P&L statements, cash flow, balance sheets,
+  dashboards, and variance analyses with period-over-period comparisons.
+  Use when the user says "generate a P&L report", "show me the revenue summary", "profit and loss this quarter",
+  "create a financial dashboard", "how are our margins trending", "cash flow analysis",
+  "compare this month's financials to last month", "quarterly earnings summary",
+  "balance sheet snapshot", "revenue vs expenses chart", or "year-end financial overview".
 ---
 
 # Financial Report Generator
@@ -106,6 +112,16 @@ RECOMMENDATIONS
 - If figures do not reconcile -> flag discrepancy, identify source, and resolve before output
 - If an unsupported metric is requested -> attempt to derive from available data or explain what is needed
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~accounting | Pull real-time revenue, expense, and ledger data for reports |
+| ~~ERP | Access consolidated financial data across business units |
+| ~~spreadsheet | Import raw financial data and export formatted reports |
+| ~~banking | Incorporate cash position and bank balances into reports |
+
 ## Rules
 - All figures must be accurate and cross-checked; totals must reconcile
 - Always include period-over-period comparison when comparison data is available
@@ -146,3 +162,9 @@ RECOMMENDATIONS
 ---------------
 - [Actionable recommendation with rationale]
 ```
+
+## Related Skills
+- `budget-planner` — For budget context and variance analysis in reports
+- `expense-tracker` — For detailed expense data feeding into financial reports
+- `invoice-generator` — For revenue and accounts receivable data
+- `tax-helper` — For tax impact analysis within financial reports

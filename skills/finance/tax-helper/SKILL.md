@@ -1,6 +1,12 @@
 ---
 name: tax-helper
-description: Calculates US taxes (federal/state income tax, sales tax, corporate tax, excise tax), performs gross-to-net salary conversions, and provides filing checklists with legal citations. Use when the user asks about tax rates, tax calculations, gross-to-net conversion, tax deadlines, or US tax regulations (IRS).
+description: >
+  Calculates US taxes (federal/state income tax, sales tax, corporate tax, excise tax), performs
+  gross-to-net salary conversions, and provides filing checklists with legal citations.
+  Use when the user says "calculate my taxes", "what's the sales tax on this", "gross to net salary",
+  "when are taxes due", "what tax bracket am I in", "corporate tax rate", "help with tax filing",
+  "how much do I owe the IRS", "estimate quarterly taxes", "tax deduction checklist",
+  "withholding calculator", or "compare tax liability across states".
 ---
 
 # Tax Helper
@@ -126,6 +132,16 @@ qualified accountant or tax advisor before making filing decisions.
 - If user references an outdated regulation -> apply the current regulation and cite the update
 - If calculation produces an unexpected result (negative tax, invalid rate) -> recheck inputs and flag the anomaly
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~accounting | Pull income and deduction data from the general ledger |
+| ~~ERP | Access payroll records, revenue figures, and cost data for tax computation |
+| ~~spreadsheet | Import financial data and export tax worksheets |
+| ~~banking | Retrieve interest income and transaction records for tax reporting |
+
 ## Rules
 - Always apply the latest US tax regulations (IRS) in force
 - Cite legal basis (IRS publication, USC section) for every rate and deduction
@@ -174,3 +190,9 @@ DISCLAIMER
 These results are for reference purposes only. Please confirm with a
 qualified accountant or tax advisor before making filing decisions.
 ```
+
+## Related Skills
+- `payroll-helper` — For payroll tax withholdings and employer tax obligations
+- `invoice-generator` — For sales tax calculations on invoices and billing documents
+- `financial-report` — For tax impact analysis in financial reporting
+- `expense-tracker` — For tracking tax-deductible business expenses

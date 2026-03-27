@@ -1,6 +1,12 @@
 ---
 name: payroll-helper
-description: Assists with payroll calculations including gross-to-net salary, federal and state tax withholdings, FICA contributions, and payslip generation per US regulations. Use when the user asks to calculate salary, compute tax withholdings, generate payslips, or understand payroll deductions.
+description: >
+  Assists with payroll calculations including gross-to-net salary, federal and state tax withholdings,
+  FICA contributions, and payslip generation per US regulations.
+  Use when the user says "calculate net salary", "generate a payslip", "how much tax is withheld",
+  "compute payroll deductions", "what's my take-home pay", "employer cost for this salary",
+  "run payroll for this employee", "break down this salary", "401k impact on take-home pay",
+  "total compensation cost", or "payroll summary for the team".
 ---
 
 # Payroll Helper
@@ -98,6 +104,16 @@ Output: A formatted payslip document with all line items, YTD totals, and PTO ba
 - If state not specified → calculate federal only and prompt for state
 - If pre-tax deductions unknown → show gross-to-net without optional deductions
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~accounting | Post payroll journal entries to the general ledger |
+| ~~ERP | Access employee records, salary grades, and benefits data |
+| ~~spreadsheet | Import employee lists and export payroll summaries |
+| ~~banking | Initiate direct deposit payments and verify bank details |
+
 ## Rules
 - Federal income tax brackets (2024, verify annually):
   - Single: 10% up to $11,600 | 12% $11,601-$47,150 | 22% $47,151-$100,525 | 24% $100,526-$191,950 | 32% $191,951-$243,725 | 35% $243,726-$609,350 | 37% over $609,350
@@ -144,3 +160,9 @@ NET PAY: $[Amount]
 
 EMPLOYER COST: $[Amount]
 ```
+
+## Related Skills
+- `tax-helper` — For detailed tax calculations and filing guidance
+- `expense-tracker` — For tracking payroll as a business expense
+- `budget-planner` — For payroll budgeting and headcount planning
+- `financial-report` — For payroll cost summaries in financial reports

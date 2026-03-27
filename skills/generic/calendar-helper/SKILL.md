@@ -1,6 +1,11 @@
 ---
 name: calendar-helper
-description: Helps create, edit, view, and manage calendar events, meetings, reminders, and scheduling. Use when the user mentions scheduling, booking meetings, checking availability, setting reminders, or managing appointments and deadlines.
+description: >
+  Helps create, edit, view, and manage calendar events, meetings, reminders, and scheduling.
+  Use when the user says "schedule a meeting", "book a call", "check my calendar",
+  "what's on my schedule", "set a reminder", "find a free slot", "move my meeting",
+  "when is my next meeting", "block time for focus", "cancel the 3pm",
+  "am I free on Thursday", or mentions scheduling, checking availability, or managing appointments and deadlines.
 ---
 
 # Calendar Helper
@@ -52,6 +57,16 @@ Which slot works best?
 - If required info missing (title, time, date) → prompt for missing details
 - If referenced event not found → list similar events and ask to clarify
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~calendar | Sync events directly with Google Calendar, Outlook, or Apple Calendar |
+| ~~email | Send meeting invitations and event updates to participants |
+| ~~notes | Attach meeting agendas or capture notes linked to calendar events |
+| ~~search engine | Look up venue details, time zones, or public holiday schedules |
+
 ## Rules
 - Always confirm timezone if not explicitly stated
 - Suggest 2-3 time slot options for new meetings
@@ -72,3 +87,8 @@ Recurrence: [if applicable]
 
 Status: [Confirmed / Pending Confirmation / Conflict Detected]
 ```
+
+## Related Skills
+- `email-assistant` -- For sending meeting invitations and follow-ups via email
+- `note-taker` -- For capturing meeting agendas and action items
+- `gmail-reader` -- For finding meeting-related emails and RSVPs

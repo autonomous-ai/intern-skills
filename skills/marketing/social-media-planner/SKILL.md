@@ -1,6 +1,10 @@
 ---
 name: social-media-planner
-description: Creates social media content calendars, generates post ideas, and develops platform-specific strategies. Use when the user asks about social media planning, content calendars, posting schedules, hashtag strategies, or needs post ideas for platforms like Instagram, TikTok, LinkedIn, Facebook, or Twitter/X.
+description: >
+  Creates social media content calendars, generates post ideas, and develops platform-specific strategies.
+  Use when the user says "plan my social media for this week", "create a content calendar",
+  "give me post ideas for Instagram", "what should I post on LinkedIn", "build a posting schedule",
+  "plan a hashtag strategy", or "help me with TikTok content".
 ---
 
 # Social Media Planner
@@ -86,6 +90,16 @@ LinkedIn Post Ideas - B2B SaaS Startup
 - If timeframe is not specified --> default to one week and note the assumption.
 - If user wants real-time analytics --> clarify this skill creates plans; suggest campaign-tracker for performance data.
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~analytics | Pull engagement metrics to optimize posting times and formats |
+| ~~social media | Publish scheduled posts directly to platforms |
+| ~~CMS | Cross-link social posts to blog content and landing pages |
+| ~~email marketing | Coordinate social campaigns with email send schedules |
+
 ## Rules
 - 80/20 rule: 80% value content, 20% promotional.
 - Every post must include a CTA, even a soft one (e.g., "What do you think?" or "Save for later").
@@ -127,3 +141,9 @@ Pillar Distribution:
 - Promotional: [X]%
 - Engagement: [X]%
 ```
+
+## Related Skills
+- `content-writer` -- For drafting the full copy for each planned post
+- `campaign-tracker` -- For measuring social campaign performance after execution
+- `competitor-analyzer` -- For analyzing competitor social strategies and viral content
+- `seo-optimizer` -- For aligning social content with SEO keyword strategies

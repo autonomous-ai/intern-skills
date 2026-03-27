@@ -1,6 +1,11 @@
 ---
 name: automation-builder
-description: Creates, updates, and triggers Home Assistant automations by generating valid HA automation YAML or firing events via the REST API. Use when the user wants to automate device behavior based on time, state changes, sunrise/sunset, motion, or other triggers, or wants to run an existing automation manually.
+description: >
+  Creates, updates, and triggers Home Assistant automations by generating valid HA automation YAML or firing events via the REST API.
+  Use when the user says "automate the lights", "turn off lights at 11pm",
+  "when motion is detected turn on", "create an automation for", "trigger the goodnight routine",
+  "schedule the fan to turn off", "if temperature exceeds 80 then",
+  "run my morning automation", or wants to automate device behavior based on time, state changes, motion, or other triggers.
 ---
 
 # Automation Builder
@@ -83,6 +88,15 @@ Result: 200 OK — automation triggered successfully
 - If automation references an unavailable entity → flag it and ask the user to confirm
 - If the user asks to "save" the automation → generate YAML and explain it must be added to `automations.yaml` or via the HA UI Automation editor
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~home assistant | Create and trigger automations via the Home Assistant REST API |
+| ~~IoT platform | Build automations that span multiple smart home ecosystems |
+| ~~voice assistant | Trigger automations with voice commands and receive spoken confirmations |
+
 ## Rules
 - Always use `mode: single` by default unless the user specifies parallel/queued/restart behavior
 - Time values must be quoted strings in `"HH:MM:SS"` format
@@ -110,3 +124,8 @@ action:
       [action_parameters]
 mode: [single / parallel / queued / restart]
 ```
+
+## Related Skills
+- `device-controller` -- For manually controlling devices referenced in automations
+- `sensor-monitor` -- For checking sensor values used as automation triggers
+- `scene-manager` -- For creating scenes that automations can activate

@@ -1,6 +1,6 @@
 ---
 name: wireframe-helper
-description: Creates text-based wireframes with ASCII layouts, annotations, responsive adaptations, and user flow context. Use when the user asks for a wireframe, page layout, UI structure, lo-fi mockup, or wants to visualize a page structure before high-fidelity design.
+description: Creates text-based wireframes with ASCII layouts, annotations, responsive adaptations, and user flow context. Use when the user asks for a wireframe, page layout, UI structure, lo-fi mockup, or wants to visualize a page structure before high-fidelity design. Trigger phrases include "wireframe this page", "sketch out a layout", "what should this screen look like", "create a lo-fi mockup", "plan the UI structure", "draw me a page layout", "how should we lay out this feature".
 ---
 
 # Wireframe Helper
@@ -122,6 +122,16 @@ Viewport: Desktop
 - If the layout conflicts with existing project patterns -> Flag the inconsistency and let the user decide
 - If content is too complex for a single wireframe -> Break into multiple screens with navigation annotations
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~design tool | Export wireframes as starting frames in Figma, Sketch, or Adobe XD |
+| ~~asset management | Pull existing components and icons from the asset library into wireframes |
+| ~~project tracker | Link wireframes to user stories and track design progress |
+| ~~brand guidelines | Apply brand layout grids and spacing rules to wireframe structures |
+
 ## Rules
 - Mobile-first: always wireframe mobile viewport first, then scale up
 - Content-first: use realistic content descriptions, not generic "Lorem ipsum" placeholders
@@ -158,3 +168,8 @@ Viewport: [Mobile / Tablet / Desktop]
 ### Option B: [Name]
 [Brief description and rationale]
 ```
+
+## Related Skills
+- **design-reviewer** -- review the wireframe for usability, accessibility, and design system adherence
+- **color-palette** -- apply a color palette to elevate wireframes toward higher fidelity
+- **asset-organizer** -- source existing assets and components to populate wireframe elements

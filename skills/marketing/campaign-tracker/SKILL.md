@@ -1,6 +1,11 @@
 ---
 name: campaign-tracker
-description: Analyzes marketing campaign performance, calculates KPIs, compares A/B test results, and provides budget optimization recommendations. Use when the user asks about campaign ROI, ad performance, ROAS, CPA, conversion tracking, marketing reports, or budget allocation across channels.
+description: >
+  Analyzes marketing campaign performance, calculates KPIs, compares A/B test results, and provides
+  budget optimization recommendations.
+  Use when the user says "how did our campaign perform", "calculate the ROI", "compare these A/B results",
+  "what's our ROAS", "analyze ad performance", "where should I allocate budget",
+  "generate a marketing report", or "which channel is performing best".
 ---
 
 # Campaign Tracker
@@ -93,6 +98,16 @@ Recommendation: Use Version A. Opens are a vanity metric; clicks drive revenue. 
 - If data is incomplete --> analyze what is available and note which metrics cannot be calculated.
 - If user expects live dashboard data --> clarify this skill analyzes provided data; recommend platform-native dashboards for real-time monitoring.
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~analytics | Pull real-time campaign metrics from Google Analytics, Mixpanel, etc. |
+| ~~social media | Fetch platform-native ad performance data (Meta Ads, LinkedIn Ads) |
+| ~~CMS | Track landing page conversion rates tied to campaigns |
+| ~~email marketing | Pull email campaign open rates, click rates, and revenue attribution |
+
 ## Rules
 - All campaign links must use UTM parameters -- flag any that do not.
 - Track the full funnel: impressions > clicks > conversions > revenue. Never report vanity metrics alone.
@@ -139,3 +154,9 @@ Recommendations:
 Next Steps:
 - [Immediate action items with owner and deadline]
 ```
+
+## Related Skills
+- `social-media-planner` -- For planning social campaigns that feed into tracking
+- `content-writer` -- For creating ad copy and content based on performance insights
+- `seo-optimizer` -- For correlating organic traffic impact alongside paid campaigns
+- `competitor-analyzer` -- For benchmarking campaign performance against competitors

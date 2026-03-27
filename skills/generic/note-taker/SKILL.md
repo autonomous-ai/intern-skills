@@ -1,6 +1,10 @@
 ---
 name: note-taker
-description: Captures and organizes notes, meeting minutes, to-do lists, brainstorming sessions, and daily standups into structured formats. Use when the user asks to take notes, write down ideas, create meeting minutes, build a checklist, or capture action items from a discussion.
+description: >
+  Captures and organizes notes, meeting minutes, to-do lists, brainstorming sessions, and daily standups into structured formats.
+  Use when the user says "take notes", "write this down", "create meeting minutes",
+  "make a checklist", "capture action items", "jot this down", "summarize the meeting",
+  "start a brainstorm", "log what we decided", or asks to record, organize, or structure any discussion or ideas.
 ---
 
 # Note Taker
@@ -60,6 +64,16 @@ Medium Priority:
 - If file with same name exists → ask whether to overwrite, append, or create with new name
 - If content is unstructured → organize into best-matching template and confirm
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~notes | Save notes directly to Notion, Obsidian, or Apple Notes |
+| ~~calendar | Link meeting notes to calendar events automatically |
+| ~~email | Email meeting minutes and action items to participants |
+| ~~drive | Store notes in Google Drive or shared team folders |
+
 ## Rules
 - Meeting notes must include: date, participants, topics, decisions, and action items with assignees/deadlines
 - To-do lists use checkboxes (`[ ]` / `[x]`) sorted by priority (high to low)
@@ -89,3 +103,8 @@ Action Items:
 
 Next Meeting: [date if applicable]
 ```
+
+## Related Skills
+- `email-assistant` -- For emailing meeting notes and action items to participants
+- `calendar-helper` -- For scheduling follow-up meetings referenced in notes
+- `document-summarizer` -- For condensing long transcripts before note extraction

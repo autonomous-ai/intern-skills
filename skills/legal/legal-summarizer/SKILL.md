@@ -1,6 +1,13 @@
 ---
 name: legal-summarizer
-description: Summarizes legal documents, regulations, and policies into plain-language overviews with key obligations and deadlines. Use when the user asks to summarize a law, regulation, legal document, policy, or explain legal terms in simple language.
+description: >
+  Summarizes legal documents, regulations, and policies into plain-language overviews with key
+  obligations and deadlines.
+  Use when the user says "summarize this contract", "explain this law in simple terms",
+  "what does this regulation mean", "break down this policy for me", "TL;DR of this legal document",
+  "what are my obligations under this agreement", "explain this clause in plain English",
+  "what does this terms of service say", "simplify this legal jargon",
+  "key takeaways from this regulation", or "plain-language version of this policy".
 ---
 
 # Legal Summarizer
@@ -81,6 +88,16 @@ Output: A summary highlighting user obligations, liability limitations, data han
 - If only partial document provided → summarize available content and note what is missing
 - If user asks for legal interpretation → clarify this is a summary, not legal advice
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~document management | Pull legal documents and policies from centralized repositories |
+| ~~contract system | Access contracts and amendments for summarization |
+| ~~email | Retrieve legal correspondence and regulatory notices |
+| ~~compliance database | Cross-reference summarized obligations against compliance tracking |
+
 ## Rules
 - NEVER provide legal advice or legal interpretation — summaries are informational only
 - Use plain language — replace legal jargon with everyday terms (add original term in parentheses)
@@ -120,3 +137,9 @@ WHO THIS AFFECTS:
 ⚠️ This is a plain-language summary for informational purposes only.
 Consult legal counsel for specific guidance.
 ```
+
+## Related Skills
+- `contract-reviewer` — For detailed risk analysis of contracts beyond summaries
+- `compliance-checker` — For checking compliance with summarized regulations
+- `clause-extractor` — For extracting specific clauses referenced in summaries
+- `nda-drafter` — For drafting agreements based on summarized requirements

@@ -1,6 +1,11 @@
 ---
 name: spreadsheet-helper
-description: Assists with spreadsheet formulas, data organization, pivot table design, and data cleanup for Excel and Google Sheets. Use when the user asks about formulas, cell references, data formatting, conditional formatting, VLOOKUP, pivot tables, or any spreadsheet-related task.
+description: >
+  Assists with spreadsheet formulas, data organization, pivot table design, and data cleanup for Excel and Google Sheets.
+  Use when the user says "write a formula", "help with VLOOKUP", "create a pivot table",
+  "clean up my spreadsheet", "conditional formatting", "how to sum by category",
+  "fix my Excel formula", "Google Sheets function for", "sort and filter my data",
+  or asks about formulas, cell references, data formatting, or any spreadsheet-related task.
 ---
 
 # Spreadsheet Helper
@@ -78,6 +83,15 @@ Step 3: Verify
 - If formula returns an error → explain common causes (#N/A, #REF!, #VALUE!) and fixes
 - If data range is unknown → use a generous range and note to adjust
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~drive | Access and read spreadsheets stored in Google Drive |
+| ~~email | Email formatted spreadsheet reports or data summaries |
+| ~~search engine | Look up formula syntax, function documentation, and best practices |
+
 ## Rules
 - Always explain what each part of a formula does
 - Use absolute references ($) where appropriate and explain why
@@ -105,3 +119,8 @@ Alternative Approach:
 Common Pitfalls:
 - [Things to watch out for]
 ```
+
+## Related Skills
+- `sheets-reader` -- For reading live data from Google Sheets via the Sheets API
+- `document-summarizer` -- For summarizing data insights from large spreadsheets
+- `presentation-maker` -- For turning spreadsheet data into presentation slides

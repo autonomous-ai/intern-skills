@@ -1,6 +1,6 @@
 ---
 name: design-reviewer
-description: Reviews UI/UX designs for consistency, usability, accessibility, and design system adherence. Use when the user asks for design feedback, a UX review, a design audit, an accessibility check, or wants a mockup reviewed before development handoff.
+description: Reviews UI/UX designs for consistency, usability, accessibility, and design system adherence. Use when the user asks for design feedback, a UX review, a design audit, an accessibility check, or wants a mockup reviewed before development handoff. Trigger phrases include "review this design", "check my mockup", "is this accessible", "give me feedback on this UI", "audit this page for usability", "does this follow our design system", "look at this before I hand it off to dev".
 ---
 
 # Design Reviewer
@@ -93,6 +93,16 @@ Accessibility-focused audit of the analytics dashboard.
 - If review scope is ambiguous -> Default to a full audit covering all categories
 - If target platform is unspecified -> Ask the user to clarify before reviewing
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~design tool | Pull design files directly from Figma, Sketch, or Adobe XD for review |
+| ~~asset management | Cross-reference reviewed elements against the approved asset library |
+| ~~project tracker | Create tickets for review findings and track fix progress |
+| ~~brand guidelines | Auto-load brand specs to verify compliance during review |
+
 ## Rules
 - Use constructive language: "Consider..." or "This could be improved by..." instead of "This is wrong"
 - Always explain WHY a change is recommended, citing UX principles or accessibility standards
@@ -130,3 +140,8 @@ Design Review
 
 ## Verdict: [Approved / Needs Revision / Major Revision Required]
 ```
+
+## Related Skills
+- **brand-checker** -- audit materials against brand guidelines for logo, color, and typography compliance
+- **color-palette** -- verify and fix color contrast issues flagged during review
+- **wireframe-helper** -- create revised wireframes when layout changes are recommended

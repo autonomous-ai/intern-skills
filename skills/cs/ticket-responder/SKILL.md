@@ -1,6 +1,11 @@
 ---
 name: ticket-responder
-description: Drafts professional, empathetic responses to customer support tickets. Classifies the issue type, assesses priority and sentiment, and recommends follow-up actions. Use when the user asks to reply to a customer, draft a ticket response, handle a complaint, or respond to a support request.
+description: >
+  Drafts professional, empathetic responses to customer support tickets. Classifies the issue type,
+  assesses priority and sentiment, and recommends follow-up actions.
+  Use when the user says "reply to this customer", "draft a response to this ticket",
+  "handle this complaint", "respond to this support request", "what should I say to this customer",
+  "help me answer this ticket", or "write a reply for this issue".
 ---
 
 # Ticket Responder
@@ -91,6 +96,16 @@ Internal Notes:
 - If escalation is required but no routing info is available → note the need and recommend the escalation helper skill
 - If the customer's language is not English → draft the response in the detected language
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~helpdesk | Pull ticket history, customer details, and prior interactions directly |
+| ~~CRM | Access customer account info, purchase history, and subscription status |
+| ~~knowledge base | Search for relevant articles and SOPs to include in responses |
+| ~~email | Send drafted responses directly to the customer |
+
 ## Rules
 - Tone: friendly, professional, empathetic — never defensive or dismissive
 - Always apologize first when the customer has a problem, even if fault is unconfirmed
@@ -116,3 +131,9 @@ Internal Notes:
 - Follow-up: [Follow-up action required]
 - Escalation: [Escalation details if needed, otherwise "None"]
 ```
+
+## Related Skills
+- `faq-lookup` -- For finding standard answers to include in ticket responses
+- `escalation-helper` -- For escalating tickets that exceed your authority or scope
+- `knowledge-base` -- For looking up troubleshooting guides and product documentation
+- `feedback-analyzer` -- For identifying patterns when similar tickets keep recurring

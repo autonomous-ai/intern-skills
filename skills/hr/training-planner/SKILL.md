@@ -1,6 +1,10 @@
 ---
 name: training-planner
-description: Plans and organizes employee training programs, tracks learning progress, and manages training schedules. Use when the user asks to create a training plan, schedule workshops, track employee development, or design an onboarding curriculum.
+description: >
+  Plans and organizes employee training programs, tracks learning progress, and manages training schedules.
+  Use when the user says "create a training plan", "schedule a workshop", "track employee development",
+  "design an onboarding curriculum", "plan a learning program", "upskill the team",
+  "what training does this employee need", or "build a development roadmap".
 ---
 
 # Training Planner
@@ -92,6 +96,16 @@ Output: A phased plan with skill-building modules, mentoring schedule, and miles
 - If trainer availability unknown → create schedule with placeholder and note dependency
 - If timeline is too aggressive → suggest phased approach with priorities
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~HRIS | Pull employee skills profiles, competency gaps, and training history |
+| ~~calendar | Schedule training sessions and check participant availability |
+| ~~document management | Access training materials, curricula, and certification records |
+| ~~ATS | Identify skill gaps from hiring trends to inform training priorities |
+
 ## Rules
 - Every training plan must include: objectives, schedule, resources, assessment, and budget
 - Learning objectives should be measurable and specific (use action verbs: build, create, analyze)
@@ -135,3 +149,8 @@ BUDGET ESTIMATE
 |------|------|
 | TOTAL | [Amount] |
 ```
+
+## Related Skills
+- `onboarding-checklist` -- For incorporating training into new hire onboarding
+- `performance-review` -- For identifying training needs from performance reviews
+- `policy-lookup` -- For referencing mandatory compliance training requirements

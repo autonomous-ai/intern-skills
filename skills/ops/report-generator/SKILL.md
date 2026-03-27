@@ -1,6 +1,10 @@
 ---
 name: report-generator
-description: Generates structured operational reports including weekly, monthly, quarterly, annual, and ad-hoc incident reports with executive summaries, KPI tracking, trend analysis, and actionable recommendations. Use when the user asks to create a report, compile data, summarize metrics, track KPIs, or produce a performance review.
+description: >
+  Generates structured operational reports including weekly, monthly, quarterly, annual, and ad-hoc incident reports with executive summaries, KPI tracking, trend analysis, and actionable recommendations.
+  Use when the user says "create a report", "compile the data", "summarize these metrics",
+  "track KPIs", "generate a weekly report", "write an incident report",
+  "how did we perform this quarter", or "prepare a status update".
 ---
 
 # Report Generator
@@ -100,6 +104,16 @@ Status: Draft
 - If prior-period data is unavailable → note the absence, present current-period data only, and recommend establishing a baseline
 - If metrics show extreme anomalies (>50% change) → flag prominently and request user verification
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~project tracker | Pull project metrics, task completion rates, and milestone status |
+| ~~inventory system | Access inventory data for supply chain and stock reports |
+| ~~document management | Store reports and access historical report archives |
+| ~~calendar | Reference reporting schedules and deadline tracking |
+
 ## Rules
 - All data must include units and be compared against the prior period where possible
 - Use directional indicators consistently: [UP] for increase, [DOWN] for decrease, [STABLE] for no significant change
@@ -150,3 +164,9 @@ RECOMMENDATIONS & ACTION ITEMS
 =======================================
 Status: [Draft / Under Review / Final]
 ```
+
+## Related Skills
+- `document-formatter` -- For formatting reports into polished business documents
+- `inventory-tracker` -- For pulling inventory data into operational reports
+- `meeting-scheduler` -- For scheduling report review meetings
+- `sop-creator` -- For documenting reporting processes as SOPs

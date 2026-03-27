@@ -1,6 +1,11 @@
 ---
 name: expense-tracker
-description: Tracks and categorizes business expenses, calculates budget impact, and flags overspending. Use when the user asks to record an expense, check reimbursement status, review spending by category, or reconcile costs against a department budget.
+description: >
+  Tracks and categorizes business expenses, calculates budget impact, and flags overspending.
+  Use when the user says "log an expense", "record this purchase", "how much have we spent on marketing",
+  "check my reimbursement status", "review spending by category", "reconcile costs against budget",
+  "flag overspending in operations", "submit expense report", "categorize these receipts",
+  "track project costs", "what's our burn rate", or "expense breakdown by department".
 ---
 
 # Expense Tracker
@@ -78,6 +83,16 @@ Alert:               Warning: approaching limit (>80%)
 - If budget data is unavailable -> record the expense but note budget comparison is not possible
 - If duplicate entry is detected -> warn user and ask for confirmation before recording
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~accounting | Pull transactions and categorized ledger entries directly |
+| ~~ERP | Access department budgets and cost center mappings |
+| ~~spreadsheet | Import/export expense data from spreadsheets |
+| ~~banking | Reconcile expenses against bank transaction feeds |
+
 ## Rules
 - All expenses must reference supporting documents (invoices, receipts)
 - Alert when spending reaches 80% of category budget
@@ -110,3 +125,9 @@ NOTES
 =====
 - [Any additional observations, warnings, or required actions]
 ```
+
+## Related Skills
+- `budget-planner` — For building and adjusting budgets that expenses are tracked against
+- `invoice-generator` — For generating invoices related to billable expenses
+- `financial-report` — For producing spending summaries and financial performance reports
+- `payroll-helper` — For payroll-related expense calculations

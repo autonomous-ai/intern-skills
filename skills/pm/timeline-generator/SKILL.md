@@ -1,6 +1,10 @@
 ---
 name: timeline-generator
-description: Generates project timelines with phases, milestones, dependencies, critical path analysis, and Gantt-style visualizations. Use when the user asks to create a project schedule, estimate delivery dates, build a roadmap, identify the critical path, or adjust an existing timeline.
+description: >
+  Generates project timelines with phases, milestones, dependencies, critical path analysis, and Gantt-style visualizations.
+  Use when the user says "create a project timeline", "estimate delivery dates", "build a roadmap",
+  "identify the critical path", "adjust the schedule", "when will this be done",
+  "show me the Gantt chart", or "what's the project schedule".
 ---
 
 # Timeline Generator
@@ -116,6 +120,16 @@ Options to meet April 1 deadline:
 - If calculated end date exceeds deadline -> highlight the gap, show critical path, suggest scope/resource/deadline adjustments
 - If no milestones are defined -> auto-generate at phase boundaries and ask for confirmation
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~project tracker | Pull task data, dependencies, and completion status for timeline accuracy |
+| ~~calendar | Check team availability and block milestone dates |
+| ~~CI/CD | Link release milestones to deployment schedules |
+| ~~docs | Access project plans, requirements, and scope documents |
+
 ## Rules
 - Every phase must include a 20% buffer on its estimated duration
 - Milestones must be tied to specific, measurable deliverables
@@ -161,3 +175,9 @@ Resource Allocation:
 Risks to Timeline:
 - [Risk description and potential impact on delivery date]
 ```
+
+## Related Skills
+- `sprint-planner` -- For planning individual sprints within the project timeline
+- `task-tracker` -- For tracking task-level progress against the timeline
+- `risk-assessor` -- For assessing risks that could delay the timeline
+- `standup-helper` -- For daily progress updates that feed timeline tracking

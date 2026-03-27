@@ -1,6 +1,6 @@
 ---
 name: asset-organizer
-description: Organizes, catalogs, audits, and renames design assets following consistent naming conventions and directory structures. Use when the user asks to organize assets, audit file naming, prepare assets for handoff, create an asset inventory, or set up a design file structure.
+description: Organizes, catalogs, audits, and renames design assets following consistent naming conventions and directory structures. Use when the user asks to organize assets, audit file naming, prepare assets for handoff, create an asset inventory, or set up a design file structure. Trigger phrases include "organize my assets", "rename these files", "audit our icon library", "set up a folder structure for design", "prepare assets for handoff", "catalog these images", "our assets are a mess".
 ---
 
 # Asset Organizer
@@ -94,6 +94,16 @@ Rules:
 - If naming conventions conflict with an existing team standard -> Present both options with tradeoffs, let the user decide
 - If assets are referenced in code but missing from the directory -> Flag as broken references with file paths and code locations
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~design tool | Scan and organize assets directly within Figma, Sketch, or Adobe XD projects |
+| ~~asset management | Sync catalog with a centralized DAM system and enforce naming conventions |
+| ~~project tracker | Create tickets for asset issues and track cleanup progress |
+| ~~brand guidelines | Cross-reference assets against approved brand marks and imagery standards |
+
 ## Rules
 - File names must be lowercase, kebab-case, English only
 - Naming pattern: `[category]-[name]-[variant]-[size].[ext]`
@@ -135,3 +145,8 @@ Examples:
 - [N] raster files that should be converted to SVG
 - [N] assets missing @2x/@3x density exports
 ```
+
+## Related Skills
+- **brand-checker** -- verify organized assets comply with brand guidelines
+- **design-reviewer** -- review designs that reference the organized asset library
+- **wireframe-helper** -- use cataloged assets when building wireframes and layouts

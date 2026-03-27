@@ -1,6 +1,6 @@
 ---
 name: kpi-tracker
-description: Defines, tracks, and reports on Key Performance Indicators (KPIs) with target vs actual comparisons and trend analysis. Use when the user asks to set up KPIs, track metrics, build a scorecard, review performance against targets, or create a dashboard summary.
+description: Defines, tracks, and reports on Key Performance Indicators (KPIs) with target vs actual comparisons and trend analysis. Use when the user asks to set up KPIs, track metrics, build a scorecard, review performance against targets, or create a dashboard summary. Trigger phrases include "track our KPIs", "build a scorecard", "how are we doing against targets", "set up metrics for the team", "create a performance dashboard", "are we hitting our goals", "show me our numbers this month".
 ---
 
 # KPI Tracker
@@ -70,6 +70,16 @@ Output: A structured KPI framework with 5-7 metrics, definitions, targets, and m
 - If KPI definitions are unclear → provide standard definitions and confirm with user
 - If too many KPIs requested (>10) → recommend focusing on 5-7 most impactful
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~database | Pull actual KPI values directly from production databases in real time |
+| ~~BI tool | Sync scorecards with BI dashboards and schedule automated KPI reports |
+| ~~spreadsheet | Read targets and actuals from linked spreadsheets and write scorecards back |
+| ~~data warehouse | Access historical data for multi-period trend analysis and benchmarking |
+
 ## Rules
 - Use RAG status consistently: Green (≥100%), Amber (80-99%), Red (<80%)
 - Always show target vs actual with achievement percentage
@@ -103,3 +113,8 @@ NEEDS ATTENTION:
 TREND ANALYSIS:
 - [Multi-period trend observation]
 ```
+
+## Related Skills
+- **chart-generator** -- visualize KPI trends and scorecard data with charts and graphs
+- **data-summarizer** -- analyze underlying datasets to explain why KPIs are over or under target
+- **sql-helper** -- write queries to extract KPI actuals from databases

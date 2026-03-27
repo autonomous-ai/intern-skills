@@ -1,6 +1,11 @@
 ---
 name: lead-researcher
-description: Researches potential B2B leads by gathering company intelligence, identifying decision makers, analyzing pain points, and scoring leads using the BANT framework. Use when the user asks to research a company, find prospects, qualify a lead, build a prospect list, or prepare a pre-call briefing.
+description: >
+  Researches potential B2B leads by gathering company intelligence, identifying decision makers,
+  analyzing pain points, and scoring leads using the BANT framework.
+  Use when the user says "research this company", "find me prospects", "who should I contact at X",
+  "qualify this lead", "prep me for my call with X", "build a prospect list",
+  "look up this company", or "what do we know about X".
 ---
 
 # Lead Researcher
@@ -76,6 +81,16 @@ Output: A BANT-scored brief focused on qualification criteria with a Hot/Warm/Co
 - If insufficient public info exists → report what was found, flag gaps, and suggest alternatives (Crunchbase, LinkedIn intro)
 - If user provides conflicting data → highlight the discrepancy and ask which source to trust
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~CRM | Pull existing lead records and deal history for context |
+| ~~email | Access prior email threads with the prospect |
+| ~~calendar | Check scheduled meetings and past interactions |
+| ~~LinkedIn | Fetch decision-maker profiles and mutual connections directly |
+
 ## Rules
 - Only use publicly available information (websites, LinkedIn, news, public filings)
 - Remain GDPR/CCPA compliant; never collect unnecessary personal data
@@ -120,3 +135,9 @@ Lead Research: [Company Name]
 ## Recommended Next Action
 [Specific action with suggested timeline]
 ```
+
+## Related Skills
+- `proposal-writer` -- For drafting proposals after lead research is complete
+- `follow-up-drafter` -- For follow-up emails after initial outreach
+- `competitor-briefer` -- For competitive intelligence when the lead uses a rival product
+- `crm-helper` -- For logging research findings and updating deal records

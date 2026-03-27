@@ -1,6 +1,11 @@
 ---
 name: email-assistant
-description: Composes, replies to, summarizes, reviews, and translates emails with appropriate tone and structure. Use when the user asks to draft an email, reply to a message, summarize an email thread, improve a draft, or handle any email-related writing task.
+description: >
+  Composes, replies to, summarizes, reviews, and translates emails with appropriate tone and structure.
+  Use when the user says "write an email", "reply to this", "summarize this thread",
+  "draft a message to X", "help me respond to this email", "improve my email draft",
+  "translate this email", "make this email more professional", "proofread my email",
+  or asks to handle any email-related writing task.
 ---
 
 # Email Assistant
@@ -60,6 +65,17 @@ Open Questions:
 - If thread is too long → break into sections and summarize incrementally
 - If draft is missing critical elements (recipient, subject) → flag before proceeding
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~email | Send emails and access inbox directly |
+| ~~calendar | Check availability for meeting requests mentioned in emails |
+| ~~drive | Attach files from cloud storage to email drafts |
+| ~~notes | Save action items extracted from email threads |
+| ~~search engine | Research recipient or company background for personalized outreach |
+
 ## Rules
 - Always confirm tone before composing if not specified
 - Keep emails to a maximum of 3 paragraphs
@@ -89,3 +105,10 @@ Subject: [Subject Line]
 ---
 Suggestions: [Any recommended adjustments to tone, length, or content]
 ```
+
+## Related Skills
+- `calendar-helper` — For scheduling meetings mentioned in emails
+- `note-taker` — For capturing action items from email threads
+- `translator` — For translating emails into other languages
+- `document-summarizer` — For summarizing long email threads or attachments
+- `gmail-reader` — For searching and reading emails from Gmail directly

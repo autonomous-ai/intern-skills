@@ -1,6 +1,11 @@
 ---
 name: bid-analyzer
-description: Analyzes and compares bid submissions for procurement tenders, evaluating technical and financial proposals against requirements. Use when the user asks to evaluate bids, compare tender submissions, score proposals, or select a winning bid.
+description: >
+  Analyzes and compares bid submissions for procurement tenders, evaluating technical and financial
+  proposals against requirements. Use when the user says "evaluate these bids",
+  "compare tender submissions", "score these proposals", "select a winning bid",
+  "rank the bidders", "bid evaluation report", "which proposal offers the best value",
+  or "analyze the RFP responses".
 ---
 
 # Bid Analyzer
@@ -89,6 +94,16 @@ Output: A summary table with key metrics and quick recommendation.
 - If technical scores are tied → use financial score as tiebreaker
 - If all bids fail technical threshold → recommend re-tendering
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~ERP | Access tender records, procurement budgets, and historical bid data |
+| ~~vendor portal | Pull bid submissions and supporting documents from vendor systems |
+| ~~spreadsheet | Import bid data from spreadsheets and export evaluation scorecards |
+| ~~email | Retrieve bid submissions and clarification responses from email |
+
 ## Rules
 - Technical evaluation always comes before financial evaluation
 - Only technically qualified bidders (≥70/100) proceed to financial evaluation
@@ -129,3 +144,8 @@ COMBINED SCORE
 
 RECOMMENDATION: [Winning bidder with rationale]
 ```
+
+## Related Skills
+- `vendor-evaluator` — For broader vendor evaluation beyond bid-specific scoring
+- `price-comparator` — For detailed pricing and total cost of ownership comparisons
+- `po-generator` — For generating purchase orders with the winning bidder

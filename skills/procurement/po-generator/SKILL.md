@@ -1,6 +1,12 @@
 ---
 name: po-generator
-description: Generates Purchase Orders (POs) with proper line items, pricing, terms, and approval workflows. Use when the user asks to create a purchase order, draft a PO, order supplies, or prepare a procurement request.
+description: >
+  Generates Purchase Orders (POs) with proper line items, pricing, terms, and approval workflows.
+  Use when the user says "create a purchase order", "draft a PO", "order supplies from this vendor",
+  "prepare a procurement request", "generate PO for office equipment", "submit a purchase requisition",
+  "I need to buy these items from a vendor", "place an order with this supplier",
+  "purchase request for IT hardware", "reorder office supplies",
+  or "PO for the approved budget items".
 ---
 
 # PO Generator
@@ -86,6 +92,16 @@ Output: A multi-line PO with USD pricing, subtotals per line, and total with app
 - If tax rate unclear → default to applicable state sales tax and note the assumption
 - If delivery date not specified → flag as required before submission
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~ERP | Access vendor master data, product catalogs, and approval workflows |
+| ~~vendor portal | Submit POs directly to vendor systems and track confirmations |
+| ~~spreadsheet | Import line items from spreadsheets and export PO summaries |
+| ~~email | Send generated POs to vendors for confirmation |
+
 ## Rules
 - PO numbers follow format: PO-YYYY-[sequential]
 - Default tax: Sales tax (varies by state); specify if different
@@ -122,3 +138,8 @@ LINE ITEMS
 PAYMENT TERMS: [Terms]
 APPROVAL REQUIRED: [Based on amount thresholds]
 ```
+
+## Related Skills
+- `vendor-evaluator` — For evaluating and selecting the vendor before generating a PO
+- `price-comparator` — For comparing pricing across vendors before placing an order
+- `supplier-tracker` — For tracking the supplier's delivery performance after PO issuance

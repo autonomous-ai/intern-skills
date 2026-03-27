@@ -1,6 +1,11 @@
 ---
 name: budget-planner
-description: Creates, adjusts, and analyzes budget plans with variance analysis, trend detection, and contingency reserves. Use when the user asks to build a budget, review spending vs. plan, forecast future costs, or allocate funds across departments or projects.
+description: >
+  Creates, adjusts, and analyzes budget plans with variance analysis, trend detection, and contingency reserves.
+  Use when the user says "build a budget", "plan the budget for Q2", "review spending vs plan",
+  "forecast next quarter's costs", "allocate funds across departments", "how much budget is left",
+  "compare actual vs planned spending", "reallocate budget between departments",
+  "annual budget template", "what's the variance this month", or "project budget breakdown".
 ---
 
 # Budget Planner
@@ -93,6 +98,16 @@ RECOMMENDATIONS
 - If actual data is incomplete for variance analysis -> analyze available data and note gaps
 - If category totals exceed stated budget -> highlight overage and suggest rebalancing
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~accounting | Pull actual spending data from the general ledger for variance analysis |
+| ~~ERP | Access department cost centers, headcount plans, and committed spend |
+| ~~spreadsheet | Import historical budgets and export new plans to spreadsheets |
+| ~~banking | Incorporate real-time cash position into budget forecasts |
+
 ## Rules
 - Always include a 5-10% contingency reserve
 - Clearly distinguish fixed costs from variable costs
@@ -132,3 +147,9 @@ RECOMMENDATIONS
 ---------------
 - [Actionable recommendation]
 ```
+
+## Related Skills
+- `expense-tracker` — For tracking actual expenses against the budget plan
+- `financial-report` — For generating financial performance reports with budget context
+- `invoice-generator` — For billing documents tied to budgeted projects
+- `tax-helper` — For tax implications in budget planning

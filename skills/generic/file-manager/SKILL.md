@@ -1,6 +1,11 @@
 ---
 name: file-manager
-description: Manages file and folder operations including creating, moving, renaming, searching, organizing, compressing, and deleting files. Use when the user asks to create, delete, find, move, rename, organize, or clean up files and directories, or asks about file sizes and disk usage.
+description: >
+  Manages file and folder operations including creating, moving, renaming, searching, organizing, compressing, and deleting files.
+  Use when the user says "create a folder", "delete this file", "find files named",
+  "move these files", "rename the folder", "organize my downloads", "how much space",
+  "zip these files", "clean up my desktop", "list what's in this directory",
+  or asks about file sizes, disk usage, or any file and directory management task.
 ---
 
 # File Manager
@@ -57,6 +62,15 @@ Shall I proceed with this organization?
 - If disk space insufficient → report available space, suggest cleanup
 - If batch operation partially fails → report successes and failures separately
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~drive | Browse and manage files in Google Drive, Dropbox, or OneDrive |
+| ~~email | Attach files to emails or save email attachments to disk |
+| ~~notes | Organize note files alongside project directories |
+
 ## Rules
 - NEVER delete files without explicit user confirmation
 - Always check for name conflicts before moving files
@@ -76,3 +90,8 @@ Items Affected: [count, for batch operations]
 Status: [Success / Failure]
 Details: [additional context or error reason if applicable]
 ```
+
+## Related Skills
+- `drive-reader` -- For browsing and reading files stored in Google Drive
+- `document-summarizer` -- For summarizing file contents before organizing
+- `spreadsheet-helper` -- For working with CSV and spreadsheet files found on disk

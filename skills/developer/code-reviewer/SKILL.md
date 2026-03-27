@@ -2,8 +2,10 @@
 name: code-reviewer
 description: >
   Reviews code for correctness, security, performance, and readability.
-  Use when the user asks to review code, check a PR/MR, evaluate code quality,
-  find code smells, or get feedback on changes before committing.
+  Use when the user says "review this code", "check my PR", "is this code good",
+  "find issues in this file", "give me feedback on my changes", "code review",
+  "check this MR", "evaluate code quality", "find code smells", "review my pull request",
+  "audit this code", "check for vulnerabilities", or "rate this implementation".
 ---
 
 # Code Reviewer
@@ -81,6 +83,15 @@ Clean, well-typed utility function with correct logic.
 - If the language cannot be determined → ask the user to clarify before applying language-specific rules
 - If the change is too large (>500 lines) → suggest splitting the PR first
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~code repository | Pull diffs and file contents directly from PRs/MRs for seamless review |
+| ~CI/CD | Correlate review findings with build/test failures and pipeline status |
+| ~issue tracker | Link findings to existing issues or auto-create tickets for critical items |
+
 ## Rules
 - Review the code, not the author -- keep tone constructive and respectful
 - Explain WHY something is an issue, not just WHAT to change
@@ -114,3 +125,8 @@ Suggested fix: [code]
 ## Verdict: [Approve / Request Changes / Comment]
 [Brief justification]
 ```
+
+## Related Skills
+- `debug-assistant` — Diagnose and fix the bugs uncovered during code review
+- `doc-generator` — Generate or update documentation for reviewed code
+- `git-helper` — Manage branches and commits related to review feedback
