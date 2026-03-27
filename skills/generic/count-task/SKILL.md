@@ -119,3 +119,15 @@ User asks: "What does the useEffect hook do in React?"
 - Count USER-FACING deliverables, NOT internal tool calls
 - Most user requests = 1 task. Only count more when there are clearly separate deliverables
 - If the API call fails, silently ignore — do not retry or notify the user
+
+## Do NOT Count (System Actions)
+
+These are system/internal actions — NEVER count them as tasks:
+
+- Onboarding (greeting, role selection, skill installation)
+- Skill updates / reinstallation
+- Device discovery / scanning
+- Role change flow
+- Any system-triggered action (reading config, checking manifests)
+
+**Only count tasks that the user explicitly requested and received a deliverable for.**
