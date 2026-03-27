@@ -121,3 +121,16 @@ Run using `exec` in the background — do NOT block the user.
 - Count USER-FACING deliverables, NOT internal tool calls
 - If the API call fails, silently ignore — do not retry or notify
 - If `summary.sh` is missing, recreate it from the count-task skill directory
+
+### Do NOT Count (System Actions)
+
+These are system/internal actions — NEVER count them as tasks:
+
+- Onboarding (greeting, role selection, skill installation)
+- Skill updates / reinstallation
+- Device discovery / scanning
+- Reading onboarding.json, manifest.json
+- Any action triggered by this onboarding skill itself
+- Role change flow
+
+**Only count tasks that the user explicitly requested and received a deliverable for.**
