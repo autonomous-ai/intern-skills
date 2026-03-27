@@ -1,6 +1,6 @@
 ---
 name: data-cleaner
-description: Cleans, validates, and standardizes messy data by fixing formatting issues, removing duplicates, handling missing values, and normalizing inconsistent entries. Use when the user asks to clean up data, fix data quality issues, standardize formats, deduplicate records, or prepare data for analysis.
+description: Cleans, validates, and standardizes messy data by fixing formatting issues, removing duplicates, handling missing values, and normalizing inconsistent entries. Use when the user asks to clean up data, fix data quality issues, standardize formats, deduplicate records, or prepare data for analysis. Trigger phrases include "clean up this data", "fix the formatting in this file", "remove duplicates", "standardize these entries", "this data is messy", "prepare this data for analysis", "normalize these records".
 ---
 
 # Data Cleaner
@@ -89,6 +89,16 @@ Output: A standardization script to normalize all phone numbers to a consistent 
 - If cleaning rules conflict → ask user for priority order
 - If data loss is possible → warn and suggest backup before cleaning
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~database | Connect to live databases to profile and clean data in place |
+| ~~BI tool | Flag data quality issues that affect downstream dashboards and reports |
+| ~~spreadsheet | Read messy data from linked spreadsheets and write cleaned results back |
+| ~~data warehouse | Run cleaning transformations at scale on warehouse tables |
+
 ## Rules
 - Always profile data quality before proposing fixes
 - Provide solutions in multiple tools when possible (Excel, Python, SQL)
@@ -122,3 +132,8 @@ Step [N]: [Action]
 VALIDATION CHECKS:
 - [Check to verify cleaning was successful]
 ```
+
+## Related Skills
+- **data-summarizer** -- summarize and analyze the cleaned dataset to extract insights
+- **sql-helper** -- write SQL-based cleaning queries for database-hosted data
+- **kpi-tracker** -- ensure clean data feeds accurate KPI scorecards

@@ -1,6 +1,11 @@
 ---
 name: device-controller
-description: Controls Home Assistant smart home devices including lights, switches, climate, locks, covers, and media players by calling the appropriate HA service via the REST API. Use when the user wants to turn devices on or off, adjust brightness or color, set temperature, lock/unlock a door, open/close blinds, or control a media player.
+description: >
+  Controls Home Assistant smart home devices including lights, switches, climate, locks, covers, and media players by calling the appropriate HA service via the REST API.
+  Use when the user says "turn on the lights", "turn off the fan", "set brightness to 50%",
+  "lock the front door", "set thermostat to 72", "open the blinds",
+  "dim the bedroom light", "play music on the speaker", "toggle the switch",
+  or wants to turn devices on/off, adjust brightness or color, set temperature, lock/unlock, or control media players.
 ---
 
 # Device Controller
@@ -89,6 +94,15 @@ New State: locked
 - If parameter out of range (e.g., brightness > 100%) → clamp to valid range and note the correction
 - If `400 Bad Request` → log the payload and ask user to verify the parameters
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~home assistant | Send commands to devices via the Home Assistant REST API |
+| ~~IoT platform | Control devices across multiple smart home ecosystems |
+| ~~voice assistant | Accept voice commands for hands-free device control |
+
 ## Rules
 **Service map by domain:**
 - `light`: `turn_on` (brightness_pct 0-100, color_temp_kelvin, rgb_color, transition), `turn_off`, `toggle`
@@ -117,3 +131,8 @@ Status:    [HTTP status]
 New State: [state value]
 [Additional state attributes if relevant]
 ```
+
+## Related Skills
+- `ha-connector` -- For establishing connection and discovering available devices
+- `scene-manager` -- For activating multi-device scenes instead of controlling one device at a time
+- `automation-builder` -- For automating device control based on triggers and conditions

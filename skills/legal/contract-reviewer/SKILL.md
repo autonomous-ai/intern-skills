@@ -1,6 +1,12 @@
 ---
 name: contract-reviewer
-description: Reviews business contracts for key terms, risks, obligations, and compliance issues. Use when the user asks to review a contract, check agreement terms, identify risky clauses, or compare contract versions.
+description: >
+  Reviews business contracts for key terms, risks, obligations, and compliance issues.
+  Use when the user says "review this contract", "check agreement terms", "identify risky clauses",
+  "compare contract versions", "is this contract fair", "what are the key terms",
+  "flag any issues in this agreement", "what should I watch out for in this deal",
+  "summarize the obligations in this contract", "red flags in this vendor agreement",
+  or "side-by-side contract comparison".
 ---
 
 # Contract Reviewer
@@ -83,6 +89,16 @@ Output: A side-by-side comparison of modified clauses with risk impact assessmen
 - If terms are ambiguous → flag them as needing clarification from the counterparty
 - If user asks for legal advice → clarify that this is a review aid, not legal counsel
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~document management | Pull contracts from centralized document repositories |
+| ~~contract system | Access contract templates, version history, and approval workflows |
+| ~~email | Retrieve contracts received as email attachments |
+| ~~compliance database | Cross-reference clauses against regulatory requirements |
+
 ## Rules
 - NEVER provide legal advice — always recommend professional legal counsel for final decisions
 - Flag all one-sided or unusual clauses explicitly
@@ -123,3 +139,9 @@ RECOMMENDATIONS:
 
 ⚠️ Recommend legal counsel review before signing.
 ```
+
+## Related Skills
+- `clause-extractor` — For extracting and comparing specific clauses across contracts
+- `nda-drafter` — For drafting or reviewing NDA-specific agreements
+- `compliance-checker` — For checking contracts against regulatory requirements
+- `legal-summarizer` — For plain-language summaries of complex contract terms

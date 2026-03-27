@@ -1,6 +1,6 @@
 ---
 name: data-summarizer
-description: Analyzes and summarizes datasets, producing statistical overviews, trend identification, and key insights. Use when the user asks to analyze data, find patterns, summarize a dataset, or generate descriptive statistics from CSV, JSON, or tabular data.
+description: Analyzes and summarizes datasets, producing statistical overviews, trend identification, and key insights. Use when the user asks to analyze data, find patterns, summarize a dataset, or generate descriptive statistics from CSV, JSON, or tabular data. Trigger phrases include "summarize this data", "what are the key trends", "analyze this spreadsheet", "give me stats on this dataset", "what does this data tell us", "break down these numbers", "find patterns in this data".
 ---
 
 # Data Summarizer
@@ -76,6 +76,16 @@ Output: A concise overview with row/column count, data types, missing values, an
 - If columns have mixed data types → flag and suggest cleanup
 - If no numeric columns found → focus on categorical analysis (counts, modes, distributions)
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~database | Query live databases directly to pull datasets for analysis |
+| ~~BI tool | Push summaries and insights into dashboards and automated reports |
+| ~~spreadsheet | Read data from linked spreadsheets and write summary tables back |
+| ~~data warehouse | Access large-scale datasets with full schema and partition metadata |
+
 ## Rules
 - Always start with data quality assessment before analysis
 - Report exact numbers — never round without stating the original value
@@ -112,3 +122,8 @@ KEY INSIGHTS
 RECOMMENDED VISUALIZATIONS:
 - [Chart type]: [What it shows]
 ```
+
+## Related Skills
+- **chart-generator** -- turn key findings into polished visualizations and dashboard components
+- **kpi-tracker** -- frame summary insights as trackable KPIs with targets and scorecards
+- **data-cleaner** -- fix data quality issues discovered during the profiling step

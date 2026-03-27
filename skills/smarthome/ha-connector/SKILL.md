@@ -1,6 +1,11 @@
 ---
 name: ha-connector
-description: Connects to a Home Assistant instance, authenticates via Long-Lived Access Token, verifies connectivity, and discovers all registered entities and services. Use when the user wants to set up a connection to Home Assistant, check if HA is reachable, list all available devices, or retrieve the full entity and service registry.
+description: >
+  Connects to a Home Assistant instance, authenticates via Long-Lived Access Token, verifies connectivity, and discovers all registered entities and services.
+  Use when the user says "connect to Home Assistant", "set up HA", "check if HA is online",
+  "list my smart home devices", "discover all entities", "test HA connection",
+  "what devices are registered", "show me my HA setup",
+  or wants to set up, verify, or inventory a Home Assistant instance.
 ---
 
 # HA Connector
@@ -74,6 +79,15 @@ Suggestions:
 - If connection times out → suggest checking URL, port, and network reachability
 - If `api/states` returns empty → warn that no entities are registered yet
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~home assistant | Authenticate and communicate with the Home Assistant REST API |
+| ~~IoT platform | Discover devices across multiple smart home platforms |
+| ~~voice assistant | Enable voice-triggered connection status checks and device discovery |
+
 ## Rules
 - Always include `Authorization: Bearer <token>` header in every request
 - Base URL must not have a trailing slash
@@ -99,3 +113,8 @@ AVAILABLE SERVICE DOMAINS ([count])
 =====================================
 [comma-separated domain list]
 ```
+
+## Related Skills
+- `device-controller` -- For controlling devices after connection is established
+- `sensor-monitor` -- For reading sensor data from discovered entities
+- `scene-manager` -- For listing and activating scenes found in the entity registry

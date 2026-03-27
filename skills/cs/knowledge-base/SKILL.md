@@ -1,6 +1,11 @@
 ---
 name: knowledge-base
-description: Searches, retrieves, creates, or updates articles in the internal knowledge base covering product docs, troubleshooting guides, SOPs, and policies. Use when the user asks to look up a procedure, find documentation, troubleshoot an issue, create a handling guide, or update outdated KB articles.
+description: >
+  Searches, retrieves, creates, or updates articles in the internal knowledge base covering product
+  docs, troubleshooting guides, SOPs, and policies.
+  Use when the user says "look up the procedure for X", "find the documentation on X",
+  "how do we troubleshoot X", "create a KB article for this", "update the guide for X",
+  "is there a doc for this", "search the knowledge base", or "write a handling guide for this issue".
 ---
 
 # Knowledge Base
@@ -112,6 +117,16 @@ Article Status: Current
 - If the user wants to create an article but provides insufficient info → list required fields and ask for the missing details
 - If conflicting information exists across articles → flag the conflict and recommend a review
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~helpdesk | Link KB articles directly to ticket responses and resolution workflows |
+| ~~CRM | Surface relevant KB articles based on the customer's product or plan |
+| ~~knowledge base | Sync with external KB platforms (Confluence, Notion, Zendesk Guide) |
+| ~~email | Share KB articles with customers directly via email |
+
 ## Rules
 - Every KB article must include: title, category, tags, author, created date, and last-updated date
 - Troubleshooting articles must follow the Problem, Cause, Solution format
@@ -150,3 +165,9 @@ Related Articles:
 
 Article Status: [Current / Needs Review / Outdated]
 ```
+
+## Related Skills
+- `ticket-responder` -- For using KB articles when drafting ticket responses
+- `faq-lookup` -- For finding quick FAQ answers before diving into full KB articles
+- `escalation-helper` -- For reviewing SOPs and escalation procedures stored in the KB
+- `feedback-analyzer` -- For identifying gaps in the KB based on customer feedback trends

@@ -1,6 +1,11 @@
 ---
 name: drive-reader
-description: Browses, searches, and reads files and folders in Google Drive using the Drive API (read-only). Use when the user wants to list files in a folder, search for a document by name or content, get a file's metadata, read a Google Doc, or check who has access to a file.
+description: >
+  Browses, searches, and reads files and folders in Google Drive using the Drive API (read-only).
+  Use when the user says "find my document", "list files in Drive", "open the Google Doc",
+  "search Drive for", "what's in my shared folder", "who has access to this file",
+  "read the report from Drive", "check my Google Drive",
+  or wants to list files, search by name or content, read a Doc, or check file metadata and permissions.
 ---
 
 # Drive Reader
@@ -101,6 +106,15 @@ Website Redesign Brief — Q2 2026
 - If file is binary (PDF, image) → return metadata only; note that binary content cannot be displayed inline
 - If query returns 0 results → suggest checking spelling or broadening the search
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~drive | Browse, search, and read files in Google Drive via the Drive API |
+| ~~email | Find files shared via email links and access Drive attachments |
+| ~~notes | Save file summaries and metadata to your note-taking app |
+
 ## Rules
 - Scope required: `https://www.googleapis.com/auth/drive.readonly`
 - Base URL: `https://www.googleapis.com/drive/v3`
@@ -126,3 +140,8 @@ Found:   [N] files
     Modified: [MM/DD/YYYY HH:MM AM/PM]
     Location: [folder path]
 ```
+
+## Related Skills
+- `sheets-reader` -- For reading and querying data from Google Sheets found in Drive
+- `document-summarizer` -- For summarizing documents retrieved from Google Drive
+- `gmail-reader` -- For finding email threads that reference Drive files

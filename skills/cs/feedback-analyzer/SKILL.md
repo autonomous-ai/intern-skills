@@ -1,6 +1,11 @@
 ---
 name: feedback-analyzer
-description: Analyzes customer feedback to extract sentiment, identify themes, detect trends, and generate actionable insight reports. Use when the user asks to analyze reviews, survey results, NPS comments, or wants to understand what customers are saying, identify pain points, or produce a feedback report.
+description: >
+  Analyzes customer feedback to extract sentiment, identify themes, detect trends, and generate
+  actionable insight reports.
+  Use when the user says "analyze these reviews", "what are customers saying about X",
+  "run a sentiment analysis", "summarize the NPS comments", "identify pain points from feedback",
+  "produce a feedback report", "what are the top complaints", or "show me survey trends".
 ---
 
 # Feedback Analyzer
@@ -104,6 +109,16 @@ Insufficient data for trend analysis. Recommend continued monitoring and revisit
 - If sentiment is ambiguous (sarcasm, mixed signals) → flag as "Ambiguous" and exclude from quantitative metrics
 - If no clear trends emerge → report the absence of trends and recommend continued monitoring
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~helpdesk | Pull ticket data and customer satisfaction scores for analysis |
+| ~~CRM | Correlate feedback with customer segments, lifetime value, and churn risk |
+| ~~knowledge base | Identify KB gaps based on recurring complaint topics |
+| ~~email | Access survey responses and direct customer feedback emails |
+
 ## Rules
 - Analyze objectively; never cherry-pick only positive or only negative feedback
 - Always quantify findings with percentages and counts, not vague terms like "many" or "some"
@@ -149,3 +164,9 @@ Recommendations
 Overall Assessment:
 [1-2 sentence summary of customer satisfaction trajectory and recommended focus areas]
 ```
+
+## Related Skills
+- `ticket-responder` -- For addressing individual issues uncovered by feedback analysis
+- `escalation-helper` -- For escalating systemic issues identified in feedback trends
+- `knowledge-base` -- For creating or updating KB articles based on common feedback themes
+- `faq-lookup` -- For updating FAQ entries when feedback reveals recurring questions

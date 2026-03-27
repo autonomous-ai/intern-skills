@@ -1,6 +1,11 @@
 ---
 name: web-search
-description: Searches the web for information, facts, news, and comparisons. Use when the user asks to look up, research, fact-check, or find current information from the internet, or when a question requires up-to-date data like prices, weather, events, or news.
+description: >
+  Searches the web for information, facts, news, and comparisons.
+  Use when the user says "search for", "look up", "Google this", "what's the latest on",
+  "find me info about", "fact-check this", "compare X vs Y", "how much does X cost",
+  "what's the weather", "is it true that", or when a question requires up-to-date data
+  like prices, weather, events, or news.
 ---
 
 # Web Search
@@ -51,6 +56,15 @@ Sources:
 - If query is too vague → ask a clarifying question before searching
 - If a URL is unreachable → note it as unavailable, rely on other sources
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~search engine | Access Google, Bing, or DuckDuckGo for real-time web results |
+| ~~notes | Save research findings directly to your note-taking app |
+| ~~email | Email search results and summaries to yourself or teammates |
+
 ## Rules
 - Prioritize reliable sources: official sites, peer-reviewed publications, reputable news
 - Never fabricate information when no results are found
@@ -72,3 +86,8 @@ Sources:
 - [Source title 1]: [url1]
 - [Source title 2]: [url2]
 ```
+
+## Related Skills
+- `exa-web-search` -- For deep semantic search using Exa.ai neural search engine
+- `document-summarizer` -- For summarizing lengthy articles found during research
+- `translator` -- For translating foreign-language search results

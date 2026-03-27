@@ -1,6 +1,10 @@
 ---
 name: inventory-tracker
-description: Tracks and manages office inventory, equipment, and assets including stock checks, allocations, retrievals, reorder requests, and audits. Use when the user asks about stock levels, equipment allocation, purchase orders, asset codes, or inventory audits.
+description: >
+  Tracks and manages office inventory, equipment, and assets including stock checks, allocations, retrievals, reorder requests, and audits.
+  Use when the user says "check stock levels", "allocate equipment", "track this asset",
+  "create a purchase order", "run an inventory audit", "what's in stock",
+  "assign a laptop to", or "reorder office supplies".
 ---
 
 # Inventory Tracker
@@ -76,6 +80,16 @@ Alerts:
 - If inventory data files are missing or unreadable → inform the user and offer to create a new baseline
 - If the operation type is unclear → present available operations and ask the user to choose
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~inventory system | Sync with the central inventory management system for real-time stock data |
+| ~~document management | Access purchase order templates and asset registry documents |
+| ~~project tracker | Link equipment allocations to projects and track asset utilization |
+| ~~calendar | Schedule inventory audits and reorder reminders |
+
 ## Rules
 - Every piece of equipment must have a unique asset code; never create duplicates
 - All allocations must include: employee name, date, asset code, and condition
@@ -110,3 +124,9 @@ Purchase Order (if applicable):
 | GRAND TOTAL     |          |                | [Amount]   |
 ---------------------------------------
 ```
+
+## Related Skills
+- `report-generator` -- For generating inventory and asset reports
+- `sop-creator` -- For documenting inventory management procedures
+- `document-formatter` -- For formatting purchase orders and audit reports
+- `travel-planner` -- For checking out travel equipment before trips

@@ -1,6 +1,11 @@
 ---
 name: follow-up-drafter
-description: Drafts value-driven follow-up emails for sales touchpoints including post-meeting recaps, post-demo highlights, proposal follow-ups, re-engagement messages, and closed-deal thank-yous. Use when the user asks to write a follow-up, check in with a prospect, draft a recap email, or re-engage a silent lead.
+description: >
+  Drafts value-driven follow-up emails for sales touchpoints including post-meeting recaps,
+  post-demo highlights, proposal follow-ups, re-engagement messages, and closed-deal thank-yous.
+  Use when the user says "write a follow-up", "draft a recap email", "check in with this prospect",
+  "re-engage this lead", "they haven't replied yet", "send a thank you after the deal",
+  "follow up on my proposal", or "nudge this prospect".
 ---
 
 # Follow-up Drafter
@@ -100,6 +105,16 @@ Deal Stage: Proposal Sent
 - If prospect response history is unavailable → draft a general follow-up and flag that more context improves personalization
 - If user requests a 4th follow-up on the same touchpoint → advise against it and offer to draft a nurture email instead
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~CRM | Pull deal context, last activity, and contact details for personalization |
+| ~~email | Access prior email threads and send drafts directly |
+| ~~calendar | Check prospect availability and suggest meeting times in the CTA |
+| ~~LinkedIn | Reference recent prospect activity or shared connections in the email |
+
 ## Rules
 - **Rule of 3**: Max 3 follow-ups per touchpoint; after 3 unanswered, move to nurture
 - Every follow-up must add tangible value — "just checking in" is never acceptable
@@ -130,3 +145,9 @@ Call to Action: [Specific action requested]
 Next Follow-up: [Date and approach, or "Move to nurture"]
 Deal Stage: [Current pipeline stage]
 ```
+
+## Related Skills
+- `proposal-writer` -- For drafting the proposal that triggers a follow-up sequence
+- `lead-researcher` -- For researching the prospect to add value in follow-ups
+- `crm-helper` -- For logging follow-up activity and updating deal stages
+- `competitor-briefer` -- For competitive talking points to include in re-engagement emails

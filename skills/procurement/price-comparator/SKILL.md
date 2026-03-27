@@ -1,6 +1,11 @@
 ---
 name: price-comparator
-description: Compares pricing across vendors, products, or time periods with detailed cost breakdowns and total cost of ownership analysis. Use when the user asks to compare prices, find the best deal, analyze cost differences, or evaluate total cost of ownership.
+description: >
+  Compares pricing across vendors, products, or time periods with detailed cost breakdowns and total
+  cost of ownership analysis. Use when the user says "compare prices from these vendors",
+  "find the best deal", "analyze cost differences", "evaluate total cost of ownership",
+  "which option is cheapest", "side-by-side pricing breakdown",
+  "cost comparison for this purchase", or "are we getting a good price on this".
 ---
 
 # Price Comparator
@@ -71,6 +76,16 @@ Output: Monthly/annual cost comparison with feature matrix and per-user TCO.
 - If volume discounts have complex tiers → calculate for the specific quantity requested
 - If pricing has expired → flag the date and suggest re-quoting
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~ERP | Access product catalogs, historical purchase prices, and volume discount tiers |
+| ~~vendor portal | Pull real-time quotes and pricing sheets directly from vendor systems |
+| ~~spreadsheet | Import pricing data from spreadsheets and export comparison reports |
+| ~~email | Retrieve vendor quotes and pricing proposals from email |
+
 ## Rules
 - Always normalize to the same unit (per piece, per month, per user) for fair comparison
 - Include ALL costs: unit price, discounts, shipping, taxes, setup fees, hidden fees
@@ -104,3 +119,8 @@ SAVINGS: [Amount saved by choosing best option vs worst]
 
 RECOMMENDATION: [Best option with rationale including non-price factors]
 ```
+
+## Related Skills
+- `vendor-evaluator` — For holistic vendor evaluation beyond pricing alone
+- `bid-analyzer` — For structured bid evaluation with technical and financial scoring
+- `po-generator` — For generating purchase orders after selecting the best-priced option

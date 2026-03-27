@@ -1,6 +1,10 @@
 ---
 name: seo-optimizer
-description: Performs SEO audits, keyword research, on-page optimization, and technical SEO reviews. Use when the user asks about improving search rankings, optimizing meta tags, conducting keyword research, diagnosing organic traffic issues, or analyzing SERP performance.
+description: >
+  Performs SEO audits, keyword research, on-page optimization, and technical SEO reviews.
+  Use when the user says "optimize this page for SEO", "do keyword research for X",
+  "audit our blog post", "why is our traffic dropping", "improve our search rankings",
+  "check the meta tags", "find keywords for X", or "analyze our SERP performance".
 ---
 
 # SEO Optimizer
@@ -97,6 +101,16 @@ Recommendations:
 - If request covers multiple pages/keywords --> scope to one primary target and offer to address others next.
 - If content does not exist yet --> shift to keyword research and content planning instead of auditing.
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~analytics | Pull organic traffic data, bounce rates, and conversion metrics |
+| ~~social media | Cross-reference social engagement with organic search performance |
+| ~~CMS | Apply meta tag and content changes directly in the CMS |
+| ~~email marketing | Identify high-performing email content topics to target for SEO |
+
 ## Rules
 - Search intent is the top priority -- understand what searchers expect before recommending changes.
 - Keyword density of 1-2% is sufficient. Never recommend keyword stuffing.
@@ -143,3 +157,9 @@ Suggested Meta Tags:
   Title: [Optimized title, 50-60 chars]
   Description: [Optimized description, 150-160 chars]
 ```
+
+## Related Skills
+- `content-writer` -- For creating SEO-optimized content based on keyword research
+- `competitor-analyzer` -- For analyzing competitor SEO strategies and keyword gaps
+- `campaign-tracker` -- For measuring the impact of SEO changes on traffic and conversions
+- `social-media-planner` -- For amplifying SEO content through social distribution

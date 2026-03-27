@@ -1,6 +1,11 @@
 ---
 name: scene-manager
-description: Manages and activates Home Assistant scenes, creates new scenes from current device states, lists all available scenes, and handles room-level device grouping. Use when the user wants to activate a scene like "movie mode" or "good morning", create a new scene from the current device states, list all scenes, or coordinate multiple devices in a room simultaneously.
+description: >
+  Manages and activates Home Assistant scenes, creates new scenes from current device states, lists all available scenes, and handles room-level device grouping.
+  Use when the user says "activate movie mode", "turn on the goodnight scene",
+  "create a new scene", "set up reading mode", "list my scenes",
+  "save current device states as a scene", "romantic lighting please",
+  "what scenes do I have", or wants to activate, create, list, or manage multi-device scenes in Home Assistant.
 ---
 
 # Scene Manager
@@ -84,6 +89,15 @@ Scene entity_id will be: `scene.reading`
 - If a device in the scene is `unavailable` → activate the scene anyway and flag the unavailable device
 - If user asks to "save" a new scene → present YAML and explain: add to `scenes.yaml` or use HA UI → Configuration → Scenes
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~home assistant | Activate and create scenes via the Home Assistant REST API |
+| ~~IoT platform | Coordinate scenes across multiple smart home ecosystems |
+| ~~voice assistant | Activate scenes with voice commands like "Hey Google, movie time" |
+
 ## Rules
 - Scene entity_id format: `scene.<name_with_underscores>`
 - `scene.turn_on` accepts optional `transition` parameter (seconds) for smooth lighting changes
@@ -104,3 +118,8 @@ Result: [HTTP status] — [success message or error]
 Devices updated:
 - [entity_id] → [new state / attributes]
 ```
+
+## Related Skills
+- `device-controller` -- For controlling individual devices outside of scenes
+- `automation-builder` -- For automating scene activation based on triggers
+- `sensor-monitor` -- For checking sensor states before creating or activating scenes

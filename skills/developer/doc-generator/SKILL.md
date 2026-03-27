@@ -2,8 +2,9 @@
 name: doc-generator
 description: >
   Generates technical documentation including READMEs, JSDoc/TSDoc comments, changelogs, and API docs.
-  Use when the user asks to document code, add comments, create a README, generate a changelog,
-  write API documentation, or add JSDoc/TSDoc to functions.
+  Use when the user says "document this code", "add JSDoc comments", "create a README",
+  "generate a changelog", "write API docs", "add TSDoc to this function",
+  "generate documentation", or "write inline comments".
 ---
 
 # Doc Generator
@@ -118,6 +119,16 @@ Output:
 - If existing docs conflict with current code → flag the discrepancy and update docs to match code
 - If scope is too broad ("document everything") → suggest starting with the public API surface
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~code repository | Read source files and commit history to generate accurate, up-to-date docs |
+| ~documentation | Publish generated docs directly to wiki or documentation platform |
+| ~CI/CD | Auto-generate changelogs from merged PRs and release tags |
+| ~issue tracker | Link documentation updates to feature tickets and release milestones |
+
 ## Rules
 - Documentation must match the current code exactly
 - Every function doc must include at least one working example
@@ -138,3 +149,8 @@ Output:
 
 [Generated documentation in the appropriate format: JSDoc, README, Changelog, etc.]
 ```
+
+## Related Skills
+- `code-reviewer` — Review code to understand what needs documenting
+- `api-tester` — Test endpoints to generate accurate API documentation
+- `git-helper` — Generate changelogs from commit history and tags

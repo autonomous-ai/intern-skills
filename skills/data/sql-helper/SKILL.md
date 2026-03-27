@@ -1,6 +1,6 @@
 ---
 name: sql-helper
-description: Writes, explains, optimizes, and debugs SQL queries for common databases. Use when the user asks to write a SQL query, fix a query error, optimize slow queries, or explain what a query does.
+description: Writes, explains, optimizes, and debugs SQL queries for common databases. Use when the user asks to write a SQL query, fix a query error, optimize slow queries, or explain what a query does. Trigger phrases include "help me write a query", "my SQL is broken", "this query is too slow", "how do I join these tables", "write me a SELECT statement", "explain this SQL", "I need a database query for...".
 ---
 
 # SQL Helper
@@ -97,6 +97,16 @@ Expected Improvement: 5-10x faster on large tables (>100K rows)
 - If query has syntax errors → identify and fix with explanation
 - If query logic seems wrong → flag potential issues before executing
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~database | Run queries directly against live databases and return real results |
+| ~~BI tool | Export query output into dashboards and scheduled reports |
+| ~~spreadsheet | Pull table schemas from linked spreadsheets or push query results to sheets |
+| ~~data warehouse | Access warehouse catalog, table metadata, and execution plans for optimization |
+
 ## Rules
 - Always format queries with proper indentation and uppercase keywords
 - Use explicit column names — never SELECT * in production queries
@@ -123,3 +133,8 @@ EXPLANATION
 PERFORMANCE TIP:
 - [Index suggestions or optimization notes]
 ```
+
+## Related Skills
+- **data-summarizer** -- after querying data, summarize and analyze the results for insights
+- **data-cleaner** -- clean and standardize messy data before or after SQL operations
+- **chart-generator** -- visualize query results with charts and graphs

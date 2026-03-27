@@ -1,6 +1,12 @@
 ---
 name: vendor-evaluator
-description: Evaluates and compares vendors based on pricing, quality, reliability, and compliance criteria using a weighted scoring model. Use when the user asks to assess a vendor, compare suppliers, rate vendor proposals, or make a vendor selection decision.
+description: >
+  Evaluates and compares vendors based on pricing, quality, reliability, and compliance criteria
+  using a weighted scoring model.
+  Use when the user says "evaluate this vendor", "compare these suppliers", "rate vendor proposals",
+  "which vendor should we choose", "score these bids", "vendor performance review",
+  "assess supplier reliability", "rank these vendors", "vendor scorecard",
+  "due diligence on this supplier", or "is this vendor worth renewing".
 ---
 
 # Vendor Evaluator
@@ -78,6 +84,16 @@ Output: A detailed single-vendor scorecard with pass/fail recommendation.
 - If scores are subjective → ask user to provide ratings or evidence
 - If vendors are too close in score → highlight differentiating factors
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~ERP | Access vendor master data, purchase history, and performance records |
+| ~~vendor portal | Pull vendor proposals, certifications, and compliance documents |
+| ~~spreadsheet | Import evaluation criteria and export scorecard reports |
+| ~~email | Retrieve vendor quotes and correspondence for evaluation |
+
 ## Rules
 - Use a 1-10 scoring scale consistently across all vendors
 - All scores must be justified with specific evidence or rationale
@@ -109,3 +125,9 @@ Rationale: [1-2 sentence justification]
 RISK NOTES:
 - [Vendor]: [Specific risk or concern]
 ```
+
+## Related Skills
+- `bid-analyzer` — For detailed bid evaluation with technical and financial scoring
+- `price-comparator` — For in-depth pricing and total cost of ownership comparisons
+- `supplier-tracker` — For tracking vendor performance after selection
+- `po-generator` — For generating purchase orders with the selected vendor

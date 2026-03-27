@@ -1,6 +1,11 @@
 ---
 name: translator
-description: Translates text between languages (between any languages, with strong support for Spanish and English) with appropriate tone, context, and domain accuracy. Use when the user asks to translate a document, email, message, or any text between languages, or needs bilingual support.
+description: >
+  Translates text between languages (between any languages, with strong support for Spanish and English) with appropriate tone, context, and domain accuracy.
+  Use when the user says "translate this", "how do you say X in Y", "convert to Spanish",
+  "what does this mean in English", "translate this email", "translate this document",
+  "help me write this in French", "dich sang tieng Viet",
+  or asks to translate any text, document, email, or message between languages.
 ---
 
 # Translator
@@ -61,6 +66,15 @@ Notes:
 - If cultural idiom has no direct equivalent → provide a culturally appropriate adaptation with explanation
 - If text is too long → break into sections and translate incrementally
 
+## Connectors (Optional)
+This skill works standalone. When connected to external tools, it unlocks additional capabilities:
+
+| Connector | What it enables |
+|-----------|----------------|
+| ~~email | Translate incoming emails and draft replies in the recipient's language |
+| ~~drive | Translate entire documents stored in Google Drive |
+| ~~search engine | Verify domain-specific terminology and cultural references online |
+
 ## Rules
 - Preserve the original formatting and structure (headings, bullet points, paragraphs)
 - Never omit or add content that changes the original meaning
@@ -81,3 +95,8 @@ Tone: [Formal / Semi-formal / Casual / Technical]
 Notes:
 - [Notable translation choices, cultural adaptations, or alternative phrasings]
 ```
+
+## Related Skills
+- `email-assistant` -- For composing and replying to emails that need translation
+- `document-summarizer` -- For summarizing foreign-language documents before or after translation
+- `web-search` -- For researching domain-specific terminology and cultural context
