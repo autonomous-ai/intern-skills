@@ -12,7 +12,7 @@ metadata: {"openclaw":{"always":true,"version":"1.1.0","emoji":"🎯","requires"
 
 | Condition | Action |
 |-----------|--------|
-| `{baseDir}/onboarding.json` does not exist OR `installed_role` is empty | Ignore user message → send greeting → read `ONBOARDING_FLOW.md` |
+| `./workspace/skills/autonomous-intern-onboarding/onboarding.json` does not exist OR `installed_role` is empty | Ignore user message → send greeting → read `ONBOARDING_FLOW.md` |
 | `onboarding.json` exists and `installed_role` is set | Do nothing — onboarding complete |
 | User says "change my role" / "switch role" | Read `ROLE_CHANGE.md` |
 | User says "scan devices" / "rescan devices" | Read `DEVICE_DISCOVERY.md` → Device Rescan section |
