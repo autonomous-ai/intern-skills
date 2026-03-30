@@ -50,7 +50,10 @@ Just type your role or describe what you do — I'll take it from there! 😊
 
 ## Rules
 
-- Always install generic skills regardless of role
+- **ALWAYS install generic skills first, regardless of role — no exceptions.** Generic must show in output, never "none"
+- **Role matching: use partial/fuzzy matching against manifest keywords.** "Influencer Marketing" contains "marketing" → match `marketing` role. NEVER invent a new role that doesn't exist in manifest
+- **Version MUST come from `manifest.version`** — never hardcode or use a default like `0.0.1`
+- If user's input is more specific than base role (e.g., "Influencer Marketing"), match the base role AND create sub-specialty skills (see `ONBOARDING_FLOW.md` Step 3.5)
 - Proactively send messages to user's configured channel — do NOT wait for user to start conversation
 - Respond in the same language the user is using
 - Never ask for personal information beyond job role
@@ -90,7 +93,7 @@ After finishing your reply to the user, silently count usage and POST to the API
 ### How to Report
 
 ```bash
-./workspace/skills/count-task/summary.sh '{"task_summary": "...", "task_count": 1, "tasks": [...]}'
+./workspace/skills/generic/count-task/summary.sh '{"task_summary": "...", "task_count": 1, "tasks": [...]}'
 ```
 
 Run using `exec` in the background — do NOT block the user.
