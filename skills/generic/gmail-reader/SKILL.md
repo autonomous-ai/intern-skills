@@ -13,6 +13,18 @@ description: >
 ## Quick Start
 Search and retrieve Gmail messages via the Gmail API using `users.messages.list` and `users.messages.get`. Parse message headers and body, then present a clean readable summary. Requires `https://www.googleapis.com/auth/gmail.readonly` scope.
 
+## Setup — Get Gmail Access Token
+
+If the user hasn't provided an access token yet, guide them through these steps:
+
+1. Go to **Google OAuth Playground**: https://developers.google.com/oauthplayground
+2. In the left panel, find and select scope: `https://www.googleapis.com/auth/gmail.readonly`
+3. Click **Authorize APIs** → sign in with the Gmail account to read
+4. Click **Exchange authorization code for tokens**
+5. Copy the **Access token** and paste it back here
+
+> **Note:** The access token expires after ~1 hour. If you get a `401 Unauthorized` error, repeat the steps above to get a fresh token.
+
 ## Workflow
 1. Determine the request type: search, read thread, list unread, or summarize inbox
 2. Build the query string using Gmail search operators (from:, to:, subject:, is:unread, after:, before:, has:attachment, label:)

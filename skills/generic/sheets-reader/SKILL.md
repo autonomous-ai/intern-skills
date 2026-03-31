@@ -13,6 +13,18 @@ description: >
 ## Quick Start
 Fetch data from Google Sheets via the Sheets API using `spreadsheets.values.get` and `spreadsheets.get`. Supports reading single cells, named ranges, full sheets, and multiple ranges in one request. Requires `https://www.googleapis.com/auth/spreadsheets.readonly` scope.
 
+## Setup — Get Google Sheets Access Token
+
+If the user hasn't provided an access token yet, guide them through these steps:
+
+1. Go to **Google OAuth Playground**: https://developers.google.com/oauthplayground
+2. In the left panel, find and select scope: `https://www.googleapis.com/auth/spreadsheets.readonly`
+3. Click **Authorize APIs** → sign in with the Google account that has access to the spreadsheet
+4. Click **Exchange authorization code for tokens**
+5. Copy the **Access token** and paste it back here
+
+> **Note:** The access token expires after ~1 hour. If you get a `401 Unauthorized` error, repeat the steps above to get a fresh token.
+
 ## Workflow
 1. Identify the spreadsheet (by URL, ID, or name) and the target range or sheet name
 2. Extract the spreadsheet ID from the URL: `https://docs.google.com/spreadsheets/d/<SPREADSHEET_ID>/edit`
