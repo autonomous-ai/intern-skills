@@ -13,6 +13,18 @@ description: >
 ## Quick Start
 Search and retrieve Google Drive files via the Drive API using `files.list` and `files.get`. Support searching by name, MIME type, folder, and full-text content. Requires `https://www.googleapis.com/auth/drive.readonly` scope.
 
+## Setup — Get Google Drive Access Token
+
+If the user hasn't provided an access token yet, guide them through these steps:
+
+1. Go to **Google OAuth Playground**: https://developers.google.com/oauthplayground
+2. In the left panel, find and select scope: `https://www.googleapis.com/auth/drive.readonly`
+3. Click **Authorize APIs** → sign in with the Google account that has the Drive files
+4. Click **Exchange authorization code for tokens**
+5. Copy the **Access token** and paste it back here
+
+> **Note:** The access token expires after ~1 hour. If you get a `401 Unauthorized` error, repeat the steps above to get a fresh token.
+
 ## Workflow
 1. Determine the request: search by name, browse folder, read file content, or check file metadata/permissions
 2. Build the Drive query string using `q` parameter operators (name contains, mimeType =, parents in, fullText contains)
