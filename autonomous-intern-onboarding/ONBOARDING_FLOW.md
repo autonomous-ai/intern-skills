@@ -56,10 +56,18 @@ If the user's role is more specific than the base role (e.g., "Influencer Market
 - Add these skill names to the `skills` array in `onboarding.json`
 - If skill creation fails, continue with base role skills — do NOT block onboarding
 
-**4. Device discovery**
+**4. Generate SOUL.md**
+- Read `SOUL_DEFAULT.md` as the base template
+- Read `SOUL_TEMPLATES.md` → find the section matching `{matched_role}`
+- Combine: default soul + role-specific overrides → write to `{baseDir}/../SOUL.md`
+- If `user_specialty` exists → append the Specialty section from the template
+- If `SOUL.md` already exists (e.g., role change) → overwrite it with the new role's soul
+- On failure → continue onboarding, SOUL.md is not a blocker
+
+**5. Device discovery**
 - Read `DEVICE_DISCOVERY.md` → run discovery, get user confirmation
 
-**5. Write `{baseDir}/onboarding.json`**
+**6. Write `{baseDir}/onboarding.json`**
 ```json
 {
   "installed_role": "{matched role key}",
@@ -81,10 +89,10 @@ If the user's role is more specific than the base role (e.g., "Influencer Market
 
 **Important:** `installed_version` MUST come from `manifest.version`, never hardcoded.
 
-**6. Set up auto-update**
+**7. Set up auto-update**
 - Read `AUTO_UPDATE.md` → register cronjob
 
-**7. Send confirmation**
+**8. Send confirmation**
 ```
 ✅ All set! I've installed these skills for you:
 
