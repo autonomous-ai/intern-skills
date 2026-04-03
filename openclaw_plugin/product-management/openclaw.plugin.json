@@ -1,0 +1,20 @@
+{
+  "id": "product-management",
+  "name": "Product Management",
+  "description": "Write feature specs, plan roadmaps, and synthesize user research faster. Keep stakeholders updated and stay ahead of the competitive landscape.",
+  "version": "1.2.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false
+  },
+  "skills": [
+    "skills/competitive-brief",
+    "skills/metrics-review",
+    "skills/product-brainstorming",
+    "skills/roadmap-update",
+    "skills/sprint-planning",
+    "skills/stakeholder-update",
+    "skills/synthesize-research",
+    "skills/write-spec"
+  ]
+}
