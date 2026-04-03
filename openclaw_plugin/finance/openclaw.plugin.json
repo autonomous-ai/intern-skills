@@ -1,0 +1,20 @@
+{
+  "id": "finance",
+  "name": "Finance",
+  "description": "Streamline finance and accounting workflows, from journal entries and reconciliation to financial statements and variance analysis. Speed up audit prep, month-end close, and keeping your books clean.",
+  "version": "1.2.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false
+  },
+  "skills": [
+    "skills/audit-support",
+    "skills/close-management",
+    "skills/financial-statements",
+    "skills/journal-entry",
+    "skills/journal-entry-prep",
+    "skills/reconciliation",
+    "skills/sox-testing",
+    "skills/variance-analysis"
+  ]
+}

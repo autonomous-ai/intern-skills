@@ -1,0 +1,21 @@
+{
+  "id": "operations",
+  "name": "Operations",
+  "description": "Optimize business operations — vendor management, process documentation, change management, capacity planning, and compliance tracking. Keep your organization running efficiently.",
+  "version": "1.2.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false
+  },
+  "skills": [
+    "skills/capacity-plan",
+    "skills/change-request",
+    "skills/compliance-tracking",
+    "skills/process-doc",
+    "skills/process-optimization",
+    "skills/risk-assessment",
+    "skills/runbook",
+    "skills/status-report",
+    "skills/vendor-review"
+  ]
+}

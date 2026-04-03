@@ -1,0 +1,16 @@
+{
+  "id": "productivity",
+  "name": "Productivity",
+  "description": "Manage tasks, plan your day, and build up memory of important context about your work. Syncs with your calendar, email, and chat to keep everything organized and on track.",
+  "version": "1.2.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false
+  },
+  "skills": [
+    "skills/memory-management",
+    "skills/start",
+    "skills/task-management",
+    "skills/update"
+  ]
+}
