@@ -1,0 +1,20 @@
+{
+  "id": "marketing",
+  "name": "Marketing",
+  "description": "Create content, plan campaigns, and analyze performance across marketing channels. Maintain brand voice consistency, track competitors, and report on what's working.",
+  "version": "1.2.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false
+  },
+  "skills": [
+    "skills/brand-review",
+    "skills/campaign-plan",
+    "skills/competitive-brief",
+    "skills/content-creation",
+    "skills/draft-content",
+    "skills/email-sequence",
+    "skills/performance-report",
+    "skills/seo-audit"
+  ]
+}

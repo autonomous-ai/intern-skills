@@ -1,0 +1,19 @@
+{
+  "id": "design",
+  "name": "Design",
+  "description": "Accelerate design workflows — critique, design system management, UX writing, accessibility audits, research synthesis, and dev handoff. From exploration to pixel-perfect specs.",
+  "version": "1.2.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false
+  },
+  "skills": [
+    "skills/accessibility-review",
+    "skills/design-critique",
+    "skills/design-handoff",
+    "skills/design-system",
+    "skills/research-synthesis",
+    "skills/user-research",
+    "skills/ux-copy"
+  ]
+}

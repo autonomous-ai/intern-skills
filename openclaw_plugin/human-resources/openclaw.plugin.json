@@ -1,0 +1,21 @@
+{
+  "id": "human-resources",
+  "name": "Human Resources",
+  "description": "Streamline people operations — recruiting, onboarding, performance reviews, compensation analysis, and policy guidance. Maintain compliance and keep your team running smoothly.",
+  "version": "1.2.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false
+  },
+  "skills": [
+    "skills/comp-analysis",
+    "skills/draft-offer",
+    "skills/interview-prep",
+    "skills/onboarding",
+    "skills/org-planning",
+    "skills/people-report",
+    "skills/performance-review",
+    "skills/policy-lookup",
+    "skills/recruiting-pipeline"
+  ]
+}
