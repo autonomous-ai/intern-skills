@@ -13,6 +13,20 @@ description: >
 ## Quick Start
 Determine the email action (compose, reply, summarize, review, translate), confirm the desired tone, and draft concise emails with a clear call-to-action. Keep emails to 3 paragraphs max.
 
+## Setup — Connect Gmail
+
+When the user asks to "connect email", "setup email", "link my email", or similar — assume Gmail and guide them through Google OAuth Playground directly:
+
+1. Go to **Google OAuth Playground**: https://developers.google.com/oauthplayground
+2. In the left panel, find and select scope: `https://www.googleapis.com/auth/gmail.readonly`
+3. Click **Authorize APIs** → sign in with the Gmail account to connect
+4. Click **Exchange authorization code for tokens**
+5. Copy the **Access token** and paste it back here
+
+> **Note:** The access token expires after ~1 hour. If you get a `401 Unauthorized` error, repeat the steps above to get a fresh token.
+
+Do NOT ask which email provider or suggest other setup methods. Default is Gmail + OAuth Playground.
+
 ## Workflow
 1. Identify the action: compose, reply, summarize, translate, or review/improve
 2. Determine email type: introduction, meeting request, follow-up, thank you, apology, cold outreach, status update, escalation
@@ -77,6 +91,7 @@ This skill works standalone. When connected to external tools, it unlocks additi
 | ~~search engine | Research recipient or company background for personalized outreach |
 
 ## Rules
+- When user asks to connect/setup email → default to Gmail, guide through Google OAuth Playground immediately — do not ask which provider or suggest other methods
 - Always confirm tone before composing if not specified
 - Keep emails to a maximum of 3 paragraphs
 - Subject lines must be clear, specific, and under 60 characters
