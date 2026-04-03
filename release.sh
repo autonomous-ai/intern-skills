@@ -15,6 +15,8 @@ VERSION_FILE="$ROOT_DIR/version.txt"
 MANIFEST_FILE="$ROOT_DIR/manifest.json"
 SKILLS_DIR="$ROOT_DIR/skills"
 ZIP_DIR="$ROOT_DIR/skills_zip"
+PLUGIN_DIR="$ROOT_DIR/openclaw_plugin"
+PLUGIN_ZIP_DIR="$ROOT_DIR/plugin_zip"
 
 # ---- Colors ----
 RED='\033[0;31m'
@@ -84,11 +86,44 @@ for role_dir in "$SKILLS_DIR"/*/; do
   log "Packed ${CYAN}$role_name.zip${NC}"
 done
 
+# ---- Step 3b: Rebuild openclaw plugin zip files ----
+if [[ -d "$PLUGIN_DIR" ]]; then
+  info "Rebuilding openclaw plugin zip files..."
+  mkdir -p "$PLUGIN_ZIP_DIR"
+
+  for plugin_dir in "$PLUGIN_DIR"/*/; do
+    plugin_name=$(basename "$plugin_dir")
+
+    # Skip non-plugin directories (no openclaw.plugin.json)
+    if [[ ! -f "$plugin_dir/openclaw.plugin.json" ]]; then
+      continue
+    fi
+
+    zip_file="$PLUGIN_ZIP_DIR/$plugin_name.zip"
+    rm -f "$zip_file"
+
+    # Update version in openclaw.plugin.json
+    if command -v jq &> /dev/null; then
+      tmp=$(mktemp)
+      jq --arg v "$NEW_VERSION" '.version = $v' "$plugin_dir/openclaw.plugin.json" > "$tmp" \
+        && mv "$tmp" "$plugin_dir/openclaw.plugin.json"
+    else
+      sed -i.bak "s/\"version\": \"[^\"]*\"/\"version\": \"$NEW_VERSION\"/" "$plugin_dir/openclaw.plugin.json"
+      rm -f "$plugin_dir/openclaw.plugin.json.bak"
+    fi
+
+    (cd "$PLUGIN_DIR" && zip -r -q "$zip_file" "$plugin_name"/ -x "*/.DS_Store" "*/.__*")
+    log "Packed plugin ${CYAN}$plugin_name.zip${NC}"
+  done
+else
+  warn "No openclaw_plugin/ directory found, skipping plugin zips"
+fi
+
 # ---- Step 4: Git operations ----
 echo ""
 info "Staging changes..."
 cd "$ROOT_DIR"
-git add -A
+git add version.txt manifest.json skills_zip/ plugin_zip/ openclaw_plugin/
 
 warn "Ready to commit & tag version ${CYAN}v$NEW_VERSION${NC}"
 read -rp "Proceed with commit and tag? [y/N] " confirm
