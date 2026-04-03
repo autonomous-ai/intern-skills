@@ -1,0 +1,32 @@
+---
+name: productivity
+description: "Manage tasks, plan your day, and build up memory of important context about your work. Syncs with your calendar, email, and chat to keep everything organized and on track."
+metadata:
+  { "openclaw": { "emoji": "📦", "events": ["agent:bootstrap"] } }
+---
+
+# Productivity Plugin
+
+Loads 4 skills on agent bootstrap:
+
+- `memory-management`
+- `start`
+- `task-management`
+- `update`
+
+## Configuration
+
+Configure in `~/.openclaw/openclaw.json`:
+
+```json5
+{
+  plugins: {
+    entries: {
+      "productivity": {
+        enabled: true,
+        config: {}
+      }
+    }
+  }
+}
+```
