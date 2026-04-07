@@ -2,7 +2,7 @@
   "id": "data",
   "name": "Data",
   "description": "Write SQL, explore datasets, and generate insights faster. Build visualizations and dashboards, and turn raw data into clear stories for stakeholders.",
-  "version": "1.0.34",
+  "version": "1.0.35",
   "configSchema": {
     "type": "object",
     "additionalProperties": false
