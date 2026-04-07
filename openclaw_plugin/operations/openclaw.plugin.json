@@ -2,7 +2,7 @@
   "id": "operations",
   "name": "Operations",
   "description": "Optimize business operations — vendor management, process documentation, change management, capacity planning, and compliance tracking. Keep your organization running efficiently.",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "configSchema": {
     "type": "object",
     "additionalProperties": false
