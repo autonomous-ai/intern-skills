@@ -2,7 +2,7 @@
   "id": "product-management",
   "name": "Product Management",
   "description": "Write feature specs, plan roadmaps, and synthesize user research faster. Keep stakeholders updated and stay ahead of the competitive landscape.",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "configSchema": {
     "type": "object",
     "additionalProperties": false
