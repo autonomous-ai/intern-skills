@@ -2,7 +2,7 @@
   "id": "bio-research",
   "name": "Bio Research",
   "description": "Connect to preclinical research tools and databases (literature search, genomics analysis, target prioritization) to accelerate early-stage life sciences R&D",
-  "version": "1.0.34",
+  "version": "1.0.35",
   "configSchema": {
     "type": "object",
     "additionalProperties": false
