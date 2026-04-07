@@ -11,7 +11,6 @@ User Request
       ├─ Web search / research ──────→ [Research Agent]
       ├─ Files / docs / presentations → [Document Agent]
       ├─ Spreadsheets / data ────────→ [Data Agent]
-      └─ Device control (IoT) ───────→ [Device Agent]
 
 Cross-flows:
  [Research Agent] ──→ [Document Agent]      (research feeds documents)
@@ -214,7 +213,7 @@ tools:
   - Glob
 ```
 
-**Skills used:** `spreadsheet-helper`, `sheets-reader`, `count-task`
+**Skills used:** `spreadsheet-helper`, `sheets-reader`
 
 **Behavior:**
 
@@ -248,54 +247,6 @@ tools:
 - Preserve original data; work on copies for transformations
 - Use consistent number formatting (currency, percentages, decimals)
 - Flag data quality issues (blanks, inconsistencies, outliers)
-
----
-
-### device-agent
-
-```yaml
-name: device-agent
-description: >
-  Controls IoT devices — cameras, printers, and speakers. Manages
-  device operations like printing, recording, and audio playback.
-  Use for any physical device control task.
-model: haiku
-color: purple
-maxTurns: 8
-tools:
-  - Read
-  - WebFetch
-```
-
-**Skills used:** `camera-control`, `printer-control`, `speaker-control`
-
-**Behavior:**
-
-1. Identify target device and action:
-   - **Camera** — Pan/tilt/zoom, start/stop recording, capture snapshot
-   - **Printer** — Print document, check queue/status, manage jobs
-   - **Speaker** — Play/pause/stop, volume control, select playlist/source
-2. Verify device is reachable and online before issuing commands
-3. Execute command and confirm resulting state
-4. Report errors with troubleshooting suggestions
-
-**Output:**
-
-```
-## Device Action
-
-**Device:** [Camera | Printer | Speaker]
-**Action:** [command executed]
-**Status:** [Success | Failed | Pending]
-**Current state:** [device state after action]
-```
-
-**Rules:**
-- Always verify device connectivity before issuing commands
-- Confirm destructive actions (delete recording, cancel print job)
-- Report device status after every action
-- Handle offline devices gracefully with retry suggestion
-- Never expose device credentials or network details
 
 ---
 
