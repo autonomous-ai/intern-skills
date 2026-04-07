@@ -77,12 +77,21 @@ log "Updated manifest.json"
 info "Rebuilding skill zip files..."
 mkdir -p "$ZIP_DIR"
 
+GENERIC_DIR="$SKILLS_DIR/generic"
+
 for role_dir in "$SKILLS_DIR"/*/; do
   role_name=$(basename "$role_dir")
   zip_file="$ZIP_DIR/$role_name.zip"
 
   rm -f "$zip_file"
-  (cd "$SKILLS_DIR" && zip -r -q "$zip_file" "$role_name"/)
+
+  if [[ "$role_name" == "generic" ]]; then
+    # Generic role: pack only its own skills
+    (cd "$SKILLS_DIR" && zip -r -q "$zip_file" "$role_name"/)
+  else
+    # Other roles: pack role skills + generic skills
+    (cd "$SKILLS_DIR" && zip -r -q "$zip_file" "$role_name"/ "generic"/)
+  fi
   log "Packed ${CYAN}$role_name.zip${NC}"
 done
 
