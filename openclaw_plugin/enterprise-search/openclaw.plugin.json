@@ -2,7 +2,7 @@
   "id": "enterprise-search",
   "name": "Enterprise Search",
   "description": "Search across all of your company's tools in one place. Find anything across email, chat, documents, and wikis without switching between apps.",
-  "version": "1.0.33",
+  "version": "1.0.34",
   "configSchema": {
     "type": "object",
     "additionalProperties": false
