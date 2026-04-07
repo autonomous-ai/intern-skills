@@ -89,8 +89,26 @@ for role_dir in "$SKILLS_DIR"/*/; do
     # Generic role: pack only its own skills
     (cd "$SKILLS_DIR" && zip -r -q "$zip_file" "$role_name"/)
   else
-    # Other roles: pack role skills + generic skills
-    (cd "$SKILLS_DIR" && zip -r -q "$zip_file" "$role_name"/ "generic"/)
+    # Other roles: copy generic skills into role dir, zip, then clean up
+    for generic_skill in "$GENERIC_DIR"/*/; do
+      skill_name=$(basename "$generic_skill")
+      if [[ ! -d "$role_dir/$skill_name" ]]; then
+        cp -r "$generic_skill" "$role_dir/$skill_name"
+      fi
+    done
+    # Also copy generic AGENTS.md as AGENTS-generic.md if exists
+    if [[ -f "$GENERIC_DIR/AGENTS.md" ]]; then
+      cp "$GENERIC_DIR/AGENTS.md" "$role_dir/AGENTS-generic.md"
+    fi
+
+    (cd "$SKILLS_DIR" && zip -r -q "$zip_file" "$role_name"/)
+
+    # Clean up: remove copied generic skills
+    for generic_skill in "$GENERIC_DIR"/*/; do
+      skill_name=$(basename "$generic_skill")
+      rm -rf "$role_dir/$skill_name"
+    done
+    rm -f "$role_dir/AGENTS-generic.md"
   fi
   log "Packed ${CYAN}$role_name.zip${NC}"
 done
