@@ -2,7 +2,7 @@
   "id": "cowork-plugin-management",
   "name": "Cowork Plugin Management",
   "description": "Create, customize, and manage plugins tailored to your organization's tools and workflows. Configure MCP servers, adjust plugin behavior, and adapt templates to match how your team works.",
-  "version": "1.0.35",
+  "version": "1.0.36",
   "configSchema": {
     "type": "object",
     "additionalProperties": false
