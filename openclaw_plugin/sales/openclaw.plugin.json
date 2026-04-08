@@ -2,7 +2,7 @@
   "id": "sales",
   "name": "Sales",
   "description": "Prospect, craft outreach, and build deal strategy faster. Prep for calls, manage your pipeline, and write personalized messaging that moves deals forward.",
-  "version": "1.0.37",
+  "version": "1.0.38",
   "configSchema": {
     "type": "object",
     "additionalProperties": false

@@ -2,7 +2,7 @@
   "id": "productivity",
   "name": "Productivity",
   "description": "Manage tasks, plan your day, and build up memory of important context about your work. Syncs with your calendar, email, and chat to keep everything organized and on track.",
-  "version": "1.0.37",
+  "version": "1.0.38",
   "configSchema": {
     "type": "object",
     "additionalProperties": false
