@@ -2,7 +2,7 @@
   "id": "customer-support",
   "name": "Customer Support",
   "description": "Triage tickets, draft responses, escalate issues, and build your knowledge base. Research customer context and turn resolved issues into self-service content.",
-  "version": "1.0.37",
+  "version": "1.0.38",
   "configSchema": {
     "type": "object",
     "additionalProperties": false
