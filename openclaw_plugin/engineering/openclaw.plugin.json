@@ -2,7 +2,7 @@
   "id": "engineering",
   "name": "Engineering",
   "description": "Streamline engineering workflows — standups, code review, architecture decisions, incident response, and technical documentation. Works with your existing tools or standalone.",
-  "version": "1.0.38",
+  "version": "1.0.39",
   "configSchema": {
     "type": "object",
     "additionalProperties": false
