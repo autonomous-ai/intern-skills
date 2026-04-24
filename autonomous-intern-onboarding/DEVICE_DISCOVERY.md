@@ -4,21 +4,22 @@ Scan the local WiFi network for smart devices.
 
 ## Discovery Commands
 
-Run in parallel, each with a 5-second timeout (`timeout 5 dns-sd ...`):
-
 | Command | What it finds |
 |---------|---------------|
-| `arp -a` | All devices on local network |
-| `dns-sd -B _ipp._tcp local` | Printers (IPP/AirPrint) |
-| `dns-sd -B _pdl-datastream._tcp local` | Printers (raw) |
-| `dns-sd -B _onvif._tcp local` | IP cameras (ONVIF) |
-| `dns-sd -B _sonos._tcp local` | Sonos speakers |
-| `dns-sd -B _airplay._tcp local` | AirPlay speakers/TVs |
-| `dns-sd -B _googlecast._tcp local` | Chromecast devices |
+| `arp -a` | All devices on local network (IP + MAC + hostname) |
 
-For each device, resolve IP via `dns-sd -L` then `dns-sd -G v4` to get address.
+**Steps:**
 
-Categorize into: `printers`, `cameras`, `speakers`.
+1. Run `arp -a` with a 5-second timeout to list all devices on the subnet.
+2. For each entry, infer category from the hostname/vendor:
+   - Hostname contains `hp`, `canon`, `epson`, `brother`, `printer` → **printer**
+   - Hostname contains `hikvision`, `dahua`, `axis`, `cam`, `nvr` → **camera**
+   - Hostname contains `sonos`, `bose`, `echo`, `homepod`, `chromecast`, `airplay` → **speaker**
+   - Unknown → skip (do not include in results)
+3. For devices with no hostname, look up MAC OUI (first 3 bytes) against a known vendor list to guess the brand.
+4. Categorize into: `printers`, `cameras`, `speakers`.
+
+> Note: This is best-effort. Device discovery without mDNS is limited — devices that don't broadcast a recognizable hostname will be skipped. Users can manually add devices later.
 
 ## User Confirmation
 
@@ -84,7 +85,7 @@ Would you like to add the new devices? Remove the offline ones?
 ## Rules
 
 - Device discovery is best-effort — never block onboarding if scan fails or times out
-- Each `dns-sd` scan must have a timeout (max 5s) to avoid hanging
+- `arp -a` must have a timeout (max 5s) to avoid hanging
 - Never store device credentials in `onboarding.json` — only name, IP, model, protocol
 - Device scan runs on the local subnet only — do not scan external networks
-- If `arp` or `dns-sd` is not available, skip device discovery and inform user
+- If `arp` is not available, skip device discovery and inform user
