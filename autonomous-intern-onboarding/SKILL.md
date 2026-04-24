@@ -3,7 +3,7 @@ name: autonomous-intern-onboarding
 description: >
   Pre-reply skill — checks onboarding status before processing user messages.
   Handles first-time setup, role selection, skill installation, and device discovery.
-metadata: {"openclaw":{"version":"1.1.0","emoji":"🎯","requires":{"bins":["curl","unzip","arp","dns-sd"]}}}
+metadata: {"openclaw":{"version":"1.1.0","emoji":"🎯","requires":{"bins":["curl","unzip","arp"]}}}
 ---
 
 # Autonomous Intern Onboarding
