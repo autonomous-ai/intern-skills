@@ -2,7 +2,7 @@
   "id": "human-resources",
   "name": "Human Resources",
   "description": "Streamline people operations — recruiting, onboarding, performance reviews, compensation analysis, and policy guidance. Maintain compliance and keep your team running smoothly.",
-  "version": "1.0.40",
+  "version": "1.0.41",
   "configSchema": {
     "type": "object",
     "additionalProperties": false
