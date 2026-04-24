@@ -2,7 +2,7 @@
   "id": "legal",
   "name": "Legal",
   "description": "Speed up contract review, NDA triage, and compliance workflows for in-house legal teams. Draft legal briefs, organize precedent research, and manage institutional knowledge.",
-  "version": "1.0.39",
+  "version": "1.0.40",
   "configSchema": {
     "type": "object",
     "additionalProperties": false
