@@ -2,7 +2,7 @@
   "id": "marketing",
   "name": "Marketing",
   "description": "Create content, plan campaigns, and analyze performance across marketing channels. Maintain brand voice consistency, track competitors, and report on what's working.",
-  "version": "1.0.42",
+  "version": "1.0.43",
   "configSchema": {
     "type": "object",
     "additionalProperties": false
