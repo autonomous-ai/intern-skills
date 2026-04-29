@@ -97,6 +97,6 @@ Notes:
 ```
 
 ## Related Skills
-- `email-assistant` -- For composing and replying to emails that need translation
+- `gmail` -- For composing and replying to emails that need translation
 - `document-summarizer` -- For summarizing foreign-language documents before or after translation
 - `web-search` -- For researching domain-specific terminology and cultural context

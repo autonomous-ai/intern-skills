@@ -89,6 +89,5 @@ Status: [Confirmed / Pending Confirmation / Conflict Detected]
 ```
 
 ## Related Skills
-- `email-assistant` -- For sending meeting invitations and follow-ups via email
+- `gmail` -- For finding meeting-related emails/RSVPs and sending invitations or follow-ups
 - `note-taker` -- For capturing meeting agendas and action items
-- `gmail-reader` -- For finding meeting-related emails and RSVPs

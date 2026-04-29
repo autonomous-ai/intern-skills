@@ -105,6 +105,6 @@ Next Meeting: [date if applicable]
 ```
 
 ## Related Skills
-- `email-assistant` -- For emailing meeting notes and action items to participants
+- `gmail` -- For emailing meeting notes and action items to participants
 - `calendar-helper` -- For scheduling follow-up meetings referenced in notes
 - `document-summarizer` -- For condensing long transcripts before note extraction
