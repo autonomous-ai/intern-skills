@@ -41,7 +41,7 @@ tools:
   - WebSearch
 ```
 
-**Skills used:** `email-assistant`, `gmail-reader`, `calendar-helper`, `note-taker`, `translator`, `memory-keeper`
+**Skills used:** `gmail`, `calendar-helper`, `note-taker`, `translator`, `memory-keeper`
 
 **Behavior:**
 
