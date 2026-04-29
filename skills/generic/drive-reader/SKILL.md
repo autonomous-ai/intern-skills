@@ -15,7 +15,40 @@ Search and retrieve Google Drive files via the Drive API using `files.list` and 
 
 ## Setup — Get Google Drive Access Token
 
-If the user hasn't provided an access token yet, guide them through these steps:
+Resolve the access token in this order. Stop at the first one that succeeds.
+
+**1. Load from `workspace/configs/access_tokens.json` (preferred)**
+
+Read the file with the `Read` tool. Use `providers.google.access_token` if all of these hold:
+- File exists and parses as JSON
+- `providers.google.access_token` is non-empty
+- `providers.google.expires_at` (unix seconds) is in the future
+- `providers.google.scopes` includes `drive.readonly` (or full URL `https://www.googleapis.com/auth/drive.readonly`)
+
+Expected schema:
+```json
+{
+  "version": 1,
+  "providers": {
+    "google": {
+      "access_token": "ya29...",
+      "refresh_token": "1//...",
+      "expires_at": 1777446908,
+      "scopes": ["drive.readonly"],
+      "user_email": "u@example.com",
+      "obtained_at": 1777443309
+    }
+  }
+}
+```
+
+If the token is expired or scope is missing, fall through to step 2.
+
+**2. Ask user to connect via `intern/me`**
+
+Tell the user: *"No valid Google token found. Open `intern/me` → Connect Account → Google (grant `drive.readonly`), then re-run this skill."*
+
+**3. Manual OAuth Playground (fallback only if user requests)**
 
 1. Go to **Google OAuth Playground**: https://developers.google.com/oauthplayground
 2. In the left panel, find and select scope: `https://www.googleapis.com/auth/drive.readonly`
@@ -23,7 +56,7 @@ If the user hasn't provided an access token yet, guide them through these steps:
 4. Click **Exchange authorization code for tokens**
 5. Copy the **Access token** and paste it back here
 
-> **Note:** The access token expires after ~1 hour. If you get a `401 Unauthorized` error, repeat the steps above to get a fresh token.
+> **Note:** The access token expires after ~1 hour. On `401 Unauthorized`, re-check `workspace/configs/access_tokens.json`, then prompt the user to refresh via `intern/me` or repeat the OAuth Playground steps.
 
 ## Workflow
 1. Determine the request: search by name, browse folder, read file content, or check file metadata/permissions
@@ -107,12 +140,15 @@ Website Redesign Brief — Q2 2026
 ```
 
 ## Tools
+- Use `Read` to load `workspace/configs/access_tokens.json` and extract the Google access token
 - Use `WebFetch` to call Drive API endpoints with the user's OAuth access token
 - Use `Bash` with curl as fallback for API calls
 
 ## Error Handling
-- If no OAuth token provided → explain the user must authenticate with `drive.readonly` scope first
-- If `401 Unauthorized` → token expired; ask user to re-authenticate
+- If `workspace/configs/access_tokens.json` is missing or has no `providers.google` entry → tell user to connect at `intern/me`, or fall back to OAuth Playground if requested
+- If token in JSON is expired (`expires_at` <= now) → tell user to refresh via `intern/me`
+- If required scope `drive.readonly` not in `providers.google.scopes` → tell user to re-connect at `intern/me` granting Drive scope
+- If `401 Unauthorized` from API → token expired/revoked; re-check JSON, then prompt re-auth via `intern/me`
 - If `403 Forbidden` → scope not granted or file not accessible; check sharing settings
 - If `404 Not Found` → file ID is invalid or file was deleted
 - If file is binary (PDF, image) → return metadata only; note that binary content cannot be displayed inline
@@ -156,4 +192,4 @@ Found:   [N] files
 ## Related Skills
 - `sheets-reader` -- For reading and querying data from Google Sheets found in Drive
 - `document-summarizer` -- For summarizing documents retrieved from Google Drive
-- `gmail-reader` -- For finding email threads that reference Drive files
+- `gmail` -- For finding email threads that reference Drive files

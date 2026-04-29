@@ -139,6 +139,6 @@ Summary depth: [TL;DR / Standard / Detailed]
 ```
 
 ## Related Skills
-- `gmail-reader` -- For fetching email threads that need summarization
+- `gmail` -- For fetching email threads that need summarization
 - `drive-reader` -- For accessing documents stored in Google Drive to summarize
 - `note-taker` -- For organizing summaries into structured meeting notes or action items
