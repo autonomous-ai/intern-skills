@@ -2,7 +2,7 @@
   "id": "pdf-viewer",
   "name": "Pdf Viewer",
   "description": "View, annotate, and sign PDFs in a live interactive viewer. Mark up contracts, fill forms with visual feedback, stamp approvals, and place signatures — then download the annotated copy.",
-  "version": "1.0.42",
+  "version": "1.0.43",
   "configSchema": {
     "type": "object",
     "additionalProperties": false

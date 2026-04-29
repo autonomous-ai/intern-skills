@@ -2,7 +2,7 @@
   "id": "design",
   "name": "Design",
   "description": "Accelerate design workflows — critique, design system management, UX writing, accessibility audits, research synthesis, and dev handoff. From exploration to pixel-perfect specs.",
-  "version": "1.0.42",
+  "version": "1.0.43",
   "configSchema": {
     "type": "object",
     "additionalProperties": false
