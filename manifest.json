@@ -1,5 +1,5 @@
 {
-  "version": "1.0.41",
+  "version": "1.0.42",
   "generic_zip": "generic.zip",
   "default_zips": [
     "generic.zip",
@@ -15,10 +15,9 @@
       "clawchief",
       "document-summarizer",
       "drive-reader",
-      "email-assistant",
       "exa-web-search",
       "file-manager",
-      "gmail-reader",
+      "gmail",
       "memory-keeper",
       "note-taker",
       "presentation-maker",
