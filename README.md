@@ -17,7 +17,7 @@ workspace/skills/autonomous-intern-onboarding/
 ### Remote Skill Repository (GitHub)
 
 ```
-https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main/
+https://raw.githubusercontent.com/autonomous-ai/intern-skills/main/
 ├── version.txt                             ← Global version string (e.g. "1.0.3")
 ├── manifest.json                           ← Role → skills mapping
 ├── skills_zip/
@@ -213,7 +213,7 @@ SKILL.md instructs OpenClaw to create a cronjob on first run:
 
 ## Implementation Notes
 
-- **GitHub raw URL** is configurable in SKILL.md (default: `https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main/`)
+- **GitHub raw URL** is configurable in SKILL.md (default: `https://raw.githubusercontent.com/autonomous-ai/intern-skills/main/`)
 - **Zip files** are at `skills_zip/*.zip` in the repo (fetched via `{base_url}/skills_zip/{role}.zip`)
 - **Zip extraction** target: the skills directory where this skill is installed (resolved via `{baseDir}/../`)
 - **Skill removal** on role change: delete folders listed in `onboarding.json.skills` that came from old role zip

@@ -1,4 +1,4 @@
-"""Run a one-off command on a Lobster device and print the output."""
+"""Run a one-off command on an intern device and print the output."""
 
 import argparse
 import os
@@ -6,7 +6,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from ssh_sdk import LobsterSSH
+from ssh_sdk import InternSSH
 
 
 def main() -> None:
@@ -18,7 +18,7 @@ def main() -> None:
     parser.add_argument("--sudo", action="store_true")
     args = parser.parse_args()
 
-    with LobsterSSH(args.host, args.user, password=args.password) as ssh:
+    with InternSSH(args.host, args.user, password=args.password) as ssh:
         result = ssh.run(args.cmd, sudo=args.sudo)
     print(result.stdout, end="")
     if result.stderr:

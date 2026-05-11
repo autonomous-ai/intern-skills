@@ -1,5 +1,5 @@
 """
-Deploy the audio SDK to a Lobster device:
+Deploy the audio SDK to an intern device:
 1. SCP audio_sdk.py to ~/sdk/audio/ on the device.
 2. apt install python3-pyaudio (idempotent).
 3. Add user to audio group (effective on next login).
@@ -12,7 +12,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from ssh_sdk import LobsterSSH
+from ssh_sdk import InternSSH
 
 AUDIO_SDK_LOCAL = os.path.join(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
@@ -30,7 +30,7 @@ def main() -> None:
     parser.add_argument("--password", required=True)
     args = parser.parse_args()
 
-    with LobsterSSH(args.host, args.user, password=args.password) as ssh:
+    with InternSSH(args.host, args.user, password=args.password) as ssh:
         home = ssh.run("echo $HOME").stdout.strip()
         remote_dir = REMOTE_DIR.replace("~", home)
         remote_file = REMOTE_FILE.replace("~", home)
