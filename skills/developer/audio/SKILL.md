@@ -8,6 +8,31 @@ argument-hint: "<subcommand> [args]  e.g. stream 10  |  volume 70  |  record 5  
 
 Lightweight chat interface to the on-device `audio_sdk` (installed at `~/sdk/audio/audio_sdk.py`). One slash command, several subcommands.
 
+## Bootstrap (first run only)
+
+Before invoking any SDK call, ensure `audio_sdk.py` and its OS-level dependency are present. This makes the skill work even on a fresh device that received the skill via onboarding but not the Python module. Run this idempotent guard once per session before the first subcommand:
+
+```bash
+# Picks the right HOME (works under sudo too)
+HOME_DIR="$(getent passwd ${SUDO_USER:-$USER} | cut -d: -f6)"
+SDK="${HOME_DIR}/sdk/audio/audio_sdk.py"
+
+if [ ! -f "$SDK" ]; then
+  mkdir -p "${HOME_DIR}/sdk/audio"
+  curl -fsSL https://raw.githubusercontent.com/autonomous-ai/intern-skills/main/sdk/developer/audio/audio_sdk.py -o "$SDK"
+fi
+
+# python3-pyaudio: skip the apt cost if already importable
+python3 -c "import pyaudio" 2>/dev/null || sudo apt-get install -y python3-pyaudio
+```
+
+If the device is air-gapped (no outbound HTTPS), reply to the user with a clear message:
+
+> The audio SDK Python module is not on this device yet. Please install it from your workstation:
+> `python sdk/developer/onboarding/onboard_device.py <this-host> <user> --password <pw>`
+
+Skip the bootstrap on subsequent subcommands within the same conversation — the `audio_sdk.py` check is fast (single `stat`), so re-running it is fine but unnecessary.
+
 ## Subcommands
 
 | Form | Action |
@@ -26,9 +51,10 @@ Top-level shortcuts the user may type without the `/audio` prefix — route them
 
 ## Workflow
 
+0. Run the Bootstrap snippet above once per session to make sure `audio_sdk.py` + `python3-pyaudio` are present.
 1. Parse the subcommand and args from `$ARGUMENTS`. If absent, default to `health`.
 2. Invoke the matching SDK call by running Python from bash. Always import via `sys.path.insert(0, "/home/system/sdk/audio")` to find `audio_sdk`.
-3. If the call needs sudo (recording / mixer changes / playback), wrap with `sudo -n python3 -c "..."`. The `system` user has passwordless sudo on Lobster devices.
+3. If the call needs sudo (recording / mixer changes / playback), wrap with `sudo -n python3 -c "..."`. The `system` user has passwordless sudo on intern devices.
 4. Reply concisely: include the verdict / measurement / file. For `record`, attach the WAV file via the Telegram reply tool's `files=[...]` parameter. For long-running ops (stream > 5 s), send a short "starting" reply, run the op, then reply again with the result so the user gets a notification.
 5. Never hold the Python process open for an unbounded `/audio stream` — cap it at the requested duration; reject anything over 60 s with a polite message.
 
@@ -103,7 +129,7 @@ loopback_rms   : 9137
 
 ## Rules
 
-- Never run the SDK without `sudo -n` on Lobster devices unless the user is in the `audio` group AND the current shell predates the group change.
+- Never run the SDK without `sudo -n` on intern devices unless the user is in the `audio` group AND the current shell predates the group change.
 - Never set speaker volume above 80 % without explicit confirmation in the same message — the device may be in a shared room.
 - For `/audio record`, always attach the WAV; do not paste raw PCM in chat.
 - Cap `stream`, `record`, and `passthrough` at 60 s per invocation.

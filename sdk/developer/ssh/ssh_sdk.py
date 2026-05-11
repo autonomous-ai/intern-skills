@@ -1,11 +1,11 @@
 """
-ssh_sdk.py - Cross-platform SSH SDK for Autonomous Intern (Lobster) devices.
+ssh_sdk.py - Cross-platform SSH SDK for Autonomous Intern devices.
 
 Pure-Python (paramiko) so it works identically on Mac, Linux, and Windows
 without the host needing the ssh / sshpass / scp binaries.
 
 Public surface:
-    LobsterSSH                       -- connection class, context-manager
+    InternSSH                       -- connection class, context-manager
         connect / close
         run(cmd, sudo=False, ...)    -> CommandResult
         put / get / put_dir / get_dir
@@ -71,12 +71,12 @@ class CommandResult:
     duration_s: float
 
 
-class LobsterSSH:
+class InternSSH:
     """
-    SSH connection to a Lobster device.
+    SSH connection to an Autonomous Intern device.
 
     Examples:
-        with LobsterSSH("172.168.20.145", "system", password="12345") as ssh:
+        with InternSSH("172.168.20.145", "system", password="12345") as ssh:
             result = ssh.run("uname -a")
             print(result.stdout)
             ssh.put("local.py", "/tmp/remote.py")
@@ -150,7 +150,7 @@ class LobsterSSH:
                 pass
             self._client = None
 
-    def __enter__(self) -> "LobsterSSH":
+    def __enter__(self) -> "InternSSH":
         self.connect()
         return self
 
@@ -299,7 +299,7 @@ def run_once(
     timeout: Optional[float] = None,
 ) -> CommandResult:
     """Open a connection, run one command, close. Returns CommandResult."""
-    with LobsterSSH(host, user, password=password, key_path=key_path, port=port) as ssh:
+    with InternSSH(host, user, password=password, key_path=key_path, port=port) as ssh:
         return ssh.run(cmd, sudo=sudo, timeout=timeout)
 
 
@@ -314,7 +314,7 @@ def scp_to(
     port: int = 22,
 ) -> None:
     """Open a connection, upload one file, close."""
-    with LobsterSSH(host, user, password=password, key_path=key_path, port=port) as ssh:
+    with InternSSH(host, user, password=password, key_path=key_path, port=port) as ssh:
         ssh.put(local, remote)
 
 
@@ -329,7 +329,7 @@ def scp_from(
     port: int = 22,
 ) -> None:
     """Open a connection, download one file, close."""
-    with LobsterSSH(host, user, password=password, key_path=key_path, port=port) as ssh:
+    with InternSSH(host, user, password=password, key_path=key_path, port=port) as ssh:
         ssh.get(remote, local)
 
 
