@@ -33,7 +33,7 @@ If user says "change my role", "switch role", "đổi role", or "I'm now in [rol
 
 ## Onboarding Process
 
-1. Fetch manifest from `https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main/manifest.json` and cache it locally as `{baseDir}/manifest_cache.json`
+1. Fetch manifest from `https://raw.githubusercontent.com/autonomous-ai/intern-skills/main/manifest.json` and cache it locally as `{baseDir}/manifest_cache.json`
 
 2. Wait for user reply on the channel. Match user response against each role's `keywords` array in manifest:
    - Confident match → proceed to install
@@ -53,7 +53,7 @@ If user says "change my role", "switch role", "đổi role", or "I'm now in [rol
    - Generic: `{BASE_URL}/skills_zip/{manifest.generic_zip}` (value of `generic_zip` field in manifest)
    - Role-specific: `{BASE_URL}/skills_zip/{manifest.roles[matched_role].skills_zip}` (value of `skills_zip` field for the matched role)
    - If download fails → retry 3x with 5s delay, then notify user and retry next session
-   - `BASE_URL` = `https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main`
+   - `BASE_URL` = `https://raw.githubusercontent.com/autonomous-ai/intern-skills/main`
 
 4. Write `{baseDir}/onboarding.json`:
    ```json
@@ -107,7 +107,7 @@ If user says "change my role", "switch role", "đổi role", or "I'm now in [rol
 
 #### Auto-Update (cronjob, every 6 hours)
 
-1. Fetch `https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main/version.txt` → trim whitespace → `remote_version`
+1. Fetch `https://raw.githubusercontent.com/autonomous-ai/intern-skills/main/version.txt` → trim whitespace → `remote_version`
 2. Read `onboarding.json` → `installed_version`
 3. If `remote_version` == `installed_version` → do nothing
 4. If different:

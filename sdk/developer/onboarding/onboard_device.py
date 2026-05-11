@@ -1,5 +1,5 @@
 """
-onboard_device.py — provision a Lobster device with the full developer SDK.
+onboard_device.py — provision an intern device with the full developer SDK.
 
 Runs from a workstation. Uses ssh_sdk to:
   1. SCP the audio SDK + examples to ~/<user>/sdk/audio on the device.
@@ -29,7 +29,7 @@ DEVELOPER_DIR = os.path.dirname(HERE)
 REPO_ROOT = os.path.dirname(os.path.dirname(DEVELOPER_DIR))
 sys.path.insert(0, os.path.join(DEVELOPER_DIR, "ssh"))
 
-from ssh_sdk import LobsterSSH  # noqa: E402
+from ssh_sdk import InternSSH  # noqa: E402
 
 AUDIO_LOCAL_DIR = os.path.join(DEVELOPER_DIR, "audio")
 AUDIO_SKILL_LOCAL = os.path.join(REPO_ROOT, "skills", "developer", "audio", "SKILL.md")
@@ -57,7 +57,7 @@ def main() -> int:
 
     started = time.time()
 
-    with LobsterSSH(args.host, args.user, password=args.password, port=args.port) as ssh:
+    with InternSSH(args.host, args.user, password=args.password, port=args.port) as ssh:
         banner("device info")
         info = ssh.run("uname -a && id").stdout.strip()
         print(info)

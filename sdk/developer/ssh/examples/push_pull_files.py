@@ -1,4 +1,4 @@
-"""Upload one file then download another, using LobsterSSH SFTP."""
+"""Upload one file then download another, using InternSSH SFTP."""
 
 import argparse
 import os
@@ -6,7 +6,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from ssh_sdk import LobsterSSH
+from ssh_sdk import InternSSH
 
 
 def main() -> None:
@@ -18,7 +18,7 @@ def main() -> None:
     parser.add_argument("--pull", nargs=2, metavar=("REMOTE", "LOCAL"))
     args = parser.parse_args()
 
-    with LobsterSSH(args.host, args.user, password=args.password) as ssh:
+    with InternSSH(args.host, args.user, password=args.password) as ssh:
         if args.push:
             ssh.put(args.push[0], args.push[1])
             print(f"pushed {args.push[0]} -> {args.push[1]}")

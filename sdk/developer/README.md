@@ -1,11 +1,11 @@
 # Developer SDKs
 
-Cross-platform Python SDKs for working with Autonomous Intern (Lobster) devices.
+Cross-platform Python SDKs for working with Autonomous Intern devices.
 
 | SDK | Purpose | File |
 |---|---|---|
 | `audio_sdk` | Mic + speaker: record, play, stream PCM, run hardware diagnostics | [`audio/audio_sdk.py`](audio/audio_sdk.py) |
-| `ssh_sdk`   | Connect to Lobster devices from any workstation, run commands, transfer files | [`ssh/ssh_sdk.py`](ssh/ssh_sdk.py) |
+| `ssh_sdk`   | Connect to intern devices from any workstation, run commands, transfer files | [`ssh/ssh_sdk.py`](ssh/ssh_sdk.py) |
 
 Both run on macOS, Linux, and Windows. Both are single-file Python modules — drop them anywhere on your `PYTHONPATH`.
 
@@ -27,55 +27,59 @@ If you only need the SSH SDK (e.g. for fleet automation, no audio), `pip install
 
 ---
 
-## 2. Install the audio SDK on a Lobster device
+## 2. Install the audio SDK on an intern device
 
-### Path A — direct (recommended, verified)
+Three installation paths. Pick by situation:
 
-Use the SSH SDK from your workstation:
+| Situation | Use |
+|---|---|
+| Brand-new device, you have its IP, you want one command | **Path A — onboarding script** |
+| Device is reachable on Telegram, you'd rather not SSH | **Path B — chat prompt** |
+| You're scripting a fleet rollout or want fine-grained control | **Path C — programmatic SSH** |
 
-```python
-from ssh_sdk import LobsterSSH
+All three paths converge on the same end-state: `audio_sdk.py` at `~/<user>/sdk/audio/`, `python3-pyaudio` installed, user in the `audio` group, the `/audio` skill registered with openclaw, and `health_check()` reporting `verdict=ok`.
 
-with LobsterSSH("172.168.20.145", "system", password="12345") as ssh:
-    ssh.run("mkdir -p ~/sdk/audio", check=True)
-    ssh.put("sdk/developer/audio/audio_sdk.py", "/home/system/sdk/audio/audio_sdk.py")
-    ssh.run("apt-get install -y python3-pyaudio", sudo=True, timeout=180)
-    ssh.run("usermod -a -G audio system", sudo=True)
+### Preflight — find the device IP and confirm `sshd` is up
+
+Paths A and C need SSH. If you don't already know the device's IP, ask it over Telegram first:
+
+> Please tell me your local IP address and confirm that `sshd` is running so I can SSH in. Run:
+> ```
+> hostname -I | awk '{print $1}'
+> sudo systemctl is-active ssh || sudo systemctl is-active sshd
+> sudo ss -ltn '( sport = :22 )'
+> ```
+> Reply with the first IPv4 address, whether the service is `active`, and whether port 22 is listening. If `sshd` is not running, start it: `sudo systemctl enable --now ssh` (some images use `sshd`).
+
+Expected reply:
+
+```
+IP: 172.168.20.145
+sshd: active
+port 22 LISTEN on 0.0.0.0:22
 ```
 
-A ready-to-run script that does the same thing plus a smoke test:
+Use that IP for Path A or Path C.
 
-```bash
-python sdk/developer/ssh/examples/deploy_audio_sdk.py 172.168.20.145 system --password 12345
-```
+### Path A — onboarding script (recommended)
 
-Equivalent shell-only flow if you don't want Python on the workstation:
-
-```bash
-ssh system@<host> "mkdir -p ~/sdk/audio"
-scp sdk/developer/audio/audio_sdk.py system@<host>:~/sdk/audio/
-ssh system@<host> "sudo apt-get install -y python3-pyaudio && sudo usermod -a -G audio system"
-```
-
-### Path C — one-shot onboarding script (recommended for fresh devices)
-
-For a brand-new Lobster device, run the onboarding script from your workstation. It does everything in Path A *plus* installs the `/audio` skill into the openclaw workspace and runs `health_check()`:
+One command from your workstation provisions a fresh device end-to-end:
 
 ```bash
 python sdk/developer/onboarding/onboard_device.py <host> <user> --password <pw>
 ```
 
-What it does (idempotent — safe to re-run):
+Five idempotent steps (safe to re-run):
 
-1. SCP `audio_sdk.py` and its examples to `~/<user>/sdk/audio/` on the device.
+1. SCP `audio_sdk.py` and its examples to `~/<user>/sdk/audio/`.
 2. `apt install -y python3-pyaudio`.
-3. `usermod -a -G audio <user>` (effective on next login).
-4. Install `skills/developer/audio/SKILL.md` to `/root/.openclaw/workspace/skills/audio/SKILL.md` so `/audio` chat commands work.
-5. Run `health_check()` and print the verdict. Exits `0` on `verdict=ok`.
+3. `usermod -a -G audio <user>` (effective on the user's next login).
+4. Install `skills/developer/audio/SKILL.md` to `/root/.openclaw/workspace/skills/audio/SKILL.md` so the `/audio` chat command works.
+5. Run `health_check()`. Exits `0` on `verdict=ok`.
 
 Flags:
 
-- `--skip-skill` — copy the SDK only, skip the openclaw skill install.
+- `--skip-skill` — copy the SDK only; don't register the `/audio` skill.
 - `--skip-health` — skip the final `health_check()`.
 - `--port N` — non-default SSH port.
 
@@ -91,46 +95,68 @@ Sample run (~7 seconds against a healthy device):
 ✓ device ready
 ```
 
-After the script finishes, the device's Claude will pick up `/audio` skill commands on its next session reload (send `/restart` in Telegram, or wait for the openclaw watcher to pick up the new file).
+After it finishes, send `/restart` in Telegram so the active openclaw session picks up the new `/audio` skill (the watcher reloads files but caches the active session's skill list).
 
-### Path B — via Telegram chat (alternate)
+### Path B — via Telegram chat
 
-If the Lobster device runs an openclaw/Claude session reachable over Telegram, paste this prompt into the chat. It walks the device through the same five steps as `onboard_device.py` but uses the device's own Bash tool instead of SSH from a workstation.
+If you can't easily SSH (NAT, firewall, you're on a phone), have the device install itself. Paste this prompt into the chat:
 
-> **Set up the developer audio SDK on this device.** Please run these steps in order and reply only when each step succeeds. Use `sudo` on the device — the `system` user has passwordless sudo.
+> **Set up the developer audio SDK on this device.** Run each step with `sudo` (the `system` user has passwordless sudo) and reply only when the step succeeds.
 >
-> 1. Fetch `audio_sdk.py` from the public repo and place it locally:
+> 1. Fetch the SDK module:
 >    ```
 >    mkdir -p ~/sdk/audio
->    curl -fsSL https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main/sdk/developer/audio/audio_sdk.py -o ~/sdk/audio/audio_sdk.py
+>    curl -fsSL https://raw.githubusercontent.com/autonomous-ai/intern-skills/main/sdk/developer/audio/audio_sdk.py -o ~/sdk/audio/audio_sdk.py
 >    ```
 > 2. Install the Python audio dependency:
 >    ```
 >    sudo apt-get install -y python3-pyaudio
 >    ```
-> 3. Add the current user to the `audio` group (effective on next login):
+> 3. Add the current user to the `audio` group:
 >    ```
 >    sudo usermod -a -G audio $USER
 >    ```
-> 4. Install the `/audio` skill so chat commands work:
+> 4. Register the `/audio` chat skill:
 >    ```
 >    sudo mkdir -p /root/.openclaw/workspace/skills/audio
->    sudo curl -fsSL https://raw.githubusercontent.com/autonomous-ecm/intern-skills/main/skills/developer/audio/SKILL.md -o /root/.openclaw/workspace/skills/audio/SKILL.md
+>    sudo curl -fsSL https://raw.githubusercontent.com/autonomous-ai/intern-skills/main/skills/developer/audio/SKILL.md -o /root/.openclaw/workspace/skills/audio/SKILL.md
 >    ```
-> 5. Verify by running the SDK's built-in health check and reply with the JSON output:
+> 5. Run the built-in health check and paste back the JSON:
 >    ```
 >    sudo python3 -c "import sys, json; sys.path.insert(0, '$HOME/sdk/audio'); from audio_sdk import AudioSDK; print(json.dumps(AudioSDK().health_check(), default=str, indent=2))"
 >    ```
 >
-> The expected verdict is `ok`. If it's `mic_silent` or `speaker_off`, paste the full output back to me. After step 4, please run `/restart` so the new `/audio` skill is loaded into the active session.
+> If `verdict` is anything other than `ok`, paste the full output back to me. After step 4, run `/restart` so the `/audio` skill becomes available in this session.
 
-That's a verbatim, copy-paste prompt — works against any Lobster device whose Claude has access to a `Bash` tool, the public network, and `sudo`. The device can read everything it needs from the public `autonomous-ecm/intern-skills` repo on GitHub, so no checked-out clone or MCP file connector is required.
+This requires the device to have a `Bash` tool, sudo, and outbound HTTPS to `raw.githubusercontent.com`. For air-gapped devices, use Path A or C — those push the files over SSH from your workstation.
 
-If the device is air-gapped (no public internet), use Path A or Path C instead — those push the files over SSH from your workstation.
+### Path C — programmatic install via `ssh_sdk`
 
-### After install
+For fleet rollouts or when you want to embed the install in your own automation:
 
-The `audio` group change only takes effect on the next login. Until then run audio commands with `sudo`. After re-login, plain `python3 ...` is enough.
+```python
+from ssh_sdk import InternSSH
+
+with InternSSH("172.168.20.145", "system", password="12345") as ssh:
+    ssh.run("mkdir -p ~/sdk/audio", check=True)
+    ssh.put("sdk/developer/audio/audio_sdk.py", "/home/system/sdk/audio/audio_sdk.py")
+    ssh.run("apt-get install -y python3-pyaudio", sudo=True, timeout=180)
+    ssh.run("usermod -a -G audio system", sudo=True)
+```
+
+This is what Path A's script wraps — useful when you want to interleave additional steps or run against many devices. See [Batch deploy across devices](#batch-deploy-across-devices) below.
+
+If you'd rather stay in the shell:
+
+```bash
+ssh system@<host> "mkdir -p ~/sdk/audio"
+scp sdk/developer/audio/audio_sdk.py system@<host>:~/sdk/audio/
+ssh system@<host> "sudo apt-get install -y python3-pyaudio && sudo usermod -a -G audio system"
+```
+
+### After install — one note about sudo
+
+The `audio` group membership only takes effect on the user's next login. In the SSH session that ran the install, you'll still need `sudo` for audio commands. Open a fresh SSH session and `python3 …` works without sudo.
 
 ---
 
@@ -140,8 +166,8 @@ The SDK ships an end-to-end diagnostic. From the device:
 
 ```bash
 cd ~/sdk/audio
-python3 -m examples.diagnostic     # if examples/ was copied too, otherwise:
-python3 -c "from audio_sdk import AudioSDK; print(AudioSDK().health_check())"
+python3 examples/diagnostic.py                                                # full report, exits 0 on verdict=ok
+python3 -c "from audio_sdk import AudioSDK; print(AudioSDK().health_check())" # inline one-liner
 ```
 
 Example output:
@@ -221,20 +247,24 @@ with AudioSDK() as sdk:
 from audio_sdk import AudioSDK
 
 with AudioSDK() as sdk:
-    sdk.set_volume(40)
     sdk.stream_passthrough(duration=30)   # speak; you'll hear yourself
 ```
 
-Beware acoustic feedback when mic and speaker share an enclosure.
+Defaults are tuned to avoid acoustic feedback when mic and speaker share an enclosure: speaker drops to ~30% and a noise gate suppresses ambient ringing. For raw passthrough (e.g. to *test* whether feedback occurs), pass `feedback_safe=False`. To let quieter sounds through the gate, lower `gate_threshold` (default 400):
+
+```python
+sdk.stream_passthrough(duration=30, gate_threshold=150)   # more permissive
+sdk.stream_passthrough(duration=30, feedback_safe=False)  # raw mic -> speaker
+```
 
 ### Batch deploy across devices
 
 ```python
-from ssh_sdk import LobsterSSH
+from ssh_sdk import InternSSH
 
 devices = [("172.168.20.145", "system", "12345"), ...]
 for host, user, pw in devices:
-    with LobsterSSH(host, user, password=pw) as ssh:
+    with InternSSH(host, user, password=pw) as ssh:
         ssh.put("sdk/developer/audio/audio_sdk.py", "/home/system/sdk/audio/audio_sdk.py")
         ssh.run("apt-get install -y python3-pyaudio", sudo=True, check=True)
 ```
@@ -251,7 +281,7 @@ for host, user, pw in devices:
 | `record(path, duration)` | Record to WAV. Returns `path`. |
 | `play(path)` | Play a WAV through the speaker. |
 | `record_and_play(duration, path=...)` | Record then play. |
-| `stream_passthrough(duration=None, chunk=None)` | Live mic→speaker. |
+| `stream_passthrough(duration=None, chunk=None, feedback_safe=True, gate_threshold=400)` | Live mic→speaker monitor. `feedback_safe` temporarily lowers speaker volume and mic PGA and runs a hysteresis noise gate (open at `gate_threshold`, close at half) so ambient ringing gets muted; mixer state is restored on exit. |
 | `stream_in(duration=None, chunk=None) -> Iterator[bytes]` | Yield raw PCM chunks. |
 | `stream_out(chunks, chunk=None)` | Consume PCM chunks and play them. |
 | `get_volume() -> int` | Current speaker percent. |
@@ -267,7 +297,7 @@ for host, user, pw in devices:
 
 Errors: `AudioSDKError`, `DeviceNotFoundError`, `MixerError`, `RecordingTooQuietError`.
 
-### `ssh_sdk.LobsterSSH`
+### `ssh_sdk.InternSSH`
 
 | Method | Purpose |
 |---|---|
@@ -293,9 +323,9 @@ Errors: `SSHError`, `ConnectionError`, `CommandError`, `TransferError`.
 | Symptom | Cause and fix |
 |---|---|
 | Recording is just clicks, RMS near 0 | Mic gain at codec defaults. Call `sdk.set_high_gain()` (or trust `auto_tune=True`). If still silent, run `sdk.health_check(loopback=True)`; healthy `loopback_rms` with `mic_rms<100` means the analog mic input itself is the problem (cable, MICBIAS, mic module). |
-| Loud howl during `stream_passthrough` | Acoustic feedback. Lower `set_volume(...)` or move the mic away from the speaker. |
+| Loud howl during `stream_passthrough` | Acoustic feedback. The default `feedback_safe=True` already attenuates and gates — if you passed `feedback_safe=False`, drop it back to the default, lower `set_volume(...)`, or move the mic away from the speaker. |
 | `sudo` required every audio call | The user isn't in the `audio` group yet, or a previous `usermod -a -G audio` hasn't been re-logged in. Open a fresh SSH session. |
-| Volume / mic gain reset across reboot | The Lobster image doesn't run `alsactl store`. Either persist state at the image level or call `sdk.set_high_gain()` and `sdk.set_volume(70)` at startup of your own service. |
+| Volume / mic gain reset across reboot | The intern image doesn't run `alsactl store`. Either persist state at the image level or call `sdk.set_high_gain()` and `sdk.set_volume(70)` at startup of your own service. |
 | `MixerError: control not found` | The codec on this board doesn't expose that control. List what's available with `sdk.list_mixer_controls()`. |
 | `i2cget` returns "Device or resource busy" | Expected — the kernel codec driver owns the i2c address. Use ALSA controls instead. |
 | `no_device` verdict from `health_check` | PyAudio doesn't see card 1. Run `sdk.list_devices()`, then pass the right index: `AudioSDK(card=N)`. |

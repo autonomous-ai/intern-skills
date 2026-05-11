@@ -1,5 +1,5 @@
 """
-audio_sdk.py - Mic & Speaker SDK for Autonomous Intern (Lobster) devices.
+audio_sdk.py - Mic & Speaker SDK for Autonomous Intern devices.
 
 Records from the microphone, plays through the speaker, streams PCM, and runs
 hardware health checks. Targets the ES8389 codec on Allwinner-based intern
