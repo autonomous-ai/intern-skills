@@ -19,7 +19,7 @@ SDK="${HOME_DIR}/sdk/audio/audio_sdk.py"
 
 if [ ! -f "$SDK" ]; then
   mkdir -p "${HOME_DIR}/sdk/audio"
-  curl -fsSL https://raw.githubusercontent.com/autonomous-ai/intern-skills/main/sdk/developer/audio/audio_sdk.py -o "$SDK"
+  curl -fsSL https://raw.githubusercontent.com/autonomous-ai/intern-developer-sdk/main/audio/audio_sdk.py -o "$SDK"
 fi
 
 # python3-pyaudio: skip the apt cost if already importable
