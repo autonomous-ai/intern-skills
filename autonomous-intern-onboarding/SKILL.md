@@ -27,7 +27,7 @@ Then follow the Onboarding Process below.
 
 If `onboarding.json` exists and `installed_role` is set, do nothing — onboarding is complete.
 
-If user says "change my role", "switch role", "đổi role", or "I'm now in [role]", follow the Role Change process below.
+If user says "change my role", "switch role", or "I'm now in [role]", follow the Role Change process below.
 
 ---
 
