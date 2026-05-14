@@ -62,17 +62,14 @@ If user says "change my role", "switch role", or "I'm now in [role]", follow the
      "installed_version": "{manifest.version}",
      "installed_at": "{ISO 8601 timestamp}",
      "generic_installed": true,
-     "skills": ["{combined list: generic skill folders + role skill folders from manifest.roles[role].skills}"],
-     "update_cronjob_id": "{cronjob id}"
+     "skills": ["{combined list: generic skill folders + role skill folders from manifest.roles[role].skills}"]
    }
    ```
    The `skills` array is built from:
    - Generic skill folders extracted from `generic.zip`
    - Role skill folders from `manifest.roles[role].skills` array
 
-5. Set up auto-update cronjob (every 6 hours) — see Auto-Update section below
-
-6. Send confirmation message to user's channel:
+5. Send confirmation message to user's channel:
    ```
    ✅ All set! I've installed these skills for you:
 
@@ -105,29 +102,14 @@ If user says "change my role", "switch role", or "I'm now in [role]", follow the
    📦 Generic skills unchanged.
    ```
 
-#### Auto-Update (cronjob, every 6 hours)
-
-1. Fetch `https://raw.githubusercontent.com/autonomous-ai/intern-skills/main/version.txt` → trim whitespace → `remote_version`
-2. Read `onboarding.json` → `installed_version`
-3. If `remote_version` == `installed_version` → do nothing
-4. If different:
-   - Fetch fresh `manifest.json` from GitHub → update `manifest_cache.json`
-   - Download `{BASE_URL}/skills_zip/{manifest.generic_zip}` → overwrite existing generic skills
-   - Download `{BASE_URL}/skills_zip/{manifest.roles[installed_role].skills_zip}` → overwrite existing role skills
-   - Update `onboarding.json`:
-     - Set `installed_version` to `remote_version`
-     - Set `updated_at` to current ISO 8601 timestamp
-     - Update `skills` array from new manifest
-5. If download fails → retry 3x, skip and try again at next scheduled run
-
 ### Rules
 - Proactively send messages to user's configured channel — do NOT wait for user to start conversation
 - Always install generic skills regardless of role
-- Skills are overwritten on update (clean state), never merged
+- Skills are overwritten on role change (clean state), never merged
 - If folder name conflicts between generic and role → role-specific wins
 - Never ask for personal information beyond job role
 - Respond in the same language the user is using
-- Do not block the user if onboarding/update fails — inform and retry later
+- Do not block the user if onboarding fails — inform and retry later
 - If `onboarding.json` is corrupted → delete it and re-trigger onboarding
 - Use cached `manifest_cache.json` when network is unavailable; refresh cache on every successful fetch
 
@@ -141,5 +123,5 @@ Skills installed:
   📦 Generic: {list}
   🛠️ {Role}: {list}
 
-Status: {Complete / Updated / Error}
+Status: {Complete / Error}
 ```
